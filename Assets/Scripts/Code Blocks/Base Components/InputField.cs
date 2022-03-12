@@ -1,0 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class InputField : MonoBehaviour
+{
+    [SerializeField]
+    protected Sprite unselectedImage;
+    [SerializeField]
+    protected Sprite selectedImage;
+    protected Image inputFieldImage;
+
+    [SerializeField]
+    protected List<string> inputTypes;
+    protected HashSet<string> inputTypeSet;
+    protected dynamic inputVal;
+    protected Code inputBlock = null;
+
+    protected virtual void Awake()
+    {
+        inputFieldImage = GetComponent<Image>();
+        inputFieldImage.sprite = unselectedImage;
+        inputTypes.ConvertAll(s => s.ToLowerInvariant());
+        inputTypeSet = new HashSet<string>(inputTypes);
+    }
+
+    public virtual bool CanAcceptInput(string returnType)
+    {
+        return inputBlock == null && inputTypeSet.Contains(returnType.ToLowerInvariant());
+    }
+
+    public virtual void Select()
+    {
+        inputFieldImage.sprite = selectedImage;
+    }
+
+    public virtual void Deselect()
+    {
+        inputFieldImage.sprite = unselectedImage;
+    }
+
+    public virtual void AddInputBlock(Code _inputBlock)
+    {
+        inputBlock = _inputBlock;
+        Deselect();
+    }
+
+    public virtual void RemoveInputBlock()
+    {
+        inputBlock = null;
+    }
+
+    public virtual dynamic GetInput()
+    {
+        return inputBlock.ReturnValue();
+    }
+
+    public virtual Code GetCode()
+    {
+        return inputBlock;
+    }
+
+    //public virtual void SignalCompletion() { }
+}
