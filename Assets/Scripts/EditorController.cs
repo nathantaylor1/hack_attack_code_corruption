@@ -5,7 +5,8 @@ using UnityEngine;
 public class EditorController : MonoBehaviour
 {
     bool is_in_editor = false;
-    public GameObject editor_screen;
+
+    [Tooltip("Editor inventory that should pop up")] public GameObject editor_screen;
 
 
     // Update is called once per frame
