@@ -16,7 +16,7 @@ public class InputField : MonoBehaviour
     protected HashSet<string> inputTypeSet;
     protected dynamic inputVal;
     protected Code inputBlock = null;
-    protected Code parentBlock = null;
+    //protected Code parentBlock = null;
 
     protected virtual void Awake()
     {
@@ -24,7 +24,7 @@ public class InputField : MonoBehaviour
         inputFieldImage.sprite = unselectedImage;
         inputTypes.ConvertAll(s => s.ToLowerInvariant());
         inputTypeSet = new HashSet<string>(inputTypes);
-        parentBlock = GetComponentInParent<Code>();
+        //parentBlock = GetComponentInParent<Code>();
     }
 
     public virtual bool CanAcceptInput(string returnType)
@@ -45,7 +45,7 @@ public class InputField : MonoBehaviour
     public virtual void AddInputBlock(Code _inputBlock)
     {
         inputBlock = _inputBlock;
-        inputBlock.SetBodyParent(parentBlock.GetBodyParent());
+        //inputBlock.SetBodyParent(parentBlock.GetBodyParent());
         Deselect();
     }
 
@@ -62,10 +62,5 @@ public class InputField : MonoBehaviour
     public virtual Code GetCode()
     {
         return inputBlock;
-    }
-
-    public virtual void SignalCompletion() 
-    {
-        parentBlock.OnBodyCompletion();
     }
 }
