@@ -18,10 +18,6 @@ public class CodeEditorSwapper : MonoBehaviour
             Debug.LogError("Buttons must map to Canvases");
         }
         
-        // select the current button on first load
-        var firstTime = currentButton;
-        currentButton = null;
-        firstTime.Select();
 
         for (int i = 0; i < buttons.transform.childCount; i++)
         {
@@ -33,13 +29,13 @@ public class CodeEditorSwapper : MonoBehaviour
 
             buttonIdToCanvas.Add(buttons.transform.GetChild(i).gameObject.GetInstanceID(), canvases.transform.GetChild(i).gameObject);
         }
+        
+        // select the current button on first load
+        var firstTime = currentButton;
+        currentButton = null;
+        swap(firstTime);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void swap(Button buttonPressed) 
     {
         if (currentButton != buttonPressed) {
@@ -56,6 +52,7 @@ public class CodeEditorSwapper : MonoBehaviour
 
             var canvas = buttonIdToCanvas[buttonPressed.gameObject.GetInstanceID()];
             // old canvas moves out of view
+            currentCanvas.GetComponent<CodeSaver>().save();
             currentCanvas.SetActive(false);
             // new canvas comes into view
             canvas.SetActive(true);
