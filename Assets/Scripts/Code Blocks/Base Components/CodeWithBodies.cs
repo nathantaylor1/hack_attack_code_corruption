@@ -26,4 +26,9 @@ public class CodeWithBodies : CodeWithParameters
     {
         return bodies[index].GetCode();
     }
+
+    public virtual void OnBodyCompletion()
+    {
+        //Continue();
+    }
 }
