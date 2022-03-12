@@ -19,7 +19,9 @@ public class DropInto : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         canvas = GetComponentInParent<Canvas>();
         rect = GetComponent<RectTransform>();
-        blockInputField = transform.parent.GetComponent<InputField>();
+        blockInputField = transform.parent.GetComponentInParent<InputField>();
+        if (blockInputField == null)
+            Debug.Log("No input field found");
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData)
@@ -27,8 +29,7 @@ public class DropInto : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Code code = null;
         if (eventData.pointerDrag != null)
             code = eventData.pointerDrag.GetComponent<Code>();
-        if (code != null && blockInputField.CanAcceptInput(code.ReturnType) 
-            && eventData.pointerDrag.transform != transform.parent)
+        if (code != null && blockInputField.CanAcceptInput(code.ReturnType))
         {
             blockInputField.Select();
         }
@@ -46,27 +47,30 @@ public class DropInto : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Code code = null;
         if (eventData.pointerDrag != null)
             code = eventData.pointerDrag.GetComponent<Code>();
-        if (code != null && blockInputField.CanAcceptInput(code.ReturnType)
-            && eventData.pointerDrag.transform != transform.parent) {
-            if (dropMethod == DropMethod.inside)
+        if (code != null && blockInputField.CanAcceptInput(code.ReturnType)) {
+            /*if (dropMethod == DropMethod.underneath)
             {
-                if (transform.parent.TryGetComponent(out BlockResizer br))
-                {
-                    br.UpdateSize();
-                }
-            }
-            else
-            {
-                dropPos = rect.rect.size * Vector2.up;
-                eventData.pointerDrag.transform.position = dropPos;
                 if (eventData.pointerDrag.TryGetComponent(out LayoutElement le))
                 {
-                    //le.ignoreLayout = true;
+                    le.ignoreLayout = true;
                 }
-
+                if (blockInputField.gameObject.TryGetComponent(out RectTransform rt))
+                {
+                    dropPos = -rt.rect.size * Vector2.up;
+                }
+            }*/
+            eventData.pointerDrag.transform.SetParent(blockInputField.transform, false);
+            /*if (dropMethod == DropMethod.underneath)
+            {
+                if (eventData.pointerDrag.TryGetComponent(out RectTransform rt))
+                {
+                    rt.anchoredPosition = dropPos;
+                }
+            }*/
+            if (blockInputField.gameObject.TryGetComponent(out BlockResizer br))
+            {
+                br.UpdateSize();
             }
-            eventData.pointerDrag.transform.SetParent(transform.parent, false);
-
             blockInputField.AddInputBlock(code);
         }
     }
@@ -75,64 +79,4 @@ public class DropInto : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         blockInputField.RemoveInputBlock();
     }
-
-    /*public virtual void moveDown(float y) {
-        bottom.anchoredPosition += Vector2.down * y;
-        middle.sizeDelta += Vector2.up * y;
-        middle.anchoredPosition += Vector2.down * y / 2f;
-        // rect.sizeDelta += Vector2.up * y;
-        // rect.anchoredPosition += Vector2.down * y / 2f;
-        dropPos += Vector2.down * y;
-    }
-
-    public virtual void moveUp(float y) {
-        bottom.anchoredPosition += Vector2.up * y;
-        middle.sizeDelta += Vector2.down * y;
-        middle.anchoredPosition += Vector2.up * y / 2f;
-        // rect.sizeDelta += Vector2.down * y;
-        // rect.anchoredPosition += Vector2.up * y / 2f;
-        dropPos += Vector2.up * y;
-    }
-
-    public virtual void shiftUp(float y, RectTransform removed) {
-        moveUp(y);
-        bool test = false;
-        foreach (RectTransform child in transform) {
-            if (test) {
-                if (child.TryGetComponent(out Draggable drag)) {
-                    child.anchoredPosition += Vector2.up * y;
-                }
-            }
-            if (removed == child) {
-                test = true;
-            }
-        }
-        if (transform.parent.TryGetComponent(out DropInto drop)) {
-            drop.shiftUp(y, transform as RectTransform);
-        }
-    }
-
-
-    public virtual void shiftDown(float y, RectTransform added) {
-        moveDown(y);
-        bool test = false;
-        foreach (RectTransform child in transform) {
-            if (test) {
-                if (child.TryGetComponent(out Draggable drag)) {
-                    child.anchoredPosition += Vector2.down * y;
-                }
-            }
-            if (added == child) {
-                test = true;
-            }
-        }
-        if (transform.parent.TryGetComponent(out DropInto drop)) {
-            drop.shiftDown(y, transform as RectTransform);
-        }
-    }*/
-
-    // TODO
-    // if draggable is close enough show outline either in or under
-    // and make sure outline is either element or wrapper template
-    // add a get height function when removing and adding
 }

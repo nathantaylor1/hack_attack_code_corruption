@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class BodyInputField : InputField
 {
-
+    public override void AddInputBlock(Code _inputBlock)
+    {
+        inputBlock = _inputBlock;
+        inputBlock.SetBodyParent(this);
+        Deselect();
+    }
 
     /*public override void SignalCompletion()
     {
