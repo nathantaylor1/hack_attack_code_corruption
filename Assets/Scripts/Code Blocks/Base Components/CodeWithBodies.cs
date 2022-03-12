@@ -10,7 +10,7 @@ public class CodeWithBodies : CodeWithParameters
     {
         base.Awake();
         // Should only iterate through top layer
-        foreach (Transform bodyTrans in transform)
+        foreach (Transform bodyTrans in transform.Find("Background").transform)
         {
             if (bodyTrans.TryGetComponent(out InputField body))
             {

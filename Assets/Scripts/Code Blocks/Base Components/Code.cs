@@ -7,6 +7,7 @@ public class Code : MonoBehaviour
     [SerializeField]
     protected string returnType = "void";
     protected InputField nextBlockInput;
+    protected InputField bodyParent;
 
     public string ReturnType
     {
@@ -21,9 +22,7 @@ public class Code : MonoBehaviour
     protected virtual Code GetNext()
     {
         if (nextBlockInput == null)
-        {
             return null;
-        }
         return nextBlockInput.GetCode();
     }
 
@@ -42,24 +41,32 @@ public class Code : MonoBehaviour
 
     public virtual dynamic ReturnValue()
     {
-        ExecuteCode();
         return null;
+    }
+
+    public virtual void SetBodyParent(InputField _bodyParent)
+    {
+        bodyParent = _bodyParent;
+    }
+
+    public virtual InputField GetBodyParent()
+    {
+        return bodyParent;
+    }
+
+    public virtual void OnBodyCompletion()
+    {
+        //Continue();
     }
 
     public virtual void SignalCompletion()
     {
-        /*if (transform.parent.TryGetComponent(out Code prevBlock))
-        {
-            prevBlock.SignalCompletion();
-        }
-        else if (transform.parent.TryGetComponent(out InputField parentField))
-        {
-            parentField.SignalCompletion();
-        }*/
-        Code prevBlock = transform.parent.GetComponentInParent<Code>();
+        /*Code prevBlock = transform.parent.GetComponentInParent<Code>();
         if (prevBlock != null)
         {
             prevBlock.SignalCompletion();
-        }
+        }*/
+        if (bodyParent != null)
+            bodyParent.SignalCompletion();
     }
 }

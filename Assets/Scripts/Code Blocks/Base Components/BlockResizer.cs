@@ -19,10 +19,6 @@ public class BlockResizer : MonoBehaviour
         {
             br.UpdateSize();
         }
-        /*if (_transform.parent.TryGetComponent(out BlockResizer br))
-        {
-            br.UpdateSize();
-        }*/
     }
 
     /*protected Canvas canvas;

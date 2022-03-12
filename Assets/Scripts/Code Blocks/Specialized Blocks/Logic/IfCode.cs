@@ -12,23 +12,4 @@ public class IfCode : CodeWithBodies
         }
         base.ExecuteCode();
     }
-
-    public override void Continue()
-    {
-        if (GetNext() != null)
-            GetNext().ExecuteCode();
-        else
-        {
-            Code prevBlock = transform.parent.GetComponentInParent<Code>();
-            if (prevBlock != null)
-            {
-                prevBlock.SignalCompletion();
-            }
-        }
-    }
-
-    public override void SignalCompletion()
-    {
-        Continue();
-    }
 }
