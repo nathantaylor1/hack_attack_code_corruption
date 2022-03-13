@@ -10,10 +10,12 @@ public class CodeEditorSwapper : MonoBehaviour
     public Color selectedColor;
     public GameObject buttons;
     public GameObject canvases;
+    ScrollRect sr;
     public Dictionary<int, GameObject> buttonIdToCanvas = new Dictionary<int, GameObject>();
     // Start is called before the first frame update
     void Start()
     {
+        sr = GetComponent<ScrollRect>();
         if (buttons.transform.childCount != canvases.transform.childCount) {
             Debug.LogError("Buttons must map to Canvases");
         }
@@ -49,7 +51,6 @@ public class CodeEditorSwapper : MonoBehaviour
             // new button changes
             buttonPressed.colors = buttonColors;
             currentButton = buttonPressed;
-
             var canvas = buttonIdToCanvas[buttonPressed.gameObject.GetInstanceID()];
             // old canvas moves out of view
             currentCanvas.GetComponent<CodeSaver>().save();
@@ -57,6 +58,7 @@ public class CodeEditorSwapper : MonoBehaviour
             // new canvas comes into view
             canvas.SetActive(true);
             currentCanvas = canvas;
+            sr.content = canvas.transform as RectTransform;
         }
     }
 }
