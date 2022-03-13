@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Update() 
     {
-        if (!EditorController.instance.editor_screen) {
+        if (!EditorController.instance.is_in_editor) {
             MoveLeft();
             MoveRight();
             Jump();

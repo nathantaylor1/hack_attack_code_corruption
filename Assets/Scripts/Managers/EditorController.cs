@@ -5,7 +5,7 @@ using UnityEngine;
 public class EditorController : MonoBehaviour
 {
     public static EditorController instance;
-    bool is_in_editor = false;
+    public bool is_in_editor = false;
 
     [Tooltip("Editor inventory that should pop up")] public GameObject editor_screen;
 
