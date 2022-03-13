@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpCode : CodeWithBodies
+public class JumpCode : CodeWithParameters
 {
     [Tooltip("Temp rigid body to add jump force while we dont have player class")] public Rigidbody _rb;
     [Tooltip("Temp base jump force while we dont have module class")] public float jump_force;

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3369895499685561582
+--- !u!1001 &784076524928803992
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 825205389847723518, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 115.77
+      value: 160.88
       objectReference: {fileID: 0}
     - target: {fileID: 2633865735440196431, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5021792279118999344, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_Name
-      value: Jump Block
+      value: Move Left Block
       objectReference: {fileID: 0}
     - target: {fileID: 5021792279118999345, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_Pivot.x
@@ -189,44 +189,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7955499669208062736, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_text
-      value: Jump Force
+      value: Move Left Speed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
---- !u!1 &7743019691494206430 stripped
+--- !u!1 &5715459393499515816 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5021792279118999344, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
-  m_PrefabInstance: {fileID: 3369895499685561582}
+  m_PrefabInstance: {fileID: 784076524928803992}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1372789620106164106 stripped
+--- !u!224 &3974707635502831612 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4452202925815984996, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
-  m_PrefabInstance: {fileID: 3369895499685561582}
+  m_PrefabInstance: {fileID: 784076524928803992}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1924435657124989808
+--- !u!114 &3640095899221861649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7743019691494206430}
+  m_GameObject: {fileID: 5715459393499515816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31aed410f3cd9e04cb8333f1cab21043, type: 3}
+  m_Script: {fileID: 11500000, guid: d4970609e54a4184ba38107c860421c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   returnType: void
+  is_right: 0
   _rb: {fileID: 0}
-  jump_force: 0
-  ground_layer:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!1001 &4193462147251558043
+  move_force: 0
+--- !u!1001 &4659174437413484864
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1372789620106164106}
+    m_TransformParent: {fileID: 3974707635502831612}
     m_Modifications:
     - target: {fileID: 2076810174986958886, guid: f8ca3a032def71844955a5832c9adf1c, type: 3}
       propertyPath: m_text
@@ -298,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2322787579345275257, guid: f8ca3a032def71844955a5832c9adf1c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 153.26999
+      value: 198.38
       objectReference: {fileID: 0}
     - target: {fileID: 2322787579345275257, guid: f8ca3a032def71844955a5832c9adf1c, type: 3}
       propertyPath: m_AnchoredPosition.y
