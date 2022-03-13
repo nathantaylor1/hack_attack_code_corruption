@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    // TODO move this to a player controller
     public Dictionary<FunctionOption, Code> codeToRun = new Dictionary<FunctionOption, Code>();
     public enum FunctionOption
     {
@@ -25,9 +26,11 @@ public class GameManager : MonoBehaviour
 
     private void Update() 
     {
-        MoveLeft();
-        MoveRight();
-        MoveJump();
+        if (!EditorController.instance.editor_screen) {
+            MoveLeft();
+            MoveRight();
+            Jump();
+        }
     }
 
     public void MoveLeft() {
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void MoveJump() 
+    public void Jump() 
     {
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
