@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 37394834212657755, guid: 7db953fdf0ea72644aed966b34c483b2, type: 3}
       propertyPath: m_Name
-      value: Tile
+      value: Tile Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1269453012896447861, guid: 7db953fdf0ea72644aed966b34c483b2, type: 3}
       propertyPath: m_RootOrder
@@ -67,5 +67,9 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.4627451
       objectReference: {fileID: 0}
+    - target: {fileID: 8243901032166667554, guid: 7db953fdf0ea72644aed966b34c483b2, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 1ba2b293a32fd4e46990a60a069bb9aa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7db953fdf0ea72644aed966b34c483b2, type: 3}

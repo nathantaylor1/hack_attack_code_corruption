@@ -24,7 +24,14 @@ public class InputField : MonoBehaviour
         inputFieldImage.sprite = unselectedImage;
         inputTypes.ConvertAll(s => s.ToLowerInvariant());
         inputTypeSet = new HashSet<string>(inputTypes);
-        //parentBlock = GetComponentInParent<Code>();
+        foreach (Transform child in transform)
+        {
+            if (child.TryGetComponent<Code>(out Code cd)) {
+                AddInputBlock(cd);
+                break;
+            }
+        }
+        // Debug.Log("inputting");
     }
 
     public virtual bool CanAcceptInput(string returnType)

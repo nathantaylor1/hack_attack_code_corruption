@@ -15,5 +15,17 @@ public class MoveCode : CodeWithParameters
         Vector3 current_velocity = _rb.velocity;
         current_velocity.x = x_velocity;
         _rb.velocity = current_velocity;
+        base.ExecuteCode();
+    }
+
+    public override void StopExecution() {
+        var tempVel = _rb.velocity;
+        if (is_right && tempVel.x > 0) {
+            tempVel.x = 0;
+        } else if (!is_right && tempVel.x < 0) {
+            tempVel.x = 0;
+        }
+        _rb.velocity = tempVel;
+        base.StopExecution();
     }
 }

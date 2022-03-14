@@ -7,6 +7,12 @@ public class JumpCode : CodeWithParameters
     [Tooltip("Temp rigid body to add jump force while we dont have player class")] public Rigidbody _rb;
     [Tooltip("Temp base jump force while we dont have module class")] public float jump_force;
     [Tooltip("Layer to raycast to make sure entity is touching the ground")]public LayerMask ground_layer;
+    Collider col;
+
+    protected override void Awake() {
+        base.Awake();
+        col = _rb.gameObject.GetComponent<Collider>();
+    }
     public override void ExecuteCode()
     {
         if (check_dir(Vector3.down)) {
@@ -14,12 +20,11 @@ public class JumpCode : CodeWithParameters
             current_velocity.y = jump_force * (float)(object)GetParameter(0);
             _rb.velocity = current_velocity;
         }
+        base.ExecuteCode();
     }
 
     bool check_dir(Vector3 dir)
     {
-        Collider col = GetComponentInChildren<Collider>();
-
         Ray ray = new Ray(col.bounds.center, dir);
 
         // Smaller than the actual radius of the collider, 

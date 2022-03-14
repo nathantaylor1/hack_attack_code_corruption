@@ -53,10 +53,10 @@ public class CodeEditorSwapper : MonoBehaviour
             currentButton = buttonPressed;
             var canvas = buttonIdToCanvas[buttonPressed.gameObject.GetInstanceID()];
             // old canvas moves out of view
-            currentCanvas.GetComponent<CodeSaver>().save();
-            currentCanvas.SetActive(false);
+            // currentCanvas.SetActive(false);
             // new canvas comes into view
-            canvas.SetActive(true);
+            // canvas.SetActive(true);
+            canvas.transform.SetAsLastSibling();
             currentCanvas = canvas;
             sr.content = canvas.transform as RectTransform;
         }

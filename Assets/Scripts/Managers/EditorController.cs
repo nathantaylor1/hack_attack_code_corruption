@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EditorController : MonoBehaviour
 {
@@ -15,20 +16,32 @@ public class EditorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(!EditorController.instance.is_in_editor && Input.GetKeyDown(KeyCode.E))
         {
-            Time.timeScale = 0f;
-            editor_screen.SetActive(true);
+            toggleCanvases(true);
             is_in_editor = true;
+            Time.timeScale = 0f;
+        } 
+        else if(EditorController.instance.is_in_editor && Input.GetKeyDown(KeyCode.E))
+        {
+            SafeClose();
         }
     }
 
-    public void safeToClose() {
+    public void SafeClose() {
         if(is_in_editor)
         {
             Time.timeScale = 1f;
-            editor_screen.SetActive(false);
+            toggleCanvases(false);
             is_in_editor = false;
+        }
+    }
+
+    void toggleCanvases(bool enabled) {
+        GetComponent<Canvas>().enabled = enabled;
+        foreach (var item in GetComponentsInChildren<GraphicRaycaster>())
+        {
+            item.enabled = enabled;
         }
     }
 }

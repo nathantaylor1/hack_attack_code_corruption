@@ -10,6 +10,10 @@ public class BlockResizer : MonoBehaviour
         StartCoroutine(WaitAndRebuild(transform));
     }
 
+    private void Awake() {
+        UpdateSize();
+    }
+
     private IEnumerator WaitAndRebuild(Transform _transform)
     {
         yield return null;

@@ -30,12 +30,32 @@ public class Code : MonoBehaviour
         Continue();
     }
 
+    public virtual void StopExecution() {
+        ContinueStop();
+    }
+
     public virtual void Continue()
     {
-        if (GetNext() != null)
+        if (GetNext() != null) {
+            Debug.Log("executing " + gameObject.name);
             GetNext().ExecuteCode();
-        else
+        }
+        else {
+            Debug.Log("done " + gameObject.name);
             SignalCompletion();
+        }
+    }
+
+    public virtual void ContinueStop()
+    {
+        if (GetNext() != null) {
+            Debug.Log("executing " + gameObject.name);
+            GetNext().StopExecution();
+        }
+        else {
+            Debug.Log("done " + gameObject.name);
+            SignalCompletion();
+        }
     }
 
     public virtual dynamic ReturnValue()
