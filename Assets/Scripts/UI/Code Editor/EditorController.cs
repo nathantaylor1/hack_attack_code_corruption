@@ -8,11 +8,14 @@ public class EditorController : MonoBehaviour
     public static EditorController instance;
     public bool is_in_editor = false;
 
-    [Tooltip("Editor inventory that should pop up")] public GameObject editor_screen;
+    //[Tooltip("Editor inventory that should pop up")] 
+    private GameObject editor_screen;
 
     private void Awake() {
         instance = this;
+        editor_screen = gameObject;
     }
+
     // Update is called once per frame
     void Update()
     {
