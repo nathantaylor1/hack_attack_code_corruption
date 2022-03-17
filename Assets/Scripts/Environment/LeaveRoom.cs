@@ -7,8 +7,7 @@ public class LeaveRoom : MonoBehaviour
 {
     // Currently set to restart level for gold_spike purposes
     // Can also be set to activate on button click
-    private void OnTriggerStay(Collider other)
-    {
+    private void OnTriggerStay2D(Collider2D other) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
