@@ -636,7 +636,8 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Legacy Analytics: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -650,11 +651,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 2
-  cloudProjectId: 
+  cloudProjectId: d0383c6e-2714-428b-8d22-7fb00b8ff207
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: ClumsyElephantStudios
+  organizationId: unity_824a809317a381a0af89
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0
