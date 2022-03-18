@@ -397,7 +397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c5460f50206394e907358f4abd19c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: TestScene
 --- !u!1 &999163796
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +478,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1069056844
 GameObject:
@@ -940,7 +939,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1381114516}
   - component: {fileID: 1381114517}
-  - component: {fileID: 1381114518}
   m_Layer: 0
   m_Name: AnalyticsManager
   m_TagString: Untagged
@@ -960,7 +958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1381114517
 MonoBehaviour:
@@ -974,19 +972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49771ab5c8f3254c9a2597486d41b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1381114518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381114515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fc641a43a83791419b2dac8f20f0ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectID: 
 --- !u!1 &1480591167
 GameObject:
   m_ObjectHideFlags: 0
