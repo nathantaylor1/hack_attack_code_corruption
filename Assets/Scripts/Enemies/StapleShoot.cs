@@ -9,6 +9,6 @@ public class StapleShoot : MonoBehaviour
         // instantiate prefab
         GameObject StaplePrefab = (GameObject)Resources.Load("Prefabs/Staple", typeof(GameObject));
         GameObject Staple = Instantiate(StaplePrefab, transform.position, Quaternion.identity);
-        Staple.GetComponent<Rigidbody>().AddForce(transform.right * power);
+        Staple.GetComponent<Rigidbody2D>().AddForce(transform.right * power);
     }
 }

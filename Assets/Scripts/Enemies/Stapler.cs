@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Stapler : MonoBehaviour
 {
-    Rigidbody rb;
+    Rigidbody2D rb;
     public LayerMask layerMask;
     StapleShoot stapleShoot;
-    Vector3 halfextents = new Vector3(.5f, .45f, .5f);
+    Vector2 halfextents = new Vector3(1, 1);
     public int elapsed = 0;
     bool shootMode = false;
     public float switchPositionRate = .15f;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         stapleShoot = GetComponentInChildren<StapleShoot>();
     }
 
@@ -24,8 +24,10 @@ public class Stapler : MonoBehaviour
         //Debug.Log("DSJJSDAJSADJDSA");
         //Debug.DrawRay(transform.position, (transform.right + transform.up * -1).normalized * 1f, Color.red);
         //Debug.Log(transform.forward);
-        if(Physics.BoxCast(transform.position, halfextents, Vector3.down, out RaycastHit r, transform.rotation, .1f, ~layerMask))
+        RaycastHit2D isHit = Physics2D.BoxCast(transform.position, halfextents, 0, Vector2.down, .05f, ~layerMask);
+        if(isHit)
         {
+            // Debug.Log("");
             elapsed += 1;
             if (elapsed < 20)
             {
@@ -35,15 +37,17 @@ public class Stapler : MonoBehaviour
             //Debug.Log("grounded");
             elapsed = 0;
 
-            if (switchPositionRate > Random.Range(0f, 1f) && !shootMode) {
+            // if (switchPositionRate > Random.Range(0f, 1f) && !shootMode) {
+                // Debug.Log(Physics2D.Raycast(transform.position, transform.right, gameObject.layer).transform.tag);
+            if (Physics2D.Raycast(transform.position, transform.right, 3f, LayerMask.GetMask("Player")) && !shootMode) {
                 shootMode = true;
                 StartCoroutine(StartShooting());
             }
 
             if (!shootMode) {
-                if (switchPositionRate > Random.Range(0f, 1f) ||
-                    Physics.Raycast(transform.position, transform.right, 1f, ~layerMask) || 
-                    !Physics.Raycast(transform.position, (transform.right + transform.up * -1).normalized, 1.2f, ~layerMask)
+                if (
+                    Physics2D.Raycast(transform.position, transform.right, 1f, ~layerMask) || 
+                    !Physics2D.Raycast(transform.position, (transform.right + transform.up * -1).normalized, 1.2f, ~layerMask)
                     )
                 {
                     transform.Rotate(Vector3.up, 180);
@@ -64,15 +68,15 @@ public class Stapler : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        bool isHit = Physics.BoxCast(transform.position, halfextents, Vector3.down, out RaycastHit r, transform.rotation, .1f, ~layerMask);
+        RaycastHit2D isHit = Physics2D.BoxCast(transform.position, halfextents, 0, Vector2.down, .05f, ~layerMask);
         if (isHit)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(transform.position + transform.up * -1 * r.distance, halfextents * 2);
+            Gizmos.DrawWireCube(transform.position + transform.up * -1 * isHit.distance, halfextents);
         } else
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(transform.position + transform.up * -1 * 2, halfextents * 2);
+            Gizmos.DrawWireCube(transform.position + transform.up * -1 * 2, halfextents);
         }
     }
 

@@ -33,11 +33,32 @@ public class JumpCode : CodeWithParameters
         //      so it doesn't catch on walls
         float radius = extents.x - .05f;
         // A bit below the bottom of the collider
-        float fullDist = extents.y + .05f;
+        float fullDist = .2f;
 
         if (Physics2D.CircleCast(bounds.center, radius, dir, fullDist, groundLayer))
             return true;
         else
             return false;
     }
+
+    // Used for debuging circlecast to make sure jump works correctly 
+    // private void OnDrawGizmos()
+    // {
+    //     _collider2D = rb2d.gameObject.GetComponent<Collider2D>();
+    //       Bounds bounds = _collider2D.bounds;
+    //     Vector3 extents = bounds.extents;
+    //     // Smaller than the actual radius of the collider, 
+    //     //      so it doesn't catch on walls
+    //     float radius = extents.x - .05f;
+    //     // A bit below the bottom of the collider
+    //     float fullDist = .2f;
+
+    //     RaycastHit2D isHit = Physics2D.CircleCast(bounds.center, radius, Vector2.down, fullDist, groundLayer);
+    //     if (isHit)
+    //     {
+    //         Gizmos.color = Color.red;
+    //         Gizmos.DrawWireSphere(rb2d.gameObject.transform.position + Vector3.down * fullDist, _collider2D.bounds.extents.x -.05f);
+    //         // Gizmos.DrawWireCube(transform.position + transform.up * -1 * isHit.distance, halfextents);
+    //     }
+    // }
 }
