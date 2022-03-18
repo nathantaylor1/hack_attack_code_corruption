@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: 9a2a5c4c80671524ea07f55c57cf6e61
+guid: a0fe48803d6d47242b025a7c467fe8d1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8606747177626265764
-    second: block_input_field 1_0
+      213: 1515622694917723629
+    second: Blocks_0
   - first:
-      213: 3475605928602535674
-    second: block_input_field 1_1
+      213: 1503016370545623098
+    second: Blocks_1
   - first:
-      213: -6044317652898837447
-    second: block_input_field 1_2
+      213: 1489830567317918739
+    second: Blocks_2
   - first:
-      213: 7092572742353176490
-    second: block_input_field 1_3
+      213: 38433539612607256
+    second: Blocks_3
+  - first:
+      213: 5937300090042828850
+    second: Blocks_4
+  - first:
+      213: -2230640015494873224
+    second: Blocks_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,85 +121,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: block_input_field 1_0
+      name: Blocks_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 2, y: 2, z: 2, w: 2}
+        y: 36
+        width: 48
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a8620225fe417770800000000000000
-      internalID: 8606747177626265764
+      spriteID: de557189fc2980510800000000000000
+      internalID: 1515622694917723629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: block_input_field 1_1
+      name: Blocks_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 3, y: 3, z: 3, w: 3}
+        x: 48
+        y: 36
+        width: 48
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 3, z: 1, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af688917d25db3030800000000000000
-      internalID: 3475605928602535674
+      spriteID: a3008f9fc69cbd410800000000000000
+      internalID: 1503016370545623098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: block_input_field 1_2
+      name: Blocks_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 18
+        width: 48
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 314d08ce101fca410800000000000000
+      internalID: 1489830567317918739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 18
+        width: 48
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8130214c91b888000800000000000000
+      internalID: 38433539612607256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blocks_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 2, y: 2, z: 2, w: 2}
+        width: 48
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 0, z: 1, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93c875d6e154e1ca0800000000000000
-      internalID: -6044317652898837447
+      spriteID: 238c5e789f6856250800000000000000
+      internalID: 5937300090042828850
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: block_input_field 1_3
+      name: Blocks_5
       rect:
         serializedVersion: 2
-        x: 16
+        x: 48
         y: 0
-        width: 16
-        height: 16
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 3, y: 3, z: 3, w: 3}
+        width: 48
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 1, z: 1, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa74493c451ed6260800000000000000
-      internalID: 7092572742353176490
+      spriteID: 87ff7ae69bc2b01e0800000000000000
+      internalID: -2230640015494873224
       vertices: []
       indices: 
       edges: []
