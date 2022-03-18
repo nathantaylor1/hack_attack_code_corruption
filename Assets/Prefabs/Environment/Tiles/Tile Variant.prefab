@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 37394834212657755, guid: 7db953fdf0ea72644aed966b34c483b2, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1269453012896447861, guid: 7db953fdf0ea72644aed966b34c483b2, type: 3}
       propertyPath: m_RootOrder
       value: 0
