@@ -13,7 +13,7 @@ public class FloatCode : Code
     {
         base.Awake();
         text = GetComponentInChildren<TMP_Text>();
-        text.text = val.ToString();
+        text.text = val.ToString() + "x";
     }
 
     public override dynamic ReturnValue()

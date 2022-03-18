@@ -1,40 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class JumpCode : CodeWithParameters
 {
-    [Tooltip("Temp rigid body to add jump force while we dont have player class")] public Rigidbody _rb;
-    [Tooltip("Temp base jump force while we dont have module class")] public float jump_force;
-    [Tooltip("Layer to raycast to make sure entity is touching the ground")]public LayerMask ground_layer;
-    Collider col;
+    [Tooltip("Temp rigid body to add jump force while we dont have player class")] public Rigidbody2D rb2d;
+    [Tooltip("Temp base jump force while we dont have module class")] public float jumpForce;
+    [Tooltip("Layer to raycast to make sure entity is touching the ground")]public LayerMask groundLayer;
+    private Collider2D _collider2D;
 
     protected override void Awake() {
         base.Awake();
-        col = _rb.gameObject.GetComponent<Collider>();
+        _collider2D = rb2d.gameObject.GetComponent<Collider2D>();
     }
     public override void ExecuteCode()
     {
         if (check_dir(Vector3.down)) {
-            Vector2 current_velocity = _rb.velocity;
-            current_velocity.y = jump_force * (float)(object)GetParameter(0);
-            _rb.velocity = current_velocity;
+            Vector2 currentVelocity = rb2d.velocity;
+            currentVelocity.y = jumpForce * (float)(object)GetParameter(0);
+            rb2d.velocity = currentVelocity;
         }
         base.ExecuteCode();
     }
 
     bool check_dir(Vector3 dir)
     {
-        Ray ray = new Ray(col.bounds.center, dir);
-
+        Bounds bounds = _collider2D.bounds;
+        Vector3 extents = bounds.extents;
         // Smaller than the actual radius of the collider, 
         //      so it doesn't catch on walls
-        float radius = col.bounds.extents.x - .05f;
-
+        float radius = extents.x - .05f;
         // A bit below the bottom of the collider
-        float full_distance = col.bounds.extents.y + .05f;
+        float fullDist = extents.y + .05f;
 
-        if (Physics.SphereCast(ray, radius, full_distance, ground_layer))
+        if (Physics2D.CircleCast(bounds.center, radius, dir, fullDist, groundLayer))
             return true;
         else
             return false;
