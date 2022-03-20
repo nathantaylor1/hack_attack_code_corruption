@@ -39,7 +39,8 @@ public class Stapler : MonoBehaviour
 
             // if (switchPositionRate > Random.Range(0f, 1f) && !shootMode) {
                 // Debug.Log(Physics2D.Raycast(transform.position, transform.right, gameObject.layer).transform.tag);
-            if (Physics2D.Raycast(transform.position, transform.right, 3f, LayerMask.GetMask("Player")) && !shootMode) {
+            if (Physics2D.Raycast(transform.position, transform.right, 3f, LayerMask.GetMask("Player")) &&
+                !Physics2D.Raycast(transform.position, transform.right, 1f, LayerMask.GetMask("Player")) && !shootMode) {
                 shootMode = true;
                 StartCoroutine(StartShooting());
             }
@@ -47,7 +48,8 @@ public class Stapler : MonoBehaviour
             if (!shootMode) {
                 if (
                     Physics2D.Raycast(transform.position, transform.right, 1f, ~layerMask) || 
-                    !Physics2D.Raycast(transform.position, (transform.right + transform.up * -1).normalized, 1.2f, ~layerMask)
+                    !Physics2D.Raycast(transform.position, (transform.right + transform.up * -1).normalized, 1.2f, ~layerMask) ||
+                    Physics2D.Raycast(transform.position, transform.right * -1, 3f, LayerMask.GetMask("Player"))
                     )
                 {
                     transform.Rotate(Vector3.up, 180);

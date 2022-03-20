@@ -9,7 +9,7 @@ public class ChairMovement : MonoBehaviour
     public float switchPositionRate = .95f;
     public int power = 400;
     public LayerMask walls;
-    int dir = 1;
+    int dir = -1;
     bool sawPlayer = false;
     // Start is called before the first frame update
     void Start()
@@ -39,9 +39,9 @@ public class ChairMovement : MonoBehaviour
             return;
         }
         elapsed = 0;
-        if (!sawPlayer && Random.Range(0, 4) == 0) {
-            dir *= -1;
-        }
+        // if (!sawPlayer && Random.Range(0, 4) == 0) {
+        //     dir *= -1;
+        // }
         if (Physics2D.Raycast(transform.position, Vector2.right * dir, 1, ~walls)) {
             dir *= -1;
         }

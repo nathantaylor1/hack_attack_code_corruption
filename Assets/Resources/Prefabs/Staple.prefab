@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2572040771842391928}
   - component: {fileID: 4162216963819899779}
   - component: {fileID: 8673950516824235353}
+  - component: {fileID: 3281501537671647679}
   m_Layer: 0
   m_Name: Staple
   m_TagString: Enemy
@@ -144,3 +145,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &3281501537671647679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4536963770326186710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7a0dd67acc7c641b6338efc2f9f3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage_amount: 1

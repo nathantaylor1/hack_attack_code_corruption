@@ -9,11 +9,11 @@ public class EditorController : MonoBehaviour
     public bool is_in_editor = false;
 
     //[Tooltip("Editor inventory that should pop up")] 
-    private GameObject editor_screen;
+    public Canvas editor_screen;
+    public Canvas in_game_ui;
 
     private void Awake() {
         instance = this;
-        editor_screen = gameObject;
     }
 
     // Update is called once per frame
@@ -43,10 +43,11 @@ public class EditorController : MonoBehaviour
     }
 
     void toggleCanvases(bool enabled) {
-        GetComponent<Canvas>().enabled = enabled;
-        foreach (var item in GetComponentsInChildren<GraphicRaycaster>())
+        editor_screen.enabled = enabled;
+        foreach (var item in editor_screen.GetComponentsInChildren<GraphicRaycaster>())
         {
             item.enabled = enabled;
         }
+        in_game_ui.enabled = !enabled;
     }
 }
