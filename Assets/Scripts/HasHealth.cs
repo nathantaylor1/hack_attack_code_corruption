@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HasHealth : MonoBehaviour
 {
-    public float health = 30;
+    public float health = 5;
     public TextMeshProUGUI health_display;
 
     bool dead = false;
@@ -14,6 +14,10 @@ public class HasHealth : MonoBehaviour
     public bool IsDead()
     {
         return dead;
+    }
+
+    private void Start() {
+        update_health_display();
     }
 
     public void Damage(float damage_amount)
@@ -37,9 +41,10 @@ public class HasHealth : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             GameManager.instance.ResetLevel();
+        } else {
+            dead = true;
+            gameObject.SetActive(false);
         }
-        dead = true;
-        gameObject.SetActive(false);
     }
 
     void update_health_display()
@@ -51,7 +56,7 @@ public class HasHealth : MonoBehaviour
             {
                 hp = 0;
             }
-            health_display.text = hp.ToString();
+            health_display.text = "Health: " + hp.ToString();
         }
     }
 }
