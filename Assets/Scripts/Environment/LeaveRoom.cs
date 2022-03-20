@@ -9,9 +9,11 @@ public class LeaveRoom : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         if (isEndOfLevel)
         {
-            // Unity Analytics Send Level Complete
-            AnalyticsCollection.LevelComplete(SceneManager.GetActiveScene().buildIndex);
+            GameManager.instance.LevelCompleted();
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        else
+        {
+            GameManager.instance.ResetLevel();
+        }
     }
 }

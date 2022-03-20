@@ -9,11 +9,11 @@ public class HasHealth : MonoBehaviour
     public float health = 30;
     public TextMeshProUGUI health_display;
 
-    bool is_dead = false;
+    bool dead = false;
     
-    public bool Is_Dead()
+    public bool IsDead()
     {
-        return is_dead;
+        return dead;
     }
 
     public void Damage(float damage_amount)
@@ -22,11 +22,6 @@ public class HasHealth : MonoBehaviour
         if(health <= 0)
         {
             Death();
-        }
-        else
-        {
-            is_dead = true;
-            this.gameObject.SetActive(false);
         }
         update_health_display();
     }
@@ -39,15 +34,17 @@ public class HasHealth : MonoBehaviour
 
     void Death()
     {
-        if (this.gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.instance.ResetLevel();
         }
+        dead = true;
+        gameObject.SetActive(false);
     }
 
     void update_health_display()
     {
-        if (this.gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("Player"))
         {
             float hp = health;
             if (health < 0)
