@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5984471115297813414}
   - component: {fileID: 5984471115297813413}
-  - component: {fileID: 5984471115297813412}
   - component: {fileID: 5984471115297813410}
   - component: {fileID: 5984471115297813411}
+  - component: {fileID: 5984471115297813412}
   - component: {fileID: 5984471115297813415}
   m_Layer: 0
   m_Name: Stapler
@@ -87,23 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5984471115297813412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5984471115297813409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf290053630242acb6256f63eccf67c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 55
-  elapsed: 0
-  switchPositionRate: 0.2
 --- !u!50 &5984471115297813410
 Rigidbody2D:
   serializedVersion: 4
@@ -151,6 +134,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5984471115297813412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984471115297813409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf290053630242acb6256f63eccf67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
+  elapsed: 0
+  switchPositionRate: 0.2
 --- !u!114 &5984471115297813415
 MonoBehaviour:
   m_ObjectHideFlags: 0
