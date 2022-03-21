@@ -35,6 +35,15 @@ public class HasHealth : MonoBehaviour
         }
 
         health -= damage_amount;
+        
+        if (gameObject.CompareTag("Player"))
+        {
+            AudioController.instance.PlayPlayerHit();
+        }
+        else
+        {
+            AudioController.instance.PlayEnemyHit();
+        }
         if(health <= 0)
         {
             Death();
