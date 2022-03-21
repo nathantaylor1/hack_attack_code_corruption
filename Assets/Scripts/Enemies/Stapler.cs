@@ -11,11 +11,14 @@ public class Stapler : MonoBehaviour
     public int elapsed = 0;
     bool shootMode = false;
     public float switchPositionRate = .15f;
+    protected Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         stapleShoot = GetComponentInChildren<StapleShoot>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -55,17 +58,21 @@ public class Stapler : MonoBehaviour
                     transform.Rotate(Vector3.up, 180);
                 }
                 rb.AddForce((transform.right + transform.up * 5).normalized * 150);
+                anim.SetTrigger("Jump");
             }
         }
     }
     private IEnumerator StartShooting() {
         // TODO open up stapler
+        anim.SetTrigger("Open");
+        yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < 3; i++)
         {
             stapleShoot.Shoot();
             yield return new WaitForSeconds(.5f);
         }
         shootMode = false;
+        anim.SetTrigger("Idle");
     }
 
     private void OnDrawGizmos()

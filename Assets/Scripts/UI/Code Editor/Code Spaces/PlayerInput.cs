@@ -11,7 +11,7 @@ public class PlayerInput : CodeSpace
     protected void Update()
     {
         if (!EditorController.instance.is_in_editor) {
-            if (Input.GetKeyDown(keyCode) || altKeyCode != KeyCode.None && Input.GetKeyDown(altKeyCode))
+            if (Input.GetKey(keyCode) || altKeyCode != KeyCode.None && Input.GetKey(altKeyCode))
             {
                 StartExecution();
             }

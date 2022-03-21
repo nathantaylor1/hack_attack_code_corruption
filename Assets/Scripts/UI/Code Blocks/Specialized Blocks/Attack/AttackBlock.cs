@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackBlock : CodeWithParameters
 {
-    protected List<InputField> parameters = new List<InputField>();
+    //protected List<InputField> parameters = new List<InputField>();
     
     protected GameObject prefab = null;
     protected float cooldownTime = 1.0f;

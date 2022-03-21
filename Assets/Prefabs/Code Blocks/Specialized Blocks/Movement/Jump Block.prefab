@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnType: void
-  jumpForce: 1.25
+  jumpForce: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 191

@@ -212,5 +212,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   returnType: void
   moveRight: 0
-  rb2d: {fileID: 0}
   moveForce: 1

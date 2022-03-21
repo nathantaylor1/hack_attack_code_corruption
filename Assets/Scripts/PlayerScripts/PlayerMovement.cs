@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
 
+    public Collider2D playerCollider;
+    public bool facingRight;
+
     private void Awake()
     {
         if (instance != null)
@@ -17,9 +20,6 @@ public class PlayerMovement : MonoBehaviour
         instance = this;
         playerCollider = gameObject.GetComponent<Collider2D>();
     }
-
-    public Collider2D playerCollider;
-    public bool facingRight;
 
     public void ChangeDirection(bool right)
     {
