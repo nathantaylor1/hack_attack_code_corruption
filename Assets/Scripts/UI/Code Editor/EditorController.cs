@@ -24,6 +24,7 @@ public class EditorController : MonoBehaviour
             AnalyticsCollection.OpenedEditor(); // Do Not Delete
             toggleCanvases(true);
             is_in_editor = true;
+            AudioController.instance.PlayOpen();
             Time.timeScale = 0f;
         } 
         else if(EditorController.instance.is_in_editor && Input.GetKeyDown(KeyCode.E))
@@ -37,6 +38,7 @@ public class EditorController : MonoBehaviour
         {
             AnalyticsCollection.ClosedEditor(); // Do Not Delete
             Time.timeScale = 1f;
+            AudioController.instance.PlayOpen();
             toggleCanvases(false);
             is_in_editor = false;
         }

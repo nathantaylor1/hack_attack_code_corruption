@@ -25,6 +25,7 @@ public class JumpCode : CodeWithParameters
             Vector2 currentVelocity = rb2d.velocity;
             currentVelocity.y = jumpForce * (float)(object)GetParameter(0);
             rb2d.velocity = currentVelocity;
+            AudioController.instance.PlayJump();
         }
         base.ExecuteCode();
     }
