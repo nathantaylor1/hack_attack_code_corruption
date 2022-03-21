@@ -6,14 +6,23 @@ using UnityEngine.UI;
 public class EditorController : MonoBehaviour
 {
     public static EditorController instance;
+    [SerializeField]
+    protected static GameObject desktop;
+    [SerializeField]
+    protected static GameObject toolbar;
+
     public bool is_in_editor = false;
+    [SerializeField]
+    protected GameObject editorParent;
 
     //[Tooltip("Editor inventory that should pop up")] 
     private GameObject editor_screen;
+    protected CodeEditorSwapper swapper;
 
     private void Awake() {
         instance = this;
         editor_screen = gameObject;
+        swapper = GetComponent<CodeEditorSwapper>();
     }
 
     // Update is called once per frame
@@ -43,10 +52,26 @@ public class EditorController : MonoBehaviour
     }
 
     void toggleCanvases(bool enabled) {
-        GetComponent<Canvas>().enabled = enabled;
+        /*GetComponent<Canvas>().enabled = enabled;
         foreach (var item in GetComponentsInChildren<GraphicRaycaster>())
         {
             item.enabled = enabled;
+        }*/
+        editorParent.SetActive(enabled);
+    }
+
+    public CodeModule.Editor AddWindow(GameObject _window, GameObject _button, CodeModule module)
+    {
+        GameObject window = Instantiate(_window, desktop.transform);
+        GameObject button = Instantiate(_button, toolbar.transform);
+        if (button.TryGetComponent(out EditorButton eb))
+        {
+            eb.Init(swapper, window.transform);
         }
+        if (window.TryGetComponent(out EditorWindow ew))
+        {
+            ew.SetCodeSpaceModules(module);
+        }
+        return new CodeModule.Editor(window, button);
     }
 }

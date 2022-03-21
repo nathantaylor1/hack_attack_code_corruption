@@ -23,7 +23,10 @@ public class EventManager : MonoBehaviour
     // following:
 
     // GAME STATE EVENTS
+
     // PLAYER EVENTS
+
+    // EDITOR EVENTS
 
     // etc.
 
