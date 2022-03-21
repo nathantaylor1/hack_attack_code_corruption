@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public Vector2[] spawnpoints;
 
     public GameObject player;
+
+    public GameObject UI;
     // All game state changes should happen here
 
     private void Awake()
