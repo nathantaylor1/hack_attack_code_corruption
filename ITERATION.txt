@@ -1,0 +1,1 @@
+One of the things we iterated on based on feedback was getting stuck on the corners of tiles, we switched to 2d physics and used a composite collider. Another thing that we improved was the character controller values and speeds, to improve gameplay 'feel', as talked about by some of the playtesters. We also made lots of small tweaks and added new gameplay elements and levels.
