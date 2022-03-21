@@ -12,6 +12,8 @@ public class Stapler : MonoBehaviour
     bool shootMode = false;
     public float switchPositionRate = .15f;
     protected Animator anim;
+    protected Collider2D col;
+    protected Coroutine coroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,7 @@ public class Stapler : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         stapleShoot = GetComponentInChildren<StapleShoot>();
         anim = GetComponent<Animator>();
+        col = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -64,7 +67,9 @@ public class Stapler : MonoBehaviour
     }
     private IEnumerator StartShooting() {
         // TODO open up stapler
-        anim.SetTrigger("Open");
+        if (coroutine != null)
+            StopCoroutine(coroutine);
+        coroutine = StartCoroutine(AnimateShooting());
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < 3; i++)
         {
@@ -73,6 +78,28 @@ public class Stapler : MonoBehaviour
         }
         shootMode = false;
         anim.SetTrigger("Idle");
+    }
+
+
+    private IEnumerator AnimateShooting()
+    {
+        /*while (shootMode && !anim.GetCurrentAnimatorStateInfo(0).IsName("Stapler Idle"))
+        {
+            yield return null;
+        }
+        if (shootMode)
+        {
+            rb.velocity = Vector3.zero;
+            anim.SetTrigger("Open");
+            Debug.Log("Opening");
+        }*/
+        while (shootMode)
+        {
+            rb.velocity = Vector3.zero;
+            anim.SetTrigger("Open");
+            //Debug.Log("Opening");
+            yield return null;
+        }
     }
 
     private void OnDrawGizmos()

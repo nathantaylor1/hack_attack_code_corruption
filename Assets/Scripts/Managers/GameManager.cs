@@ -17,6 +17,13 @@ public class GameManager : MonoBehaviour
         // Not checking to see if another instance exists because if we switch scenes
         // then we'll want our EventManager instance to become the one for the current
         // scene
+
+        if (instance != null)
+        {
+            Debug.Log("Already a GameManager");
+            Destroy(gameObject);
+        }
+
         instance = this;
     }
 
@@ -31,6 +38,10 @@ public class GameManager : MonoBehaviour
     // Call this on Player Death to Reset the Level
     public void ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Destroy(GameManager.instance.player);
+        Destroy(GameManager.instance.UI);
+        Destroy(GameManager.instance.gameObject);
+        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
