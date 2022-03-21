@@ -24,9 +24,9 @@ public class ChairMovement : MonoBehaviour
         {
             return;
         }
-        if (Physics2D.Raycast(transform.position, Vector2.right * dir, 3f, LayerMask.GetMask("Player"))) {
+        if (Physics2D.Raycast(transform.position, Vector2.right * dir, 5f, LayerMask.GetMask("Player"))) {
             sawPlayer = true;
-        } else if (Physics2D.Raycast(transform.position, Vector2.right * dir * -1, 3f, LayerMask.GetMask("Player"))) {
+        } else if (Physics2D.Raycast(transform.position, Vector2.right * dir * -1, 5f, LayerMask.GetMask("Player"))) {
             dir *= -1;
             sawPlayer = true;
         }
@@ -44,6 +44,12 @@ public class ChairMovement : MonoBehaviour
         // }
         if (Physics2D.Raycast(transform.position, Vector2.right * dir, 1, ~walls)) {
             dir *= -1;
+        }
+
+        if (!sawPlayer)
+        {
+            sawPlayer = false;
+            return;
         }
         sawPlayer = false;
         //Debug.Log(r.transform.name);

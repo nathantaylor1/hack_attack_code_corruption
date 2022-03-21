@@ -20,4 +20,18 @@ public class PlayerMovement : MonoBehaviour
 
     public Collider2D playerCollider;
     public bool facingRight;
+
+    public void ChangeDirection(bool right)
+    {
+        if (right)
+        {
+            facingRight = true;
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            facingRight = false;
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
 }

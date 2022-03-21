@@ -14,12 +14,14 @@ public class MoveCode : CodeWithParameters
         float xVel = moveForce * (float)(object)GetParameter(0);
         if (!moveRight)
         {
-            PlayerMovement.instance.facingRight = false;
+            // player is/was moving left last
+            PlayerMovement.instance.ChangeDirection(false);
             xVel *= -1;
         }
         else
         {
-            PlayerMovement.instance.facingRight = true;
+            // player is/was moving right last
+            PlayerMovement.instance.ChangeDirection(true);
         }
         Vector3 currentVelocity = rb2d.velocity;
         currentVelocity.x = xVel;
