@@ -213,4 +213,4 @@ MonoBehaviour:
   returnType: void
   moveRight: 0
   rb2d: {fileID: 0}
-  moveForce: 0
+  moveForce: 1

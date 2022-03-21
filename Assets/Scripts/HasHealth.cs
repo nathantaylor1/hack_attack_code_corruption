@@ -10,6 +10,8 @@ public class HasHealth : MonoBehaviour
     public TextMeshProUGUI health_display;
 
     bool dead = false;
+    public bool canInvincible = false;
+    bool isInvincible = false;
     
     public bool IsDead()
     {
@@ -20,12 +22,24 @@ public class HasHealth : MonoBehaviour
         update_health_display();
     }
 
+    private IEnumerator Invincible() {
+        isInvincible = true;
+        yield return new WaitForSeconds(.2f);
+        isInvincible = false;
+    }
+
     public void Damage(float damage_amount)
     {
+        if (isInvincible) {
+            return;
+        }
+
         health -= damage_amount;
         if(health <= 0)
         {
             Death();
+        } else if (canInvincible) {
+            StartCoroutine(Invincible());
         }
         update_health_display();
     }

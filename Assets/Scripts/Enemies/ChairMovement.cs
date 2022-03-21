@@ -18,7 +18,7 @@ public class ChairMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         if (rb.velocity.magnitude > 1)
         {

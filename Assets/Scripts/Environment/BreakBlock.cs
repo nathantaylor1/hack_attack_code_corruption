@@ -11,7 +11,7 @@ public class BreakBlock : MonoBehaviour
             foreach (ContactPoint2D cp in other.contacts) {
                     impulse += cp.normalImpulse;
             }
-        Debug.Log(impulse);
+        // Debug.Log(impulse);
         if(impulse > breakVelocity) {
             Destroy(gameObject);
         }

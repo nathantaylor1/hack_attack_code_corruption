@@ -19,7 +19,7 @@ public class Stapler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         //Debug.Log("DSJJSDAJSADJDSA");
         //Debug.DrawRay(transform.position, (transform.right + transform.up * -1).normalized * 1f, Color.red);
