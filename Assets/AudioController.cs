@@ -23,6 +23,8 @@ public class AudioController : MonoBehaviour
         _stapeSound = Resources.Load<AudioClip>("Audio/shoot1");
         _playerHitSound = Resources.Load<AudioClip>("Audio/playerHit");
         _enemyHitSound = Resources.Load<AudioClip>("Audio/enemyHit");
+
+        _audioSource.volume = 0.1f;
     }
 
     // Update is called once per frame
