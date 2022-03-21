@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LeaveRoom : MonoBehaviour
 {
+    public SpawnManager spawnManager;
     public bool isEndOfLevel = false;
     // Currently set to restart level for gold_spike purposes
     // Can also be set to activate on button click
@@ -14,7 +15,8 @@ public class LeaveRoom : MonoBehaviour
             }
             else
             {
-                GameManager.instance.ResetLevel();
+                //GameManager.instance.ResetLevel();
+                spawnManager.Spawn();
             }
         }
     }

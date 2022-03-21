@@ -6,14 +6,18 @@ using UnityEngine;
 
 public class JumpCode : CodeWithParameters
 {
-    [Tooltip("Temp rigid body to add jump force while we dont have player class")] public Rigidbody2D rb2d;
-    [Tooltip("Temp base jump force while we dont have module class")] public float jumpForce;
+    [Tooltip("Temp base jump force while we dont have module class")] public float jumpForce = 1.25f;
     [Tooltip("Layer to raycast to make sure entity is touching the ground")]public LayerMask groundLayer;
+    private Rigidbody2D rb2d;
     private Collider2D _collider2D;
 
-    protected override void Awake() {
+    protected override void Awake()
+    {
+        GameObject player = GameManager.instance.player;
+        rb2d = player.GetComponent<Rigidbody2D>();
+        _collider2D = player.GetComponent<Collider2D>();
+        
         base.Awake();
-        _collider2D = rb2d.gameObject.GetComponent<Collider2D>();
     }
     public override void ExecuteCode()
     {
@@ -37,8 +41,8 @@ public class JumpCode : CodeWithParameters
 
         if (Physics2D.CircleCast(bounds.center, radius, dir, fullDist, groundLayer))
             return true;
-        else
-            return false;
+        /* else: */ 
+        return false;
     }
 
     // Used for debuging circlecast to make sure jump works correctly 

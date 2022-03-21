@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class PlayerInput : CodeSpace
 {
     [SerializeField]
-    private KeyCode keyCode;
+    private KeyCode keyCode, altKeyCode;
 
     protected void Update()
     {
         if (!EditorController.instance.is_in_editor) {
-            if (Input.GetKeyDown(keyCode))
+            if (Input.GetKeyDown(keyCode) || altKeyCode != KeyCode.None && Input.GetKeyDown(altKeyCode))
             {
                 StartExecution();
             }
-            if (Input.GetKeyUp(keyCode))
+            if (Input.GetKeyUp(keyCode) || (altKeyCode != KeyCode.None && Input.GetKeyUp(altKeyCode)))
             {
                 EndExecution();
             }

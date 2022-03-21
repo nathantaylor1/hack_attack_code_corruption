@@ -11,12 +11,6 @@ public class AttackBlock : CodeWithParameters
     protected bool canAttack = true;
     protected float dmg = 0.0f;
 
-    public override void ExecuteCode()
-    {
-        dmg = (float)(object)GetParameter(0);
-        base.ExecuteCode();
-    }
-
     protected IEnumerator CO_Cooldown()
     {
         canAttack = false;

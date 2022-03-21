@@ -16,6 +16,7 @@ public class ShooterBlock : AttackBlock
     {
         if (prefab != null && canAttack)
         {
+            dmg = (float)(object)GetParameter(0);
             Debug.Log("Shooting");
             var col = PlayerMovement.instance.playerCollider;
             var facingRight = PlayerMovement.instance.facingRight;
@@ -23,6 +24,7 @@ public class ShooterBlock : AttackBlock
             GameObject go = Instantiate(prefab);
             Bullet bullet = go.GetComponent<Bullet>();
             bullet.damage = dmg;
+            bullet.isPlayer = true;
 
             Vector3 pos = col.bounds.center;
             if (facingRight)

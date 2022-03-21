@@ -5,11 +5,12 @@ using UnityEngine;
 public class MoveCode : CodeWithParameters
 {
     [Tooltip("Determines if script should add force to positive or negative x")] public bool moveRight;
-    [Tooltip("Temp rigid body to add jump force while we dont have player class")] public Rigidbody2D rb2d;
-    [Tooltip("Temp base move force while we dont have module class")] public float moveForce;
+    [Tooltip("Temp base move force while we dont have module class")] public float moveForce = 1.0f;
+    private Rigidbody2D rb2d;
     
     public override void ExecuteCode()
     {
+        rb2d = GameManager.instance.player.GetComponent<Rigidbody2D>();
         float xVel = moveForce * (float)(object)GetParameter(0);
         if (!moveRight)
         {

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public Vector2[] spawnpoints;
 
     public GameObject player;
     // All game state changes should happen here
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         // Unity Analytics Send Level Complete
         AnalyticsCollection.LevelComplete(SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     // Call this on Player Death to Reset the Level

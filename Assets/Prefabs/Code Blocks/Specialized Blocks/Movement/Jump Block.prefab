@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5021792279118999345, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5021792279118999345, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchorMin.x
@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5021792279118999345, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5021792279118999345, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -216,11 +216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnType: void
-  _rb: {fileID: 0}
-  jump_force: 0
-  ground_layer:
+  jumpForce: 1.25
+  groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 191
 --- !u!1001 &4193462147251558043
 PrefabInstance:
   m_ObjectHideFlags: 0
