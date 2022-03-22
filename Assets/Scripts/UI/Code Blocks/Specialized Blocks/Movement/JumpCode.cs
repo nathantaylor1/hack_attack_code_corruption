@@ -28,6 +28,7 @@ public class JumpCode : CodeWithParameters
             currentVelocity.y = jumpForce * (float)(object)GetParameter(0);
             rb2d.velocity = currentVelocity;
             anim.SetTrigger("Jump");
+            print("pressed jump");
             AudioController.instance.PlayJump();
         }
         base.ExecuteCode();
