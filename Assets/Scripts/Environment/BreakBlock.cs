@@ -5,16 +5,28 @@ using UnityEngine;
 public class BreakBlock : MonoBehaviour
 {
     public int breakVelocity = 12;
+    private void OnCollisionStay2D(Collision2D other) {
+        if (other.relativeVelocity.magnitude > 2 || other.relativeVelocity.magnitude < 2) {
+            CheckBreak(other);
+        }
+    }
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb)){
-            float impulse=0f;
-            foreach (ContactPoint2D cp in other.contacts) {
-                    impulse += cp.normalImpulse;
-            }
-        // Debug.Log(impulse);
+        CheckBreak(other);
+    }
+    private void CheckBreak(Collision2D other) {
+        float impulse=0f;
+        foreach (ContactPoint2D cp in other.contacts) {
+                impulse += cp.normalImpulse;
+        }
         if(impulse > breakVelocity) {
-            Destroy(gameObject);
+            Break();
         }
-        }
+    }
+    private void Break() {
+        gameObject.SetActive(false);
+        GameObject loadBox = (GameObject)Resources.Load("Prefabs/BrokenMoveableBox", typeof(GameObject));
+        GameObject box = Instantiate(loadBox, transform.position, transform.rotation);
+        box.SetActive(true);
+        Destroy(gameObject);
     }
 }
