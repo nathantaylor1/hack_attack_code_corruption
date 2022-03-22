@@ -6,10 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
     public GameObject player;
-
-    public GameObject UI;
     // All game state changes should happen here
 
     private void Awake()
@@ -38,10 +35,6 @@ public class GameManager : MonoBehaviour
     // Call this on Player Death to Reset the Level
     public void ResetLevel()
     {
-        Destroy(GameManager.instance.player);
-        Destroy(GameManager.instance.UI);
-        Destroy(GameManager.instance.gameObject);
-        SceneManager.LoadScene(1);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

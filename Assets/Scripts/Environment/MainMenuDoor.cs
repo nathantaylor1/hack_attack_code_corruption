@@ -11,11 +11,6 @@ public class MainMenuDoor : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            hiderCamera.SetActive(true);
-            hiderImage.SetActive(true);
-            Destroy(GameManager.instance.player);
-            Destroy(GameManager.instance.UI);
-            Destroy(GameManager.instance.gameObject);
             SceneManager.LoadScene(1);
         }
     }

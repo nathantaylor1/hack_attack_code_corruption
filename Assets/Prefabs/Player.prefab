@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7014975692726490803}
   - component: {fileID: 1506935391939819941}
   - component: {fileID: 1432423924487866380}
+  - component: {fileID: 1472155159}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -119,7 +120,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 376723711867486037}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 6b7da8863b4d1ad419b69d9e8ab7b028, type: 2}
+  m_Material: {fileID: 6200000, guid: 1f57cb2a115cfa44286566f2092465db, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -196,6 +197,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a89eb8f6d3ca864196dce234781d034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1472155159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376723711867486037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2715600fe9ee4c40a3050eea64dfb05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sidebarInventory: {fileID: 0}
 --- !u!1 &376723712365031153
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +252,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.62548953, g: 0.64646417, b: 0.6603774, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
