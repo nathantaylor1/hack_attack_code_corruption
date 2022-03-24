@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7039638991593822645, guid: a740003a9ad3b794290cfa98e1944d6c, type: 3}
       propertyPath: m_Name
-      value: Jump Code Space
+      value: Player Input Code Space
       objectReference: {fileID: 0}
     - target: {fileID: 7407377006941493494, guid: a740003a9ad3b794290cfa98e1944d6c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -198,4 +198,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: {fileID: 3115980882639605207}
-  keyCode: 32
+  keyCode: 97
+  altKeyCode: 0

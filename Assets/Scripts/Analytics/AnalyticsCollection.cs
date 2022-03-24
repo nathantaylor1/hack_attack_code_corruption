@@ -30,7 +30,7 @@ public class AnalyticsCollection : MonoBehaviour {
             {
                 {"Time In Editor", timeInEditor}
             });
-        Debug.Log("analyticsResult: " + res);
+        //Debug.Log("analyticsResult: " + res);
     }
     
     // If you want to disable Analytics completely during runtime

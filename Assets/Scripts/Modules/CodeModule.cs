@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CodeModule : MonoBehaviour
 {
-    [System.Serializable]
+    /*[System.Serializable]
     public class Stat<T>
     {
         public bool statApplies = true;
@@ -22,14 +22,25 @@ public class CodeModule : MonoBehaviour
             statApplies = _statApplies;
             stat = _stat;
         }
-    }
+    }*/
 
     [Header("Base Stats")]
 
-    public Stat<float> moveSpeed = new Stat<float>(1f);
-    public Stat<float> jumpSpeed = new Stat<float>(1f);
+    public float moveSpeed = 1f;
+    public float jumpSpeed = 2f;
     [Tooltip("The amount of time between attacks")]
-    public Stat<float> reloadTime = new Stat<float>(1f);
+    public float reloadTime = 1f;
+
+    [Header("Sound & Animation")]
+
+    public AudioClip moveSound;
+    public AudioClip jumpSound;
+    public AudioClip shootSound;
+    [Tooltip("The name that precedes each of the generic animations; e.g., the player's " +
+        "Animation Name is \"Player\", because its animations are named \"Player Run\", " +
+        "\"Player Jump\", etc. This allows code blocks to use generic animation names " +
+        "when determining what state a module's Animator is in.")]
+    public string animationName;
 
     [System.Serializable]
     public class Editor
@@ -61,12 +72,18 @@ public class CodeModule : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb;
     [HideInInspector]
+    public Collider2D col;
+    [HideInInspector]
     public GameObject go;
+    [HideInInspector]
+    public Animator anim;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         go = gameObject;
+        anim = GetComponent<Animator>();
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
