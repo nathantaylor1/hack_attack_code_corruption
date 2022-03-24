@@ -27,6 +27,7 @@ public class EventManager : MonoBehaviour
     // PLAYER EVENTS
 
     // EDITOR EVENTS
+    public static UnityEvent<bool> OnToggleEditor = new UnityEvent<bool>();
 
     // etc.
 

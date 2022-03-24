@@ -11,14 +11,14 @@ public class EditorButton : MonoBehaviour
     public Sprite selectedSprite;
 
     protected Button bn;
-    protected Image img;
+    //protected Image img;
     protected CodeEditorSwapper swapper;
     protected Transform window;
 
     protected void Awake()
     {
         bn = GetComponent<Button>();
-        img = GetComponent<Image>();
+        //img = GetComponent<Image>();
         bn.onClick.AddListener(SelectButton);
     }
 
@@ -31,11 +31,11 @@ public class EditorButton : MonoBehaviour
     public void SelectButton()
     {
         swapper.SetActiveWindow(window, this);
-        img.sprite = selectedSprite;
+        GetComponent<Image>().sprite = selectedSprite;
     }
 
     public void DeselectButton()
     {
-        img.sprite = unselectedSprite;
+        GetComponent<Image>().sprite = unselectedSprite;
     }
 }

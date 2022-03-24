@@ -9,8 +9,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7467797750716825256, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: m_Name
-      value: Module
+      value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: editor.button
+      value: 
+      objectReference: {fileID: 5402795675308038724, guid: 138b046432ec1e243909db576f639dee, type: 3}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: editor.window
+      value: 
+      objectReference: {fileID: 2750209349872492850, guid: 47c7841906b02da4f878420b0b2a5f8e, type: 3}
     - target: {fileID: 7467797750716825261, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: m_RootOrder
       value: 0

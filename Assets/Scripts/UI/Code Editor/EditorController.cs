@@ -7,9 +7,9 @@ public class EditorController : MonoBehaviour
 {
     public static EditorController instance;
     [SerializeField]
-    protected static GameObject desktop;
+    protected GameObject desktop;
     [SerializeField]
-    protected static GameObject toolbar;
+    protected GameObject taskbar;
 
     public bool is_in_editor = false;
     [SerializeField]
@@ -20,6 +20,7 @@ public class EditorController : MonoBehaviour
     protected CodeEditorSwapper swapper;
 
     private void Awake() {
+        //Debug.Log("EditorController: " + this);
         instance = this;
         editor_screen = gameObject;
         swapper = GetComponent<CodeEditorSwapper>();
@@ -57,13 +58,17 @@ public class EditorController : MonoBehaviour
         {
             item.enabled = enabled;
         }*/
-        editorParent.SetActive(enabled);
+        //editorParent.SetActive(enabled);
+        GetComponent<Canvas>().enabled = enabled;
+        EventManager.OnToggleEditor?.Invoke(enabled);
     }
 
     public CodeModule.Editor AddWindow(GameObject _window, GameObject _button, CodeModule module)
     {
+        /*Debug.Log("window: " + _window);
+        Debug.Log("desktop: " + desktop);*/
         GameObject window = Instantiate(_window, desktop.transform);
-        GameObject button = Instantiate(_button, toolbar.transform);
+        GameObject button = Instantiate(_button, taskbar.transform);
         if (button.TryGetComponent(out EditorButton eb))
         {
             eb.Init(swapper, window.transform);

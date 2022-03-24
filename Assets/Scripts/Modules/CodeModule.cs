@@ -30,9 +30,6 @@ public class CodeModule : MonoBehaviour
     public Stat<float> jumpSpeed = new Stat<float>(1f);
     [Tooltip("The amount of time between attacks")]
     public Stat<float> reloadTime = new Stat<float>(1f);
-    [Tooltip("How quickly projectiles move upon emission from this module")]
-    public Stat<float> projectileSpeedMultiplier = new Stat<float>(1f);
-
 
     [System.Serializable]
     public class Editor
@@ -51,6 +48,9 @@ public class CodeModule : MonoBehaviour
     [Header("Code Editor Reference")]
 
     [SerializeField]
+    [Tooltip("Does the player start with access to this module's editor?")]
+    protected bool editableOnStart = false;
+    [SerializeField]
     protected Editor editor;
     /*[SerializeField]
     protected GameObject editorWindow;
@@ -58,8 +58,9 @@ public class CodeModule : MonoBehaviour
     protected GameObject editorButton;*/
 
     // For use by Code
-
+    [HideInInspector]
     public Rigidbody2D rb;
+    [HideInInspector]
     public GameObject go;
 
     protected virtual void Awake()
@@ -67,19 +68,21 @@ public class CodeModule : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         go = gameObject;
 
+        /*Debug.Log("EditorController.instance: " + EditorController.instance);
+        Debug.Log("window: " + editor.window);
+        Debug.Log("button: " + editor.button);*/
         editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
+        ToggleEditing(editableOnStart);
     }
 
-    public virtual void EnableEditing()
+    public virtual void ToggleEditing(bool enabled)
     {
         // TO DO: implement event-oriented canvas/raycast target enabling/disabling
-        /*editor.window.SetActive(true);
-        editor.button.SetActive(true);*/
-    }
-
-    public virtual void DisableEditing()
-    {
-       /* editor.window.SetActive(false);
-        editor.button.SetActive(false);*/
+        /*editor.window.SetActive(true);*/
+        if (editor.window.TryGetComponent(out EditorWindow ew))
+        {
+            ew.ToggleEnabled(enabled);
+        }
+        editor.button.SetActive(enabled);
     }
 }
