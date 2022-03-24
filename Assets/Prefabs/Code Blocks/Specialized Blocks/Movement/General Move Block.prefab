@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnType: void
-  moveForce: 1
+  moveForce: 2
 --- !u!1001 &5561956246340937707
 PrefabInstance:
   m_ObjectHideFlags: 0
