@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5984471115297813412}
   - component: {fileID: 5984471115297813415}
   - component: {fileID: 1846736023006838617}
-  - component: {fileID: 8213930904214307247}
+  - component: {fileID: 1562495258}
   m_Layer: 10
   m_Name: Stapler
   m_TagString: Enemy
@@ -101,7 +101,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -154,12 +154,16 @@ MonoBehaviour:
     m_Bits: 64
   cooldownTimeSeconds: 2
   offset: {x: 0, y: 2.5}
-  attackArea: {x: 20, y: 8}
+  attackArea: {x: 8, y: 8}
   drawAttackAreaGizmo: 1
   facingRight: 0
   firingPosition: {fileID: 5984471116428286948}
   projectilePrefab: {fileID: 4536963770326186710, guid: 46ba1f63309ea3f46824eba8e89f4e6f, type: 3}
-  shootForce: 700
+  shootForce: 800
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  jumpForce: 1200
 --- !u!114 &5984471115297813415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +198,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8213930904214307247
+--- !u!114 &1562495258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,7 +207,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5984471115297813409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a89eb8f6d3ca864196dce234781d034, type: 3}
+  m_Script: {fileID: 11500000, guid: 35be2f41410d4034d9767da7a141bfac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5984471116428286947

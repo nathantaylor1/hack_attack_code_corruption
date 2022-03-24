@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 public class Stapler : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Stapler : MonoBehaviour
     private float _cooldownTimer;
     private bool _grounded;
     private bool _canTakeAction;
+    private bool _jumping;
 
     [SerializeField] private bool facingRight;
 
@@ -25,18 +27,30 @@ public class Stapler : MonoBehaviour
     public LayerMask groundLayer;
     private Rigidbody2D _rb2d;
     public float jumpForce = 1000f;
-
+    private StaplerAnimations _staplerAnimations;
+    
     private void Awake()
     {
         _cooldownTimer = cooldownTimeSeconds;
         _rb2d = GetComponent<Rigidbody2D>();
+        _staplerAnimations = GetComponent<StaplerAnimations>();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
         _grounded = Grounded.Check(col2d);
-        if (!_grounded) return;
+
+        float yVel = _rb2d.velocity.y;
+        if (yVel < 0)
+        {
+            _staplerAnimations.SetFall(true);
+        }
+
+        if (!_grounded || _jumping) return;
+        
+        _staplerAnimations.SetFall(false);
+        _staplerAnimations.SetJump(false);
         
         UpdateCooldownTimer();
         if (!_canTakeAction) return;
@@ -68,16 +82,21 @@ public class Stapler : MonoBehaviour
 
         _shooting = true;
         Flip(col);
+        
+        _staplerAnimations.SetOpen(true);
         Shoot(col);
+        StartCoroutine(CO_ShootAnim());
         
         Debug.Log("Stapler " + gameObject.name + " shoot");
     }
 
     private void Flip(Collider2D target)
     {
-        facingRight = (target.transform.position.x - transform.position.x) > 0;
+        bool prev = facingRight;
+        facingRight = (target.transform.position.x - transform.position.x) < 0;
         Debug.Log("Flip");
-        transform.Rotate(Vector3.up, 180);
+        if (facingRight != prev)
+            transform.Rotate(Vector3.up, 180);
     }
 
     private void Shoot(Collider2D target)
@@ -93,8 +112,18 @@ public class Stapler : MonoBehaviour
         rb2d.AddForce((targetPos * shootForce));
     }
 
+    private IEnumerator CO_ShootAnim()
+    {
+        Debug.Log("Shoot Anim");
+        yield return new WaitForSeconds(0.1f);
+        _staplerAnimations.SetOpen(false);
+        yield return null;
+    }
+
     private void JumpAction()
     {
+        _staplerAnimations.SetJump(true);
+        _jumping = true;
         Debug.Log("JumpAction");
         if (Physics2D.Raycast(transform.position, transform.right, 2f, groundLayer))
         {
@@ -102,6 +131,7 @@ public class Stapler : MonoBehaviour
             transform.Rotate(Vector3.up, 180);
         }
         _rb2d.AddForce((transform.right + transform.up * 5).normalized * jumpForce);
+        StartCoroutine(CO_Jumping());
     }
 
     private void OnDrawGizmos()
@@ -111,5 +141,12 @@ public class Stapler : MonoBehaviour
         Gizmos.DrawWireCube(col2d.bounds.center + (Vector3)offset, attackArea);
         
         Gizmos.DrawLine(transform.position, transform.position+(transform.right*2f));
+    }
+
+    private IEnumerator CO_Jumping()
+    {
+        yield return new WaitForSeconds(0.4f);
+        _jumping = false;
+        yield return null;
     }
 }

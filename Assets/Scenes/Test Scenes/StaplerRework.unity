@@ -3209,38 +3209,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stapler Tester
       objectReference: {fileID: 0}
-    - target: {fileID: 5984471115297813410, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
-      propertyPath: m_Mass
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5984471115297813410, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
-      propertyPath: m_LinearDrag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5984471115297813412, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
-      propertyPath: offset.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5984471115297813412, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
-      propertyPath: shootForce
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5984471115297813412, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
-      propertyPath: attackArea.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5984471115297813412, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
-      propertyPath: attackArea.y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5984471115297813412, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 5984471115297813412, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
-      propertyPath: drawAttackAreaGizmo
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5984471115297813414, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -3285,10 +3253,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5984471115297813415, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
-      propertyPath: health_display
-      value: 
-      objectReference: {fileID: 1828084673}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 722d1e87e4bae484dbbf9c315f54f721, type: 3}
 --- !u!1 &1552926301
