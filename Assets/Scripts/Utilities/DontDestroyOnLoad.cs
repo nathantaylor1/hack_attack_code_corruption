@@ -7,7 +7,7 @@ public class DontDestroyOnLoad : MonoBehaviour
 
     private void Awake()
     {
-        objectID = name + transform.position.ToString();
+        objectID = name;
     }
 
     void Start()

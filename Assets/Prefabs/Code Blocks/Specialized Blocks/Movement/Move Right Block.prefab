@@ -47,6 +47,14 @@ PrefabInstance:
       propertyPath: is_right
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3640095899221861649, guid: 2a133edef9b27d84ab97c4428cf5bbf2, type: 3}
+      propertyPath: moveForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640095899221861649, guid: 2a133edef9b27d84ab97c4428cf5bbf2, type: 3}
+      propertyPath: moveRight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3974707635502831612, guid: 2a133edef9b27d84ab97c4428cf5bbf2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

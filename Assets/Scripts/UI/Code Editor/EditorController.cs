@@ -15,14 +15,11 @@ public class EditorController : MonoBehaviour
     [SerializeField]
     protected GameObject editorParent;
 
-    //[Tooltip("Editor inventory that should pop up")] 
-    private GameObject editor_screen;
     protected CodeEditorSwapper swapper;
 
     private void Awake() {
         //Debug.Log("EditorController: " + this);
         instance = this;
-        editor_screen = gameObject;
         swapper = GetComponent<CodeEditorSwapper>();
     }
 
@@ -34,6 +31,7 @@ public class EditorController : MonoBehaviour
             AnalyticsCollection.OpenedEditor(); // Do Not Delete
             toggleCanvases(true);
             is_in_editor = true;
+            AudioController.instance.PlayOpen();
             Time.timeScale = 0f;
         } 
         else if(EditorController.instance.is_in_editor && Input.GetKeyDown(KeyCode.E))
@@ -47,6 +45,7 @@ public class EditorController : MonoBehaviour
         {
             AnalyticsCollection.ClosedEditor(); // Do Not Delete
             Time.timeScale = 1f;
+            AudioController.instance.PlayOpen();
             toggleCanvases(false);
             is_in_editor = false;
         }

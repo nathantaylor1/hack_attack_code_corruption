@@ -43,12 +43,11 @@ public class Code : MonoBehaviour
     public virtual void Continue()
     {
         if (GetNext() != null) {
-            Debug.Log("executing " + gameObject.name);
             GetNext().SetModule(module);
             GetNext().ExecuteCode();
         }
         else {
-            Debug.Log("done " + gameObject.name);
+            // Debug.Log("done " + gameObject.name);
             SignalCompletion();
         }
     }
@@ -56,11 +55,11 @@ public class Code : MonoBehaviour
     public virtual void ContinueStop()
     {
         if (GetNext() != null) {
-            Debug.Log("executing " + gameObject.name);
+            // Debug.Log("executing " + gameObject.name);
             GetNext().StopExecution();
         }
         else {
-            Debug.Log("done " + gameObject.name);
+            // Debug.Log("done " + gameObject.name);
             SignalCompletion();
         }
     }

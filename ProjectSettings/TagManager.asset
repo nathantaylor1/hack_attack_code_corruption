@@ -5,16 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - CollectableCodeBlock
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wall
   - Water
   - UI
-  - 
+  - Player
   - Ground
-  - 
+  - test
   - 
   - 
   - 

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public GameObject player;
     // All game state changes should happen here
 
     private void Awake()
@@ -12,10 +14,27 @@ public class GameManager : MonoBehaviour
         // Not checking to see if another instance exists because if we switch scenes
         // then we'll want our EventManager instance to become the one for the current
         // scene
+
+        if (instance != null)
+        {
+            Debug.Log("Already a GameManager");
+            Destroy(gameObject);
+        }
+
         instance = this;
     }
 
-    private void Update() 
+    // Call this on LeaveRoom.cs when players exits Level
+    public void LevelCompleted()
     {
+        // Unity Analytics Send Level Complete
+        AnalyticsCollection.LevelComplete(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    // Call this on Player Death to Reset the Level
+    public void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -46,14 +46,14 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         locationBeforeDrag = rect.anchoredPosition3D;
         // must remove parent in order to show thing being dragged on top
         originalParent = transform.parent;
-        transform.SetParent(EditorController.instance.transform);
+        transform.SetParent(EditorController.instance.editor_screen.transform);
 
         canvasGroup.blocksRaycasts = false;
     }
 
     public virtual void OnDrag(PointerEventData eventData) {
         // Debug.Log("OnDrag");
-        rect.anchoredPosition += eventData.delta / EditorController.instance.GetComponent<Canvas>().scaleFactor;
+        rect.anchoredPosition += eventData.delta / EditorController.instance.editor_screen.scaleFactor;
     }
 
     public virtual void OnEndDrag(PointerEventData eventData) {
