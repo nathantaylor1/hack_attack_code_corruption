@@ -9,7 +9,7 @@ public class Parameter : InputField
 
     public override void AddInputBlock(Code _inputBlock)
     {
-        if (inputBlock) {
+        if (inputBlock != null) {
             inputBlock.GetComponent<CanvasGroup>().blocksRaycasts = true;
             InventoryManager.instance.AddBlock(inputBlock);
         }
@@ -36,7 +36,7 @@ public class Parameter : InputField
 
     public override void Deselect()
     {
-        Debug.Log(inputBlock);
+        // Debug.Log(inputBlock);
         if (inputBlock != null) {
             Image temp = inputBlock.GetComponentInChildren<Image>();
             Color tempc = temp.color;
