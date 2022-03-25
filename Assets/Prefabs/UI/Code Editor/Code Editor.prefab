@@ -231,6 +231,7 @@ MonoBehaviour:
   taskbar: {fileID: 7625834348033926623}
   is_in_editor: 0
   editorParent: {fileID: 2666477771069766893}
+  editor_screen: {fileID: 0}
 --- !u!114 &5144857167146922052
 MonoBehaviour:
   m_ObjectHideFlags: 0
