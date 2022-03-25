@@ -144,4 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c129b980cd7b549876d1799d2c029d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brokenMovableBox: {fileID: 7766977077427753696, guid: 8e06f39041fad9b4dbed9d50d1e8572e, type: 3}
   breakVelocity: 40
