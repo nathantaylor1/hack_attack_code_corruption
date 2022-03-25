@@ -37,7 +37,7 @@ public class GeneralMoveCode : CodeWithParameters
             StopCoroutine(animationCoroutine);
         animationCoroutine = StartCoroutine(AnimateRun());*/
 
-        if (animationCoroutine == null)
+        if (animationCoroutine == null && anim != null)
             StartCoroutine(AnimateRun());
 
         /*if (!isRunning && Grounded.Check(col))
@@ -68,7 +68,7 @@ public class GeneralMoveCode : CodeWithParameters
 
         rb.velocity = new Vector2(0, rb.velocity.y);
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run"))
+        if (anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run"))
             anim.SetTrigger("Idle");
 
         base.StopExecution();

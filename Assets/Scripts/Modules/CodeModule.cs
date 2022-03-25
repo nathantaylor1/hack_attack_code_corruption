@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CodeModule : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class CodeModule : MonoBehaviour
             stat = _stat;
         }
     }*/
+    public UnityEvent OnCheckCollision = new UnityEvent();
+
 
     [Header("Base Stats")]
 
@@ -71,7 +74,8 @@ public class CodeModule : MonoBehaviour
     protected GameObject editorWindow;
     [SerializeField]
     protected GameObject editorButton;*/
-
+    [Header("Parts of body")]
+    public GameObject shootFrom;
     // For use by Code
     [HideInInspector]
     public Rigidbody2D rb;

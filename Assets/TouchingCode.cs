@@ -6,18 +6,21 @@ public class TouchingCode : Code
 {
     // Start is called before the first frame update
     private bool val;
-    protected Collider2D col;
     protected override void Awake()
     {
         base.Awake();
         // TODO: change to script's collider
-        col = GameManager.instance.player.GetComponent<Collider2D>();
+        // col = GameManager.instance.player.GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    // void FixedUpdate()
+    // {
+    // }
+
+    public override void ExecuteCode()
     {
-        if(col.IsTouchingLayers(~col.gameObject.layer))
+        if(module.col.IsTouchingLayers(~module.col.gameObject.layer))
         {
             val = true;
         }
@@ -25,10 +28,13 @@ public class TouchingCode : Code
         {
             val = false;
         }
+        module.OnCheckCollision?.Invoke();
+        base.ExecuteCode();
     }
 
     public override dynamic ReturnValue()
     {
+        ExecuteCode();
         return val;
     }
 }
