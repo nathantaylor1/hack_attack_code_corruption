@@ -78,6 +78,10 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
             {
                 rect.anchoredPosition3D = locationBeforeDrag;
             }
+            if (originalParent.TryGetComponent(out BlockResizer br))
+            {
+                br.UpdateSize();
+            }
         } else if (originalParent.GetComponent<InputField>() != null) {
             DropInto dropHandler = originalParent.GetComponentInChildren<DropInto>();
             if (dropHandler != null)

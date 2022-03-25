@@ -57,6 +57,10 @@ public class CodeModule : MonoBehaviour
     }
 
     [Header("Code Editor Reference")]
+    
+    [SerializeField]
+    [Tooltip("If checked, the module will never have an editor")]
+    protected bool spawnedFromCode = false;
 
     [SerializeField]
     [Tooltip("Does the player start with access to this module's editor?")]
@@ -88,8 +92,10 @@ public class CodeModule : MonoBehaviour
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
         Debug.Log("button: " + editor.button);*/
-        editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
-        ToggleEditing(editableOnStart);
+        if (!spawnedFromCode) {
+            editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
+            ToggleEditing(editableOnStart);
+        }
     }
 
     public virtual void ToggleEditing(bool enabled)
