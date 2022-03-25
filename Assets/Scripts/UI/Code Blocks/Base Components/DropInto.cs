@@ -59,23 +59,20 @@ public class DropInto : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     dropPos = -rt.rect.size * Vector2.up;
                 }
             }*/
-            eventData.pointerDrag.transform.SetParent(blockInputField.transform, false);
-            /*if (dropMethod == DropMethod.underneath)
-            {
-                if (eventData.pointerDrag.TryGetComponent(out RectTransform rt))
-                {
-                    rt.anchoredPosition = dropPos;
-                }
-            }*/
-            if (blockInputField.gameObject.TryGetComponent(out BlockResizer br))
-            {
-                br.UpdateSize();
-            }
-            blockInputField.AddInputBlock(code);
+            code.transform.SetParent(blockInputField.transform, false);
+            resize(code);
         }
+
+    }
+    public void resize(Code code) {
+        if (blockInputField.gameObject.TryGetComponent(out BlockResizer br))
+        {
+            br.UpdateSize();
+        }
+        blockInputField.AddInputBlock(code);
     }
 
-    public virtual void RemoveBlock(Vector2 size)
+    public virtual void RemoveBlock()
     {
         blockInputField.RemoveInputBlock();
     }
