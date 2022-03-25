@@ -23,7 +23,11 @@ public class EventManager : MonoBehaviour
     // following:
 
     // GAME STATE EVENTS
+
     // PLAYER EVENTS
+
+    // EDITOR EVENTS
+    public static UnityEvent<bool> OnToggleEditor = new UnityEvent<bool>();
 
     // etc.
 

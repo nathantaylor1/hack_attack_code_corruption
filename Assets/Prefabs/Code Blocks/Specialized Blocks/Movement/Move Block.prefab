@@ -25,7 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 825205389847723518, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 58.09
+      value: 33.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071270688916863965, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
+      propertyPath: inputTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071270688916863965, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
+      propertyPath: inputTypes.Array.data[0]
+      value: float
       objectReference: {fileID: 0}
     - target: {fileID: 2633865735440196431, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -61,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4452202925815984996, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4452202925815984996, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -173,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5947533179944528463, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5947533179944528463, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -212,5 +220,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   returnType: void
   moveRight: 0
-  rb2d: {fileID: 0}
   moveForce: 0
