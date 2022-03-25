@@ -6,14 +6,23 @@ using UnityEngine.UI;
 public class EditorController : MonoBehaviour
 {
     public static EditorController instance;
-    public bool is_in_editor = false;
+    [SerializeField]
+    protected GameObject desktop;
+    [SerializeField]
+    protected GameObject taskbar;
 
-    //[Tooltip("Editor inventory that should pop up")] 
+    public bool is_in_editor = false;
+    [SerializeField]
+    protected GameObject editorParent;
+
+    protected CodeEditorSwapper swapper;
     public Canvas editor_screen;
-    public Canvas in_game_ui;
 
     private void Awake() {
+        //Debug.Log("EditorController: " + this);
         instance = this;
+        swapper = GetComponent<CodeEditorSwapper>();
+        editor_screen = GetComponent<Canvas>();
     }
 
     // Update is called once per frame
@@ -24,7 +33,7 @@ public class EditorController : MonoBehaviour
             AnalyticsCollection.OpenedEditor(); // Do Not Delete
             toggleCanvases(true);
             is_in_editor = true;
-            AudioController.instance.PlayOpen();
+            //AudioController.instance.PlayOpen();
             Time.timeScale = 0f;
         } 
         else if(EditorController.instance.is_in_editor && Input.GetKeyDown(KeyCode.E))
@@ -38,18 +47,37 @@ public class EditorController : MonoBehaviour
         {
             AnalyticsCollection.ClosedEditor(); // Do Not Delete
             Time.timeScale = 1f;
-            AudioController.instance.PlayOpen();
+            //AudioController.instance.PlayOpen();
             toggleCanvases(false);
             is_in_editor = false;
         }
     }
 
     void toggleCanvases(bool enabled) {
-        editor_screen.enabled = enabled;
-        foreach (var item in editor_screen.GetComponentsInChildren<GraphicRaycaster>())
+        /*GetComponent<Canvas>().enabled = enabled;
+        foreach (var item in GetComponentsInChildren<GraphicRaycaster>())
         {
             item.enabled = enabled;
+        }*/
+        //editorParent.SetActive(enabled);
+        GetComponent<Canvas>().enabled = enabled;
+        EventManager.OnToggleEditor?.Invoke(enabled);
+    }
+
+    public CodeModule.Editor AddWindow(GameObject _window, GameObject _button, CodeModule module)
+    {
+        /*Debug.Log("window: " + _window);
+        Debug.Log("desktop: " + desktop);*/
+        GameObject window = Instantiate(_window, desktop.transform);
+        GameObject button = Instantiate(_button, taskbar.transform);
+        if (button.TryGetComponent(out EditorButton eb))
+        {
+            eb.Init(swapper, window.transform);
         }
-        in_game_ui.enabled = !enabled;
+        if (window.TryGetComponent(out EditorWindow ew))
+        {
+            ew.SetCodeSpaceModules(module);
+        }
+        return new CodeModule.Editor(window, button);
     }
 }

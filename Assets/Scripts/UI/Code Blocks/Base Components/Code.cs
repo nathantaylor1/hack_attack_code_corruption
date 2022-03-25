@@ -6,6 +6,7 @@ public class Code : MonoBehaviour
 {
     [SerializeField]
     protected string returnType = "void";
+    protected CodeModule module;
     protected InputField nextBlockInput;
 
     public string ReturnType
@@ -25,6 +26,11 @@ public class Code : MonoBehaviour
         return nextBlockInput.GetCode();
     }
 
+    public virtual void SetModule(CodeModule _module)
+    {
+        module = _module;
+    }
+
     public virtual void ExecuteCode()
     {
         Continue();
@@ -37,7 +43,7 @@ public class Code : MonoBehaviour
     public virtual void Continue()
     {
         if (GetNext() != null) {
-            // Debug.Log("executing " + gameObject.name);
+            GetNext().SetModule(module);
             GetNext().ExecuteCode();
         }
         else {

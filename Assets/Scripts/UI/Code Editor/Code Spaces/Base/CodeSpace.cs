@@ -6,14 +6,21 @@ public class CodeSpace : MonoBehaviour
 {
     [SerializeField]
     protected Code start;
+    protected CodeModule module;
+    //protected LinkedList<Code> codeTree;
 
     protected virtual void Awake()
     {
-        
+    }
+
+    public void SetModule(CodeModule _module)
+    {
+        module = _module;
     }
 
     protected virtual void StartExecution()
     {
+        start.SetModule(module);
         start.ExecuteCode();
     }
 

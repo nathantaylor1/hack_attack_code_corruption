@@ -6,42 +6,46 @@ using UnityEngine;
 public class GeneralMoveCode : CodeWithParameters
 {
     //[Tooltip("Determines if script should add force to positive or negative x")] public bool moveRight;
-    [Tooltip("Temp base move force while we dont have module class")] public float moveForce = 2.0f;
-    private Rigidbody2D rb2d;
+    //[Tooltip("Temp base move force while we dont have module class")] public float moveForce = 2.0f;
+    private Rigidbody2D rb;
     protected Animator anim;
     protected Collider2D col;
-    bool moveRight;
     bool isRunning = false;
     Coroutine animationCoroutine;
 
     public override void ExecuteCode()
     {
-        rb2d = GameManager.instance.player.GetComponent<Rigidbody2D>();
-        anim = GameManager.instance.player.GetComponent<Animator>();
-        Vector2 tempDir = (Vector2)(object)GetParameter(0);
-        moveRight = (tempDir.x == 1);
-        col = GameManager.instance.player.GetComponent<Collider2D>();
-        isRunning = true;
+        rb = module.rb;
+        anim = module.anim;
+        col = module.col;
 
-        float xVel = moveForce * (float)(object)GetParameter(1);
-        if (!moveRight)
-        {
-            // player is/was moving left last
-            PlayerMovement.instance.ChangeDirection(false);
-            xVel *= -1;
-        }
-        else
-        {
-            // player is/was moving right last
-            PlayerMovement.instance.ChangeDirection(true);
-        }
-        Vector3 currentVelocity = rb2d.velocity;
-        currentVelocity.x = xVel;
-        rb2d.velocity = currentVelocity;
+        Vector2 dir = (Vector2)(object)GetParameter(0);
+        float speed = module.moveSpeed * (float)(object)GetParameter(1);
 
-        if (animationCoroutine != null)
+        float xVel = Mathf.Abs(dir.normalized.x * speed) > Mathf.Abs(rb.velocity.x) || 
+            (dir.x < 0 && rb.velocity.x > 0) || (dir.x > 0 && rb.velocity.x < 0) ? 
+            dir.normalized.x * speed : rb.velocity.x;
+        float yVel = Mathf.Abs(dir.normalized.y * speed) > Mathf.Abs(rb.velocity.y) ||
+            (dir.y < 0 && rb.velocity.y > 0) || (dir.y > 0 && rb.velocity.y < 0) ?
+            dir.normalized.y * speed : rb.velocity.y;
+        rb.velocity = new Vector2(xVel, yVel);
+
+        //module.transform.rotation = Quaternion.Euler(0, (dir.x < 0 ? 1 : 0) * 180, 0);
+        module.transform.localScale = new Vector3(dir.x < 0 ? -1 : 1, 1, 1);
+
+        /*if (animationCoroutine != null)
             StopCoroutine(animationCoroutine);
-        animationCoroutine = StartCoroutine(AnimateRun());
+        animationCoroutine = StartCoroutine(AnimateRun());*/
+
+        if (animationCoroutine == null)
+            StartCoroutine(AnimateRun());
+
+        /*if (!isRunning && Grounded.Check(col))
+        {
+            anim.SetTrigger("Run");
+        }*/
+
+        isRunning = true;
 
         base.ExecuteCode();
     }
@@ -50,8 +54,9 @@ public class GeneralMoveCode : CodeWithParameters
     {
         while (isRunning)
         {
-            if (Grounded.Check(col) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player Run") &&
-                !anim.GetCurrentAnimatorStateInfo(0).IsName("Player Jump"))
+            if (Grounded.Check(col) && 
+                !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run") &&
+                !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Jump"))
                 anim.SetTrigger("Run");
             yield return null;
         }
@@ -61,18 +66,9 @@ public class GeneralMoveCode : CodeWithParameters
     {
         isRunning = false;
 
-        var tempVel = rb2d.velocity;
-        if (moveRight && tempVel.x > 0)
-        {
-            tempVel.x = 0;
-        }
-        else if (!moveRight && tempVel.x < 0)
-        {
-            tempVel.x = 0;
-        }
-        rb2d.velocity = tempVel;
+        rb.velocity = new Vector2(0, rb.velocity.y);
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player Run"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run"))
             anim.SetTrigger("Idle");
 
         base.StopExecution();
