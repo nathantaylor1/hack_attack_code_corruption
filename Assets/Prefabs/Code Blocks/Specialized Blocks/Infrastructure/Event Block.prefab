@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1456144983074234931, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_text
-      value: "Drag Code Here\t\t\t"
+      value: Start code
       objectReference: {fileID: 0}
     - target: {fileID: 2944009467672941420, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchorMax.y

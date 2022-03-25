@@ -147,6 +147,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Window
       objectReference: {fileID: 0}
+    - target: {fileID: 8478639886628504254, guid: 1af0fae346d70264dafee591e2310690, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478639886628504254, guid: 1af0fae346d70264dafee591e2310690, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8609436417402022485, guid: 1af0fae346d70264dafee591e2310690, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -201,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9199163107590222440, guid: 1af0fae346d70264dafee591e2310690, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 9199163107590222440, guid: 1af0fae346d70264dafee591e2310690, type: 3}
       propertyPath: m_SizeDelta.y
@@ -357,5 +365,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Space
       objectReference: {fileID: 0}
+    - target: {fileID: 7467359595574065517, guid: 083d88dd7a874e945a377fd0cf68cf22, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 083d88dd7a874e945a377fd0cf68cf22, type: 3}
+--- !u!1 &3513350310138508093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7467359595574065520, guid: 083d88dd7a874e945a377fd0cf68cf22, type: 3}
+  m_PrefabInstance: {fileID: 6296188972877711949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &408280386072020801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3513350310138508093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7257e56edb963024e8ef8d25eb43c85b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}

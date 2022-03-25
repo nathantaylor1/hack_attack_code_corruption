@@ -231,6 +231,7 @@ MonoBehaviour:
   taskbar: {fileID: 7625834348033926623}
   is_in_editor: 0
   editorParent: {fileID: 2666477771069766893}
+  editor_screen: {fileID: 0}
 --- !u!114 &5144857167146922052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,6 +591,10 @@ PrefabInstance:
     - target: {fileID: 3545570876241025661, guid: 924fae89595a81d479912366fa7167c4, type: 3}
       propertyPath: m_Name
       value: Inventory Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 3568855630302755150, guid: 924fae89595a81d479912366fa7167c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4288780741744483952, guid: 924fae89595a81d479912366fa7167c4, type: 3}
       propertyPath: m_Pivot.x

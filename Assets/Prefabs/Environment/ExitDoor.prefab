@@ -179,8 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d380868da7b0a74cb41826758ea221b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnManager: {fileID: 0}
-  isEndOfLevel: 0
+  isEndOfLevel: 1
 --- !u!61 &4524438510862932823
 BoxCollider2D:
   m_ObjectHideFlags: 0
