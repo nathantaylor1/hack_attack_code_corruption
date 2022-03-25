@@ -11,7 +11,7 @@ public class TouchingCode : Code
     {
         base.Awake();
         // TODO: change to script's collider
-        col = GameManager.instance.player.GetComponent<Collider2D>();
+        col = module.col;
     }
 
     // Update is called once per frame

@@ -6,31 +6,35 @@ using UnityEngine;
 public class MoveCode : CodeWithParameters
 {
     [Tooltip("Determines if script should add force to positive or negative x")] public bool moveRight;
-    [Tooltip("Temp base move force while we dont have module class")] public float moveForce = 1.0f;
+    //[Tooltip("Temp base move force while we dont have module class")] public float moveForce = 1.0f;
     private Rigidbody2D rb2d;
     protected Animator anim;
     protected Collider2D col;
+    protected Transform trans;
     bool isRunning = false;
     Coroutine animationCoroutine;
     
     public override void ExecuteCode()
     {
-        rb2d = GameManager.instance.player.GetComponent<Rigidbody2D>();
-        anim = GameManager.instance.player.GetComponent<Animator>();
-        col = GameManager.instance.player.GetComponent<Collider2D>();
+        rb2d = module.rb;
+        anim = module.anim;
+        col = module.col;
+        trans = module.transform;
         isRunning = true;
 
-        float xVel = moveForce * (float)(object)GetParameter(0);
+        float xVel = module.moveSpeed * (float)(object)GetParameter(0);
         if (!moveRight)
         {
             // player is/was moving left last
-            PlayerMovement.instance.ChangeDirection(false);
+            //PlayerMovement.instance.ChangeDirection(false);
+            trans.localScale = new Vector3(-1, 1, 1);
             xVel *= -1;
         }
         else
         {
             // player is/was moving right last
-            PlayerMovement.instance.ChangeDirection(true);
+            //PlayerMovement.instance.ChangeDirection(true);
+            trans.localScale = new Vector3(1, 1, 1);
         }
         Vector3 currentVelocity = rb2d.velocity;
         currentVelocity.x = xVel;
