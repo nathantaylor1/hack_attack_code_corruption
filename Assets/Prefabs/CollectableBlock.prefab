@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 725411197400984105}
   - component: {fileID: 725411197400984107}
   - component: {fileID: 860663274958742958}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CollectableBlock
   m_TagString: CollectableCodeBlock
   m_Icon: {fileID: 0}
