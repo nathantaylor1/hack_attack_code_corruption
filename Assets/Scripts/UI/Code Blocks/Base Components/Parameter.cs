@@ -36,7 +36,7 @@ public class Parameter : InputField
 
     public override void Deselect()
     {
-        Debug.Log(inputBlock);
+        // Debug.Log(inputBlock);
         if (inputBlock != null) {
             Image temp = inputBlock.GetComponentInChildren<Image>();
             Color tempc = temp.color;
