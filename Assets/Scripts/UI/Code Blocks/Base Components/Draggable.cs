@@ -52,11 +52,16 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         {
             if (!item.CanAcceptInput(returnType)) {
                 item.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            }
-            foreach (Transform item2 in item.transform)
-            {
-                if (item2.TryGetComponent(out Code c)) {
-                    item2.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            } else {
+                // Even if the parameter accepts the input type, 
+                // if there is a block already in it we want to make it invisible
+                // if the thing inside isn't a codewithparameter then make it invisible
+                foreach (Transform item2 in item.transform)
+                {
+                    if (item2.TryGetComponent(out Code c) 
+                        && !item2.TryGetComponent(out CodeWithParameters p)) {
+                        item2.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                    }
                 }
             }
         }
