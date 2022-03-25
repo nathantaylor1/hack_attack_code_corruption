@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7819363647342617195}
   - component: {fileID: 2076810174986958886}
   - component: {fileID: 7795128616396806658}
+  - component: {fileID: 8519211768923584231}
   m_Layer: 0
   m_Name: Code Editor Text
   m_TagString: Untagged
@@ -149,3 +150,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!225 &8519211768923584231
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171415759588463587}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

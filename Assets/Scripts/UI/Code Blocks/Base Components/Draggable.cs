@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler {
-    protected Canvas canvas;
     protected RectTransform rect;
     protected CanvasGroup canvasGroup;
     public Vector3 locationBeforeDrag;
@@ -13,7 +12,6 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public bool droppedInto = false;
 
     protected virtual void Awake() {
-        canvas = GetComponentInParent<Canvas>();
         rect = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
@@ -49,6 +47,19 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         transform.SetParent(EditorController.instance.editor_screen.transform);
 
         canvasGroup.blocksRaycasts = false;
+        string returnType = GetComponent<Code>().ReturnType;
+        foreach (var item in getCanvas().GetComponentsInChildren<Parameter>())
+        {
+            if (!item.CanAcceptInput(returnType)) {
+                item.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
+            foreach (Transform item2 in item.transform)
+            {
+                if (item2.TryGetComponent(out Code c)) {
+                    item2.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                }
+            }
+        }
     }
 
     public virtual void OnDrag(PointerEventData eventData) {
@@ -61,8 +72,9 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         if ( !droppedInto && !transform.parent.TryGetComponent<Code>(out Code testCode) 
                 && !transform.parent.TryGetComponent<InputField>(out InputField testField)) {
             transform.SetParent(originalParent);
+            
             // Debug.Log(rect.localPosition);
-            RectTransform canvasRect = canvas.transform as RectTransform;
+            RectTransform canvasRect = getCanvas().transform as RectTransform;
             var rectMiddle = rect.localPosition + Vector3.down * rect.rect.height / 2 + Vector3.right * rect.rect.width / 2;
             if (rectMiddle.y > canvasRect.rect.yMax || rectMiddle.y < canvasRect.rect.yMin ||
                 rectMiddle.x > canvasRect.rect.xMax || rectMiddle.x < canvasRect.rect.xMin)
@@ -73,11 +85,32 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         droppedInto = false;
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+        foreach (var item in getCanvas().GetComponentsInChildren<Code>())
+        {
+            item.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        foreach (var item in getCanvas().GetComponentsInChildren<Parameter>())
+        {
+            item.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
     }
 
     public virtual void OnPointerDown(PointerEventData eventData) {
         // Debug.Log("OnPointerDown");
         canvasGroup.alpha = 0.6f;
+    }
+
+    private Canvas getCanvas() {
+        Canvas parentCanvas;
+        Transform t = transform;
+        while (true) {
+            if (t.parent.TryGetComponent(out Canvas c)) {
+                parentCanvas = c;
+                break;
+            }
+            t = t.parent;
+        }
+        return parentCanvas;
     }
 
     public virtual void OnPointerUp(PointerEventData eventData) {

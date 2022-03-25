@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class EditorButton : MonoBehaviour
+public class EditorButton : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField]
     public Sprite unselectedSprite;
@@ -26,6 +27,17 @@ public class EditorButton : MonoBehaviour
     {
         swapper = _swapper;
         window = _window;
+    }
+
+    public virtual void OnPointerEnter(PointerEventData eventData)
+    {
+        Code code = null;
+        if (eventData.pointerDrag != null)
+            code = eventData.pointerDrag.GetComponent<Code>();
+        if (code != null)
+        {
+            SelectButton();
+        }
     }
 
     public void SelectButton()
