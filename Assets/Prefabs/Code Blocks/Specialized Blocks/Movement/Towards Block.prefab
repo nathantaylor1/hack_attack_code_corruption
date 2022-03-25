@@ -51,9 +51,13 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2655322373164066442, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3330316781803569864, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: inputTypes.Array.data[0]
-      value: EntityType
+      value: void
       objectReference: {fileID: 0}
     - target: {fileID: 4452202925815984996, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -202,6 +206,10 @@ PrefabInstance:
     - target: {fileID: 7955499669208062736, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
       propertyPath: m_text
       value: Towards
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208223114834716474, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fb49af44a0ab874c8076b01d492940f, type: 3}
