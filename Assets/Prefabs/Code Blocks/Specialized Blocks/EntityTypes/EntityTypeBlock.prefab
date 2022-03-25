@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 845462345871695385, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2944009467672941420, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -143,6 +147,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6812610640850345897, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6836330125110631020, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -178,5 +186,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb34a2f17a39d84483237c78cbede49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnType: EntityType
+  returnType: entity
   entityType: 0

@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEngine;
 public class EntityTypeCode : Code
 {
     public EntityType entityType = EntityType.Player;
@@ -18,6 +19,6 @@ public class EntityTypeCode : Code
 
     private void SetText()
     {
-        text.text = entityType.GetLayer() + "x";
+        text.text = LayerMask.LayerToName(entityType.GetLayer());
     }
 }

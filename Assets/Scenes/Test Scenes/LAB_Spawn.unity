@@ -3389,6 +3389,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 234316743232039335, guid: 8c2df76bf801b9e4382d173462e6053b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 271033022094243263, guid: 8c2df76bf801b9e4382d173462e6053b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9840,6 +9844,10 @@ PrefabInstance:
     - target: {fileID: 1866824768290882461, guid: 7b63308373afa75468b9f304705ecee2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681544706511467792, guid: 7b63308373afa75468b9f304705ecee2, type: 3}
+      propertyPath: entityType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3726686477288349307, guid: 7b63308373afa75468b9f304705ecee2, type: 3}
       propertyPath: entityLayer

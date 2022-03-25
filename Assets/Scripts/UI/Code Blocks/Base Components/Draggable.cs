@@ -17,14 +17,6 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     }
 
     public virtual void UnClip() {
-        if (transform.parent.GetComponent<InputField>() != null)
-        {
-            DropInto dropHandler = transform.parent.GetComponentInChildren<DropInto>();
-            if (dropHandler != null)
-            {
-                dropHandler.RemoveBlock(rect.rect.size);
-            }
-        }
         if (transform.parent.TryGetComponent(out BlockResizer br))
         {
             br.UpdateSize();
@@ -51,7 +43,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         foreach (var item in getCanvas().GetComponentsInChildren<Parameter>())
         {
             if (!item.CanAcceptInput(returnType)) {
-                item.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                // item.GetComponent<CanvasGroup>().blocksRaycasts = false;
             } else {
                 // Even if the parameter accepts the input type, 
                 // if there is a block already in it we want to make it invisible
@@ -85,6 +77,16 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
                 rectMiddle.x > canvasRect.rect.xMax || rectMiddle.x < canvasRect.rect.xMin)
             {
                 rect.anchoredPosition3D = locationBeforeDrag;
+            }
+            if (originalParent.TryGetComponent(out BlockResizer br))
+            {
+                br.UpdateSize();
+            }
+        } else if (originalParent.GetComponent<InputField>() != null) {
+            DropInto dropHandler = originalParent.GetComponentInChildren<DropInto>();
+            if (dropHandler != null)
+            {
+                dropHandler.RemoveBlock();
             }
         }
         droppedInto = false;
