@@ -417,11 +417,11 @@ TextureImporter:
         serializedVersion: 2
         x: 39
         y: 183
-        width: 34
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 2, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
       - - {x: -17, y: 16}
@@ -440,9 +440,9 @@ TextureImporter:
       name: Office_Tiles_9
       rect:
         serializedVersion: 2
-        x: 77
+        x: 79
         y: 183
-        width: 34
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

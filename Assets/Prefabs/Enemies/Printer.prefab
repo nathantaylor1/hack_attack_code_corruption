@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32425b34a2ba6484892d2302d7822e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 15
   health_display: {fileID: 0}
   canInvincible: 0
 --- !u!95 &5260935248493281007
