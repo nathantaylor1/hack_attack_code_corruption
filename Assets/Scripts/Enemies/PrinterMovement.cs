@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChairMovement : MonoBehaviour
+public class PrinterMovement : MonoBehaviour
 {
     Rigidbody2D rb;
+    private Animator anim;
+    [SerializeField]
+    private string animationName = "Printer";
     public int elapsed = 0;
     public float switchPositionRate = .95f;
     public int power = 400;
@@ -15,11 +18,17 @@ public class ChairMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if (((rb.velocity.x <= 0 && dir > 0) || (rb.velocity.x >= 0 && dir < 0)) && 
+            !anim.GetCurrentAnimatorStateInfo(0).IsName(animationName + " Idle"))
+        {
+            anim.SetTrigger("Idle");
+        }
         if (rb.velocity.magnitude > 1)
         {
             return;
@@ -54,6 +63,9 @@ public class ChairMovement : MonoBehaviour
         sawPlayer = false;
         //Debug.Log(r.transform.name);
         //Debug.Log("grounded");
+        anim.SetTrigger("Dash");
+
+        transform.localScale = new Vector3(dir > 0 ? -1 : 1, 1, 1);
         rb.AddForce((transform.right * dir).normalized * power);
     }
 }
