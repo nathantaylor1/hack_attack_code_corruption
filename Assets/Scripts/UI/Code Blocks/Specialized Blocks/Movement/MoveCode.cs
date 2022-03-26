@@ -15,9 +15,9 @@ public class MoveCode : CodeWithParameters
     
     public override void ExecuteCode()
     {
-        rb2d = GameManager.instance.player.GetComponent<Rigidbody2D>();
-        anim = GameManager.instance.player.GetComponent<Animator>();
-        col = GameManager.instance.player.GetComponent<Collider2D>();
+        rb2d = module.rb;
+        anim = module.anim;
+        col = module.col;
         isRunning = true;
 
         float xVel = moveForce * (float)(object)GetParameter(0);

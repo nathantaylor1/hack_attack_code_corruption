@@ -12,7 +12,7 @@ public class TowardsCode : CodeWithParameters
     {
 
         // Change to code space's object
-        Transform trans = GameManager.instance.player.GetComponent<Transform>();
+        Transform trans = module.transform;
         int layer = (int)(object)GetParameter(0);
         //print("layer is " + layer);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(trans.position.x, trans.position.y), detection_radius, (1 << layer));
