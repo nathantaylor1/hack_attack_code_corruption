@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PrinterMovement : MonoBehaviour
 {
+    public float viewDistance = 5f;
+    
     Rigidbody2D rb;
     private Animator anim;
     [SerializeField]
@@ -33,9 +35,9 @@ public class PrinterMovement : MonoBehaviour
         {
             return;
         }
-        if (Physics2D.Raycast(transform.position, Vector2.right * dir, 5f, LayerMask.GetMask("Player"))) {
+        if (Physics2D.Raycast(transform.position, Vector2.right * dir, viewDistance, LayerMask.GetMask("Player"))) {
             sawPlayer = true;
-        } else if (Physics2D.Raycast(transform.position, Vector2.right * dir * -1, 5f, LayerMask.GetMask("Player"))) {
+        } else if (Physics2D.Raycast(transform.position, Vector2.right * dir * -1, viewDistance, LayerMask.GetMask("Player"))) {
             dir *= -1;
             sawPlayer = true;
         }
