@@ -6,8 +6,9 @@ public class IfCode : CodeWithBodies
 {
     public override void ExecuteCode()
     {
-        if ((bool)(object)GetParameter(0))
+        if ((bool)(object)GetParameter(0, module))
         {
+            GetBody(0).SetModule(module);
             GetBody(0).ExecuteCode();
         }
         base.ExecuteCode();

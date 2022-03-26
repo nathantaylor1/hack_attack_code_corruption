@@ -13,7 +13,7 @@ public class CodeSpace : MonoBehaviour
     {
     }
 
-    public void SetModule(CodeModule _module)
+    public virtual void SetModule(CodeModule _module)
     {
         module = _module;
     }

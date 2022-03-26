@@ -23,6 +23,7 @@ public class JumpCode : CodeWithParameters
             currentVelocity.y = module.jumpSpeed * (float)(object)GetParameter(0);
             rb.velocity = currentVelocity;
             anim.SetTrigger("Jump");
+
             //AudioController.instance.PlayJump();
             if (module.jumpSound != null)
                 AudioSource.PlayClipAtPoint(module.jumpSound, module.transform.position);

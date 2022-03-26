@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 725411197400984108, guid: 6cb620cb631e75f43aad088bb2a6e6b8, type: 3}
       propertyPath: m_Name
-      value: CollectableFloatBlock
+      value: CollectableFloatBlock Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 725411197400984107, guid: 6cb620cb631e75f43aad088bb2a6e6b8, type: 3}

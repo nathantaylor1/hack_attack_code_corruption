@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CodeModule : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class CodeModule : MonoBehaviour
             stat = _stat;
         }
     }*/
+    public UnityEvent OnCheckCollision = new UnityEvent();
+
 
     [Header("Base Stats")]
 
@@ -57,6 +60,10 @@ public class CodeModule : MonoBehaviour
     }
 
     [Header("Code Editor Reference")]
+    
+    [SerializeField]
+    [Tooltip("If checked, the module will never have an editor")]
+    protected bool spawnedFromCode = false;
 
     [SerializeField]
     [Tooltip("Does the player start with access to this module's editor?")]
@@ -67,7 +74,8 @@ public class CodeModule : MonoBehaviour
     protected GameObject editorWindow;
     [SerializeField]
     protected GameObject editorButton;*/
-
+    [Header("Parts of body")]
+    public GameObject shootFrom;
     // For use by Code
     [HideInInspector]
     public Rigidbody2D rb;
@@ -88,8 +96,10 @@ public class CodeModule : MonoBehaviour
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
         Debug.Log("button: " + editor.button);*/
-        editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
-        ToggleEditing(editableOnStart);
+        if (!spawnedFromCode) {
+            editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
+            ToggleEditing(editableOnStart);
+        }
     }
 
     public virtual void ToggleEditing(bool enabled)

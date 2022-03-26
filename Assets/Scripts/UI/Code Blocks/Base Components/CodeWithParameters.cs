@@ -34,4 +34,9 @@ public class CodeWithParameters : Code
     {
         return parameters[index].GetInput();
     }
+
+    protected virtual dynamic GetParameter(int index, CodeModule m)
+    {
+        return parameters[index].GetInput(m);
+    }
 }
