@@ -19,8 +19,9 @@ public class Grounded
     {
         Bounds bounds = col.bounds;
         Vector3 extents = bounds.extents * 2 + new Vector3(-0.1f, 0, 0);
+        int layer = ~( (1 << col.gameObject.layer) | (1<<LayerMask.NameToLayer("Cursor")) );
         
-        if (Physics2D.BoxCast(bounds.center, extents, 0f, Vector2.down, 0.1f, ~(1 << col.gameObject.layer)))
+        if (Physics2D.BoxCast(bounds.center, extents, 0f, Vector2.down, 0.1f, layer))
         {
             return true;
         }

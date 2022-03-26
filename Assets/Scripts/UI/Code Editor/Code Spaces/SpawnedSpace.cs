@@ -31,7 +31,7 @@ public class SpawnedSpace : CodeSpace
     }
 
     public bool CheckCollision() {
-        return module.col.IsTouchingLayers(~module.col.gameObject.layer);
+        return module.col.IsTouchingLayers(~(1<<module.col.gameObject.layer));
     }
 
     public void CollisionCalled() {

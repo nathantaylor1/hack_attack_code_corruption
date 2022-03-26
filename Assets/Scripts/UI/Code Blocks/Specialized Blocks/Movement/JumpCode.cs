@@ -22,7 +22,7 @@ public class JumpCode : CodeWithParameters
             Vector2 currentVelocity = rb.velocity;
             currentVelocity.y = module.jumpSpeed * (float)(object)GetParameter(0);
             rb.velocity = currentVelocity;
-            anim.SetTrigger("Jump");
+            if (anim != null) anim.SetTrigger("Jump");
 
             //AudioController.instance.PlayJump();
             if (module.jumpSound != null)

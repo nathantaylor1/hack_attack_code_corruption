@@ -32,6 +32,7 @@ public class CodeWithParameters : Code
 
     protected virtual dynamic GetParameter(int index)
     {
+        parameters[index].GetCode().SetModule(module);
         return parameters[index].GetInput();
     }
 
