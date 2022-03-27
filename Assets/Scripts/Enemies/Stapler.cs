@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-public class Stapler : MonoBehaviour
+public class Stapler : EnemyMovement
 {
     public Collider2D col2d;
     public LayerMask playerLayerMask;
@@ -104,8 +104,10 @@ public class Stapler : MonoBehaviour
         bool prev = facingRight;
         facingRight = (target.transform.position.x - transform.position.x) < 0;
         Debug.Log("Flip");
-        if (facingRight != prev)
+        if (facingRight != prev) {
             transform.Rotate(Vector3.up, 180);
+            FlipDirection();
+        }
     }
 
     private void Shoot(Collider2D target)
@@ -139,6 +141,7 @@ public class Stapler : MonoBehaviour
         {
             facingRight = !facingRight;
             transform.Rotate(Vector3.up, 180);
+            FlipDirection();
         }
         _rb2d.AddForce((transform.right + transform.up * 5).normalized * jumpForce);
         StartCoroutine(CO_Jumping());

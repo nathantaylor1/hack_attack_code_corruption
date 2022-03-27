@@ -7,6 +7,7 @@ public class HasHealth : MonoBehaviour
     //public TextMeshProUGUI health_display;
     public Slider healthBarSlider;
     public Image healthBarFill;
+    public SpriteMask sm;
     bool isInvincible = false;
     private CodeModule module;
     private float maxHealth;
@@ -14,8 +15,8 @@ public class HasHealth : MonoBehaviour
     private void Awake()
     {
         module = GetComponent<CodeModule>();
-        updateHealthDisplay();
         maxHealth = health;
+        updateHealthDisplay();
     }
 
     public void Damage(float damage_amount)
@@ -52,15 +53,23 @@ public class HasHealth : MonoBehaviour
 
     void updateHealthDisplay()
     {
+        float hp = (health <= 0) ? 0 : health;
+        Debug.Log(hp);
+        Debug.Log(maxHealth);
+        Debug.Log(gameObject.name);
+        float percent = hp / maxHealth;
+        float removed = 1f - percent;
         if (gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            float hp = (health <= 0) ? 0 : health;
-            float percent = hp / maxHealth;
             //health_display.text = "Health: " + hp;
             healthBarSlider.value = percent;
 
             Color fillColor = Color.Lerp(Color.red, Color.green, percent);
             healthBarFill.color = fillColor;
+        } else {
+            // x scale should be percent
+            sm.transform.localScale = new Vector3(percent, sm.transform.localScale.y, 1);
+            sm.transform.localPosition = new Vector3(-removed / 2f, 0, 0);
         }
     }
 }
