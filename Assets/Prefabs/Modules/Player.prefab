@@ -94,6 +94,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825256, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: healSound
       value: 
@@ -307,4 +311,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  health_display: {fileID: 0}
+  healthBarSlider: {fileID: 0}
+  healthBarFill: {fileID: 0}

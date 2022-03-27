@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1506935391939819941}
   - component: {fileID: 1432423924487866380}
   - component: {fileID: 1472155159}
+  - component: {fileID: 5301304900491567378}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -150,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  health_display: {fileID: 0}
-  canInvincible: 1
+  healthBarSlider: {fileID: 0}
+  healthBarFill: {fileID: 0}
 --- !u!114 &7014975692726490803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +211,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sidebarInventory: {fileID: 0}
+--- !u!114 &5301304900491567378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376723711867486037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44683625ea08d914e8a9a9ec0e95fc34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeAllowed: 0.15
 --- !u!1 &376723712365031153
 GameObject:
   m_ObjectHideFlags: 0
