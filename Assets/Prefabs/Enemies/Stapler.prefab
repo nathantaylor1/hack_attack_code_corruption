@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5984471115297813415}
   - component: {fileID: 1846736023006838617}
   - component: {fileID: 1562495258}
+  - component: {fileID: 1938915264051458203}
   m_Layer: 10
   m_Name: Stapler
   m_TagString: Enemy
@@ -164,6 +165,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   jumpForce: 1200
+  shootSound: {fileID: 8300000, guid: b403fe9d9b5c45b46bb913d7c96faeca, type: 3}
+  jumpSound: {fileID: 8300000, guid: 4add3dc7553f10f4fadd83bad9f4bad3, type: 3}
 --- !u!114 &5984471115297813415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,9 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32425b34a2ba6484892d2302d7822e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 5
   health_display: {fileID: 0}
-  canInvincible: 0
 --- !u!95 &1846736023006838617
 Animator:
   serializedVersion: 3
@@ -210,6 +212,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35be2f41410d4034d9767da7a141bfac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1938915264051458203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984471115297813409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4903239b88ed9b94783f104cc6bced2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCheckCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  moveSpeed: 1
+  jumpSpeed: 2
+  reloadTime: 1
+  moveSound: {fileID: 0}
+  jumpSound: {fileID: 0}
+  shootSound: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: 1f2e244ec14ca6d43a8fd222443d7d5a, type: 3}
+  healSound: {fileID: 0}
+  animationName: 
+  spawnedFromCode: 1
+  editableOnStart: 0
+  editor:
+    window: {fileID: 0}
+    button: {fileID: 0}
+  shootFrom: {fileID: 0}
+  rb: {fileID: 0}
+  col: {fileID: 0}
+  go: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &5984471116428286947
 GameObject:
   m_ObjectHideFlags: 0

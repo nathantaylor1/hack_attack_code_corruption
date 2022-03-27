@@ -11,25 +11,64 @@ public class JumpCode : CodeWithParameters
     private Rigidbody2D rb;
     private Collider2D col;
     protected Animator anim;
+    private bool alreadyJumping;
+    private float timeAllowed;
+
+    public float coyoteTimeInSeconds = 0.15f;
+    private float coyoteTime = 0f;
 
     public override void ExecuteCode()
     {
-        col = module.col;
-        if (Grounded.Check(col)) {
+        if (!alreadyJumping && CanJump())
+        {
+            alreadyJumping = true;
             rb = module.rb;
             anim = module.anim;
 
             Vector2 currentVelocity = rb.velocity;
             currentVelocity.y = module.jumpSpeed * (float)(object)GetParameter(0);
             rb.velocity = currentVelocity;
-            if (anim != null) anim.SetTrigger("Jump");
-
-            //AudioController.instance.PlayJump();
-            if (module.jumpSound != null)
-                AudioSource.PlayClipAtPoint(module.jumpSound, module.transform.position);
+            
+            if (anim != null) 
+                anim.SetTrigger("Jump");
+            if (module.jumpSound != null && AudioManager.instance != null)
+                AudioManager.instance.PlaySound(module.jumpSound, module.transform.position);
+            StartCoroutine(ResetAlreadyJumping());
         }
         base.ExecuteCode();
     }
+
+    /*
+    // Coyote Time Calculations
+    private void FixedUpdate()
+    {
+        if (!module.CompareTag("Player")) return;
+        coyoteTime -= Time.fixedDeltaTime;
+        if (Grounded.Check(module.col))
+        {
+            coyoteTime = coyoteTimeInSeconds;
+        }
+    } 
+    */
+
+    private bool CanJump()
+    {
+        if (module.CompareTag("Player"))
+        {
+            CoyoteTime ct = module.gameObject.GetComponent<CoyoteTime>();
+            timeAllowed = ct.GetTimeAllowed();
+            return ct.CanJump();;
+        }
+        return Grounded.Check(module.col);
+    }
+
+    private IEnumerator ResetAlreadyJumping()
+    {
+        yield return new WaitForSeconds(timeAllowed + 0.01f);
+        alreadyJumping = false;
+        yield return null;
+    }
+    
 
     // Used for debuging circlecast to make sure jump works correctly 
     // private void OnDrawGizmos()

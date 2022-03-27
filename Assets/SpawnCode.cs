@@ -7,12 +7,15 @@ public class SpawnCode : CodeWithBodies
     public GameObject thingToSpawn;
     private int delay = 20;
     private int elapsed = 20;
+    
     public override void ExecuteCode()
     {
         // Adding delay to prevent too many spawns
         elapsed += 1;
         if (elapsed > delay) {
             elapsed = 0;
+            if (module.shootSound != null && AudioManager.instance != null)
+                AudioManager.instance.PlaySound(module.shootSound, module.transform.position);
             var g = Instantiate(thingToSpawn, module.shootFrom.transform.position, Quaternion.identity);
             g.SetActive(true);
             var ss = g.AddComponent<SpawnedSpace>();

@@ -5,16 +5,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Collider2D c2d;
+    public bool alreadyDamaged;
     public float damage;
-    public bool isPlayer = false;
-
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((!isPlayer && col.gameObject.CompareTag("Player"))
-            || col.gameObject.CompareTag("Enemy"))
+        if (!alreadyDamaged && other.gameObject.TryGetComponent<HasHealth>(out HasHealth h))
         {
-            col.GetComponent<HasHealth>().Damage(damage);
+            alreadyDamaged = true;
+            h.Damage(damage);
         }
         Destroy(gameObject);
     }

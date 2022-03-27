@@ -7,6 +7,7 @@ public class CollectableBlock : MonoBehaviour
     public GameObject block;
     private bool alreadyPickedUp = false;
     public float quick = 1.6f;
+    public AudioClip pickupSound;
 
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log(other.name);
@@ -23,6 +24,9 @@ public class CollectableBlock : MonoBehaviour
         if (alreadyPickedUp) return;
         alreadyPickedUp = true;
         StartCoroutine(moveToward());
+
+        if (pickupSound != null && AudioManager.instance != null && Camera.main != null)
+            AudioManager.instance.PlaySound(pickupSound, Camera.main.transform.position);
     }
 
     private IEnumerator moveToward() {
