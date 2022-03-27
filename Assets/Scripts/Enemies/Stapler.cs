@@ -104,10 +104,8 @@ public class Stapler : EnemyMovement
         bool prev = facingRight;
         facingRight = (target.transform.position.x - transform.position.x) < 0;
         if (facingRight != prev) {
-            transform.Rotate(Vector3.up, 180);
-            FlipDirection();
+            Rotate();
         }
-        if (facingRight != prev) Rotate();
     }
 
     private void Rotate()
