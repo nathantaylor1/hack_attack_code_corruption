@@ -37,7 +37,7 @@ public class HasHealth : MonoBehaviour
         if (module.healSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.healSound, module.transform.position);
         health += heal_amount;
-        if (health > maxHealth) maxHealth += health;
+        if (health > maxHealth) maxHealth = health;
         updateHealthDisplay();
     }
 
