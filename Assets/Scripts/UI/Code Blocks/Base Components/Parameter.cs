@@ -9,7 +9,7 @@ public class Parameter : InputField
 
     public override void AddInputBlock(Code _inputBlock)
     {
-        if (inputBlock != null) {
+        if (inputBlock != null && inputBlock != _inputBlock) {
             inputBlock.GetComponent<CanvasGroup>().blocksRaycasts = true;
             InventoryManager.instance.AddBlock(inputBlock);
         }

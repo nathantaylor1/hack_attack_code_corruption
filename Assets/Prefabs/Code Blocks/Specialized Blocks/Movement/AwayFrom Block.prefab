@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1866824768290882460, guid: 7b6952818c138604e9a382cfd2e3445b, type: 3}
       propertyPath: m_Name
-      value: Towards Block
+      value: AwayFrom Block
       objectReference: {fileID: 0}
     - target: {fileID: 1866824768290882461, guid: 7b6952818c138604e9a382cfd2e3445b, type: 3}
       propertyPath: m_Pivot.x
@@ -121,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3620659390487246780, guid: 7b6952818c138604e9a382cfd2e3445b, type: 3}
       propertyPath: m_text
-      value: towards
+      value: away from
       objectReference: {fileID: 0}
     - target: {fileID: 7030629999752880072, guid: 7b6952818c138604e9a382cfd2e3445b, type: 3}
       propertyPath: m_AnchorMax.y
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   returnType: vector2
   detection_radius: 30
-  is_towards: 1
+  is_towards: 0
 --- !u!1001 &8946758159157732439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2335299078844822748, guid: 396f6fec926cf9c4bbcfef9a98d2aa6e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 42.71
+      value: 53.82
       objectReference: {fileID: 0}
     - target: {fileID: 2335299078844822748, guid: 396f6fec926cf9c4bbcfef9a98d2aa6e, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class InputField : MonoBehaviour
 {
+    [System.Serializable]
+    public class BlockImage
+    {
+        public Sprite selectedImage;
+        public Sprite unselectedImage;
+        public Image image;
+        [HideInInspector]
+        public Color color;
+    }
     [SerializeField]
-    protected Sprite unselectedImage;
-    [SerializeField]
-    protected Sprite selectedImage;
-    protected Image inputFieldImage;
+    protected List<BlockImage> blockImages = new List<BlockImage>();
+    //protected Color color;
 
     [SerializeField]
     protected List<string> inputTypes;
@@ -20,8 +27,13 @@ public class InputField : MonoBehaviour
 
     protected virtual void Awake()
     {
-        inputFieldImage = GetComponentInChildren<Image>();
-        inputFieldImage.sprite = unselectedImage;
+        //inputFieldImage = GetComponentInChildren<Image>();
+        //inputFieldImage.sprite = unselectedImage;
+        foreach (BlockImage bi in blockImages)
+        {
+            bi.color = bi.image.color;
+        }
+        Deselect();
         inputTypes.ConvertAll(s => s.ToLowerInvariant());
         inputTypeSet = new HashSet<string>(inputTypes);
         foreach (Transform child in transform)
@@ -41,12 +53,29 @@ public class InputField : MonoBehaviour
 
     public virtual void Select()
     {
-        inputFieldImage.sprite = selectedImage;
+        //inputFieldImage.sprite = selectedImage;
+        foreach (BlockImage bi in blockImages)
+        {
+            bi.image.sprite = bi.selectedImage;
+            bi.image.color = Color.white;
+        }
     }
 
     public virtual void Deselect()
     {
-        inputFieldImage.sprite = unselectedImage;
+        //inputFieldImage.sprite = unselectedImage;
+        foreach (BlockImage bi in blockImages)
+        {
+            bi.image.sprite = bi.unselectedImage;
+            if (bi.unselectedImage == null)
+            {
+                bi.image.color = Color.clear;
+            }
+            else
+            {
+                bi.image.color = bi.color;
+            }
+        }
     }
 
     public virtual void AddInputBlock(Code _inputBlock)

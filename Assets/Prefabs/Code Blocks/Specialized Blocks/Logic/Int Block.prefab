@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2944009467672941420, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2944009467672941420, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159926782019652167, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5159926782019652167, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -179,4 +179,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnType: int
-  val: 0
+  val: 1

@@ -72,7 +72,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8606747177626265764, guid: 9a2a5c4c80671524ea07f55c57cf6e61, type: 3}
+  m_Sprite: {fileID: 3931483172814853919, guid: 1ccc98d46e134284ca021335f92ab6fe, type: 3}
   m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 10
-  m_MinHeight: 10
+  m_MinWidth: 16
+  m_MinHeight: 16
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -166,8 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286574ae3bd0ba34e9470ef3a1ee90b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unselectedImage: {fileID: 8606747177626265764, guid: 9a2a5c4c80671524ea07f55c57cf6e61, type: 3}
-  selectedImage: {fileID: 3475605928602535674, guid: 9a2a5c4c80671524ea07f55c57cf6e61, type: 3}
+  blockImages:
+  - selectedImage: {fileID: -8084882570039389481, guid: 1ccc98d46e134284ca021335f92ab6fe, type: 3}
+    unselectedImage: {fileID: 3931483172814853919, guid: 1ccc98d46e134284ca021335f92ab6fe, type: 3}
+    image: {fileID: 8036653993250815462}
   inputTypes: []
 --- !u!225 &4284962062425967985
 CanvasGroup:

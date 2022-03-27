@@ -9,7 +9,7 @@ public class CodeWithParameters : Code
     protected override void Awake()
     {
         base.Awake();
-        Transform signature = transform.Find("Background").Find("Signature");
+        Transform signature = transform.Find("Background/Signature");//.Find("Signature");
         // Should only iterate through top layer
         foreach (Transform parameterTrans in signature)
         {

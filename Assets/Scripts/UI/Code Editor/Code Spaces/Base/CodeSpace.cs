@@ -20,8 +20,11 @@ public class CodeSpace : MonoBehaviour
 
     protected virtual void StartExecution()
     {
-        start.SetModule(module);
-        start.ExecuteCode();
+        if (start != null)
+        {
+            start.SetModule(module);
+            start.ExecuteCode();
+        }
     }
 
     protected virtual void EndExecution()
