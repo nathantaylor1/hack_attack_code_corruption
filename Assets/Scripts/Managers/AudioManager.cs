@@ -6,6 +6,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    public AudioClip music;
+    private AudioSource musicSrc;
 
     private void Awake()
     {
@@ -14,12 +16,14 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         instance = this;
+
+        if (Camera.main != null) musicSrc = Camera.main.gameObject.AddComponent<AudioSource>();
+        if (musicSrc != null) PlayMusic();
     }
 
     private float effectsVolume = 0.6f;
-    private float musicVolume = 0.4f;
+    private float musicVolume = 0.07f;
     private List<string> soundsPlaying = new List<string>();
 
     public void SetVolume(float input)
@@ -43,5 +47,19 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         soundsPlaying.Remove(name);
         yield return null;
+    }
+
+    public void SetMusicVolume(float input)
+    {
+        musicVolume = input;
+        musicSrc.volume = input;
+    }
+    
+    public void PlayMusic()
+    {
+        musicSrc.clip = music;
+        musicSrc.loop = true;
+        musicSrc.volume = musicVolume;
+        musicSrc.Play();
     }
 }
