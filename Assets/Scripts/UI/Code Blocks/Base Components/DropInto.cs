@@ -29,7 +29,8 @@ public class DropInto : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Code code = null;
         if (eventData.pointerDrag != null)
             code = eventData.pointerDrag.GetComponent<Code>();
-        if (code != null && blockInputField.CanAcceptInput(code.ReturnType))
+        if (code != null && (blockInputField.CanAcceptInput(code.ReturnType) || 
+            (blockInputField.GetCode() != null && code.GetInstanceID() == blockInputField.GetCode().GetInstanceID())))
         {
             blockInputField.Select();
         }
@@ -47,7 +48,9 @@ public class DropInto : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Code code = null;
         if (eventData.pointerDrag != null)
             code = eventData.pointerDrag.GetComponent<Code>();
-        if (code != null && blockInputField.CanAcceptInput(code.ReturnType)) {
+        if (code != null && (blockInputField.CanAcceptInput(code.ReturnType) ||
+            (blockInputField.GetCode() != null && code.GetInstanceID() == blockInputField.GetCode().GetInstanceID())))
+        { 
             /*if (dropMethod == DropMethod.underneath)
             {
                 if (eventData.pointerDrag.TryGetComponent(out LayoutElement le))

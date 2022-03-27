@@ -1,12 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &844711870715738118
+--- !u!1001 &6685515540941136705
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 174639819494703755, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
+      propertyPath: inputTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 174639819494703755, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
+      propertyPath: inputTypes.Array.data[0]
+      value: vector2
+      objectReference: {fileID: 0}
     - target: {fileID: 559058882755806376, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -21,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559058882755806376, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 559058882755806376, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
       propertyPath: m_AnchorMax.y
@@ -93,55 +101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4288850282136862902, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
       propertyPath: m_Name
-      value: Statement Body Field
+      value: Vector2 Parameter Field
       objectReference: {fileID: 0}
-    - target: {fileID: 7917009131032459721, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
-      propertyPath: selectedImage
-      value: 
-      objectReference: {fileID: 3475605928602535674, guid: 9a2a5c4c80671524ea07f55c57cf6e61, type: 3}
-    - target: {fileID: 7917009131032459721, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
-      propertyPath: unselectedImage
-      value: 
-      objectReference: {fileID: 8606747177626265764, guid: 9a2a5c4c80671524ea07f55c57cf6e61, type: 3}
     - target: {fileID: 8036653993250815462, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 7300743824545041863, guid: 1ccc98d46e134284ca021335f92ab6fe, type: 3}
-    m_RemovedComponents:
-    - {fileID: 7917009131032459721, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
-    - {fileID: 174639819494703755, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
---- !u!1 &3475664433647925424 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4288850282136862902, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
-  m_PrefabInstance: {fileID: 844711870715738118}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7223468973942195680 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8036653993250815462, guid: d62385cc4707b124b8bc144090231cfa, type: 3}
-  m_PrefabInstance: {fileID: 844711870715738118}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475664433647925424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6234206094970977903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475664433647925424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344a0cfe45db06347bd29a649bebdda9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockImages:
-  - selectedImage: {fileID: 2104276848009344330, guid: 1ccc98d46e134284ca021335f92ab6fe, type: 3}
-    unselectedImage: {fileID: 7300743824545041863, guid: 1ccc98d46e134284ca021335f92ab6fe, type: 3}
-    image: {fileID: 7223468973942195680}
-  inputTypes:
-  - void

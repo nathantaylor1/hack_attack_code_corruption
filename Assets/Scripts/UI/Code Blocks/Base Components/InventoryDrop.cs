@@ -15,8 +15,8 @@ public class InventoryDrop : MonoBehaviour, IDropHandler
     {
         //gr = GetComponent<GraphicRaycaster>();
         //sr = GetComponentInParent<ScrollRect>();
-        ToggleInteractable(false);
 
+        ToggleInteractable(false);
         EventManager.OnToggleEditor.AddListener(ToggleInteractable);
     }
 

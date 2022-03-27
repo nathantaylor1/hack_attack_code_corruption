@@ -5,26 +5,29 @@ using UnityEngine;
 public class SpawnCode : CodeWithBodies
 {
     public GameObject thingToSpawn;
-    private int delay = 20;
-    private int elapsed = 20;
+    protected bool canShoot = true;
     public override void ExecuteCode()
     {
-        // Adding delay to prevent too many spawns
-        elapsed += 1;
-        if (elapsed > delay) {
-            elapsed = 0;
+        if (canShoot)
+        {
             var g = Instantiate(thingToSpawn, module.shootFrom.transform.position, Quaternion.identity);
             g.SetActive(true);
+            if (g.TryGetComponent(out Rigidbody grb))
+            {
+                grb.velocity = ((Vector2)(object)GetParameter(0)).normalized * (float)(object)GetParameter(1);
+            }
             var ss = g.AddComponent<SpawnedSpace>();
             ss.SetModule(g.GetComponent<CodeModule>());
             ss.SetCode(GetBody(0));
+            StartCoroutine(ReloadCoroutine());
         }
         base.ExecuteCode();
     }
 
-    public override void StopExecution()
+    protected IEnumerator ReloadCoroutine()
     {
-        elapsed = delay;
-        base.StopExecution();
+        canShoot = false;
+        yield return new WaitForSeconds(module.reloadTime);
+        canShoot = true;
     }
 }

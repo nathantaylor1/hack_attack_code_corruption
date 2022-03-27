@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5181387234797468875
+--- !u!1001 &2741125016798614927
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,10 +10,6 @@ PrefabInstance:
     - target: {fileID: 845462345871695385, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1456144983074234931, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
-      propertyPath: m_text
-      value: float
       objectReference: {fileID: 0}
     - target: {fileID: 2944009467672941420, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchorMax.y
@@ -33,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2944009467672941420, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2944009467672941420, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -125,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4603283076457879059, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_Name
-      value: Float Block
+      value: Direction Block
       objectReference: {fileID: 0}
     - target: {fileID: 5159926782019652167, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchorMax.y
@@ -145,10 +141,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5159926782019652167, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5159926782019652167, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715096438207977182, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
+      propertyPath: m_Color.g
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6812610640850345897, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
@@ -171,25 +171,24 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7270965537927767900, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
---- !u!1 &8648557998518463192 stripped
+--- !u!1 &1866824768290882460 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4603283076457879059, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
-  m_PrefabInstance: {fileID: 5181387234797468875}
+  m_PrefabInstance: {fileID: 2741125016798614927}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5294186541860923099
+--- !u!114 &3846965339982492959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648557998518463192}
+  m_GameObject: {fileID: 1866824768290882460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4b168d50fea43741af609faa3c988e0, type: 3}
+  m_Script: {fileID: 11500000, guid: cfe553b1240f5a340820f03d9875c920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnType: float
-  val: 0
+  returnType: vector2
+  val: {x: 0, y: 0}
