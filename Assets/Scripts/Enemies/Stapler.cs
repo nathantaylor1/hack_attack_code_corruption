@@ -103,9 +103,12 @@ public class Stapler : MonoBehaviour
     {
         bool prev = facingRight;
         facingRight = (target.transform.position.x - transform.position.x) < 0;
-        Debug.Log("Flip");
-        if (facingRight != prev)
-            transform.Rotate(Vector3.up, 180);
+        if (facingRight != prev) Rotate();
+    }
+
+    private void Rotate()
+    {
+        transform.Rotate(Vector3.up, 180);
     }
 
     private void Shoot(Collider2D target)
@@ -136,7 +139,8 @@ public class Stapler : MonoBehaviour
         _staplerAnimations.SetJump(true);
         _jumping = true;
         Debug.Log("JumpAction");
-        if (Physics2D.Raycast(transform.position, transform.right, 2f, groundLayer))
+        if (/* Wall Detection: */ Physics2D.Raycast(transform.position, transform.right, 2f, ~groundLayer) 
+                                  || /* Edge Detection: */ !Physics2D.Raycast(transform.position, (transform.right + transform.up * -1).normalized, 1.8f, ~groundLayer))
         {
             facingRight = !facingRight;
             transform.Rotate(Vector3.up, 180);

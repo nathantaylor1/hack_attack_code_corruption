@@ -41,6 +41,7 @@ public class JumpCode : CodeWithParameters
         if (module.CompareTag("Player"))
         {
             CoyoteTime ct = module.gameObject.GetComponent<CoyoteTime>();
+            if (ct == null) return Grounded.Check(module.col);
             timeAllowed = ct.GetTimeAllowed();
             return ct.CanJump();;
         }
