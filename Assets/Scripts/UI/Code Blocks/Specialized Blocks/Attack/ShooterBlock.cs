@@ -24,16 +24,15 @@ public class ShooterBlock : AttackBlock
             GameObject go = Instantiate(prefab);
             Bullet bullet = go.GetComponent<Bullet>();
             bullet.damage = dmg;
-            bullet.isPlayer = true;
 
             Vector3 pos = col.bounds.center;
             if (facingRight)
             {
-                pos.x += (col.bounds.extents.x + bullet.c2d.bounds.extents.x + 0.05f);
+                pos.x += (col.bounds.extents.x + bullet.GetComponent<Collider2D>().bounds.extents.x + 0.05f);
             }
             else
             {
-                pos.x -= (col.bounds.extents.x + bullet.c2d.bounds.extents.x + 0.05f);
+                pos.x -= (col.bounds.extents.x + bullet.GetComponent<Collider2D>().bounds.extents.x + 0.05f);
             }
 
             go.transform.position = pos;

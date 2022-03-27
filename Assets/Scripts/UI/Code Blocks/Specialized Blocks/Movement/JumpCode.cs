@@ -11,44 +11,46 @@ public class JumpCode : CodeWithParameters
     private Rigidbody2D rb;
     private Collider2D col;
     protected Animator anim;
+    
+    private bool alreadyJumping;
+    private float timeAllowed;
 
     public override void ExecuteCode()
     {
-        col = module.col;
-        if (Grounded.Check(col)) {
+        if (!alreadyJumping && CanJump())
+        {
+            alreadyJumping = true;
             rb = module.rb;
             anim = module.anim;
 
             Vector2 currentVelocity = rb.velocity;
             currentVelocity.y = module.jumpSpeed * (float)(object)GetParameter(0);
             rb.velocity = currentVelocity;
-            if (anim != null) anim.SetTrigger("Jump");
-
-            //AudioController.instance.PlayJump();
-            if (module.jumpSound != null)
-                AudioSource.PlayClipAtPoint(module.jumpSound, module.transform.position);
+            
+            if (anim != null) 
+                anim.SetTrigger("Jump");
+            if (module.jumpSound != null && AudioManager.instance != null)
+                AudioManager.instance.PlaySound(module.jumpSound, module.transform.position);
+            StartCoroutine(ResetAlreadyJumping());
         }
         base.ExecuteCode();
     }
 
-    // Used for debuging circlecast to make sure jump works correctly 
-    // private void OnDrawGizmos()
-    // {
-    //     col = rb.gameObject.GetComponent<Collider2D>();
-    //       Bounds bounds = col.bounds;
-    //     Vector3 extents = bounds.extents;
-    //     // Smaller than the actual radius of the collider, 
-    //     //      so it doesn't catch on walls
-    //     float radius = extents.x - .05f;
-    //     // A bit below the bottom of the collider
-    //     float fullDist = .2f;
+    private bool CanJump()
+    {
+        if (module.CompareTag("Player"))
+        {
+            CoyoteTime ct = module.gameObject.GetComponent<CoyoteTime>();
+            timeAllowed = ct.GetTimeAllowed();
+            return ct.CanJump();;
+        }
+        return Grounded.Check(module.col);
+    }
 
-    //     RaycastHit2D isHit = Physics2D.CircleCast(bounds.center, radius, Vector2.down, fullDist, groundLayer);
-    //     if (isHit)
-    //     {
-    //         Gizmos.color = Color.red;
-    //         Gizmos.DrawWireSphere(rb.gameObject.transform.position + Vector3.down * fullDist, col.bounds.extents.x -.05f);
-    //         // Gizmos.DrawWireCube(transform.position + transform.up * -1 * isHit.distance, halfextents);
-    //     }
-    // }
+    private IEnumerator ResetAlreadyJumping()
+    {
+        yield return new WaitForSeconds(timeAllowed + 0.05f);
+        alreadyJumping = false;
+        yield return null;
+    }
 }

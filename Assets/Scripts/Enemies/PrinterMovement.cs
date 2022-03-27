@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PrinterMovement : MonoBehaviour
 {
@@ -16,8 +18,11 @@ public class PrinterMovement : MonoBehaviour
     public LayerMask walls;
     int dir = -1;
     bool sawPlayer = false;
-    // Start is called before the first frame update
-    void Start()
+    
+    private bool isDashing;
+    public AudioClip hitSound;
+    
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -26,6 +31,11 @@ public class PrinterMovement : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        Debug.DrawRay(transform.position, (Vector3.right * dir + transform.up * -1).normalized * 1.8f, Color.blue);
+        if (!Physics2D.Raycast(transform.position, (Vector3.right * dir + transform.up * -1).normalized, 1.8f, ~walls)) {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            dir *= -1;
+        }
         if (((rb.velocity.x <= 0 && dir > 0) || (rb.velocity.x >= 0 && dir < 0)) && 
             !anim.GetCurrentAnimatorStateInfo(0).IsName(animationName + " Idle"))
         {
@@ -49,6 +59,11 @@ public class PrinterMovement : MonoBehaviour
         {
             return;
         }
+
+        if (!sawPlayer)
+        {
+            return;
+        }
         elapsed = 0;
         // if (!sawPlayer && Random.Range(0, 4) == 0) {
         //     dir *= -1;
@@ -56,18 +71,21 @@ public class PrinterMovement : MonoBehaviour
         if (Physics2D.Raycast(transform.position, Vector2.right * dir, 1, ~walls)) {
             dir *= -1;
         }
-
-        if (!sawPlayer)
-        {
-            sawPlayer = false;
-            return;
-        }
-        sawPlayer = false;
         //Debug.Log(r.transform.name);
         //Debug.Log("grounded");
         anim.SetTrigger("Dash");
-
         transform.localScale = new Vector3(dir > 0 ? -1 : 1, 1, 1);
         rb.AddForce((transform.right * dir).normalized * power);
+        isDashing = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (isDashing && hitSound != null && AudioManager.instance != null)
+        {
+            Debug.Log("HitSound Printer");
+            isDashing = false;
+            AudioManager.instance.PlaySound(hitSound, transform.position);
+        }
     }
 }

@@ -13,7 +13,6 @@ public class Collecter : MonoBehaviour
         if (col.CompareTag(collectableTag))
         {
             col.GetComponent<CollectableBlock>().AddToInventory(sidebarInventory);
-            //AudioController.instance.PlayPickUp();
         }
     }
 }

@@ -13,7 +13,7 @@ public class EditorController : MonoBehaviour
 
     public bool is_in_editor = false;
     [SerializeField]
-    protected GameObject editorParent;
+    protected Canvas inGameUI;
 
     protected CodeEditorSwapper swapper;
     public Canvas editor_screen;
@@ -62,6 +62,7 @@ public class EditorController : MonoBehaviour
             item.enabled = enabled;
         }*/
         //editorParent.SetActive(enabled);
+        inGameUI.enabled = !enabled;
         GetComponent<Canvas>().enabled = enabled;
         EventManager.OnToggleEditor?.Invoke(enabled);
     }

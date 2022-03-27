@@ -29,16 +29,23 @@ public class Stapler : MonoBehaviour
     public float jumpForce = 1000f;
     private StaplerAnimations _staplerAnimations;
     
+    public AudioClip shootSound;
+    public AudioClip jumpSound;
+    private SpriteRenderer spr;
+    
     private void Awake()
     {
         _cooldownTimer = cooldownTimeSeconds;
         _rb2d = GetComponent<Rigidbody2D>();
         _staplerAnimations = GetComponent<StaplerAnimations>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if (!spr.isVisible) return; // do nothing if not visible
+        
         _grounded = Grounded.Check(col2d);
 
         float yVel = _rb2d.velocity.y;
@@ -80,6 +87,8 @@ public class Stapler : MonoBehaviour
         Collider2D col = Physics2D.OverlapBox(col2d.bounds.center + (Vector3)offset, attackArea, 0f, playerLayerMask);
         if (!col) return;
 
+        if (shootSound != null && AudioManager.instance != null)
+            AudioManager.instance.PlaySound(shootSound, transform.position);
         _shooting = true;
         Flip(col);
         
@@ -122,6 +131,8 @@ public class Stapler : MonoBehaviour
 
     private void JumpAction()
     {
+        if (jumpSound != null && AudioManager.instance != null)
+            AudioManager.instance.PlaySound(jumpSound, transform.position);
         _staplerAnimations.SetJump(true);
         _jumping = true;
         Debug.Log("JumpAction");

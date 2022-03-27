@@ -6,10 +6,12 @@ public class SpawnCode : CodeWithBodies
 {
     public GameObject thingToSpawn;
     protected bool canShoot = true;
+	
     public override void ExecuteCode()
     {
         if (canShoot)
         {
+            AudioManager.instance.PlaySound(module.shootSound, module.transform.position);
             var g = Instantiate(thingToSpawn, module.shootFrom.transform.position, Quaternion.identity);
             g.SetActive(true);
             if (g.TryGetComponent(out Rigidbody grb))
