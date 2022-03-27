@@ -22,7 +22,6 @@ public class CollectableBlock : MonoBehaviour
     {
         if (alreadyPickedUp) return;
         alreadyPickedUp = true;
-        InventoryManager.instance.AddBlock(gameObject.transform.GetChild(0).GetComponent<Code>());
         StartCoroutine(moveToward());
     }
 
@@ -32,8 +31,8 @@ public class CollectableBlock : MonoBehaviour
         while (!close) {
             var temp = Camera.main.ScreenToWorldPoint(screenPos);
             temp.z = 0;
-            transform.position = Vector3.Lerp(transform.position, temp, Time.fixedDeltaTime);
-            if (Vector3.Distance(temp, transform.position) < 1f) {
+            transform.position = Vector3.Lerp(transform.position, temp, Time.fixedDeltaTime * 1.2f);
+            if (Vector3.Distance(temp, transform.position) < 1.5f) {
                 close = true;
             }
             yield return null;
@@ -43,11 +42,15 @@ public class CollectableBlock : MonoBehaviour
             var temp = Camera.main.ScreenToWorldPoint(block.transform.position);
             temp.z = 0;
             transform.position = Vector3.Lerp(transform.position, temp, Time.fixedDeltaTime * quick);
-            if (Vector3.Distance(temp, transform.position) < 1f) {
+            if (Vector3.Distance(temp, transform.position) < 1.7f) {
                 close = true;
             }
             yield return null;
         }
+        // Pickup blocks must be nested exactly two levels
+        Transform codeBlock = gameObject.transform.GetChild(0).GetChild(0);
+        InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
+        codeBlock.localScale = new Vector3(1, 1, 1);
         Destroy(gameObject);
     }
 }
