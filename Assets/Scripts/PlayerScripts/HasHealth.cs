@@ -36,14 +36,14 @@ public class HasHealth : MonoBehaviour
 
         health -= damage_amount;
         
-        if (gameObject.CompareTag("Player"))
-        {
-            AudioController.instance.PlayPlayerHit();
-        }
-        else
-        {
-            AudioController.instance.PlayEnemyHit();
-        }
+        // if (gameObject.CompareTag("Player"))
+        // {
+        //     AudioController.instance.PlayPlayerHit();
+        // }
+        // else
+        // {
+        //     AudioController.instance.PlayEnemyHit();
+        // }
         if(health <= 0)
         {
             Death();
@@ -61,7 +61,7 @@ public class HasHealth : MonoBehaviour
 
     void Death()
     {
-        if (gameObject.CompareTag("Player"))
+        if (gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             GameManager.instance.ResetLevel();
         } else {
@@ -72,7 +72,7 @@ public class HasHealth : MonoBehaviour
 
     void update_health_display()
     {
-        if (gameObject.CompareTag("Player"))
+        if (gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             float hp = health;
             if (health < 0)
