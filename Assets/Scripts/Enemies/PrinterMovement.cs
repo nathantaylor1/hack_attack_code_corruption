@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PrinterMovement : MonoBehaviour
+public class PrinterMovement : EnemyMovement
 {
     public float viewDistance = 5f;
     
@@ -31,10 +31,10 @@ public class PrinterMovement : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, (Vector3.right * dir + transform.up * -1).normalized * 1.8f, Color.blue);
         if (!Physics2D.Raycast(transform.position, (Vector3.right * dir + transform.up * -1).normalized, 1.8f, ~walls)) {
             rb.velocity = new Vector2(0, rb.velocity.y);
             dir *= -1;
+            FlipDirection();
         }
         if (((rb.velocity.x <= 0 && dir > 0) || (rb.velocity.x >= 0 && dir < 0)) && 
             !anim.GetCurrentAnimatorStateInfo(0).IsName(animationName + " Idle"))
@@ -49,6 +49,7 @@ public class PrinterMovement : MonoBehaviour
             sawPlayer = true;
         } else if (Physics2D.Raycast(transform.position, Vector2.right * dir * -1, viewDistance, LayerMask.GetMask("Player"))) {
             dir *= -1;
+            FlipDirection();
             sawPlayer = true;
         }
         if (switchPositionRate > Random.Range(0f, 1f)) {
@@ -70,6 +71,7 @@ public class PrinterMovement : MonoBehaviour
         // }
         if (Physics2D.Raycast(transform.position, Vector2.right * dir, 1, ~walls)) {
             dir *= -1;
+            FlipDirection();
         }
         //Debug.Log(r.transform.name);
         //Debug.Log("grounded");
