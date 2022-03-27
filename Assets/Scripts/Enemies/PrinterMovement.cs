@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PrinterMovement : MonoBehaviour
 {
@@ -16,8 +18,11 @@ public class PrinterMovement : MonoBehaviour
     public LayerMask walls;
     int dir = -1;
     bool sawPlayer = false;
-    // Start is called before the first frame update
-    void Start()
+    
+    private bool isDashing;
+    public AudioClip hitSound;
+    
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -71,5 +76,16 @@ public class PrinterMovement : MonoBehaviour
         anim.SetTrigger("Dash");
         transform.localScale = new Vector3(dir > 0 ? -1 : 1, 1, 1);
         rb.AddForce((transform.right * dir).normalized * power);
+        isDashing = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (isDashing && hitSound != null && AudioManager.instance != null)
+        {
+            Debug.Log("HitSound Printer");
+            isDashing = false;
+            AudioManager.instance.PlaySound(hitSound, transform.position);
+        }
     }
 }

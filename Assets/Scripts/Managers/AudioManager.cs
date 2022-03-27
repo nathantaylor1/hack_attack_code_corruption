@@ -18,12 +18,13 @@ public class AudioManager : MonoBehaviour
         instance = this;
     }
 
-    private float volume = 0.6f;
+    private float effectsVolume = 0.6f;
+    private float musicVolume = 0.4f;
     private List<string> soundsPlaying = new List<string>();
 
     public void SetVolume(float input)
     {
-        volume = input;
+        effectsVolume = input;
     }
 
     public void PlaySound(AudioClip clip, Vector3 pos)
@@ -32,7 +33,7 @@ public class AudioManager : MonoBehaviour
         soundsPlaying.Add(clip.name);
 
         pos.z = 0;
-        AudioSource.PlayClipAtPoint(clip, pos, volume);
+        AudioSource.PlayClipAtPoint(clip, pos, effectsVolume);
 
         StartCoroutine(WaitToRemoveClip(clip.name));
     }
