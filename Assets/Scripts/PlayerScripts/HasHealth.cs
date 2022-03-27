@@ -11,6 +11,8 @@ public class HasHealth : MonoBehaviour
     private CodeModule module;
     private float maxHealth;
 
+    public Transform codeBlockToDrop;
+
     private void Awake()
     {
         module = GetComponent<CodeModule>();
@@ -45,7 +47,11 @@ public class HasHealth : MonoBehaviour
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player")) {
             GameManager.instance.ResetLevel();
-        } else {
+        } 
+        else
+        {
+            if (codeBlockToDrop != null)
+                codeBlockToDrop.position = transform.position;
             gameObject.SetActive(false);
         }
     }
