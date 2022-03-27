@@ -11,10 +11,10 @@ public class SpawnCode : CodeWithBodies
     {
         if (canShoot)
         {
-            AudioManager.instance.PlaySound(module.shootSound, module.transform.position);
+            //AudioManager.instance.PlaySound(module.shootSound, module.transform.position);
             var g = Instantiate(thingToSpawn, module.shootFrom.transform.position, Quaternion.identity);
             g.SetActive(true);
-            if (g.TryGetComponent(out Rigidbody grb))
+            if (g.TryGetComponent(out Rigidbody2D grb))
             {
                 grb.velocity = ((Vector2)(object)GetParameter(0)).normalized * (float)(object)GetParameter(1);
             }

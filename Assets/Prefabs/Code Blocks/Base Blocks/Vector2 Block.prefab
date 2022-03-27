@@ -121,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4603283076457879059, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_Name
-      value: Direction Block
+      value: Vector2 Block
       objectReference: {fileID: 0}
     - target: {fileID: 5159926782019652167, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchorMax.y
