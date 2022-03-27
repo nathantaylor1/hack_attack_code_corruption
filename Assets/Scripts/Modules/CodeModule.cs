@@ -76,6 +76,9 @@ public class CodeModule : MonoBehaviour
     protected GameObject editorButton;*/
     [Header("Parts of body")]
     public GameObject shootFrom;
+    
+    [Tooltip("Who's your daddy? (Only applies to spawned modules)")]
+    public GameObject father;
     // For use by Code
     [HideInInspector]
     public Rigidbody2D rb;

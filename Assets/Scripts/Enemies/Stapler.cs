@@ -124,7 +124,6 @@ public class Stapler : MonoBehaviour
     {
         _staplerAnimations.SetJump(true);
         _jumping = true;
-        Debug.Log("JumpAction");
         if (Physics2D.Raycast(transform.position, transform.right, 2f, groundLayer))
         {
             facingRight = !facingRight;

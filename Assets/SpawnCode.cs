@@ -16,7 +16,9 @@ public class SpawnCode : CodeWithBodies
             var g = Instantiate(thingToSpawn, module.shootFrom.transform.position, Quaternion.identity);
             g.SetActive(true);
             var ss = g.AddComponent<SpawnedSpace>();
-            ss.SetModule(g.GetComponent<CodeModule>());
+            var b = g.GetComponent<CodeModule>();
+            b.father = module.gameObject;
+            ss.SetModule(b);
             ss.SetCode(GetBody(0));
         }
         base.ExecuteCode();
