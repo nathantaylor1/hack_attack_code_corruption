@@ -8,78 +8,51 @@ public class HasHealth : MonoBehaviour
 {
     public float health = 5;
     public TextMeshProUGUI health_display;
-
-    bool dead = false;
-    public bool canInvincible = false;
     bool isInvincible = false;
-    
-    public bool IsDead()
+    private CodeModule module;
+
+    private void Start()
     {
-        return dead;
-    }
-
-    private void Start() {
-        update_health_display();
-    }
-
-    private IEnumerator Invincible() {
-        isInvincible = true;
-        yield return new WaitForSeconds(.2f);
-        isInvincible = false;
+        module = GetComponent<CodeModule>();
+        updateHealthDisplay();
     }
 
     public void Damage(float damage_amount)
     {
-        if (isInvincible) {
-            return;
-        }
+        if (isInvincible) return;
 
         health -= damage_amount;
+        if (module.damageSound != null && AudioManager.instance != null)
+            AudioManager.instance.PlaySound(module.damageSound, module.transform.position);
         
-        // if (gameObject.CompareTag("Player"))
-        // {
-        //     AudioController.instance.PlayPlayerHit();
-        // }
-        // else
-        // {
-        //     AudioController.instance.PlayEnemyHit();
-        // }
-        if(health <= 0)
-        {
-            Death();
-        } else if (canInvincible) {
-            StartCoroutine(Invincible());
-        }
-        update_health_display();
+        if(health <= 0) Death();
+        
+        updateHealthDisplay();
     }
 
     public void Heal(float heal_amount)
     {
+        if (module.healSound != null && AudioManager.instance != null)
+            AudioManager.instance.PlaySound(module.healSound, module.transform.position);
         health += heal_amount;
-        update_health_display();
+        updateHealthDisplay();
     }
 
     void Death()
     {
-        if (gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
+        if (gameObject.layer == LayerMask.NameToLayer("Player")) {
             GameManager.instance.ResetLevel();
         } else {
-            dead = true;
             gameObject.SetActive(false);
         }
     }
 
-    void update_health_display()
+    void updateHealthDisplay()
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            float hp = health;
-            if (health < 0)
-            {
-                hp = 0;
-            }
-            health_display.text = "Health: " + hp.ToString();
+            float hp = (health <= 0) ? 0 : health;
+            health_display.text = "Health: " + hp;
         }
     }
 }

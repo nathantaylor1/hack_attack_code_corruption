@@ -21,6 +21,7 @@ public class MoveCode : CodeWithParameters
         isRunning = true;
 
         float xVel = moveForce * (float)(object)GetParameter(0);
+        
         if (!moveRight)
         {
             // player is/was moving left last
@@ -35,7 +36,7 @@ public class MoveCode : CodeWithParameters
         Vector3 currentVelocity = rb2d.velocity;
         currentVelocity.x = xVel;
         rb2d.velocity = currentVelocity;
-
+        
         if (animationCoroutine != null)
             StopCoroutine(animationCoroutine);
         animationCoroutine = StartCoroutine(AnimateRun());

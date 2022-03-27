@@ -39,6 +39,8 @@ public class CodeModule : MonoBehaviour
     public AudioClip moveSound;
     public AudioClip jumpSound;
     public AudioClip shootSound;
+    public AudioClip damageSound;
+    public AudioClip healSound;
     [Tooltip("The name that precedes each of the generic animations; e.g., the player's " +
         "Animation Name is \"Player\", because its animations are named \"Player Run\", " +
         "\"Player Jump\", etc. This allows code blocks to use generic animation names " +
