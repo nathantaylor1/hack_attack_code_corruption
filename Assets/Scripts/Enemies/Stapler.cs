@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-public class Stapler : MonoBehaviour
+public class Stapler : EnemyMovement
 {
     public Collider2D col2d;
     public LayerMask playerLayerMask;
@@ -103,11 +103,16 @@ public class Stapler : MonoBehaviour
     {
         bool prev = facingRight;
         facingRight = (target.transform.position.x - transform.position.x) < 0;
+        if (facingRight != prev) {
+            transform.Rotate(Vector3.up, 180);
+            FlipDirection();
+        }
         if (facingRight != prev) Rotate();
     }
 
     private void Rotate()
     {
+        FlipDirection();
         transform.Rotate(Vector3.up, 180);
     }
 
@@ -138,12 +143,11 @@ public class Stapler : MonoBehaviour
             AudioManager.instance.PlaySound(jumpSound, transform.position);
         _staplerAnimations.SetJump(true);
         _jumping = true;
-        Debug.Log("JumpAction");
         if (/* Wall Detection: */ Physics2D.Raycast(transform.position, transform.right, 2f, ~groundLayer) 
                                   || /* Edge Detection: */ !Physics2D.Raycast(transform.position, (transform.right + transform.up * -1).normalized, 1.8f, ~groundLayer))
         {
             facingRight = !facingRight;
-            transform.Rotate(Vector3.up, 180);
+            Rotate();
         }
         _rb2d.AddForce((transform.right + transform.up * 5).normalized * jumpForce);
         StartCoroutine(CO_Jumping());

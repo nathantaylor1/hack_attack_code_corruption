@@ -19,7 +19,9 @@ public class SpawnCode : CodeWithBodies
                 grb.velocity = ((Vector2)(object)GetParameter(0)).normalized * (float)(object)GetParameter(1);
             }
             var ss = g.AddComponent<SpawnedSpace>();
-            ss.SetModule(g.GetComponent<CodeModule>());
+            var b = g.GetComponent<CodeModule>();
+            b.father = module.gameObject;
+            ss.SetModule(b);
             ss.SetCode(GetBody(0));
             StartCoroutine(ReloadCoroutine());
         }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - CollectableCodeBlock
+  - MovingBlock
   layers:
   - Default
   - TransparentFX
