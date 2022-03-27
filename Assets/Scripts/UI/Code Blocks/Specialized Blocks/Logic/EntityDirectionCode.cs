@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EntityDirectionCode : Code
 {
-    [SerializeField]
     protected Vector2 val = new Vector2(0, 0);
     // Start is called before the first frame update
 
