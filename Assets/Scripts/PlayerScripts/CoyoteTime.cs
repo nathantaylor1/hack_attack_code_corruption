@@ -6,7 +6,7 @@ using UnityEngine;
 public class CoyoteTime : MonoBehaviour
 {
     private Collider2D c2d;
-    [SerializeField] private float timeAllowed = 0.15f;
+    [SerializeField] private float timeAllowed = 0.10f;
     private float time;
     
     private void Awake()

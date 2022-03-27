@@ -103,11 +103,17 @@ public class Stapler : EnemyMovement
     {
         bool prev = facingRight;
         facingRight = (target.transform.position.x - transform.position.x) < 0;
-        Debug.Log("Flip");
         if (facingRight != prev) {
             transform.Rotate(Vector3.up, 180);
             FlipDirection();
         }
+        if (facingRight != prev) Rotate();
+    }
+
+    private void Rotate()
+    {
+        FlipDirection();
+        transform.Rotate(Vector3.up, 180);
     }
 
     private void Shoot(Collider2D target)
@@ -137,11 +143,11 @@ public class Stapler : EnemyMovement
             AudioManager.instance.PlaySound(jumpSound, transform.position);
         _staplerAnimations.SetJump(true);
         _jumping = true;
-        if (Physics2D.Raycast(transform.position, transform.right, 2f, groundLayer))
+        if (/* Wall Detection: */ Physics2D.Raycast(transform.position, transform.right, 2f, ~groundLayer) 
+                                  || /* Edge Detection: */ !Physics2D.Raycast(transform.position, (transform.right + transform.up * -1).normalized, 1.8f, ~groundLayer))
         {
             facingRight = !facingRight;
-            transform.Rotate(Vector3.up, 180);
-            FlipDirection();
+            Rotate();
         }
         _rb2d.AddForce((transform.right + transform.up * 5).normalized * jumpForce);
         StartCoroutine(CO_Jumping());
