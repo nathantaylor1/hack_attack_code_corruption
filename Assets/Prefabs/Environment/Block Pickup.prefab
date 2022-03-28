@@ -76,7 +76,7 @@ MonoBehaviour:
   block: {fileID: 0}
   slow: 1.6
   quick: 3
-  pickupSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 1e7a570ffe827f24dabf705d500b60f6, type: 3}
 --- !u!114 &6883401385304811883
 MonoBehaviour:
   m_ObjectHideFlags: 0
