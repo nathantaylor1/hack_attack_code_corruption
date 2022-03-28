@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffa13c2ec0bd7d408e0ca3e4781a046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unselectedSprite: {fileID: -2230640015494873224, guid: a0fe48803d6d47242b025a7c467fe8d1, type: 3}
-  selectedSprite: {fileID: 5937300090042828850, guid: a0fe48803d6d47242b025a7c467fe8d1, type: 3}
+  unselectedSprite: {fileID: 1515622694917723629, guid: a0fe48803d6d47242b025a7c467fe8d1, type: 3}
+  selectedSprite: {fileID: 1489830567317918739, guid: a0fe48803d6d47242b025a7c467fe8d1, type: 3}
 --- !u!114 &6367169178858608798
 MonoBehaviour:
   m_ObjectHideFlags: 0
