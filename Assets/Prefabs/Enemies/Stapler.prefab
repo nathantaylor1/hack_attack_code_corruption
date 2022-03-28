@@ -156,7 +156,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   cooldownTimeSeconds: 2
-  offset: {x: 0, y: 2.5}
+  offset: {x: 0, y: 0}
   attackArea: {x: 8, y: 8}
   drawAttackAreaGizmo: 1
   facingRight: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   sm: {fileID: 6418439758834272760}
+  codeBlockToDrop: {fileID: 0}
 --- !u!95 &1846736023006838617
 Animator:
   serializedVersion: 3
