@@ -24,7 +24,8 @@ public class JumpCode : CodeWithParameters
             anim = module.anim;
 
             Vector2 currentVelocity = rb.velocity;
-            currentVelocity.y = module.jumpSpeed * (float)(object)GetParameter(0);
+            float jumpForce = (float) (object) GetParameter(0);
+            currentVelocity.y = module.jumpSpeed * jumpForce;
             rb.velocity = currentVelocity;
             
             if (anim != null) 
