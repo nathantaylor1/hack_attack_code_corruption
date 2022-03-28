@@ -117,7 +117,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -139,12 +139,14 @@ MonoBehaviour:
   OnCheckCollision:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 1
-  jumpSpeed: 2
-  reloadTime: 1
+  moveSpeed: 20
+  jumpSpeed: 5
+  reloadTime: 0.5
   moveSound: {fileID: 0}
   jumpSound: {fileID: 0}
   shootSound: {fileID: 0}
+  damageSound: {fileID: 0}
+  healSound: {fileID: 0}
   animationName: 
   spawnedFromCode: 1
   editableOnStart: 0
@@ -152,6 +154,7 @@ MonoBehaviour:
     window: {fileID: 0}
     button: {fileID: 0}
   shootFrom: {fileID: 5156490979935134500}
+  father: {fileID: 0}
   rb: {fileID: 0}
   col: {fileID: 0}
   go: {fileID: 0}

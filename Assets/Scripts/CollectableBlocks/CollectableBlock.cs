@@ -27,7 +27,7 @@ public class CollectableBlock : MonoBehaviour
         //Transform codeBlock = Instantiate(gameObject.transform.GetChild(0).GetChild(0));
         GameObject codeBlock = Instantiate(block);
         InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
-        //codeBlock.transform.localScale = new Vector3(1, 1, 1);
+        codeBlock.transform.localScale = new Vector3(1, 1, 1);
         StartCoroutine(moveToward());
 
         if (pickupSound != null && AudioManager.instance != null && Camera.main != null)
@@ -38,7 +38,7 @@ public class CollectableBlock : MonoBehaviour
         var close = false;
         var screenPos = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f + Vector3.right * 1);
         float lastTime = Time.time;
-        while (!close) {
+        /*while (!close) {
             float deltaTime = Time.time - lastTime;
             var temp = Camera.main.ScreenToWorldPoint(screenPos);
             temp.z = 0;
@@ -48,7 +48,7 @@ public class CollectableBlock : MonoBehaviour
             }
             lastTime = Time.time;
             yield return null;
-        }
+        }*/
         close = false;
         while (!close)
         {
