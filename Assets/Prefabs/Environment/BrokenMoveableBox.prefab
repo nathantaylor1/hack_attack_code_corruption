@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7766977076902622958}
   - component: {fileID: 7766977076902622955}
   - component: {fileID: 7766977076902622952}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Office_Tiles - Copy_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7766977077427753699}
   - component: {fileID: 6315800422641370629}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: BrokenMoveableBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 7766977077462147468}
   - component: {fileID: 7766977077462147465}
   - component: {fileID: 7766977077462147470}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Office_Tiles - Copy_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 7766977078022396400}
   - component: {fileID: 7766977078022396413}
   - component: {fileID: 7766977078022396402}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Office_Tiles - Copy_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 7766977078699683879}
   - component: {fileID: 7766977078699683872}
   - component: {fileID: 7766977078699683873}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Office_Tiles - Copy_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
