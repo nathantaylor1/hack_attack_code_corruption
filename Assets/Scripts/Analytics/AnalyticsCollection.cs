@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.Analytics;
 // https://docs.unity3d.com/ScriptReference/Analytics.Analytics-enabled.html
 
-public class AnalyticsCollection : MonoBehaviour {
-
+public class AnalyticsCollection : MonoBehaviour 
+{
     public static void LevelComplete(int levelNum)
     {
+        if (Application.isEditor) return;
         AnalyticsResult res = Analytics.CustomEvent("LevelComplete", 
             new Dictionary<string, object>()
             {
@@ -19,18 +20,20 @@ public class AnalyticsCollection : MonoBehaviour {
     private static float timeOpened;
     public static void OpenedEditor()
     {
+        if (Application.isEditor) return;
         timeOpened = Time.realtimeSinceStartup;
     }
 
     public static void ClosedEditor()
     {
+        if (Application.isEditor) return;
         float timeInEditor = Time.realtimeSinceStartup - timeOpened;
         AnalyticsResult res = Analytics.CustomEvent("EditorTime", 
             new Dictionary<string, object>()
             {
                 {"Time In Editor", timeInEditor}
             });
-        //Debug.Log("analyticsResult: " + res);
+        Debug.Log("analyticsResult: " + res);
     }
     
     // If you want to disable Analytics completely during runtime
