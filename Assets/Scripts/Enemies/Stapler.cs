@@ -16,6 +16,7 @@ public class Stapler : EnemyMovement
     private bool _grounded;
     private bool _canTakeAction;
     private bool _jumping;
+    [NonSerialized] public string ID;
 
     [SerializeField] private bool facingRight;
 
@@ -39,6 +40,8 @@ public class Stapler : EnemyMovement
         _rb2d = GetComponent<Rigidbody2D>();
         _staplerAnimations = GetComponent<StaplerAnimations>();
         spr = GetComponent<SpriteRenderer>();
+
+        ID = gameObject.name + transform.position;
     }
 
     // Update is called once per frame
@@ -93,10 +96,7 @@ public class Stapler : EnemyMovement
         Flip(col);
         
         _staplerAnimations.SetOpen(true);
-        Shoot(col);
-        StartCoroutine(CO_ShootAnim());
-        
-        Debug.Log("Stapler " + gameObject.name + " shoot");
+        StartCoroutine(CO_ShootAnim(col));
     }
 
     private void Flip(Collider2D target)
@@ -117,18 +117,25 @@ public class Stapler : EnemyMovement
     private void Shoot(Collider2D target)
     {
         GameObject go = Instantiate(projectilePrefab, firingPosition.position, Quaternion.identity);
+        
+        Bullet bullet = go.GetComponent<Bullet>();
+        bullet.ID = ID;
+        
         Rigidbody2D rb2d = go.GetComponent<Rigidbody2D>();
-        if (!facingRight)
+        Vector3 targetPos = target.transform.position - transform.position;
+        targetPos.z = 0;
+        targetPos = targetPos.normalized;
+        if (facingRight)
         {
             go.transform.Rotate(Vector3.up, 180);
         }
-        Vector3 targetPos = target.transform.position - transform.position;
-        targetPos = targetPos.normalized;
         rb2d.AddForce((targetPos * shootForce));
     }
 
-    private IEnumerator CO_ShootAnim()
+    private IEnumerator CO_ShootAnim(Collider2D col)
     {
+        yield return new WaitForSeconds(0.2f);
+        Shoot(col);
         Debug.Log("Shoot Anim");
         yield return new WaitForSeconds(0.1f);
         _staplerAnimations.SetOpen(false);
@@ -156,8 +163,7 @@ public class Stapler : EnemyMovement
         if (!drawAttackAreaGizmo) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(col2d.bounds.center + (Vector3)offset, attackArea);
-        
-        Gizmos.DrawLine(transform.position, transform.position+(transform.right*2f));
+        //Gizmos.DrawLine(transform.position, transform.position+(transform.right*2f));
     }
 
     private IEnumerator CO_Jumping()
