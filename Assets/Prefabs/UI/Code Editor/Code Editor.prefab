@@ -230,7 +230,7 @@ MonoBehaviour:
   desktop: {fileID: 4271658286315359662}
   taskbar: {fileID: 7625834348033926623}
   is_in_editor: 0
-  editorParent: {fileID: 2666477771069766893}
+  inGameUI: {fileID: 0}
   editor_screen: {fileID: 0}
 --- !u!114 &5144857167146922052
 MonoBehaviour:
@@ -679,6 +679,10 @@ PrefabInstance:
     - target: {fileID: 4288780741744483952, guid: 924fae89595a81d479912366fa7167c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893028441591886750, guid: 924fae89595a81d479912366fa7167c4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 93.13
       objectReference: {fileID: 0}
     - target: {fileID: 6866357776972308290, guid: 924fae89595a81d479912366fa7167c4, type: 3}
       propertyPath: m_SizeDelta.x
