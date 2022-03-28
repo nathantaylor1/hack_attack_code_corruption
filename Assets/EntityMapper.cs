@@ -17,10 +17,17 @@ public class EntityMapper : MonoBehaviour
 
     private void Awake()
     {
-        foreach(Entity e in entities)
+        if (instance == null)
         {
-            entityMap.Add(e.entityType, e.entityIcon);
+            foreach (Entity e in entities)
+            {
+                if (!entityMap.ContainsKey(e.entityType))
+                {
+                    entityMap.Add(e.entityType, e.entityIcon);
+                }
+            }
         }
+        instance = this;
     }
 
     public static Sprite GetEntitySprite(EntityType _entityType)

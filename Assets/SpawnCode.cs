@@ -22,6 +22,7 @@ public class SpawnCode : CodeWithBodies
             }
             b.father = module.gameObject;
             ss.SetModule(b);
+            ss.SetParentLayer(module.gameObject.layer);
             ss.SetCode(GetBody(0));
             StartCoroutine(ReloadCoroutine());
         }

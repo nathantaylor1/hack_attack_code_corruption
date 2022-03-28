@@ -80,6 +80,7 @@ Transform:
   - {fileID: 3258883813808574493}
   - {fileID: 8403119022091938657}
   - {fileID: 2786953339394473625}
+  - {fileID: 6998403302202185009}
   m_Father: {fileID: 131650074182940982}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -203,6 +204,72 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1001 &2588383787125036064
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5572130107563970614}
+    m_Modifications:
+    - target: {fileID: 4824652548589306128, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824652548589306141, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+      propertyPath: m_Name
+      value: EntryDoor
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+--- !u!4 &6998403302202185009 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4824652548589306129, guid: 49bd2256d17aa844bbc7a27727760ff4, type: 3}
+  m_PrefabInstance: {fileID: 2588383787125036064}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3920801104661015152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,6 +825,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6883401385535482556, guid: fd3f160ee570a5f42bd2e2921b27b56d, type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd3f160ee570a5f42bd2e2921b27b56d, type: 3}
 --- !u!4 &2786953339394473625 stripped
@@ -765,7 +836,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6883401385304811877, guid: fd3f160ee570a5f42bd2e2921b27b56d, type: 3}
   m_PrefabInstance: {fileID: 8731351977062324220}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2542344041567850068
+--- !u!114 &188657936311361396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

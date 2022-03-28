@@ -5,10 +5,16 @@ using UnityEngine.UI;
 
 public class SpawnedSpace : CodeSpace
 {
+    protected int parentLayer = 0;
     bool collisionCheckThisFrame = false;
     bool destroyed = false;
     public void SetCode(Code _start) {
         start = _start;
+    }
+
+    public void SetParentLayer(int _parentLayer)
+    {
+        parentLayer = _parentLayer;
     }
 
     public override void SetModule(CodeModule _module)
@@ -31,7 +37,7 @@ public class SpawnedSpace : CodeSpace
     }
 
     public bool CheckCollision() {
-        return module.col.IsTouchingLayers(~(1<<module.col.gameObject.layer));
+        return module.col.IsTouchingLayers(~(1<<module.col.gameObject.layer | 1 << parentLayer));
     }
 
     public void CollisionCalled() {

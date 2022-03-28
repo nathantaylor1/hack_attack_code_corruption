@@ -116,13 +116,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &5156490979606078940
 MonoBehaviour:
@@ -139,7 +139,7 @@ MonoBehaviour:
   OnCheckCollision:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 40
+  moveSpeed: 20
   jumpSpeed: 5
   reloadTime: 0.5
   moveSound: {fileID: 0}
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac094d8f395cf7d48837c0d28ea1b887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 6
+  time: 0.3
 --- !u!1 &5156490979935134500
 GameObject:
   m_ObjectHideFlags: 0

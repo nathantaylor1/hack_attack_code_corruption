@@ -6,6 +6,7 @@ public class Stapler : EnemyMovement
     public Collider2D col2d;
     public LayerMask playerLayerMask;
     public float cooldownTimeSeconds = 1;
+    public float telegraphTime = 1f;
 
     public Vector2 offset;
     public Vector2 attackArea;
@@ -68,16 +69,23 @@ public class Stapler : EnemyMovement
         ShootAction();
         if (!_shooting) JumpAction();
 
-        _shooting = false;
+        //_shooting = false;
     }
 
     private void UpdateCooldownTimer()
     {
-        _cooldownTimer -= Time.fixedDeltaTime;
-        if (_cooldownTimer < 0)
+        if (!_shooting)
         {
-            _canTakeAction = true;
-            _cooldownTimer = cooldownTimeSeconds;
+            _cooldownTimer -= Time.fixedDeltaTime;
+            if (_cooldownTimer < 0)
+            {
+                _canTakeAction = true;
+                _cooldownTimer = cooldownTimeSeconds;
+            }
+            else
+            {
+                _canTakeAction = false;
+            }
         }
         else
         {
@@ -90,8 +98,6 @@ public class Stapler : EnemyMovement
         Collider2D col = Physics2D.OverlapBox(col2d.bounds.center + (Vector3)offset, attackArea, 0f, playerLayerMask);
         if (!col) return;
 
-        if (shootSound != null && AudioManager.instance != null)
-            AudioManager.instance.PlaySound(shootSound, transform.position);
         _shooting = true;
         Flip(col);
         
@@ -125,16 +131,23 @@ public class Stapler : EnemyMovement
         Vector3 targetPos = target.transform.position - transform.position;
         targetPos.z = 0;
         targetPos = targetPos.normalized;
-        if (facingRight)
+        /*if (facingRight)
         {
             go.transform.Rotate(Vector3.up, 180);
-        }
-        rb2d.AddForce((targetPos * shootForce));
+        }*/
+        Quaternion quat = new Quaternion();
+        quat.SetFromToRotation(Vector2.right, targetPos);
+        go.transform.rotation *= quat;
+
+        rb2d.AddForce((targetPos * shootForce), ForceMode2D.Impulse);
+        if (shootSound != null && AudioManager.instance != null)
+            AudioManager.instance.PlaySound(shootSound, transform.position);
+        _shooting = false;
     }
 
     private IEnumerator CO_ShootAnim(Collider2D col)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(telegraphTime);
         Shoot(col);
         Debug.Log("Shoot Anim");
         yield return new WaitForSeconds(0.1f);
@@ -154,7 +167,7 @@ public class Stapler : EnemyMovement
             facingRight = !facingRight;
             Rotate();
         }
-        _rb2d.AddForce((transform.right + transform.up * 5).normalized * jumpForce);
+        _rb2d.AddForce((transform.right + transform.up * 5).normalized * jumpForce, ForceMode2D.Impulse);
         StartCoroutine(CO_Jumping());
     }
 
