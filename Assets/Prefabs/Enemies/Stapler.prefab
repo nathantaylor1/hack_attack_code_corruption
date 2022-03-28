@@ -162,11 +162,11 @@ MonoBehaviour:
   facingRight: 0
   firingPosition: {fileID: 5984471116428286948}
   projectilePrefab: {fileID: 4536963770326186710, guid: 46ba1f63309ea3f46824eba8e89f4e6f, type: 3}
-  shootForce: 800
+  shootForce: 600
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  jumpForce: 1200
+  jumpForce: 900
   shootSound: {fileID: 8300000, guid: b403fe9d9b5c45b46bb913d7c96faeca, type: 3}
   jumpSound: {fileID: 8300000, guid: 4add3dc7553f10f4fadd83bad9f4bad3, type: 3}
 --- !u!114 &5984471115297813415
