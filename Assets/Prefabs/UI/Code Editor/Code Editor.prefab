@@ -161,7 +161,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4904945541676389277}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -469,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7174322176827018067, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.635
+      value: 26.630001
       objectReference: {fileID: 0}
     - target: {fileID: 7174322176827018067, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -683,6 +683,10 @@ PrefabInstance:
     - target: {fileID: 4893028441591886750, guid: 924fae89595a81d479912366fa7167c4, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 93.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893028441591886750, guid: 924fae89595a81d479912366fa7167c4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 64.71778
       objectReference: {fileID: 0}
     - target: {fileID: 6866357776972308290, guid: 924fae89595a81d479912366fa7167c4, type: 3}
       propertyPath: m_SizeDelta.x
