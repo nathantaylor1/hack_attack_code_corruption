@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 
 public class DirectionCode : Code
 {
     [SerializeField]
     protected Vector2 val;
+    [SerializeField]
+    protected Sprite arrowIcon;
+    [SerializeField]
+    protected Image arrowImage;
 
     protected TMP_Text text;
 
@@ -16,8 +20,12 @@ public class DirectionCode : Code
     {
         base.Awake();
         text = GetComponentInChildren<TMP_Text>();
-        
-        if(val.x == 1)
+
+        arrowImage.sprite = arrowIcon;
+        Quaternion quat = new Quaternion();
+        quat.SetFromToRotation(Vector2.up, val);
+        arrowImage.transform.rotation *= quat;
+        /*if(val.x == 1)
         {
             text.text = "-->";
         }
@@ -32,7 +40,8 @@ public class DirectionCode : Code
         else
         {
             text.text = "v";
-        }
+        }*/
+
     }
 
     public override dynamic ReturnValue()

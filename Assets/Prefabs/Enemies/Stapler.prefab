@@ -155,18 +155,19 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  cooldownTimeSeconds: 2
-  offset: {x: 0, y: 2.5}
+  cooldownTimeSeconds: 0.5
+  telegraphTime: 0.5
+  offset: {x: 0, y: 0}
   attackArea: {x: 8, y: 8}
   drawAttackAreaGizmo: 1
   facingRight: 0
   firingPosition: {fileID: 5984471116428286948}
   projectilePrefab: {fileID: 4536963770326186710, guid: 46ba1f63309ea3f46824eba8e89f4e6f, type: 3}
-  shootForce: 600
+  shootForce: 12
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  jumpForce: 900
+  jumpForce: 20
   shootSound: {fileID: 8300000, guid: b403fe9d9b5c45b46bb913d7c96faeca, type: 3}
   jumpSound: {fileID: 8300000, guid: 4add3dc7553f10f4fadd83bad9f4bad3, type: 3}
 --- !u!114 &5984471115297813415
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32425b34a2ba6484892d2302d7822e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 3
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   sm: {fileID: 6418439758834272760}

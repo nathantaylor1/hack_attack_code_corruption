@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3039606749986047602}
   - component: {fileID: 6284934558205878911}
   - component: {fileID: 3554598599595334197}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Printer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,10 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32425b34a2ba6484892d2302d7822e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 15
+  health: 8
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   sm: {fileID: 448108470378767086}
+  codeBlockToDrop: {fileID: 0}
 --- !u!95 &5260935248493281007
 Animator:
   serializedVersion: 3

@@ -21,6 +21,7 @@ public class GeneralMoveCode : CodeWithParameters
 
         Vector2 dir = (Vector2)(object)GetParameter(0);
         float speed = module.moveSpeed * (float)(object)GetParameter(1);
+        //Debug.Log("dir: " + dir);
 
         float xVel = Mathf.Abs(dir.normalized.x * speed) > Mathf.Abs(rb.velocity.x) || 
             (dir.x < 0 && rb.velocity.x > 0) || (dir.x > 0 && rb.velocity.x < 0) ? 

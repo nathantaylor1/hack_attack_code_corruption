@@ -6,6 +6,7 @@ public class Stapler : EnemyMovement
     public Collider2D col2d;
     public LayerMask playerLayerMask;
     public float cooldownTimeSeconds = 1;
+    public float telegraphTime = 1f;
 
     public Vector2 offset;
     public Vector2 attackArea;
@@ -16,6 +17,7 @@ public class Stapler : EnemyMovement
     private bool _grounded;
     private bool _canTakeAction;
     private bool _jumping;
+    [NonSerialized] public string ID;
 
     [SerializeField] private bool facingRight;
 
@@ -39,6 +41,8 @@ public class Stapler : EnemyMovement
         _rb2d = GetComponent<Rigidbody2D>();
         _staplerAnimations = GetComponent<StaplerAnimations>();
         spr = GetComponent<SpriteRenderer>();
+
+        ID = gameObject.name + transform.position;
     }
 
     // Update is called once per frame
@@ -65,16 +69,23 @@ public class Stapler : EnemyMovement
         ShootAction();
         if (!_shooting) JumpAction();
 
-        _shooting = false;
+        //_shooting = false;
     }
 
     private void UpdateCooldownTimer()
     {
-        _cooldownTimer -= Time.fixedDeltaTime;
-        if (_cooldownTimer < 0)
+        if (!_shooting)
         {
-            _canTakeAction = true;
-            _cooldownTimer = cooldownTimeSeconds;
+            _cooldownTimer -= Time.fixedDeltaTime;
+            if (_cooldownTimer < 0)
+            {
+                _canTakeAction = true;
+                _cooldownTimer = cooldownTimeSeconds;
+            }
+            else
+            {
+                _canTakeAction = false;
+            }
         }
         else
         {
@@ -87,16 +98,11 @@ public class Stapler : EnemyMovement
         Collider2D col = Physics2D.OverlapBox(col2d.bounds.center + (Vector3)offset, attackArea, 0f, playerLayerMask);
         if (!col) return;
 
-        if (shootSound != null && AudioManager.instance != null)
-            AudioManager.instance.PlaySound(shootSound, transform.position);
         _shooting = true;
         Flip(col);
         
         _staplerAnimations.SetOpen(true);
-        Shoot(col);
-        StartCoroutine(CO_ShootAnim());
-        
-        Debug.Log("Stapler " + gameObject.name + " shoot");
+        StartCoroutine(CO_ShootAnim(col));
     }
 
     private void Flip(Collider2D target)
@@ -117,18 +123,32 @@ public class Stapler : EnemyMovement
     private void Shoot(Collider2D target)
     {
         GameObject go = Instantiate(projectilePrefab, firingPosition.position, Quaternion.identity);
+        
+        Bullet bullet = go.GetComponent<Bullet>();
+        bullet.ID = ID;
+        
         Rigidbody2D rb2d = go.GetComponent<Rigidbody2D>();
-        if (!facingRight)
+        Vector3 targetPos = target.transform.position - transform.position;
+        targetPos.z = 0;
+        targetPos = targetPos.normalized;
+        /*if (facingRight)
         {
             go.transform.Rotate(Vector3.up, 180);
-        }
-        Vector3 targetPos = target.transform.position - transform.position;
-        targetPos = targetPos.normalized;
-        rb2d.AddForce((targetPos * shootForce));
+        }*/
+        Quaternion quat = new Quaternion();
+        quat.SetFromToRotation(Vector2.right, targetPos);
+        go.transform.rotation *= quat;
+
+        rb2d.AddForce((targetPos * shootForce), ForceMode2D.Impulse);
+        if (shootSound != null && AudioManager.instance != null)
+            AudioManager.instance.PlaySound(shootSound, transform.position);
+        _shooting = false;
     }
 
-    private IEnumerator CO_ShootAnim()
+    private IEnumerator CO_ShootAnim(Collider2D col)
     {
+        yield return new WaitForSeconds(telegraphTime);
+        Shoot(col);
         Debug.Log("Shoot Anim");
         yield return new WaitForSeconds(0.1f);
         _staplerAnimations.SetOpen(false);
@@ -147,7 +167,7 @@ public class Stapler : EnemyMovement
             facingRight = !facingRight;
             Rotate();
         }
-        _rb2d.AddForce((transform.right + transform.up * 5).normalized * jumpForce);
+        _rb2d.AddForce((transform.right + transform.up * 5).normalized * jumpForce, ForceMode2D.Impulse);
         StartCoroutine(CO_Jumping());
     }
 
@@ -156,8 +176,7 @@ public class Stapler : EnemyMovement
         if (!drawAttackAreaGizmo) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(col2d.bounds.center + (Vector3)offset, attackArea);
-        
-        Gizmos.DrawLine(transform.position, transform.position+(transform.right*2f));
+        //Gizmos.DrawLine(transform.position, transform.position+(transform.right*2f));
     }
 
     private IEnumerator CO_Jumping()

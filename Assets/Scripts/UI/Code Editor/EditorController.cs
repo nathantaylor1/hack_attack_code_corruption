@@ -33,7 +33,7 @@ public class EditorController : MonoBehaviour
             AnalyticsCollection.OpenedEditor(); // Do Not Delete
             toggleCanvases(true);
             is_in_editor = true;
-            Cursor.visible = true;
+            //Cursor.visible = true;
             //AudioController.instance.PlayOpen();
             Time.timeScale = 0f;
         } 
@@ -48,7 +48,7 @@ public class EditorController : MonoBehaviour
         {
             AnalyticsCollection.ClosedEditor(); // Do Not Delete
             Time.timeScale = 1f;
-            Cursor.visible = false;
+            //Cursor.visible = false;
             //AudioController.instance.PlayOpen();
             toggleCanvases(false);
             is_in_editor = false;

@@ -24,7 +24,8 @@ public class JumpCode : CodeWithParameters
             anim = module.anim;
 
             Vector2 currentVelocity = rb.velocity;
-            currentVelocity.y = module.jumpSpeed * (float)(object)GetParameter(0);
+            float jumpForce = (float) (object) GetParameter(0);
+            currentVelocity.y = module.jumpSpeed * jumpForce;
             rb.velocity = currentVelocity;
             
             if (anim != null) 
@@ -43,7 +44,7 @@ public class JumpCode : CodeWithParameters
             CoyoteTime ct = module.gameObject.GetComponent<CoyoteTime>();
             if (ct == null) return Grounded.Check(module.col);
             timeAllowed = ct.GetTimeAllowed();
-            return ct.CanJump();;
+            return ct.CanJump();
         }
         return Grounded.Check(module.col);
     }
