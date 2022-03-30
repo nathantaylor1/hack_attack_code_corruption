@@ -82,7 +82,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
             {
                 br.UpdateSize();
             }
-        } else if (originalParent.GetComponent<InputField>() != null) {
+        } else if (originalParent.GetComponent<InputField>() != null && transform.parent != originalParent) {
             DropInto dropHandler = originalParent.GetComponentInChildren<DropInto>();
             if (dropHandler != null)
             {
