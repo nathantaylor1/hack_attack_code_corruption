@@ -10,9 +10,12 @@ public class HasHealth : MonoBehaviour
     //public TextMeshProUGUI health_display;
     public Slider healthBarSlider;
     public Image healthBarFill;
+    public float health_display_time = 3.0f;
     public SpriteMask sm;
     bool isInvincible = false;
+    bool isFighting = false;
     private CodeModule module;
+    IEnumerator inCombat;
     private SpriteRenderer sr;
     private float maxHealth;
 
@@ -23,6 +26,10 @@ public class HasHealth : MonoBehaviour
         module = GetComponent<CodeModule>();
         sr = GetComponent<SpriteRenderer>();
         maxHealth = health;
+        if(gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            SetHealthVisibility(false);
+        }
         updateHealthDisplay();
     }
 
@@ -32,6 +39,14 @@ public class HasHealth : MonoBehaviour
         if (isInvincible) return;
 
         health -= damage_amount;
+
+        if (gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            if(inCombat != null) StopCoroutine(inCombat);
+            inCombat = DisplayHealthBar();
+            StartCoroutine(inCombat);
+        }
+
         if (module.damageSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.damageSound, module.transform.position);
         
@@ -96,6 +111,28 @@ public class HasHealth : MonoBehaviour
             // x scale should be percent
             sm.transform.localScale = new Vector3(percent, sm.transform.localScale.y, 1);
             sm.transform.localPosition = new Vector3(-removed / 2f, 0, 0);
+        }
+    }
+
+    IEnumerator DisplayHealthBar()
+    {
+        isFighting = true;
+        SetHealthVisibility(isFighting);
+        yield return new WaitForSeconds(health_display_time);
+        isFighting = false;
+        SetHealthVisibility(isFighting);
+    }
+
+    void SetHealthVisibility(bool _switch)
+    {
+        Transform bar = transform.Find("HealthBar");
+        foreach (Transform child in bar)
+        {
+            SpriteRenderer temp_sr = child.GetComponent<SpriteRenderer>();
+            if(temp_sr != null)
+            {
+                temp_sr.enabled = _switch;
+            }
         }
     }
 }
