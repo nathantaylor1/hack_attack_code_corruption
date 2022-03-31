@@ -19,6 +19,11 @@ public class HasHealth : MonoBehaviour
     private SpriteRenderer sr;
     private float maxHealth;
 
+    public bool IsFullHealth()
+    {
+        return (health >= maxHealth);
+    }
+
     public Transform codeBlockToDrop;
 
     private void Awake()
@@ -78,7 +83,7 @@ public class HasHealth : MonoBehaviour
         if (module.healSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.healSound, module.transform.position);
         health += heal_amount;
-        if (health > maxHealth) maxHealth = health;
+        if (health > maxHealth) health = maxHealth;
         updateHealthDisplay();
     }
 
