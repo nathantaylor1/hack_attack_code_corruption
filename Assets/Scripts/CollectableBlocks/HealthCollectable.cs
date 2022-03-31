@@ -15,9 +15,15 @@ public class HealthCollectable : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             _hasCollected = true;
+            HasHealth hh = col.GetComponent<HasHealth>();
+            if (hh.IsFullHealth())
+            {
+                _hasCollected = false;
+                return;
+            }
             if (AudioManager.instance != null && pickupAudio != null)
                 AudioManager.instance.PlaySound(pickupAudio, transform.position);
-            col.GetComponent<HasHealth>().Heal(healAmount);
+            hh.Heal(healAmount);
             Destroy(gameObject);
         }
     }
