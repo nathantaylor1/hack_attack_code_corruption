@@ -97,13 +97,49 @@ public class CodeModule : MonoBehaviour
         col = GetComponent<Collider2D>();
         go = gameObject;
         anim = GetComponent<Animator>();
+        var id = GetComponent<printID>().GetID();
+        CheckpointManager.CheckpointUpdated.AddListener(UpdateCheckpoint);
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
         Debug.Log("button: " + editor.button);*/
         if (!spawnedFromCode) {
-            editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
-            ToggleEditing(editableOnStart);
+            if (CheckpointManager.collectedSoFar.ContainsKey(id) &&
+                CheckpointManager.collectedSoFar[id] != null
+            ) {
+                editor = EditorController.instance.AddWindow(CheckpointManager.collectedSoFar[id], editor.button, this);
+                foreach (var item in editor.window.GetComponentsInChildren<Canvas>())
+                {
+                    item.enabled = true;
+                    var rt = item.GetComponent<RectTransform>();
+                    item.transform.localScale = Vector3.one;
+                    rt.pivot = new Vector2(0, 1);
+                    rt.sizeDelta = new Vector2(6000, 8000);
+                }
+                editor.window.SetActive(true);
+                // StartCoroutine(wait());
+            } else {
+                editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
+                if (editableOnStart) {
+                    CheckpointManager.collectedSoFar[id] = null;
+                    Debug.Log(CheckpointManager.collectedSoFar[id]);
+                    Debug.Log(id);
+                    Debug.Log("wow");
+                }
+            }
+            // ToggleEditing(editableOnStart);
+        }
+    }
+
+    protected virtual void UpdateCheckpoint() {
+        var id = GetComponent<printID>().id;
+        if (CheckpointManager.collectedSoFar.ContainsKey(id)) {
+            GameObject e = Instantiate(editor.window);
+            Debug.Log("working");
+            e.SetActive(false);
+            DontDestroyOnLoad(e);
+            Destroy(CheckpointManager.collectedSoFar[id]);
+            CheckpointManager.collectedSoFar[GetComponent<printID>().id] = e;
         }
     }
 

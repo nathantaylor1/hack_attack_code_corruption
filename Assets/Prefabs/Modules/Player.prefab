@@ -389,6 +389,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &11498880427289903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141975136933099486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73244a5beddc0642bfdd2894d50878c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1244292285335372265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,5 +441,19 @@ MonoBehaviour:
   health: 5
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
+  health_display_time: 3
   sm: {fileID: 0}
   codeBlockToDrop: {fileID: 0}
+--- !u!114 &9213827735277816818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141975136933099486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb40e2f1e4b06a43afe8ecf1708fa70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDupes: 0

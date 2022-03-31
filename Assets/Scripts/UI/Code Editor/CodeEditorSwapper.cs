@@ -36,9 +36,7 @@ public class CodeEditorSwapper : MonoBehaviour
 
             //buttonIdToCanvas.Add(buttons.transform.GetChild(i).gameObject.GetInstanceID(), windows.transform.GetChild(i).gameObject);
         }
-
-        currentButton = buttons.transform.GetChild(0).GetComponent<EditorButton>();
-        currentWindow = windows.transform.GetChild(0);
+        SetActiveWindow(windows.transform.GetChild(0), buttons.transform.GetChild(0).GetComponent<EditorButton>());
 
         currentButton.SelectButton();
         // select the current button on first load
@@ -74,9 +72,23 @@ public class CodeEditorSwapper : MonoBehaviour
 
     public void SetActiveWindow(Transform window, EditorButton button)
     {
-        currentButton.DeselectButton();
+        if (currentButton != null) {
+            currentButton.DeselectButton();
+        }
         currentButton = button;
         currentWindow = window;
-        currentWindow.SetAsLastSibling();
+        foreach(Transform t in window.parent) {
+            foreach(Transform t1 in t) {
+                if (t1.TryGetComponent<Canvas>(out Canvas c)) {
+                    c.enabled = false;
+                }
+            }
+        }
+        if (currentWindow.GetChild(0).TryGetComponent<Canvas>(out Canvas c1)) {
+            c1.enabled = true;
+            foreach( var x in currentWindow.GetComponentsInChildren<BlockResizer>()) {
+                x.UpdateSize();
+            }
+        }
     }
 }

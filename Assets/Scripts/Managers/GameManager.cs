@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
+    bool reloading = false;
     // All game state changes should happen here
 
     private void Awake()
@@ -34,7 +35,10 @@ public class GameManager : MonoBehaviour
 
     // Call this on Player Death to Reset the Level
     public void ResetLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    { 
+        if (!reloading) {
+            reloading = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

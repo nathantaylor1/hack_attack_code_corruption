@@ -20,6 +20,7 @@ public class EditorButton : MonoBehaviour, IPointerEnterHandler
     {
         bn = GetComponent<Button>();
         //img = GetComponent<Image>();
+        DeselectButton();
         bn.onClick.AddListener(SelectButton);
     }
 

@@ -11,7 +11,6 @@ public class CollectableBlock : MonoBehaviour
     public AudioClip pickupSound;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log(other.name);
         if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
             AddToInventory();
         } else if (alreadyPickedUp && other.gameObject.layer == LayerMask.NameToLayer("Collectables")) {
@@ -24,6 +23,7 @@ public class CollectableBlock : MonoBehaviour
     {
         if (alreadyPickedUp) return;
         alreadyPickedUp = true;
+        GetComponent<printID>().Add();
         //Transform codeBlock = Instantiate(gameObject.transform.GetChild(0).GetChild(0));
         GameObject codeBlock = Instantiate(block);
         InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
