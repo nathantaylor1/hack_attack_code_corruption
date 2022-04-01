@@ -16,25 +16,7 @@ public class TowardsCode : CodeWithParameters
         int layer = (int)(object)GetParameter(0);
         //print("layer is " + layer);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(trans.position.x, trans.position.y), detection_radius, (1 << layer));
-        Vector2 min_distance = new Vector2(1000f, 1000f);
-        Collider2D closest_collider = null;
-
-        // Find closest collider
-        foreach (Collider2D col in colliders)
-        {
-            //print(col.gameObject);
-            if (GameObject.ReferenceEquals(trans.gameObject, col.gameObject))
-            {
-                continue;
-            }
-
-            Vector2 temp_distance = trans.position - col.transform.position;
-            if (temp_distance.magnitude < min_distance.magnitude)
-            {
-                closest_collider = col;
-                min_distance = temp_distance;
-            }
-        }
+        Collider2D closest_collider = module.FindClosestCollider(colliders, trans);
 
         if (!closest_collider)
         {

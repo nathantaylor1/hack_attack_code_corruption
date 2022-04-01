@@ -122,4 +122,29 @@ public class CodeModule : MonoBehaviour
         }
         editor.button.SetActive(enabled);
     }
+
+    public virtual Collider2D FindClosestCollider(Collider2D[] colliders, Transform trans)
+    {
+        Vector2 min_distance = new Vector2(1000f, 1000f);
+        Collider2D closest_collider = null;
+
+        // Find closest collider
+        foreach (Collider2D col in colliders)
+        {
+            //print(col.gameObject);
+            if (GameObject.ReferenceEquals(trans.gameObject, col.gameObject))
+            {
+                continue;
+            }
+
+            Vector2 temp_distance = trans.position - col.transform.position;
+            if (temp_distance.magnitude < min_distance.magnitude)
+            {
+                closest_collider = col;
+                min_distance = temp_distance;
+            }
+        }
+
+        return closest_collider;
+    }
 }
