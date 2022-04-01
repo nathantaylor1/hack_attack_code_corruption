@@ -39,7 +39,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - NONE
   m_SortingLayers:
   - name: Background
     uniqueID: 1639120511
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 966773745
+    locked: 0
+  - name: Hider
+    uniqueID: 2337808867
     locked: 0
   - name: Cursor
     uniqueID: 1290855163

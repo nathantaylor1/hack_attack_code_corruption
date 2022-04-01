@@ -16,7 +16,8 @@ public class Spikes : MonoBehaviour
         if (instantKill)
         {
             Debug.Log("Spikes instantly killing " + col.gameObject.name);
-            GameManager.instance.ResetLevel();
+            col.gameObject.GetComponent<HasHealth>().Damage(1000f);
+            return;
         }
         _canDamage = false;
         Debug.Log("Damaging " + col.gameObject.name);
