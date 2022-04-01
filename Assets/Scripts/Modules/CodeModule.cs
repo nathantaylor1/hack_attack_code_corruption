@@ -33,6 +33,7 @@ public class CodeModule : MonoBehaviour
     public float jumpSpeed = 2f;
     public float dashDuration = 1f;
     public float dashSpeed = 1f;
+    public float accelerationSpeed = 1f;
     [Tooltip("Time between dashes")]
     public float dashDelay = 3f;
     [Tooltip("The amount of time between attacks")]
