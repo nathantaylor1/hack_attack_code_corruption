@@ -13,7 +13,6 @@ public class HasHealth : MonoBehaviour
     public float health_display_time = 3.0f;
     public SpriteMask sm;
     bool isInvincible = false;
-    bool isFighting = false;
     private CodeModule module;
     IEnumerator inCombat;
     private SpriteRenderer sr;
@@ -121,11 +120,9 @@ public class HasHealth : MonoBehaviour
 
     IEnumerator DisplayHealthBar()
     {
-        isFighting = true;
-        SetHealthVisibility(isFighting);
+        SetHealthVisibility(true);
         yield return new WaitForSeconds(health_display_time);
-        isFighting = false;
-        SetHealthVisibility(isFighting);
+        SetHealthVisibility(false);
     }
 
     void SetHealthVisibility(bool _switch)

@@ -31,6 +31,11 @@ public class CodeModule : MonoBehaviour
 
     public float moveSpeed = 1f;
     public float jumpSpeed = 2f;
+    public float dashDuration = 1f;
+    public float dashSpeed = 1f;
+    public float accelerationSpeed = 1f;
+    [Tooltip("Time between dashes")]
+    public float dashDelay = 3f;
     [Tooltip("The amount of time between attacks")]
     public float reloadTime = 1f;
 
@@ -116,5 +121,30 @@ public class CodeModule : MonoBehaviour
             ew.ToggleEnabled(enabled);
         }
         editor.button.SetActive(enabled);
+    }
+
+    public virtual Collider2D FindClosestCollider(Collider2D[] colliders, Transform trans)
+    {
+        Vector2 min_distance = new Vector2(1000f, 1000f);
+        Collider2D closest_collider = null;
+
+        // Find closest collider
+        foreach (Collider2D col in colliders)
+        {
+            //print(col.gameObject);
+            if (GameObject.ReferenceEquals(trans.gameObject, col.gameObject))
+            {
+                continue;
+            }
+
+            Vector2 temp_distance = trans.position - col.transform.position;
+            if (temp_distance.magnitude < min_distance.magnitude)
+            {
+                closest_collider = col;
+                min_distance = temp_distance;
+            }
+        }
+
+        return closest_collider;
     }
 }
