@@ -97,13 +97,13 @@ public class CodeModule : MonoBehaviour
         col = GetComponent<Collider2D>();
         go = gameObject;
         anim = GetComponent<Animator>();
-        var id = GetComponent<printID>().GetID();
-        CheckpointManager.CheckpointUpdated.AddListener(UpdateCheckpoint);
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
         Debug.Log("button: " + editor.button);*/
         if (!spawnedFromCode) {
+            CheckpointManager.CheckpointUpdated.AddListener(UpdateCheckpoint);
+            var id = GetComponent<printID>().GetID();
             if (CheckpointManager.collectedSoFar.ContainsKey(id) &&
                 CheckpointManager.collectedSoFar[id] != null
             ) {
@@ -122,9 +122,6 @@ public class CodeModule : MonoBehaviour
                 editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
                 if (editableOnStart) {
                     CheckpointManager.collectedSoFar[id] = null;
-                    Debug.Log(CheckpointManager.collectedSoFar[id]);
-                    Debug.Log(id);
-                    Debug.Log("wow");
                 }
             }
             // ToggleEditing(editableOnStart);
@@ -135,7 +132,6 @@ public class CodeModule : MonoBehaviour
         var id = GetComponent<printID>().id;
         if (CheckpointManager.collectedSoFar.ContainsKey(id)) {
             GameObject e = Instantiate(editor.window);
-            Debug.Log("working");
             e.SetActive(false);
             DontDestroyOnLoad(e);
             Destroy(CheckpointManager.collectedSoFar[id]);

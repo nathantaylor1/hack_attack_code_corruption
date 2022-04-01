@@ -11,18 +11,37 @@ public class CheckpointManager : MonoBehaviour
     public static Vector2 playerPos = Vector2.zero;
     public static GameObject inventory = null;
     public static float currentCheckpoint = 0;
-    
+
     public static UnityEvent CheckpointUpdated = new UnityEvent();
 
     private void Awake() {
         instance = this;
         CheckpointUpdated.AddListener(UpdateCheckpoint);
     }
+
     public void UpdateCheckpoint() {
-        savedAfterCheckpoint = collectedSoFar;
+        savedAfterCheckpoint = new Dictionary<float, GameObject>(collectedSoFar); 
     }
 
     private void OnDestroy() {
-        collectedSoFar = savedAfterCheckpoint;
+        collectedSoFar = new Dictionary<float, GameObject>(savedAfterCheckpoint); 
+    }
+
+    public void Reset() {
+        foreach (var item in savedAfterCheckpoint.Values)
+        {
+            Destroy(item);
+        }
+        if (inventory != null) {
+            Destroy(inventory);
+        }
+
+        collectedSoFar = new Dictionary<float, GameObject>();
+        savedAfterCheckpoint = new Dictionary<float, GameObject>();
+        playerPos = Vector2.zero;
+        inventory = null;
+        currentCheckpoint = 0;
+        CheckpointUpdated = new UnityEvent();
+        CheckpointManager.instance = null;
     }
 }
