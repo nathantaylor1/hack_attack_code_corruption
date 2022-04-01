@@ -9,10 +9,10 @@ public class PhantomController : MonoBehaviour
     // Start is called before the first frame update
     public List<StartPhantomCursor> starts = new List<StartPhantomCursor>();
     public List<StopPhantomCursor> ends = new List<StopPhantomCursor>();
-    int count = 0;
     RectTransform curStart;
     RectTransform curEnd;
     bool done = false;
+    public float count = 1.2f;
     public bool moving = false;
     public bool close = false;
     public float dist = 10f;
@@ -46,26 +46,18 @@ public class PhantomController : MonoBehaviour
         StartCoroutine(Move());
     }
 
-    public void Finish() {
+    public IEnumerator Finish() {
+        yield return new WaitForSecondsRealtime(count);
         done = true;
         moving = false;
     }
 
-    
-
     void Update()
     {
         if (EditorController.instance.is_in_editor && moving) {
-            if (Input.GetMouseButton(0)) {
+            if ( !clicked && Input.GetMouseButton(0) ) {
                 clicked = true;
-                Debug.Log("adding");
-            }
-            if (clicked) {
-                count += 1;
-                if (count > 30) {
-                    count = 0;
-                    Finish();
-                }
+                StartCoroutine(Finish());
             }
         }
     }
@@ -96,7 +88,7 @@ public class PhantomController : MonoBehaviour
         done = false;
         clicked = false;
         if (starts.Count > 0) {
-            count = -200;
+            count = 3;
             StartMoving();
         } else {
             gameObject.SetActive(false);
