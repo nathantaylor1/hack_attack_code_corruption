@@ -313,8 +313,8 @@ MonoBehaviour:
   OnCheckCollision:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 1
-  jumpSpeed: 2
+  moveSpeed: 10
+  jumpSpeed: 20
   reloadTime: 1
   moveSound: {fileID: 0}
   jumpSound: {fileID: 0}
@@ -322,14 +322,14 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: d431444ab0c7cda4482eebbf75bff566, type: 3}
   healSound: {fileID: 0}
   animationName: 
-  spawnedFromCode: 1
+  spawnedFromCode: 0
   editableOnStart: 0
   editor:
-    window: {fileID: 0}
-    button: {fileID: 0}
+    window: {fileID: 2750209349872492850, guid: 47c7841906b02da4f878420b0b2a5f8e, type: 3}
+    button: {fileID: 8168636148714103764, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
   shootFrom: {fileID: 0}
   isAlive: 1
-  father: {fileID: 0}
+  father: {fileID: 2517249646753999764}
   rb: {fileID: 0}
   col: {fileID: 0}
   go: {fileID: 0}
@@ -337,6 +337,7 @@ MonoBehaviour:
   died:
     m_PersistentCalls:
       m_Calls: []
+  isFriend: 0
 --- !u!114 &111979975482526483
 MonoBehaviour:
   m_ObjectHideFlags: 0

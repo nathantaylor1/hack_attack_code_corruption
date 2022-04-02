@@ -283,5 +283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnType: projectile
-  prefab: {fileID: 4230636366153980487, guid: 74a9325843a923448a213cf23a18f041, type: 3}
+  module: {fileID: 0}
+  prefab: {fileID: 5156490979606078918, guid: e402c80c43e9b5f49905787ac8b420c0, type: 3}
   entityImage: {fileID: 5701202505245332927}

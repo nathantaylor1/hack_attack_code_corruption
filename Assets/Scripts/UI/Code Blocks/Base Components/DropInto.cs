@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class DropInto : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDropHandler {
     protected Canvas canvas;
@@ -62,6 +61,7 @@ public class DropInto : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     dropPos = -rt.rect.size * Vector2.up;
                 }
             }*/
+
             code.transform.SetParent(blockInputField.transform, false);
             resize(code);
         }
