@@ -25,23 +25,16 @@ public class EditorController : MonoBehaviour
     private void Awake() {
         //Debug.Log("EditorController: " + this);
         instance = this;
+        Debug.Log("awoken");
         swapper = GetComponent<CodeEditorSwapper>();
         editor_screen = GetComponent<Canvas>();
-       CheckpointManager.CheckpointUpdated.AddListener(CheckPoint);
-       CheckpointManager.PlayerKilled.AddListener(Player);
-    }
-    IEnumerator test() {
-        yield return new WaitForSeconds(2f);
-            CheckPoint();
+        CheckpointManager.CheckpointUpdated.AddListener(CheckPoint);
+        CheckpointManager.PlayerKilled.AddListener(Player);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (waiting) {
-            waiting = false;
-            StartCoroutine(test());
-        }
         if(!EditorController.instance.is_in_editor && Input.GetKeyDown(KeyCode.E))
         {
             AnalyticsCollection.OpenedEditor(); // Do Not Delete
@@ -83,8 +76,9 @@ public class EditorController : MonoBehaviour
 
     public CodeModule.Editor AddWindow(GameObject _window, GameObject _button, CodeModule module)
     {
-        Debug.Log("setting");
+        // Debug.Log("setting");
         GameObject window = Instantiate(_window, desktop.transform);
+        window.transform.SetAsFirstSibling();
         GameObject button = Instantiate(_button, taskbar.transform);
         if (button.TryGetComponent(out EditorButton eb))
         {
@@ -101,37 +95,64 @@ public class EditorController : MonoBehaviour
     void CheckPoint() {
         CheckpointManager.CheckpointUpdated.RemoveListener(CheckPoint);
         CheckpointManager.PlayerKilled.RemoveListener(Player);
-        Copy(gameObject);
         if (lastCheckpointEditor != null) {
             Destroy(lastCheckpointEditor);
         }
         lastCheckpointEditor = gameObject;
-        gameObject.SetActive(false);
+        lastCheckpointEditor.SetActive(false);
+        Copy(gameObject);
+        Debug.Log("finished");
+    }
+
+    List<EditorWindow> FilterOutInventory(Transform ew) {
+        List<EditorWindow> windows = new List<EditorWindow>(); 
+        foreach (Transform item in ew)
+        {
+            if (item.name != "Inventory Window")
+                windows.Add(item.GetComponent<EditorWindow>());
+        }
+        return windows;
     }
 
     void Copy(GameObject toCopy) {
-        Debug.Log("checking" + toCopy.name);
+        // Debug.Log("checking" + toCopy.name);
         GameObject g = Instantiate(toCopy, transform.parent);
-        var windows = g.GetComponentsInChildren<EditorWindow>(true);
-        var oldwindows = gameObject.GetComponentsInChildren<EditorWindow>(true);
-        var buttons = g.GetComponent<EditorController>().taskbar.GetComponentsInChildren<EditorButton>(true);
-        Debug.Log(windows.Length);
-        Debug.Log(cms.Count);
-        for (int i = 1; i < windows.Length; i++)
+        var ew = g.GetComponent<EditorController>();
+        // var oldwindows = desktop.GetComponentsInChildren<EditorWindow>();
+        List<EditorWindow> oldwindows = FilterOutInventory(desktop.transform);
+        List<EditorWindow> windows = FilterOutInventory(ew.desktop.transform);
+        foreach (Transform item in desktop.transform)
+        {
+            if (item.name != "Inventory Window")
+                oldwindows.Add(item.GetComponent<EditorWindow>());
+        }
+        var buttons = ew.taskbar.GetComponentsInChildren<EditorButton>(true);
+        // Debug.Log(buttons.Length);
+        // Debug.Log(cms.Count);
+        for (int i = 0; i < windows.Count; i++)
         {
             var module_id = oldwindows[i].GetID();
             // not set is inventory window
             if (module_id != -1) {
-                windows[i].SetCodeSpaceModules(cms[oldwindows[i].GetID()], oldwindows[i].GetID());
-                buttons[i].Init(g.GetComponent<CodeEditorSwapper>(), windows[i].transform);
+                Debug.Log(oldwindows[i].name);
+                Debug.Log(oldwindows[i].GetInstanceID());
+                Debug.Log(windows[i].name);
+                Debug.Log(windows[i].GetInstanceID());
+                // Debug.Log(module_id);
+                windows[i].SetCodeSpaceModules(cms[module_id], module_id);
+                // Debug.Log(cms[module_id].name);
+                buttons[module_id + 1].Init(g.GetComponent<CodeEditorSwapper>(), windows[i].transform);
+                buttons[module_id + 1].SetModule(cms[module_id]);
             }
         }
         g.SetActive(true);
+        buttons[1].SelectButton();
     }
     void Player() {
         CheckpointManager.CheckpointUpdated.RemoveListener(CheckPoint);
         CheckpointManager.PlayerKilled.RemoveListener(Player);
         Copy(lastCheckpointEditor);
         Destroy(gameObject);
+
     }
 }

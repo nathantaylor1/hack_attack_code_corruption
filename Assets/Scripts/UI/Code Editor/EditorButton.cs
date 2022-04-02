@@ -14,7 +14,11 @@ public class EditorButton : MonoBehaviour, IPointerEnterHandler
     protected Button bn;
     //protected Image img;
     protected CodeEditorSwapper swapper;
-    protected Transform window;
+    protected Transform window = null;
+    protected CodeModule cm = null;
+    private bool invisible = false;
+    private bool selected = false;
+    private Vector2 size;
 
     protected void Awake()
     {
@@ -30,6 +34,15 @@ public class EditorButton : MonoBehaviour, IPointerEnterHandler
         window = _window;
     }
 
+    // Only call this with enemies
+    public void SetModule(CodeModule _cm) {
+        cm = _cm;
+        if (cm.TryGetComponent(out EnemyID eid)) {
+            eid.rewind.AddListener(Show);
+            cm.died.AddListener(Hide);
+        }
+    }
+
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         Code code = null;
@@ -43,12 +56,30 @@ public class EditorButton : MonoBehaviour, IPointerEnterHandler
 
     public void SelectButton()
     {
+        if (window == null) {
+            return;
+        }
+        selected = true;
         swapper.SetActiveWindow(window, this);
         GetComponent<Image>().sprite = selectedSprite;
     }
 
     public void DeselectButton()
     {
+        selected = false;
         GetComponent<Image>().sprite = unselectedSprite;
+    }
+
+    public void Hide() {
+        window.SetAsFirstSibling();
+        if (selected) {
+            DeselectButton();
+            swapper.SelectPlayerWindow();
+        }
+        gameObject.SetActive(false);
+    }
+
+    public void Show() {
+        gameObject.SetActive(true);
     }
 }

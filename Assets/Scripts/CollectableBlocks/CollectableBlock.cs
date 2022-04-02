@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollectableBlock : MonoBehaviour
 {
     public GameObject block;
-    private bool alreadyPickedUp = false;
+    public bool alreadyPickedUp = false;
     public float slow = 1.6f;
     public float quick = 2f;
     public AudioClip pickupSound;
@@ -13,9 +13,6 @@ public class CollectableBlock : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
             AddToInventory();
-        } else if (alreadyPickedUp && other.gameObject.layer == LayerMask.NameToLayer("Collectables")) {
-            // if collides with remove block
-            Destroy(other.gameObject);
         }
     }
 
@@ -23,7 +20,9 @@ public class CollectableBlock : MonoBehaviour
     {
         if (alreadyPickedUp) return;
         alreadyPickedUp = true;
-        GetComponent<printID>().Add();
+        var p = GetComponent<printID>();
+        p.Add();
+        p.rewind.AddListener(Rewind);
         //Transform codeBlock = Instantiate(gameObject.transform.GetChild(0).GetChild(0));
         GameObject codeBlock = Instantiate(block);
         InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
@@ -32,6 +31,10 @@ public class CollectableBlock : MonoBehaviour
 
         if (pickupSound != null && AudioManager.instance != null && Camera.main != null)
             AudioManager.instance.PlaySound(pickupSound, Camera.main.transform.position);
+    }
+
+    void Rewind() {
+        alreadyPickedUp = false;
     }
 
     private IEnumerator moveToward() {

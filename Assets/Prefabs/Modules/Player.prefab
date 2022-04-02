@@ -306,7 +306,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
 --- !u!1 &9141975136933099486 stripped
 GameObject:
@@ -414,7 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeAllowed: 0.15
---- !u!114 &2551661293426618810
+--- !u!114 &7267361144472285539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -423,7 +424,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9141975136933099486}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32425b34a2ba6484892d2302d7822e93, type: 3}
+  m_Script: {fileID: 11500000, guid: a8647e873f5a63f41ba00ddd312525d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
@@ -432,3 +433,40 @@ MonoBehaviour:
   health_display_time: 3
   sm: {fileID: 0}
   codeBlockToDrop: {fileID: 0}
+  initialPosition: {x: 0, y: 0}
+--- !u!114 &8169500257052680890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141975136933099486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbbee574b60654458f1c3db526139fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCheckCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  moveSpeed: 5
+  jumpSpeed: 12
+  reloadTime: 1
+  moveSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 546b63c73ccb9f64ba56f3137fcab927, type: 3}
+  shootSound: {fileID: 8300000, guid: 4671c1f00990d7347bd31113c6d8039b, type: 3}
+  damageSound: {fileID: 8300000, guid: d431444ab0c7cda4482eebbf75bff566, type: 3}
+  healSound: {fileID: 8300000, guid: 1f89d1ae5b3cce947898dd68aea4f99c, type: 3}
+  animationName: Player
+  spawnedFromCode: 0
+  editableOnStart: 1
+  editor:
+    window: {fileID: 2750209349872492850, guid: 47c7841906b02da4f878420b0b2a5f8e, type: 3}
+    button: {fileID: 5402795675308038724, guid: 138b046432ec1e243909db576f639dee, type: 3}
+  shootFrom: {fileID: 8110474562646894817}
+  isAlive: 1
+  father: {fileID: 9141975136933099486}
+  rb: {fileID: 0}
+  col: {fileID: 0}
+  go: {fileID: 0}
+  anim: {fileID: 0}

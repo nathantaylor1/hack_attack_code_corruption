@@ -23,25 +23,24 @@ public class CodeEditorSwapper : MonoBehaviour
             Debug.LogError("There are " + buttons.transform.childCount + " buttons and " + windows.transform.childCount + " windows");
         }
 
-        for (int i = 0; i < buttons.transform.childCount; i++)
-        {
-            // Change selected color option for all buttons instead of in editor
-            var tempButton = buttons.transform.GetChild(i).GetComponent<Button>();
-            /*var newColors = tempButton.colors;
-            newColors.selectedColor = selectedColor;
-            tempButton.colors = newColors;*/
-            if (tempButton.gameObject.TryGetComponent(out EditorButton bn))
-            {
-                bn.Init(this, windows.transform.GetChild(i));
-            }
-
-            //buttonIdToCanvas.Add(buttons.transform.GetChild(i).gameObject.GetInstanceID(), windows.transform.GetChild(i).gameObject);
-        }
         if (!mainEditor) {
-            SetActiveWindow(windows.transform.GetChild(0), buttons.transform.GetChild(0).GetComponent<EditorButton>());
+            for (int i = 0; i < buttons.transform.childCount; i++)
+            {
+                // Change selected color option for all buttons instead of in editor
+                var tempButton = buttons.transform.GetChild(i).GetComponent<Button>();
+                /*var newColors = tempButton.colors;
+                newColors.selectedColor = selectedColor;
+                tempButton.colors = newColors;*/
+                if (tempButton.gameObject.TryGetComponent(out EditorButton bn))
+                {
+                    bn.Init(this, windows.transform.GetChild(i));
+                }
+                SelectPlayerWindow();
+                //buttonIdToCanvas.Add(buttons.transform.GetChild(i).gameObject.GetInstanceID(), windows.transform.GetChild(i).gameObject);
+            }
+            
         }
 
-        currentButton.SelectButton();
         // select the current button on first load
         /*var firstTime = currentButton;
         currentButton = null;*/
@@ -72,10 +71,12 @@ public class CodeEditorSwapper : MonoBehaviour
             //sr.content = canvas.transform as RectTransform;
         }
     }*/
+    public void SelectPlayerWindow() {
+        buttons.transform.GetChild(1).GetComponent<EditorButton>().SelectButton();
+    }
 
     public void SetActiveWindow(Transform window, EditorButton button)
     {
-        Debug.Log("active window");
         if (currentButton != null) {
             currentButton.DeselectButton();
         }

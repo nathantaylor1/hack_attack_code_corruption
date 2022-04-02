@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 5453966612458093388}
   - component: {fileID: 2286967813258664907}
   - component: {fileID: 5386435391307494779}
+  - component: {fileID: 7565622646122608928}
   m_Layer: 0
   m_Name: Taskbar Button
   m_TagString: Untagged
@@ -266,6 +267,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!225 &7565622646122608928
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8168636148714103764}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &5584034252120321410
 PrefabInstance:
   m_ObjectHideFlags: 0

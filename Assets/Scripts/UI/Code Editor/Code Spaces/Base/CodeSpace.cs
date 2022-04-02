@@ -20,7 +20,7 @@ public class CodeSpace : MonoBehaviour
 
     protected virtual void StartExecution()
     {
-        if (start != null)
+        if (start != null && module.isAlive != false)
         {
             start.SetModule(module);
             start.ExecuteCode();
@@ -29,6 +29,8 @@ public class CodeSpace : MonoBehaviour
 
     protected virtual void EndExecution()
     {
-        start.StopExecution();
+        if (module.isAlive != false) {
+            start.StopExecution();
+        }
     }
 }

@@ -12,33 +12,30 @@ public class HasHealth : MonoBehaviour
     public Image healthBarFill;
     public float health_display_time = 3.0f;
     public SpriteMask sm;
-    bool isInvincible = false;
+    protected bool isInvincible = false;
     bool isFighting = false;
-    private CodeModule module;
+    protected CodeModule module;
     IEnumerator inCombat;
-    private SpriteRenderer sr;
-    private float maxHealth;
+    protected SpriteRenderer sr;
+    protected float maxHealth;
 
     public Transform codeBlockToDrop;
     public Vector2 initialPosition;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         module = GetComponent<CodeModule>();
         sr = GetComponent<SpriteRenderer>();
         maxHealth = health;
-        if(gameObject.layer != LayerMask.NameToLayer("Player"))
-        {
-            SetHealthVisibility(false);
-        }
+        SetHealthVisibility(false);
         updateHealthDisplay();
-        initialPosition = transform.position;
-        CheckpointManager.PlayerKilled.AddListener(GoBack);
+        if (TryGetComponent<EnemyID>(out EnemyID eid)) {
+            eid.rewind.AddListener(GoBack);
+        }
     }
 
     public void Damage(float damage_amount)
     {
-        Debug.Log("player takes damage");
         if (isInvincible) return;
 
         health -= damage_amount;
@@ -88,45 +85,30 @@ public class HasHealth : MonoBehaviour
     void GoBack() {
         health = maxHealth;
         updateHealthDisplay();
-        if (gameObject.layer == LayerMask.NameToLayer("Player")) {
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            transform.position = CheckpointManager.playerPos;
-        } else {
-            transform.position = initialPosition;
-        }
         isInvincible = false;
     }
 
-    void Death()
+    protected virtual void Death()
     {
-        if (gameObject.layer == LayerMask.NameToLayer("Player")) {
-            GameManager.instance.GoBackToPreviousCheckpoint();
-        } 
-        else
-        {
-            if (codeBlockToDrop != null)
-                codeBlockToDrop.position = transform.position;
-            gameObject.SetActive(false);
+        if (codeBlockToDrop != null)
+            codeBlockToDrop.position = transform.position;
+        if (TryGetComponent<CodeModule>(out CodeModule cm)) {
+            cm.died.Invoke();
         }
+        if (TryGetComponent<EnemyID>(out EnemyID eid)) {
+            eid.Add();
+        }
+        gameObject.SetActive(false);
     }
 
-    void updateHealthDisplay()
+    protected virtual void updateHealthDisplay()
     {
         float hp = (health <= 0) ? 0 : health;
         float percent = hp / maxHealth;
         float removed = 1f - percent;
-        if (gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            //health_display.text = "Health: " + hp;
-            healthBarSlider.value = percent;
-
-            Color fillColor = Color.Lerp(Color.red, Color.green, percent);
-            healthBarFill.color = fillColor;
-        } else {
-            // x scale should be percent
-            sm.transform.localScale = new Vector3(percent, sm.transform.localScale.y, 1);
-            sm.transform.localPosition = new Vector3(-removed / 2f, 0, 0);
-        }
+        // x scale should be percent
+        sm.transform.localScale = new Vector3(percent, sm.transform.localScale.y, 1);
+        sm.transform.localPosition = new Vector3(-removed / 2f, 0, 0);
     }
 
     IEnumerator DisplayHealthBar()
@@ -138,9 +120,12 @@ public class HasHealth : MonoBehaviour
         SetHealthVisibility(isFighting);
     }
 
-    void SetHealthVisibility(bool _switch)
+    protected void SetHealthVisibility(bool _switch)
     {
         Transform bar = transform.Find("HealthBar");
+        if (bar == null) {
+            return;
+        }
         foreach (Transform child in bar)
         {
             SpriteRenderer temp_sr = child.GetComponent<SpriteRenderer>();

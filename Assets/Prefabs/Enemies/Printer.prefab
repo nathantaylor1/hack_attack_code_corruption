@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 3039606749986047602}
   - component: {fileID: 6284934558205878911}
   - component: {fileID: 3554598599595334197}
+  - component: {fileID: 111979975482526483}
   m_Layer: 10
   m_Name: Printer
   m_TagString: Untagged
@@ -225,6 +226,7 @@ MonoBehaviour:
   health_display_time: 3
   sm: {fileID: 448108470378767086}
   codeBlockToDrop: {fileID: 0}
+  initialPosition: {x: 0, y: 0}
 --- !u!95 &5260935248493281007
 Animator:
   serializedVersion: 3
@@ -326,11 +328,33 @@ MonoBehaviour:
     window: {fileID: 0}
     button: {fileID: 0}
   shootFrom: {fileID: 0}
+  isAlive: 1
   father: {fileID: 0}
   rb: {fileID: 0}
   col: {fileID: 0}
   go: {fileID: 0}
   anim: {fileID: 0}
+  died:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &111979975482526483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2517249646753999764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7efbed8d581c543b0c2c2992b09141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  pos: {x: 0, y: 0}
+  added: 0
+  rewind:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &4229673164400815918
 PrefabInstance:
   m_ObjectHideFlags: 0

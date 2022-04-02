@@ -78,6 +78,7 @@ public class CodeModule : MonoBehaviour
     protected GameObject editorButton;*/
     [Header("Parts of body")]
     public GameObject shootFrom;
+    public bool isAlive = true;
     
     [Tooltip("Who's your daddy? (Only applies to spawned modules)")]
     public GameObject father;
@@ -90,6 +91,7 @@ public class CodeModule : MonoBehaviour
     public GameObject go;
     [HideInInspector]
     public Animator anim;
+    public UnityEvent died = new UnityEvent();
 
     protected virtual void Awake()
     {
@@ -97,7 +99,10 @@ public class CodeModule : MonoBehaviour
         col = GetComponent<Collider2D>();
         go = gameObject;
         anim = GetComponent<Animator>();
-
+        if (TryGetComponent<EnemyID>(out EnemyID eid)) {
+            eid.rewind.AddListener(UpdateCheckpoint);
+            died.AddListener(Died);
+        }
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
         Debug.Log("button: " + editor.button);*/
@@ -133,14 +138,13 @@ public class CodeModule : MonoBehaviour
     }
 
     protected virtual void UpdateCheckpoint() {
-        var id = GetComponent<printID>().id;
-        if (CheckpointManager.collectedSoFar.ContainsKey(id)) {
-            GameObject e = Instantiate(editor.window);
-            e.SetActive(false);
-            DontDestroyOnLoad(e);
-            Destroy(CheckpointManager.collectedSoFar[id]);
-            CheckpointManager.collectedSoFar[GetComponent<printID>().id] = e;
-        }
+        isAlive = true;
+        anim.SetBool("Dead", false);
+    }
+
+    public virtual void Died() {
+        isAlive = false;
+        anim.SetBool("Dead", true);
     }
 
     public virtual void ToggleEditing(bool enabled)

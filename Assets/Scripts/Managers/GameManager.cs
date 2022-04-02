@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
-    bool reloading = false;
+    public bool reloading = false;
     // All game state changes should happen here
 
     private void Awake()
@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
         if (!reloading) {
             reloading = true;
             CheckpointManager.PlayerKilled.Invoke();
-            reloading = false;
         }
     }
 }

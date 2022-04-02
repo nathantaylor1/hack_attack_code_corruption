@@ -6,6 +6,14 @@ public class BreakBlock : MonoBehaviour
 {
     public GameObject brokenMovableBox;
     public int breakVelocity = 12;
+
+    private void Start() {
+        GetComponent<printID>().rewind.AddListener(Rewind);
+    }
+
+    void Rewind() {
+        gameObject.SetActive(true);
+    }
     
     private void OnCollisionStay2D(Collision2D other) {
         if (other.relativeVelocity.magnitude > 2 || other.relativeVelocity.magnitude < 2) {
@@ -28,11 +36,12 @@ public class BreakBlock : MonoBehaviour
     }
     
     private void Break() {
+        GetComponent<printID>().Add();
         gameObject.SetActive(false);
         
         GameObject box = Instantiate(brokenMovableBox, transform.position, transform.rotation);
         box.SetActive(true);
         
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }

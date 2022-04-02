@@ -23,7 +23,11 @@ public class CheckpointManager : MonoBehaviour
     }
 
     public void UpdateCheckpoint() {
-        savedAfterCheckpoint = new Dictionary<float, GameObject>(collectedSoFar);
+        // savedAfterCheckpoint = new Dictionary<float, GameObject>(collectedSoFar);
+        foreach (var item in sincePreviousCheckpoint)
+        {
+           item.Value.gameObject.SetActive(false);
+        }
         sincePreviousCheckpoint = new Dictionary<float, printID>();
     }
 
