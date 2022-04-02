@@ -7,15 +7,20 @@ public class EditorWindow : MonoBehaviour
 {
     [SerializeField]
     protected Transform codeSpaces;
+    private int id = -1;
     //protected CanvasGroup cg;
 
     private void Awake()
     {
         //cg = GetComponent<CanvasGroup>();
     }
+    public int GetID() {
+        return id;
+    }
 
-    public void SetCodeSpaceModules(CodeModule module)
+    public void SetCodeSpaceModules(CodeModule module, int _id)
     {
+        id = _id;
         foreach (Transform child in codeSpaces)
         {
             CodeSpace cs = child.GetComponentInChildren<CodeSpace>();

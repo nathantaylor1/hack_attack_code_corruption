@@ -8,40 +8,50 @@ public class CheckpointManager : MonoBehaviour
     public static CheckpointManager instance;
     public static Dictionary<float, GameObject> collectedSoFar = new Dictionary<float, GameObject>();
     public static Dictionary<float, GameObject> savedAfterCheckpoint = new Dictionary<float, GameObject>();
+    public static Dictionary<float, printID> sincePreviousCheckpoint = new Dictionary<float, printID>();
     public static Vector2 playerPos = Vector2.zero;
     public static GameObject inventory = null;
     public static float currentCheckpoint = 0;
 
     public static UnityEvent CheckpointUpdated = new UnityEvent();
+    public static UnityEvent PlayerKilled = new UnityEvent();
 
     private void Awake() {
         instance = this;
         CheckpointUpdated.AddListener(UpdateCheckpoint);
+        PlayerKilled.AddListener(OnPlayerKilled);
     }
 
     public void UpdateCheckpoint() {
-        savedAfterCheckpoint = new Dictionary<float, GameObject>(collectedSoFar); 
+        savedAfterCheckpoint = new Dictionary<float, GameObject>(collectedSoFar);
+        sincePreviousCheckpoint = new Dictionary<float, printID>();
     }
 
-    private void OnDestroy() {
-        collectedSoFar = new Dictionary<float, GameObject>(savedAfterCheckpoint); 
-    }
+    public void OnPlayerKilled() {
 
-    public void Reset() {
-        foreach (var item in savedAfterCheckpoint.Values)
+        foreach (var item in sincePreviousCheckpoint)
         {
-            Destroy(item);
+            item.Value.gameObject.SetActive(true);
+            item.Value.Rewind();
         }
-        if (inventory != null) {
-            Destroy(inventory);
-        }
-
-        collectedSoFar = new Dictionary<float, GameObject>();
-        savedAfterCheckpoint = new Dictionary<float, GameObject>();
-        playerPos = Vector2.zero;
-        inventory = null;
-        currentCheckpoint = 0;
-        CheckpointUpdated = new UnityEvent();
-        CheckpointManager.instance = null;
+        sincePreviousCheckpoint = new Dictionary<float, printID>();
     }
+
+    // public void Reset() {
+    //     foreach (var item in savedAfterCheckpoint.Values)
+    //     {
+    //         Destroy(item);
+    //     }
+    //     if (inventory != null) {
+    //         Destroy(inventory);
+    //     }
+
+    //     collectedSoFar = new Dictionary<float, GameObject>();
+    //     savedAfterCheckpoint = new Dictionary<float, GameObject>();
+    //     playerPos = Vector2.zero;
+    //     inventory = null;
+    //     currentCheckpoint = 0;
+    //     CheckpointUpdated = new UnityEvent();
+    //     CheckpointManager.instance = null;
+    // }
 }

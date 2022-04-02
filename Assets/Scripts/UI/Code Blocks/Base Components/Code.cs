@@ -6,7 +6,7 @@ public class Code : MonoBehaviour
 {
     [SerializeField]
     protected string returnType = "void";
-    protected CodeModule module;
+    public CodeModule module;
     protected InputField nextBlockInput;
 
     public string ReturnType

@@ -102,30 +102,34 @@ public class CodeModule : MonoBehaviour
         Debug.Log("window: " + editor.window);
         Debug.Log("button: " + editor.button);*/
         if (!spawnedFromCode) {
-            CheckpointManager.CheckpointUpdated.AddListener(UpdateCheckpoint);
-            var id = GetComponent<printID>().GetID();
-            if (CheckpointManager.collectedSoFar.ContainsKey(id) &&
-                CheckpointManager.collectedSoFar[id] != null
-            ) {
-                editor = EditorController.instance.AddWindow(CheckpointManager.collectedSoFar[id], editor.button, this);
-                foreach (var item in editor.window.GetComponentsInChildren<Canvas>())
-                {
-                    item.enabled = true;
-                    var rt = item.GetComponent<RectTransform>();
-                    item.transform.localScale = Vector3.one;
-                    rt.pivot = new Vector2(0, 1);
-                    rt.sizeDelta = new Vector2(6000, 8000);
-                }
-                editor.window.SetActive(true);
-                // StartCoroutine(wait());
-            } else {
-                editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
-                if (editableOnStart) {
-                    CheckpointManager.collectedSoFar[id] = null;
-                }
-            }
-            // ToggleEditing(editableOnStart);
+            editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
+            ToggleEditing(editableOnStart);
         }
+        // if (!spawnedFromCode) {
+        //     CheckpointManager.CheckpointUpdated.AddListener(UpdateCheckpoint);
+        //     var id = GetComponent<printID>().GetID();
+        //     if (CheckpointManager.collectedSoFar.ContainsKey(id) &&
+        //         CheckpointManager.collectedSoFar[id] != null
+        //     ) {
+        //         editor = EditorController.instance.AddWindow(CheckpointManager.collectedSoFar[id], editor.button, this);
+        //         foreach (var item in editor.window.GetComponentsInChildren<Canvas>())
+        //         {
+        //             item.enabled = true;
+        //             var rt = item.GetComponent<RectTransform>();
+        //             item.transform.localScale = Vector3.one;
+        //             rt.pivot = new Vector2(0, 1);
+        //             rt.sizeDelta = new Vector2(6000, 8000);
+        //         }
+        //         editor.window.SetActive(true);
+        //         // StartCoroutine(wait());
+        //     } else {
+        //         editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
+        //         if (editableOnStart) {
+        //             CheckpointManager.collectedSoFar[id] = null;
+        //         }
+        //     }
+        //     // ToggleEditing(editableOnStart);
+        // }
     }
 
     protected virtual void UpdateCheckpoint() {

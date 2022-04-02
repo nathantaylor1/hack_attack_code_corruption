@@ -20,6 +20,7 @@ public class HasHealth : MonoBehaviour
     private float maxHealth;
 
     public Transform codeBlockToDrop;
+    public Vector2 initialPosition;
 
     private void Awake()
     {
@@ -31,6 +32,8 @@ public class HasHealth : MonoBehaviour
             SetHealthVisibility(false);
         }
         updateHealthDisplay();
+        initialPosition = transform.position;
+        CheckpointManager.PlayerKilled.AddListener(GoBack);
     }
 
     public void Damage(float damage_amount)
@@ -82,10 +85,22 @@ public class HasHealth : MonoBehaviour
         updateHealthDisplay();
     }
 
+    void GoBack() {
+        health = maxHealth;
+        updateHealthDisplay();
+        if (gameObject.layer == LayerMask.NameToLayer("Player")) {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            transform.position = CheckpointManager.playerPos;
+        } else {
+            transform.position = initialPosition;
+        }
+        isInvincible = false;
+    }
+
     void Death()
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player")) {
-            GameManager.instance.ResetLevel();
+            GameManager.instance.GoBackToPreviousCheckpoint();
         } 
         else
         {

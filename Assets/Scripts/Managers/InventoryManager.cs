@@ -15,20 +15,18 @@ public class InventoryManager : MonoBehaviour
         // get make a copy of this and add it to dont destroy on load
         // save it in checkpoint manager
         // this should only be null on load / reload
-        if (instance == null) {
             instance = this;
-            CheckpointManager.CheckpointUpdated.AddListener(UpdateInventory);
-            if (CheckpointManager.inventory != null && CheckpointManager.inventory != gameObject) {
-                foreach (Transform item in transform)
-                {
-                    Destroy(item.gameObject);
-                }
-                foreach (Transform item in CheckpointManager.inventory.transform)
-                {
-                    var b = Instantiate(item.gameObject, transform);
-                }
-            }
-        }
+            // CheckpointManager.CheckpointUpdated.AddListener(UpdateInventory);
+            // if (CheckpointManager.inventory != null && CheckpointManager.inventory != gameObject) {
+            //     foreach (Transform item in transform)
+            //     {
+            //         Destroy(item.gameObject);
+            //     }
+            //     foreach (Transform item in CheckpointManager.inventory.transform)
+            //     {
+            //         var b = Instantiate(item.gameObject, transform);
+            //     }
+            // }
     }
 
     public void UpdateInventory() {

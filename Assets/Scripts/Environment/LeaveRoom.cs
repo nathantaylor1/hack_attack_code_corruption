@@ -14,7 +14,7 @@ public class LeaveRoom : MonoBehaviour
             }
             else
             {
-                GameManager.instance.ResetLevel();
+                GameManager.instance.GoBackToPreviousCheckpoint();
             }
         }
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6883401385304811882}
   - component: {fileID: 6883401385304811883}
   - component: {fileID: 674677470179246043}
-  - component: {fileID: 7246933341259150348}
+  - component: {fileID: 38931036697313125}
   m_Layer: 14
   m_Name: Block Pickup
   m_TagString: Untagged
@@ -143,7 +143,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7246933341259150348
+--- !u!114 &38931036697313125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,9 +152,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6883401385304811879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f71677d1044c58f4994381b4d17fe72b, type: 3}
+  m_Script: {fileID: 11500000, guid: edb40e2f1e4b06a43afe8ecf1708fa70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  pos: {x: 0, y: 0}
 --- !u!1 &6883401385535482556
 GameObject:
   m_ObjectHideFlags: 0

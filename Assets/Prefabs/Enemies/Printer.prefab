@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 3039606749986047602}
   - component: {fileID: 6284934558205878911}
   - component: {fileID: 3554598599595334197}
-  - component: {fileID: 4396475473173165017}
   m_Layer: 10
   m_Name: Printer
   m_TagString: Untagged
@@ -332,18 +331,6 @@ MonoBehaviour:
   col: {fileID: 0}
   go: {fileID: 0}
   anim: {fileID: 0}
---- !u!114 &4396475473173165017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517249646753999764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb40e2f1e4b06a43afe8ecf1708fa70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4229673164400815918
 PrefabInstance:
   m_ObjectHideFlags: 0

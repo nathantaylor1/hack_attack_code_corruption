@@ -66,6 +66,7 @@ public class CollectableBlock : MonoBehaviour
         /*Transform codeBlock = gameObject.transform.GetChild(0).GetChild(0);
         InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
         codeBlock.localScale = new Vector3(1, 1, 1);*/
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        // Destroy(gameObject);
     }
 }

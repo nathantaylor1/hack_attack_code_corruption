@@ -6,12 +6,14 @@ public class printID : MonoBehaviour
 {
     // Start is called before the first frame update
     public float id;
+    public Vector2 pos;
     protected virtual void Awake()
     {
         // 0 means not set
         if (id == 0) {
             id = transform.position.x * 100000f + transform.position.y;
         }
+        pos = transform.position;
     }
 
     public float GetID() {
@@ -20,6 +22,9 @@ public class printID : MonoBehaviour
     }
 
     public void Add() {
-        CheckpointManager.collectedSoFar.Add(id, null);
+        CheckpointManager.sincePreviousCheckpoint.Add(id, this);
+    }
+    public void Rewind() {
+        
     }
 }

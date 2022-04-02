@@ -7,8 +7,8 @@ public class PlayerCheckpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (CheckpointManager.playerPos != Vector2.zero) {
-            transform.position = CheckpointManager.playerPos;
-        }
+        // if (CheckpointManager.playerPos != Vector2.zero) {
+        //     transform.position = CheckpointManager.playerPos;
+        // }
     }
 }

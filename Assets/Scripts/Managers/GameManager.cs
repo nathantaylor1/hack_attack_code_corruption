@@ -41,4 +41,13 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
+    public void GoBackToPreviousCheckpoint()
+    { 
+        if (!reloading) {
+            reloading = true;
+            CheckpointManager.PlayerKilled.Invoke();
+            reloading = false;
+        }
+    }
 }
