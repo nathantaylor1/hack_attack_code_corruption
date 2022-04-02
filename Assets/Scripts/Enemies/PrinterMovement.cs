@@ -21,16 +21,21 @@ public class PrinterMovement : EnemyMovement
     
     private bool isDashing;
     public AudioClip hitSound;
+    CodeModule module;
     
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        module = GetComponent<CodeModule>();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if (!module.isAlive) {
+            return;
+        }
         if (!Physics2D.Raycast(transform.position, (Vector3.right * dir + transform.up * -1).normalized, 1.8f, ~walls)) {
             rb.velocity = new Vector2(0, rb.velocity.y);
             dir *= -1;

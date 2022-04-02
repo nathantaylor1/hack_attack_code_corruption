@@ -143,6 +143,8 @@ public class EditorController : MonoBehaviour
                 // Debug.Log(cms[module_id].name);
                 buttons[module_id + 1].Init(g.GetComponent<CodeEditorSwapper>(), windows[i].transform);
                 buttons[module_id + 1].SetModule(cms[module_id]);
+                cms[module_id].editor.button = buttons[module_id + 1].gameObject;
+                cms[module_id].editor.window = windows[i].gameObject;
             }
         }
         g.SetActive(true);

@@ -71,7 +71,7 @@ public class CodeModule : MonoBehaviour
     [Tooltip("Does the player start with access to this module's editor?")]
     protected bool editableOnStart = false;
     [SerializeField]
-    protected Editor editor;
+    public Editor editor;
     /*[SerializeField]
     protected GameObject editorWindow;
     [SerializeField]
@@ -92,6 +92,7 @@ public class CodeModule : MonoBehaviour
     [HideInInspector]
     public Animator anim;
     public UnityEvent died = new UnityEvent();
+    public bool isFriend = false;
 
     protected virtual void Awake()
     {
@@ -143,8 +144,30 @@ public class CodeModule : MonoBehaviour
     }
 
     public virtual void Died() {
-        isAlive = false;
-        anim.SetBool("Dead", true);
+        if (isAlive) {
+            isAlive = false;
+            Debug.Log("dying");
+            anim.SetBool("Dead", true);
+            StartCoroutine(WaitForRevive());
+        }
+    }
+
+    IEnumerator WaitForRevive() {
+        while (true) {
+            yield return new WaitForSeconds(1f);
+            var trans = PlayerHasHealth.instance.transform;
+            if (Vector2.Distance(trans.position, transform.position) < 1f) {
+                isAlive = true;
+                trans.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 10, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
+                anim.SetBool("Dead", false);
+                isFriend = true;
+                ToggleEditing(true);
+                GetComponent<HasHealth>().Revive();
+                editor.button.SetActive(true);
+                break;
+            }
+        }
     }
 
     public virtual void ToggleEditing(bool enabled)
@@ -155,6 +178,7 @@ public class CodeModule : MonoBehaviour
         {
             ew.ToggleEnabled(enabled);
         }
+        Debug.Log("bash" + editor.button.transform.parent.parent.parent.name);
         editor.button.SetActive(enabled);
     }
 }

@@ -27,11 +27,16 @@ public class HasHealth : MonoBehaviour
         module = GetComponent<CodeModule>();
         sr = GetComponent<SpriteRenderer>();
         maxHealth = health;
-        SetHealthVisibility(false);
-        updateHealthDisplay();
+        Revive();
         if (TryGetComponent<EnemyID>(out EnemyID eid)) {
             eid.rewind.AddListener(GoBack);
         }
+    }
+
+    public void Revive() {
+        health = maxHealth;
+        SetHealthVisibility(false);
+        updateHealthDisplay();
     }
 
     public void Damage(float damage_amount)
@@ -94,11 +99,12 @@ public class HasHealth : MonoBehaviour
             codeBlockToDrop.position = transform.position;
         if (TryGetComponent<CodeModule>(out CodeModule cm)) {
             cm.died.Invoke();
+        } else {
+            gameObject.SetActive(false);
         }
         if (TryGetComponent<EnemyID>(out EnemyID eid)) {
             eid.Add();
         }
-        gameObject.SetActive(false);
     }
 
     protected virtual void updateHealthDisplay()

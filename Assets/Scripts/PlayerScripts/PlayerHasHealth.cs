@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class PlayerHasHealth : HasHealth
 {
+    public static PlayerHasHealth instance;
     protected override void Awake()
     {
         base.Awake();
+        instance = this;
         CheckpointManager.PlayerKilled.AddListener(Rewind);
     }
     protected override void Death()

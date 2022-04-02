@@ -77,6 +77,7 @@ public class EditorButton : MonoBehaviour, IPointerEnterHandler
             swapper.SelectPlayerWindow();
         }
         gameObject.SetActive(false);
+        Debug.Log("hidden button");
     }
 
     public void Show() {
