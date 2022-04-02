@@ -79,6 +79,7 @@ public class CodeModule : MonoBehaviour
     [Header("Parts of body")]
     public GameObject shootFrom;
     public bool isAlive = true;
+    bool wasAlive = true;
     
     [Tooltip("Who's your daddy? (Only applies to spawned modules)")]
     public GameObject father;
@@ -93,6 +94,7 @@ public class CodeModule : MonoBehaviour
     public Animator anim;
     public UnityEvent died = new UnityEvent();
     public bool isFriend = false;
+    bool wasFriend = false;
 
     protected virtual void Awake()
     {
@@ -101,8 +103,9 @@ public class CodeModule : MonoBehaviour
         go = gameObject;
         anim = GetComponent<Animator>();
         if (TryGetComponent<EnemyID>(out EnemyID eid)) {
-            eid.rewind.AddListener(UpdateCheckpoint);
+            eid.rewind.AddListener(Rewind);
             died.AddListener(Died);
+            CheckpointManager.CheckpointUpdated.AddListener(UpdateCheckpoint);
         }
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
@@ -139,8 +142,20 @@ public class CodeModule : MonoBehaviour
     }
 
     protected virtual void UpdateCheckpoint() {
-        isAlive = true;
-        anim.SetBool("Dead", false);
+        wasAlive = isAlive;
+        wasFriend = isFriend;
+    }
+
+    protected virtual void Rewind() {
+        isAlive = wasAlive;
+        isFriend = wasFriend;
+        anim.SetBool("Dead", !isAlive);
+        if (!isAlive) {
+            Died();
+        }
+        if(!isFriend) {
+            ToggleEditing(false);
+        }
     }
 
     public virtual void Died() {
@@ -158,8 +173,6 @@ public class CodeModule : MonoBehaviour
             var trans = PlayerHasHealth.instance.transform;
             if (Vector2.Distance(trans.position, transform.position) < 1f) {
                 isAlive = true;
-                trans.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 10, ForceMode2D.Impulse);
-                rb.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
                 anim.SetBool("Dead", false);
                 isFriend = true;
                 ToggleEditing(true);
