@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class InputField : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class InputField : MonoBehaviour
     protected dynamic inputVal;
     protected Code inputBlock = null;
     //protected Code parentBlock = null;
+    public UnityEvent droppedInto = new UnityEvent();
 
     protected virtual void Awake()
     {
@@ -80,6 +82,7 @@ public class InputField : MonoBehaviour
 
     public virtual void AddInputBlock(Code _inputBlock)
     {
+        droppedInto.Invoke();
         inputBlock = _inputBlock;
         //inputBlock.SetBodyParent(parentBlock.GetBodyParent());
         Deselect();
