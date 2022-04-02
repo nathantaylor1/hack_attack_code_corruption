@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class EditorButton : MonoBehaviour, IPointerEnterHandler
 {
@@ -15,6 +16,7 @@ public class EditorButton : MonoBehaviour, IPointerEnterHandler
     //protected Image img;
     protected CodeEditorSwapper swapper;
     protected Transform window;
+    public UnityEvent clicked = new UnityEvent();
 
     protected void Awake()
     {
@@ -44,6 +46,7 @@ public class EditorButton : MonoBehaviour, IPointerEnterHandler
     {
         swapper.SetActiveWindow(window, this);
         GetComponent<Image>().sprite = selectedSprite;
+        clicked.Invoke();
     }
 
     public void DeselectButton()

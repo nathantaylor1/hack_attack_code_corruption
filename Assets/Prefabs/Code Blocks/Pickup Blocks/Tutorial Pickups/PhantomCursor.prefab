@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -90,10 +90,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starts: []
   ends: []
-  count: 2
   moving: 0
   close: 0
   dist: 20
   speed: 0.6
   scale: 30
-  clicked: 0

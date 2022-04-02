@@ -13,9 +13,7 @@ public class Parameter : InputField
             inputBlock.GetComponent<CanvasGroup>().blocksRaycasts = true;
             InventoryManager.instance.AddBlock(inputBlock);
         }
-        inputBlock = _inputBlock;
-        //inputBlock.SetBodyParent(parentBlock.GetBodyParent());
-        Deselect();
+        base.AddInputBlock(_inputBlock);
     }
 
     public override bool CanAcceptInput(string returnType)

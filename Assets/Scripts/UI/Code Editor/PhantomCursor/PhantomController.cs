@@ -12,13 +12,11 @@ public class PhantomController : MonoBehaviour
     RectTransform curStart;
     RectTransform curEnd;
     bool done = false;
-    public float count = 1.2f;
     public bool moving = false;
     public bool close = false;
     public float dist = 10f;
     public float speed = 0.001f;
     public int scale = 10;
-    public bool clicked = false;
     void Awake()
     {
         instance = this;
@@ -34,32 +32,20 @@ public class PhantomController : MonoBehaviour
         gameObject.SetActive(true);
         
         starts.Sort((x, y) => -x.order.CompareTo(y.order));
-        Debug.Log(starts[0].order);
         curStart = (RectTransform)starts[starts.Count - 1].transform;
         starts.RemoveAt(starts.Count -1);
         
         ends.Sort((x, y) => -x.order.CompareTo(y.order));
         curEnd = (RectTransform)ends[ends.Count - 1].transform;
-        Debug.Log(ends[0].order);
-        ends.RemoveAt(ends.Count - 1);
-        
+        ends[ends.Count - 1].ended.AddListener(WaitForEnd);
         StartCoroutine(Move());
     }
 
-    public IEnumerator Finish() {
-        yield return new WaitForSecondsRealtime(count);
+    public void WaitForEnd() {
+        ends[ends.Count - 1].ended.RemoveListener(WaitForEnd);
+        ends.RemoveAt(ends.Count - 1);
         done = true;
         moving = false;
-    }
-
-    void Update()
-    {
-        if (EditorController.instance.is_in_editor && moving) {
-            if ( !clicked && Input.GetMouseButton(0) ) {
-                clicked = true;
-                StartCoroutine(Finish());
-            }
-        }
     }
 
     IEnumerator Move() {
@@ -86,9 +72,9 @@ public class PhantomController : MonoBehaviour
             yield return new WaitForSecondsRealtime(.1f);
         }
         done = false;
-        clicked = false;
+
+        // Go to next action if you can
         if (starts.Count > 0) {
-            count = 3;
             StartMoving();
         } else {
             gameObject.SetActive(false);
