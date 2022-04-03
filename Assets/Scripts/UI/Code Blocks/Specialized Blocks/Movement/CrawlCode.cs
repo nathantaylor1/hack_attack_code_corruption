@@ -72,8 +72,9 @@ public class CrawlCode : CodeWithParameters
     
     private void Move()
     {
-        Vector2 dir = (Vector2)(object)GetParameter(0); // TODO
+        //Vector2 dir = (Vector2)(object)GetParameter(0);
+        bool dir = (bool)(object)GetParameter(0);
         float speed = module.moveSpeed * (float)(object)GetParameter(1);
-        rb.velocity = transform.right * speed;
+        rb.velocity = transform.right * speed * (dir ? 1 : -1);
     }
 }
