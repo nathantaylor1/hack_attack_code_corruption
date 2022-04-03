@@ -134,10 +134,10 @@ public class EditorController : MonoBehaviour
             var module_id = oldwindows[i].GetID();
             // not set is inventory window
             if (module_id != -1) {
-                Debug.Log(oldwindows[i].name);
-                Debug.Log(oldwindows[i].GetInstanceID());
-                Debug.Log(windows[i].name);
-                Debug.Log(windows[i].GetInstanceID());
+                // Debug.Log(oldwindows[i].name);
+                // Debug.Log(oldwindows[i].GetInstanceID());
+                // Debug.Log(windows[i].name);
+                // Debug.Log(windows[i].GetInstanceID());
                 // Debug.Log(module_id);
                 windows[i].SetCodeSpaceModules(cms[module_id], module_id);
                 // Debug.Log(cms[module_id].name);

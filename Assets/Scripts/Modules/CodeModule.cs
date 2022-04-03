@@ -191,7 +191,7 @@ public class CodeModule : MonoBehaviour
         {
             ew.ToggleEnabled(enabled);
         }
-        Debug.Log("bash" + editor.button.transform.parent.parent.parent.name);
+        // Debug.Log("bash" + editor.button.transform.parent.parent.parent.name);
         editor.button.SetActive(enabled);
     }
 }

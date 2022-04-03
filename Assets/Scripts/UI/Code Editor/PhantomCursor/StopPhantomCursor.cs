@@ -10,7 +10,8 @@ public class StopPhantomCursor : MonoBehaviour
     public UnityEvent ended = new UnityEvent();
     // Start is called before the first frame update
     private void Start() {
-        PhantomController.instance.ends.Add(this);
+        Debug.Log("started" + order);
+        PhantomController.AddEnd(this);
         Listen();
     }
 

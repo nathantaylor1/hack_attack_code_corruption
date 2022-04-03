@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     { 
         if (!reloading) {
             reloading = true;
+            // Debug.Log("invoked");
             CheckpointManager.PlayerKilled.Invoke();
         }
     }

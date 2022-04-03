@@ -25,6 +25,7 @@ public class PlayerHasHealth : HasHealth
         updateHealthDisplay();
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         transform.position = CheckpointManager.playerPos;
+        Debug.Log("reset");
         GameManager.instance.reloading = false;
     }
 

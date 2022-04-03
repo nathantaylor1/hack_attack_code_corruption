@@ -34,7 +34,12 @@ public class CollectableBlock : MonoBehaviour
     }
 
     void Rewind() {
+        // Debug.Log("WHATTT");
+        gameObject.SetActive(true);
+        StopCoroutine(moveToward());
         alreadyPickedUp = false;
+        var p = GetComponent<printID>();
+        transform.position = p.pos;
     }
 
     private IEnumerator moveToward() {
@@ -55,6 +60,9 @@ public class CollectableBlock : MonoBehaviour
         close = false;
         while (!close)
         {
+            if (!alreadyPickedUp) {
+                break;
+            }
             float deltaTime = Time.time - lastTime;
             var temp = Camera.main.ScreenToWorldPoint(InventoryImage.instance.transform.position);
             temp.z = 0;
@@ -69,7 +77,11 @@ public class CollectableBlock : MonoBehaviour
         /*Transform codeBlock = gameObject.transform.GetChild(0).GetChild(0);
         InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
         codeBlock.localScale = new Vector3(1, 1, 1);*/
-        gameObject.SetActive(false);
+        if (!alreadyPickedUp) {
+            Rewind();
+        } else {
+            gameObject.SetActive(false);
+        }
         // Destroy(gameObject);
     }
 }
