@@ -1210,8 +1210,13 @@ MonoBehaviour:
   m_FreeGlyphRects:
   - m_X: 287
     m_Y: 0
-    m_Width: 736
-    m_Height: 1023
+    m_Width: 63
+    m_Height: 84
+  - m_X: 168
+    m_Y: 542
+    m_Width: 49
+    m_Height: 84
+  m_FreeGlyphRects:
   - m_X: 27
     m_Y: 27
     m_Width: 36
@@ -1264,10 +1269,6 @@ MonoBehaviour:
     m_Y: 462
     m_Width: 15
     m_Height: 1
-  - m_X: 112
-    m_Y: 546
-    m_Width: 911
-    m_Height: 2
   - m_X: 119
     m_Y: 373
     m_Width: 34
@@ -1325,28 +1326,36 @@ MonoBehaviour:
     m_Width: 36
     m_Height: 78
   - m_X: 175
-    m_Y: 316
-    m_Width: 848
-    m_Height: 57
-  - m_X: 238
-    m_Y: 213
-    m_Width: 785
-    m_Height: 810
-  - m_X: 251
-    m_Y: 85
-    m_Width: 772
-    m_Height: 938
-  - m_X: 175
     m_Y: 128
     m_Width: 20
     m_Height: 20
+  - m_X: 153
+    m_Y: 457
+    m_Width: 15
+    m_Height: 5
+  - m_X: 218
+    m_Y: 542
+    m_Width: 805
+    m_Height: 341
+  - m_X: 175
+    m_Y: 316
+    m_Width: 41
+    m_Height: 57
+  - m_X: 238
+    m_Y: 401
+    m_Width: 785
+    m_Height: 622
+  - m_X: 216
+    m_Y: 401
+    m_Width: 807
+    m_Height: 56
   - m_X: 231
-    m_Y: 85
+    m_Y: 401
     m_Width: 792
-    m_Height: 43
+    m_Height: 482
   - m_X: 195
     m_Y: 213
-    m_Width: 828
+    m_Width: 43
     m_Height: 19
   - m_X: 153
     m_Y: 457

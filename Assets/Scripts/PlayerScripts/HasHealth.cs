@@ -19,6 +19,11 @@ public class HasHealth : MonoBehaviour
     protected SpriteRenderer sr;
     protected float maxHealth;
 
+    public bool IsFullHealth()
+    {
+        return (health >= maxHealth);
+    }
+
     public Transform codeBlockToDrop;
     public Vector2 initialPosition;
 
@@ -83,7 +88,7 @@ public class HasHealth : MonoBehaviour
         if (module.healSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.healSound, module.transform.position);
         health += heal_amount;
-        if (health > maxHealth) maxHealth = health;
+        if (health > maxHealth) health = maxHealth;
         updateHealthDisplay();
     }
 
@@ -119,11 +124,9 @@ public class HasHealth : MonoBehaviour
 
     IEnumerator DisplayHealthBar()
     {
-        isFighting = true;
-        SetHealthVisibility(isFighting);
+        SetHealthVisibility(true);
         yield return new WaitForSeconds(health_display_time);
-        isFighting = false;
-        SetHealthVisibility(isFighting);
+        SetHealthVisibility(false);
     }
 
     protected void SetHealthVisibility(bool _switch)
