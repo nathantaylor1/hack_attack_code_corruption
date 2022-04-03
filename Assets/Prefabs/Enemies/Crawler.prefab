@@ -163,7 +163,7 @@ MonoBehaviour:
   spawnedFromCode: 0
   editableOnStart: 0
   editor:
-    window: {fileID: 8437868469225879141, guid: 6b7a905835c15264db4407b60a4aa510, type: 3}
+    window: {fileID: 1111963146548495925, guid: 798f4f031b60e814b973393a9ea6d2ac, type: 3}
     button: {fileID: 5402795675308038724, guid: 73e0b3087bcc22c43bc0de50eca7a1d7, type: 3}
   shootFrom: {fileID: 0}
   father: {fileID: 0}
