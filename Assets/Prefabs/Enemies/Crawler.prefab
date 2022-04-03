@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1493756679603760997}
   - component: {fileID: 1493756679603760999}
   - component: {fileID: 1493756679603761016}
+  - component: {fileID: 6587460094074411805}
   m_Layer: 0
   m_Name: Crawler
   m_TagString: Untagged
@@ -144,5 +145,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b778684e6a0144da19a4df01d300a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardChecker: {fileID: 0}
   speed: 2
+--- !u!114 &6587460094074411805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493756679603761018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4903239b88ed9b94783f104cc6bced2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCheckCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  moveSpeed: 1
+  jumpSpeed: 2
+  dashDuration: 1
+  dashSpeed: 1
+  accelerationSpeed: 1
+  dashDelay: 3
+  reloadTime: 1
+  moveSound: {fileID: 0}
+  jumpSound: {fileID: 0}
+  shootSound: {fileID: 0}
+  damageSound: {fileID: 0}
+  healSound: {fileID: 0}
+  animationName: 
+  spawnedFromCode: 0
+  editableOnStart: 0
+  editor:
+    window: {fileID: 8437868469225879141, guid: 6b7a905835c15264db4407b60a4aa510, type: 3}
+    button: {fileID: 5402795675308038724, guid: 73e0b3087bcc22c43bc0de50eca7a1d7, type: 3}
+  shootFrom: {fileID: 0}
+  father: {fileID: 0}
+  rb: {fileID: 0}
+  col: {fileID: 0}
+  go: {fileID: 0}
+  anim: {fileID: 0}
