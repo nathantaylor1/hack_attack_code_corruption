@@ -11679,10 +11679,15 @@ PrefabInstance:
       value: Crawler (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6587460094074411805, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
+      propertyPath: moveSpeed
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587460094074411805, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
       propertyPath: editableOnStart
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1493756679603761016, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
 --- !u!1 &1416025946
 GameObject:
@@ -12440,8 +12445,13 @@ PrefabInstance:
       value: Crawler
       objectReference: {fileID: 0}
     - target: {fileID: 6587460094074411805, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
+      propertyPath: moveSpeed
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587460094074411805, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
       propertyPath: editableOnStart
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1493756679603761016, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
