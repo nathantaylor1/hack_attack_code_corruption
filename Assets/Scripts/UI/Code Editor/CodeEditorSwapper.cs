@@ -37,8 +37,8 @@ public class CodeEditorSwapper : MonoBehaviour
             //buttonIdToCanvas.Add(buttons.transform.GetChild(i).gameObject.GetInstanceID(), windows.transform.GetChild(i).gameObject);
         }
 
-        currentButton = buttons.transform.GetChild(1).GetComponent<EditorButton>();
-        currentWindow = windows.transform.GetChild(1);
+        currentButton = buttons.transform.GetChild(0).GetComponent<EditorButton>();
+        currentWindow = windows.transform.GetChild(0);
 
         currentButton.SelectButton();
         // select the current button on first load
