@@ -21,6 +21,7 @@ public class SeesCode : CodeWithParameters
 
     public override dynamic ReturnValue()
     {
+        ExecuteCode();
         return val;
     }
 }
