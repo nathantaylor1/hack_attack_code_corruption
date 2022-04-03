@@ -206,7 +206,7 @@ MonoBehaviour:
   power: 25000
   walls:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 480119
   hitSound: {fileID: 8300000, guid: 0afc20b3c0a1119409ca3572cf776dc6, type: 3}
 --- !u!114 &2517249646753999763
 MonoBehaviour:
@@ -315,6 +315,10 @@ MonoBehaviour:
       m_Calls: []
   moveSpeed: 10
   jumpSpeed: 20
+  dashDuration: 1
+  dashSpeed: 1
+  accelerationSpeed: 1
+  dashDelay: 3
   reloadTime: 1
   moveSound: {fileID: 0}
   jumpSound: {fileID: 0}

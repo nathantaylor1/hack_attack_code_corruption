@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1529963872729908220}
   - component: {fileID: 9027088826520604655}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Frictionless
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8110474562646894817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.2, z: 0}
+  m_LocalPosition: {x: 0.62, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9141975136933099483}
@@ -482,6 +482,10 @@ MonoBehaviour:
       m_Calls: []
   moveSpeed: 5
   jumpSpeed: 12
+  dashDuration: 1
+  dashSpeed: 1
+  accelerationSpeed: 1
+  dashDelay: 3
   reloadTime: 1
   moveSound: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: 546b63c73ccb9f64ba56f3137fcab927, type: 3}

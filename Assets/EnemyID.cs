@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+// For Enemies
 public class EnemyID : printID
 {
     protected override void Awake()

@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void GoBackToPreviousCheckpoint()
-    { 
+    {
         if (!reloading) {
             reloading = true;
             // Debug.Log("invoked");

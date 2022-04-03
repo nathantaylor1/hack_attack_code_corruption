@@ -107,9 +107,10 @@ public class HasHealth : MonoBehaviour
         } else {
             gameObject.SetActive(false);
         }
-        if (TryGetComponent<EnemyID>(out EnemyID eid)) {
-            eid.Add();
-        }
+        // For now don't remove enemies
+        // if (TryGetComponent<EnemyID>(out EnemyID eid)) {
+        //     eid.Add();
+        // }
     }
 
     protected virtual void updateHealthDisplay()

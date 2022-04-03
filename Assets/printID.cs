@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+// For Collectables
 public class printID : MonoBehaviour
 {
     // Start is called before the first frame update

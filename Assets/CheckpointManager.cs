@@ -6,8 +6,6 @@ using UnityEngine.Events;
 public class CheckpointManager : MonoBehaviour
 {
     public static CheckpointManager instance;
-    public static Dictionary<float, GameObject> collectedSoFar = new Dictionary<float, GameObject>();
-    public static Dictionary<float, GameObject> savedAfterCheckpoint = new Dictionary<float, GameObject>();
     public static Dictionary<float, printID> sincePreviousCheckpoint = new Dictionary<float, printID>();
     public static Vector2 playerPos = Vector2.zero;
     public static GameObject inventory = null;

@@ -121,11 +121,6 @@ public class EditorController : MonoBehaviour
         // var oldwindows = desktop.GetComponentsInChildren<EditorWindow>();
         List<EditorWindow> oldwindows = FilterOutInventory(desktop.transform);
         List<EditorWindow> windows = FilterOutInventory(ew.desktop.transform);
-        foreach (Transform item in desktop.transform)
-        {
-            if (item.name != "Inventory Window")
-                oldwindows.Add(item.GetComponent<EditorWindow>());
-        }
         var buttons = ew.taskbar.GetComponentsInChildren<EditorButton>(true);
         // Debug.Log(buttons.Length);
         // Debug.Log(cms.Count);
@@ -155,6 +150,5 @@ public class EditorController : MonoBehaviour
         CheckpointManager.PlayerKilled.RemoveListener(Player);
         Copy(lastCheckpointEditor);
         Destroy(gameObject);
-
     }
 }
