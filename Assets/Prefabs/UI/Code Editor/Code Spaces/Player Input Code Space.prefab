@@ -149,9 +149,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2642283446054281307, guid: a740003a9ad3b794290cfa98e1944d6c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2642283446054281307, guid: a740003a9ad3b794290cfa98e1944d6c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456158504492151685, guid: a740003a9ad3b794290cfa98e1944d6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456158504492151685, guid: a740003a9ad3b794290cfa98e1944d6c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456158504492151685, guid: a740003a9ad3b794290cfa98e1944d6c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456158504492151685, guid: a740003a9ad3b794290cfa98e1944d6c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456158504492151685, guid: a740003a9ad3b794290cfa98e1944d6c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -257,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b55e898c7b4ed4ca0afaa23dc269ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2241125367012417275
+--- !u!114 &-1362969838926683850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,5 +290,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: {fileID: 5387040950469368007}
-  keyCode: 97
+  keyCode: 0
   altKeyCode: 0
