@@ -86,10 +86,11 @@ public class HasHealth : MonoBehaviour
         updateHealthDisplay();
     }
 
-    void Death()
+    protected virtual void Death()
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player")) {
-            GameManager.instance.ResetLevel();
+            //GameManager.instance.ResetLevel();
+            EventManager.OnPlayerDeath?.Invoke();
         } 
         else
         {

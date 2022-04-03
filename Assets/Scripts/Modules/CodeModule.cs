@@ -72,11 +72,11 @@ public class CodeModule : MonoBehaviour
     [Tooltip("If checked, the module will never have an editor")]
     protected bool spawnedFromCode = false;
 
-    [SerializeField]
+    //[SerializeField]
     [Tooltip("Does the player start with access to this module's editor?")]
-    protected bool editableOnStart = false;
-    [SerializeField]
-    protected Editor editor;
+    public bool editableOnStart = false;
+    //[SerializeField]
+    public Editor editor;
     /*[SerializeField]
     protected GameObject editorWindow;
     [SerializeField]
@@ -96,8 +96,12 @@ public class CodeModule : MonoBehaviour
     [HideInInspector]
     public Animator anim;
 
+    [HideInInspector]
+    public bool disableOnStart = false;
+
     protected virtual void Awake()
     {
+        //Debug.Log("In Awake");
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         go = gameObject;
@@ -110,12 +114,22 @@ public class CodeModule : MonoBehaviour
             editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
             ToggleEditing(editableOnStart);
         }
+        if (disableOnStart)
+        {
+            editor.window.SetActive(false);
+            editor.button.SetActive(false);
+        }
+        else
+        {
+            disableOnStart = true;
+        }
     }
 
     public virtual void ToggleEditing(bool enabled)
     {
         // TO DO: implement event-oriented canvas/raycast target enabling/disabling
         /*editor.window.SetActive(true);*/
+        editableOnStart = enabled;
         if (editor.window.TryGetComponent(out EditorWindow ew))
         {
             ew.ToggleEnabled(enabled);

@@ -7,6 +7,7 @@ public class EditorWindow : MonoBehaviour
 {
     [SerializeField]
     protected Transform codeSpaces;
+    protected CodeModule module;
     //protected CanvasGroup cg;
 
     private void Awake()
@@ -14,14 +15,20 @@ public class EditorWindow : MonoBehaviour
         //cg = GetComponent<CanvasGroup>();
     }
 
-    public void SetCodeSpaceModules(CodeModule module)
+    public CodeModule GetModule()
     {
+        return module;
+    }
+
+    public void SetCodeSpaceModules(CodeModule _module)
+    {
+        module = _module;
         foreach (Transform child in codeSpaces)
         {
             CodeSpace cs = child.GetComponentInChildren<CodeSpace>();
             if (cs != null)
             {
-                cs.SetModule(module);
+                cs.SetModule(_module);
             }
         }
     }

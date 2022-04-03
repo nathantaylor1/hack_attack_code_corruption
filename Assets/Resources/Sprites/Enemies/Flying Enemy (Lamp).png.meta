@@ -1,0 +1,336 @@
+fileFormatVersion: 2
+guid: b50df488e239a9745beebe01296240c2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1168689687664065220
+    second: Flying Enemy (Lamp)_0
+  - first:
+      213: -4708345781210844764
+    second: Flying Enemy (Lamp)_1
+  - first:
+      213: 6897298054617811834
+    second: Flying Enemy (Lamp)_2
+  - first:
+      213: 515514529371078317
+    second: Flying Enemy (Lamp)_3
+  - first:
+      213: 4560180053196895469
+    second: Flying Enemy (Lamp)_4
+  - first:
+      213: 7946912714167162241
+    second: Flying Enemy (Lamp)_5
+  - first:
+      213: 7086728665453172751
+    second: Flying Enemy (Lamp)_6
+  - first:
+      213: 5665995538283369870
+    second: Flying Enemy (Lamp)_7
+  - first:
+      213: 6830699733177504689
+    second: Flying Enemy (Lamp)_8
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Flying Enemy (Lamp)_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 163
+        width: 33
+        height: 7
+      alignment: 9
+      pivot: {x: 0.72727275, y: 0.2857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4caf0e53415083010800000000000000
+      internalID: 1168689687664065220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Enemy (Lamp)_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 159
+        width: 24
+        height: 6
+      alignment: 9
+      pivot: {x: 0.9583334, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a1f737357898aeb0800000000000000
+      internalID: -4708345781210844764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Enemy (Lamp)_2
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 159
+        width: 35
+        height: 7
+      alignment: 9
+      pivot: {x: 0.31428573, y: 0.8571429}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7bcc77890028bf50800000000000000
+      internalID: 6897298054617811834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Enemy (Lamp)_3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 100
+        width: 24
+        height: 6
+      alignment: 9
+      pivot: {x: 0.083333336, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dae37bfabb9772700800000000000000
+      internalID: 515514529371078317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Enemy (Lamp)_4
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 85
+        width: 22
+        height: 20
+      alignment: 9
+      pivot: {x: 0.3181818, y: 0.7}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de47f96f893094f30800000000000000
+      internalID: 4560180053196895469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Enemy (Lamp)_5
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 84
+        width: 24
+        height: 22
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.6818182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18518fc420b194e60800000000000000
+      internalID: 7946912714167162241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Enemy (Lamp)_6
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 15
+        width: 19
+        height: 22
+      alignment: 9
+      pivot: {x: 0.47368422, y: 0.9545455}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f081ae39c2e195260800000000000000
+      internalID: 7086728665453172751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Enemy (Lamp)_7
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 11
+        width: 18
+        height: 26
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.9615385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e85145e1ce8a1ae40800000000000000
+      internalID: 5665995538283369870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Enemy (Lamp)_8
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 17
+        width: 39
+        height: 21
+      alignment: 9
+      pivot: {x: 0.17948718, y: 0.9047619}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b3966b77358bce50800000000000000
+      internalID: 6830699733177504689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

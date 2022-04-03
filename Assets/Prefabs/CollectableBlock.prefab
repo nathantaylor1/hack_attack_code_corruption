@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 725411197400984105}
   - component: {fileID: 725411197400984107}
   - component: {fileID: 860663274958742958}
+  - component: {fileID: 4514608433035818317}
   m_Layer: 14
   m_Name: CollectableBlock
   m_TagString: CollectableCodeBlock
@@ -146,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 0}
+  slow: 1.6
+  quick: 2
   pickupSound: {fileID: 8300000, guid: 1e7a570ffe827f24dabf705d500b60f6, type: 3}
 --- !u!114 &860663274958742958
 MonoBehaviour:
@@ -161,3 +164,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitude: 0.015
   frequency: 1
+--- !u!114 &4514608433035818317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725411197400984108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc9c140a3b194349bd5d12118be6e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
