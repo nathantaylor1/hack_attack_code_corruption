@@ -375,7 +375,7 @@ PrefabInstance:
       objectReference: {fileID: 4248187807217432848}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing "D"
+      value: While Holding "D"
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x
@@ -975,7 +975,7 @@ PrefabInstance:
       objectReference: {fileID: 174732229926953424}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing Left Click
+      value: While Holding LMB
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1576,7 +1576,7 @@ PrefabInstance:
       objectReference: {fileID: 1155120300188712004}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing "A"
+      value: While Holding "A"
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2514,7 +2514,7 @@ PrefabInstance:
       objectReference: {fileID: 8403768020421334797}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing Right Click
+      value: While Holding RMB
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3771,7 +3771,7 @@ PrefabInstance:
       objectReference: {fileID: 1558363441851120047}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing "W" or "Space"
+      value: While Holding "W" or "Space"
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x
