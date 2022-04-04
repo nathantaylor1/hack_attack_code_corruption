@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4162216963819899779}
   - component: {fileID: 8673950516824235353}
   - component: {fileID: 2884371548265768070}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Staple
   m_TagString: Enemy
   m_Icon: {fileID: 0}

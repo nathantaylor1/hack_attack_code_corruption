@@ -41,6 +41,10 @@ public class CodeEditorSwapper : MonoBehaviour
             
         }
 
+        currentButton = buttons.transform.GetChild(0).GetComponent<EditorButton>();
+        currentWindow = windows.transform.GetChild(0);
+
+        currentButton.SelectButton();
         // select the current button on first load
         /*var firstTime = currentButton;
         currentButton = null;*/

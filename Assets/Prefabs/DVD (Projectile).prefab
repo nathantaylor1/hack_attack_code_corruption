@@ -141,6 +141,12 @@ MonoBehaviour:
       m_Calls: []
   moveSpeed: 20
   jumpSpeed: 5
+  dashDuration: 1
+  dashSpeed: 1
+  accelerationSpeed: 1
+  meleeDamage: 1
+  attackDelay: 1.5
+  dashDelay: 3
   reloadTime: 0.5
   moveSound: {fileID: 0}
   jumpSound: {fileID: 0}
@@ -171,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac094d8f395cf7d48837c0d28ea1b887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 0.3
+  time: 1
 --- !u!1 &5156490979935134500
 GameObject:
   m_ObjectHideFlags: 0
