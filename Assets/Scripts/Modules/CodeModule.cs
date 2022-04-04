@@ -116,7 +116,7 @@ public class CodeModule : MonoBehaviour
             helth.OnDeath.AddListener(EnableHackable);
         }
 
-        if (editor.window.TryGetComponent(out EditorWindow ew))
+        if (editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
         {
             ew.ToggleCanExecute(true);
         }
