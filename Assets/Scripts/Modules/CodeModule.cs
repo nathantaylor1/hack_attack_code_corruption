@@ -74,6 +74,7 @@ public class CodeModule : MonoBehaviour
     // For use by Code
     [HideInInspector]
     public Rigidbody2D rb;
+    public Collider2D damagePart;
     [HideInInspector]
     public Collider2D col;
     [HideInInspector]
@@ -91,6 +92,9 @@ public class CodeModule : MonoBehaviour
         //Debug.Log("In Awake");
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        if (damagePart == null) {
+            damagePart = col;
+        }
         go = gameObject;
         anim = GetComponent<Animator>();
 
