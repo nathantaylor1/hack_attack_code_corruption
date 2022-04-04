@@ -12,6 +12,7 @@ public class CodeModule : MonoBehaviour
     [Header("Base Stats")]
 
     public float moveSpeed = 1f;
+    public float projectileSpeed = 1f;
     public float jumpSpeed = 2f;
     public float dashDuration = 1f;
     public float dashSpeed = 1f;
@@ -61,7 +62,7 @@ public class CodeModule : MonoBehaviour
     [Tooltip("Does the player start with access to this module's editor?")]
     public bool editableOnStart = false;
     //[SerializeField]
-    public Editor editor;
+    public Editor editor = null;
     /*[SerializeField]
     protected GameObject editorWindow;
     [SerializeField]
@@ -97,11 +98,11 @@ public class CodeModule : MonoBehaviour
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
         Debug.Log("button: " + editor.button);*/
-        if (!spawnedFromCode) {
+        if (!spawnedFromCode && editor != null && editor.window != null && editor.button != null) {
             editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
             ToggleEditing(editableOnStart);
         }
-        if (disableOnStart)
+        if (disableOnStart && editor != null && editor.window != null)
         {
             editor.window.SetActive(false);
             editor.button.SetActive(false);

@@ -247,6 +247,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8110474562646894817}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: shootSound
       value: 
       objectReference: {fileID: 8300000, guid: 4671c1f00990d7347bd31113c6d8039b, type: 3}
@@ -269,6 +273,10 @@ PrefabInstance:
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: editableOnStart
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: projectileSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7467797750716825260, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: m_Sprite

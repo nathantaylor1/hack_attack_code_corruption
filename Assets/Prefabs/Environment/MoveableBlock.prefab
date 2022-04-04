@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 385543404902134153}
   - component: {fileID: 385543404902134152}
   - component: {fileID: 4482726749005120039}
+  - component: {fileID: -5879252390575832538}
   m_Layer: 16
   m_Name: MoveableBlock
   m_TagString: Untagged
@@ -146,3 +147,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenMovableBox: {fileID: 7766977077427753696, guid: 8e06f39041fad9b4dbed9d50d1e8572e, type: 3}
   breakVelocity: 40
+--- !u!114 &-5879252390575832538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385543404902134155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc9c140a3b194349bd5d12118be6e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveOnStart: 1

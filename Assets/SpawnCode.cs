@@ -24,7 +24,7 @@ public class SpawnCode : CodeWithBodies
             
             if (g.TryGetComponent(out Rigidbody2D grb))
             {
-                grb.velocity = ((Vector2)(object)GetParameter(1)).normalized * (float)(object)GetParameter(2) * b.moveSpeed;
+                grb.velocity = ((Vector2)(object)GetParameter(1)).normalized * (float)(object)GetParameter(2) * (b.moveSpeed + module.projectileSpeed);
             }
         }
         base.ExecuteCode();
