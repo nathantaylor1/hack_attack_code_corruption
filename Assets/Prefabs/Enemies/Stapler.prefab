@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1846736023006838617}
   - component: {fileID: 1562495258}
   - component: {fileID: 1938915264051458203}
+  - component: {fileID: -3368316503306681300}
   m_Layer: 10
   m_Name: Stapler
   m_TagString: Enemy
@@ -182,9 +183,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32425b34a2ba6484892d2302d7822e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   health: 3
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
+  health_display_time: 3
   sm: {fileID: 6418439758834272760}
   codeBlockToDrop: {fileID: 0}
 --- !u!95 &1846736023006838617
@@ -235,6 +240,12 @@ MonoBehaviour:
       m_Calls: []
   moveSpeed: 1
   jumpSpeed: 2
+  dashDuration: 1
+  dashSpeed: 1
+  accelerationSpeed: 1
+  meleeDamage: 1
+  attackDelay: 1.5
+  dashDelay: 3
   reloadTime: 1
   moveSound: {fileID: 0}
   jumpSound: {fileID: 0}
@@ -253,6 +264,21 @@ MonoBehaviour:
   col: {fileID: 0}
   go: {fileID: 0}
   anim: {fileID: 0}
+  disableOnStart: 0
+  hackable: 0
+--- !u!114 &-3368316503306681300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984471115297813409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc9c140a3b194349bd5d12118be6e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveOnStart: 1
 --- !u!1 &5984471116428286947
 GameObject:
   m_ObjectHideFlags: 0

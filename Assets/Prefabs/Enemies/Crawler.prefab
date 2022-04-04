@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1493756679603760999}
   - component: {fileID: 6587460094074411805}
   - component: {fileID: 7549024037020160957}
+  - component: {fileID: 8493152254916510137}
   m_Layer: 10
   m_Name: Crawler
   m_TagString: BombEnemy
@@ -197,7 +198,7 @@ MonoBehaviour:
   spawnedFromCode: 0
   editableOnStart: 0
   editor:
-    window: {fileID: 1111963146548495925, guid: 798f4f031b60e814b973393a9ea6d2ac, type: 3}
+    window: {fileID: 4458851299698320861, guid: e0971020bafb97f4792e2fb4243eb252, type: 3}
     button: {fileID: 5402795675308038724, guid: 73e0b3087bcc22c43bc0de50eca7a1d7, type: 3}
   shootFrom: {fileID: 962261525253274965}
   father: {fileID: 0}
@@ -206,6 +207,7 @@ MonoBehaviour:
   go: {fileID: 0}
   anim: {fileID: 0}
   disableOnStart: 0
+  hackable: 0
 --- !u!95 &7549024037020160957
 Animator:
   serializedVersion: 3
@@ -225,3 +227,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8493152254916510137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493756679603761018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90bff7abed8caf74fbbe4e7202fbb6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveOnStart: 1

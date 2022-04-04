@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5885138499442398628, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_text
-      value: Crawler
+      value: Coffee Machine
       objectReference: {fileID: 0}
     - target: {fileID: 7174322176827018067, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Pivot.x
@@ -137,12 +137,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8168636148714103764, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Name
-      value: Player Button 1
+      value: CrawlerButton
       objectReference: {fileID: 0}
     - target: {fileID: 8169247459531306767, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4180894356041130536, guid: 17386a92c26c0504fbf2c1c48ebe3df2, type: 3}
+      objectReference: {fileID: -8179040606652740800, guid: 97c03b3bc102aba46935fa034e1b1fe7, type: 3}
     - target: {fileID: 8169247459531306767, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Color.b
       value: 0
