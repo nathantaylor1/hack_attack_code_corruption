@@ -116,7 +116,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 45
   m_LinearDrag: 1
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 12
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -165,6 +165,7 @@ MonoBehaviour:
   go: {fileID: 0}
   anim: {fileID: 0}
   disableOnStart: 0
+  hackable: 0
 --- !u!114 &1389817687176066176
 MonoBehaviour:
   m_ObjectHideFlags: 0
