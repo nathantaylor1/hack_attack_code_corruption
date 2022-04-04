@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Build Scenes/Analytics.unity
     guid: 77232a2bfaef72e4b9361d878bfe439e
   - enabled: 0
-    path: Assets/Scenes/Build Scenes/Tutorial01.unity
+    path: Assets/Scenes/Build Scenes/Old/Tutorial01.unity
     guid: 7e072e1953bbc434f833c8c3b51de2d4
   - enabled: 0
-    path: Assets/Scenes/Build Scenes/CustomLevel01.unity
+    path: Assets/Scenes/Build Scenes/Old/CustomLevel01.unity
     guid: 88ad2b191a1e1474abe2c62b12672919
   - enabled: 0
     path: Assets/Scenes/Build Scenes/EndScreen.unity
