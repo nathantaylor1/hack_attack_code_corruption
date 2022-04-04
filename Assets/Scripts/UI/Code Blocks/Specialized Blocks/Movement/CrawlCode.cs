@@ -15,6 +15,8 @@ public class CrawlCode : CodeWithParameters
     private bool hasTurned;
     private readonly LayerMask glm = 1 << 7;
     private bool executing = false;
+    private bool didCheck = false;
+    private bool facingLeft = true;
 
     public override void ExecuteCode()
     {
@@ -24,6 +26,10 @@ public class CrawlCode : CodeWithParameters
         col = module.col;
         tf = module.transform;
         anim = module.anim;
+        if (executing && tf && col && rb) {
+            Move();
+        }
+        didCheck = false;
 
         base.ExecuteCode();
     }
@@ -38,64 +44,72 @@ public class CrawlCode : CodeWithParameters
 
     private void Update()
     {
-        if (!executing) return;
+        if (!executing || didCheck) return;
         bds = col.bounds;
         CheckWall();
         CheckGround();
+        didCheck = true;
     }
 
     void CheckGround()
     {
         Vector2 origin = bds.center;
-        Vector2 size = new Vector2(2f * bds.extents.x - 0.05f, 2 * bds.extents.y - 0.05f);
+        Vector2 size = new Vector2(bds.extents.x / 2 - 0.05f, bds.extents.y / 2 - 0.05f);
         Vector2 direction = -tf.up;
+        var offset = new Vector2();
+        offset = -tf.right * (bds.extents.x / 2f);
+        offset += (Vector2)(-tf.up * (bds.extents.x / 2f + .25f));
 
         RaycastHit2D hit = //Physics2D.Raycast(origin, direction, bds.extents.y + 0.05f, glm);
-                           Physics2D.BoxCast(origin, size, 0f, direction, 0.1f, glm);;
-
-        if (hit)
-        {
-            hasTurned = true;
+                           Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, glm);;
+        if (!hasTurned && hit) return;
+        if (hasTurned && !hit) return;
+        // if (hit) hasTurned = false;
+        if (hasTurned && hit)  {
+            hasTurned = false;
             return;
         }
-        if (!hasTurned) return;
 
-        hasTurned = false;
-        if (facingRight)
+        if (facingLeft)
             tf.Rotate(tf.forward, -90f, Space.World);
         else
             tf.Rotate(tf.forward, 90f, Space.World);
         
+        hasTurned = true;
         ClampRotations();
+        rb.velocity = Vector2.zero;
+        Debug.Log(tf.right);
+        Debug.Log("called");
+        // Debug.Break();
     }
 
     void CheckWall()
     {
         Vector2 origin = bds.center;
-        Vector2 size = new Vector2(2f * bds.extents.x - 0.05f, 2 * bds.extents.y - 0.05f);
+        Vector2 size = new Vector2(bds.extents.x -.05f, bds.extents.y -.05f);
         Vector2 direction = tf.right;
         
+        var offset = new Vector2();
+        offset = tf.right * (bds.extents.x / 2f + .25f);
+        offset += (Vector2)(tf.up * bds.extents.x / 2f);
         RaycastHit2D hit = //Physics2D.Raycast(origin, direction, bds.extents.x + 0.05f, glm);
-            Physics2D.BoxCast(origin, size, 0f, direction, 0.05f, glm);
+            Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.05f, glm);
         
         if (!hit) return;
         
-        if (facingRight)
+        Debug.Log(tf.right);
+        if (facingLeft)
             tf.Rotate(tf.forward, 90f, Space.World);
         else
             tf.Rotate(tf.forward, -90f, Space.World);
         
         ClampRotations();
-    }
-    
-    private void FixedUpdate()
-    {
-        if (!executing) return;
-        if (!tf || !col || !rb) return;
-        Move();
+        rb.velocity = Vector2.zero;
+        // Debug.Log(tf.right);
+        // Debug.Log("called");
+        // Debug.Break();
     }
 
-    private bool facingRight = true;
     private void Move()
     {
         Vector2 par = (Vector2)(object)GetParameter(0);
@@ -106,13 +120,13 @@ public class CrawlCode : CodeWithParameters
             dir = Math.Sign(tf.right.y) != Math.Sign(par.y);
         }
         // care about x vice cersa
-        Debug.Log(tf.up);
-        Debug.Log("player dir " + par);
-        Debug.Log(tf.right);
+        // Debug.Log(tf.up);
+        // Debug.Log("player dir " + par);
+        // Debug.Log(tf.right);
 
-        if (dir)
+        if (dir && !hasTurned)
         {
-            facingRight = !facingRight;
+            facingLeft = !facingLeft;
             tf.Rotate(tf.up, 180, Space.World);
         }
 

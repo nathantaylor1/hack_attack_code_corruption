@@ -91,8 +91,8 @@ public class EditorController : MonoBehaviour
 
     public CodeModule.Editor AddWindowCopyless(GameObject _window, GameObject _button, CodeModule module)
     {
-        /*Debug.Log("window: " + _window);
-        Debug.Log("desktop: " + desktop);*/
+        // Debug.Log("window: " + _window.name);
+        // Debug.Log("desktop: " + desktop.name);
         //_window.transform.parent = desktop.transform;
         //_button.transform.parent = taskbar.transform;
         if (_button.TryGetComponent(out EditorButton eb))

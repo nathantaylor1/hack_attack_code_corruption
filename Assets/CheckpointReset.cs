@@ -44,6 +44,7 @@ public class CheckpointReset : MonoBehaviour
         else
         {
             gameObject.SetActive(true);
+            SaveToCheckpoint(0);
         }
     }
 }

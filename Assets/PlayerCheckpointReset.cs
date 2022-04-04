@@ -14,7 +14,18 @@ public class PlayerCheckpointReset : CheckpointReset
     {
         rb = GetComponent<Rigidbody2D>();
         module = GetComponent<CodeModule>();
-        base.Awake();
+        EventManager.OnCheckpointSave.AddListener(SaveToCheckpoint);
+        EventManager.OnPlayerDeath.AddListener(ResetToCheckpoint);
+        if (saveOnStart)
+        {
+            saveOnStart = false;
+            SaveToCheckpoint(0);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+        // base.Awake();
     }
 
     protected override void SaveToCheckpoint(int _)
@@ -35,10 +46,12 @@ public class PlayerCheckpointReset : CheckpointReset
         rb = Copy.Component<Rigidbody2D>(rbCopy, gameObject);
         GameObject tempWindow = module.editor.window;
         //Destroy(module.editor.window);
+        Debug.Log(windowCopy.name);
         module.editor = EditorController.instance.AddWindowCopyless(windowCopy, module.editor.button, module);
         module.editor.window.SetActive(true);
         module.editor.button.SetActive(true);
         windowCopy = null;
         Destroy(tempWindow);
+        SaveToCheckpoint(0);
     }
 }

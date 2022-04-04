@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class AlwaysExecuteCode : CodeSpace
 {
-    public int count = 10;
+    public float count = .05f;
+    public bool shouldWaitTimeBetween = true;
+    private bool call = true;
+    // public int startCount = 15;
     private void FixedUpdate()
     {
-        if (count < 0) {
-            count = 10;
+        if (call) {
+            if (shouldWaitTimeBetween) {
+                call = false;
+                StartCoroutine(wait());
+            }
             StartExecution();
         }
-        count -= 1;
+    }
+
+    IEnumerator wait() {
+        yield return new WaitForSeconds(count);
+        call = true;
     }
 }

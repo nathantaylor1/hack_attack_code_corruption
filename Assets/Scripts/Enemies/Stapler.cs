@@ -34,6 +34,8 @@ public class Stapler : EnemyMovement
     public AudioClip shootSound;
     public AudioClip jumpSound;
     private SpriteRenderer spr;
+
+    public bool dead;
     
     private void Awake()
     {
@@ -41,14 +43,32 @@ public class Stapler : EnemyMovement
         _rb2d = GetComponent<Rigidbody2D>();
         _staplerAnimations = GetComponent<StaplerAnimations>();
         spr = GetComponent<SpriteRenderer>();
-
+        if (dead) {
+            spr.sprite = null;
+            foreach (var item in GetComponentsInChildren<SpriteRenderer>())
+            {
+                item.sprite = null;
+            }
+            GetComponent<BoxCollider2D>().isTrigger = true;
+        }
         ID = gameObject.name + transform.position;
+        GetComponent<HasHealth>().OnDeath.AddListener(Die);
+    }
+
+    void Die() {
+        dead = true;
+        spr.enabled = false;
+        foreach (var item in GetComponentsInChildren<SpriteRenderer>())
+        {
+            item.enabled = false;
+        }
+        GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (!spr.isVisible) return; // do nothing if not visible
+        if (!spr.isVisible || dead) return; // do nothing if not visible
         
         _grounded = Grounded.Check(col2d);
 

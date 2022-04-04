@@ -31,7 +31,7 @@ public class HasHealth : MonoBehaviour
 
     private void Awake()
     {
-        module = GetComponent<CodeModule>();
+        TryGetComponent<CodeModule>(out module);
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         maxHealth = health;
@@ -65,7 +65,7 @@ public class HasHealth : MonoBehaviour
             StartCoroutine(inCombat);
         }
 
-        if (module.damageSound != null && AudioManager.instance != null)
+        if (module != null && module.damageSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.damageSound, module.transform.position);
         
         if(health <= 0) {
