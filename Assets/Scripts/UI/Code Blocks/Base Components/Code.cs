@@ -47,7 +47,7 @@ public class Code : MonoBehaviour
             GetNext().ExecuteCode();
         }
         else {
-            Debug.Log("done " + gameObject.name);
+            // Debug.Log("done " + gameObject.name);
             SignalCompletion();
         }
     }
