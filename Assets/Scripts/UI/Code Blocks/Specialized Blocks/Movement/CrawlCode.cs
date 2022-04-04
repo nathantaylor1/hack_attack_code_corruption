@@ -42,7 +42,6 @@ public class CrawlCode : CodeWithParameters
         bds = col.bounds;
         CheckWall();
         CheckGround();
-        ClampRotations();
     }
 
     void CheckGround()
@@ -50,8 +49,9 @@ public class CrawlCode : CodeWithParameters
         Vector2 origin = bds.center;
         Vector2 size = new Vector2(2f * bds.extents.x - 0.05f, 2 * bds.extents.y - 0.05f);
         Vector2 direction = -tf.up;
-        
-        RaycastHit2D hit = Physics2D.BoxCast(origin, size, 0f, direction, 0.1f, glm);;
+
+        RaycastHit2D hit = //Physics2D.Raycast(origin, direction, bds.extents.y + 0.05f, glm);
+                           Physics2D.BoxCast(origin, size, 0f, direction, 0.1f, glm);;
 
         if (hit)
         {
@@ -65,7 +65,8 @@ public class CrawlCode : CodeWithParameters
             tf.Rotate(tf.forward, -90f);
         else
             tf.Rotate(tf.forward, 90f);
-        rb.velocity = Vector2.zero;
+        
+        ClampRotations();
     }
 
     void CheckWall()
@@ -74,7 +75,8 @@ public class CrawlCode : CodeWithParameters
         Vector2 size = new Vector2(2f * bds.extents.x - 0.05f, 2 * bds.extents.y - 0.05f);
         Vector2 direction = tf.right;
         
-        RaycastHit2D hit = Physics2D.BoxCast(origin, size, 0f, direction, 0.05f, glm);
+        RaycastHit2D hit = //Physics2D.Raycast(origin, direction, bds.extents.x + 0.05f, glm);
+            Physics2D.BoxCast(origin, size, 0f, direction, 0.05f, glm);
         
         if (!hit) return;
         
@@ -82,7 +84,8 @@ public class CrawlCode : CodeWithParameters
             tf.Rotate(tf.forward, 90f);
         else
             tf.Rotate(tf.forward, -90f);
-        rb.velocity = Vector2.zero;
+        
+        ClampRotations();
     }
     
     private void FixedUpdate()
@@ -105,7 +108,11 @@ public class CrawlCode : CodeWithParameters
         }
 
         float speed = module.moveSpeed * (float)(object)GetParameter(1);
-        rb.velocity = tf.right * speed * module.moveSpeed;
+        if (speed < 0.05f && speed > -0.05f)
+            anim.SetTrigger("Idle");
+        else
+            anim.SetTrigger("Run");
+        rb.velocity = tf.right * speed;
     }
 
     private void ClampRotations()

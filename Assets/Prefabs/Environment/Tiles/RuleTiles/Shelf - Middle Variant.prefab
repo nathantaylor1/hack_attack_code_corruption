@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 551728830168120188, guid: 8a1f398c0032ab140beed0749d0f0bb1, type: 3}
     - target: {fileID: 9080768381992117247, guid: 32f548319c0e6b44eaa052660bd297ea, type: 3}
       propertyPath: m_Name
-      value: Shelf - Middle
+      value: Shelf - Middle Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32f548319c0e6b44eaa052660bd297ea, type: 3}

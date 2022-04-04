@@ -12464,6 +12464,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1493756679603760998, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493756679603760998, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493756679603760998, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1493756679603761017, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -12474,7 +12486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1493756679603761017, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.53
+      value: -0.81
       objectReference: {fileID: 0}
     - target: {fileID: 1493756679603761017, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12514,7 +12526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6587460094074411805, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
       propertyPath: moveSpeed
-      value: 1.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6587460094074411805, guid: 5db5ee6ea4704724aaaca7bc57fb5ada, type: 3}
       propertyPath: editableOnStart

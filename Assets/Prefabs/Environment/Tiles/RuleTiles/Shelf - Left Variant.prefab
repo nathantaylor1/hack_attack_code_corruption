@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8386638424878268094, guid: e565c21f8065efc439e1a9714a1be38d, type: 3}
       propertyPath: m_Name
-      value: Shelf - Left
+      value: Shelf - Left Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e565c21f8065efc439e1a9714a1be38d, type: 3}
