@@ -84,7 +84,7 @@ public class CodeModule : MonoBehaviour
 
     [HideInInspector]
     public bool disableOnStart = false;
-    [HideInInspector]
+    // [HideInInspector]
     public bool hackable = false;
 
     protected virtual void Awake()
@@ -115,10 +115,13 @@ public class CodeModule : MonoBehaviour
             disableOnStart = true;
         }
 
-        if (TryGetComponent(out HasHealth helth))
+        if (hackable)
+        {
+            EnableHackable();
+        } else if (TryGetComponent(out HasHealth helth))
         {
             helth.OnDeath.AddListener(EnableHackable);
-        }
+        } 
 
         if (editor != null && editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
         {
@@ -142,12 +145,16 @@ public class CodeModule : MonoBehaviour
         {
             if (Vector2.Distance(GameManager.instance.player.transform.position, transform.position) <= hackingDistance)
             {
-                anim.SetTrigger("Hackable");
+                if (anim != null) {
+                    anim.SetTrigger("Hackable");
+                }
                 ToggleEditing(true);
             }
             else
             {
-                anim.SetTrigger("Death");
+                if (anim != null) {
+                    anim.SetTrigger("Death");
+                }
                 ToggleEditing(false);
             }
             yield return new WaitForFixedUpdate();
