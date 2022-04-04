@@ -18,4 +18,11 @@ public class IfCode : CodeWithBodies
         }
         base.ExecuteCode();
     }
+
+    public override void StopExecution()
+    {
+        GetBody(0).SetModule(module);
+        GetBody(0).StopExecution();
+        base.ExecuteCode();
+    }
 }
