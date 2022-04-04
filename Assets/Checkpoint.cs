@@ -13,6 +13,11 @@ public class Checkpoint : MonoBehaviour
     protected bool isActive = false;
     protected Collider2D col;
 
+    // The amount of time that it takes before a checkpoint can be saved after a previous
+    // save
+    protected static float refreshTime = 0.1f;
+    protected bool canSave = true;
+
     protected void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -23,19 +28,31 @@ public class Checkpoint : MonoBehaviour
         sr.sprite = inactiveSprite;
     }
 
-    protected void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        //Debug.Log(collision.tag + " collided with checkpoint");
+        if (collision.CompareTag("Player"))
         {
             SaveCheckpoint();
         }
     }
 
+    protected IEnumerator SaveRefresh()
+    {
+        yield return new WaitForSeconds(refreshTime);
+        canSave = true;
+    }
+
     protected void SaveCheckpoint()
     {
-        isActive = true;
-        sr.sprite = activeSprite;
-        EventManager.OnCheckpointSave?.Invoke(GetInstanceID());
+        if (canSave)
+        {
+            isActive = true;
+            sr.sprite = activeSprite;
+            canSave = false;
+            StartCoroutine(SaveRefresh());
+            EventManager.OnCheckpointSave?.Invoke(GetInstanceID());
+        }
     }
 
     protected void UpdateCheckpoint(int checkpointID)

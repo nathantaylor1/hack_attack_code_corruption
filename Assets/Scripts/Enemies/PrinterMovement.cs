@@ -85,7 +85,7 @@ public class PrinterMovement : EnemyMovement
     {
         if (isDashing && hitSound != null && AudioManager.instance != null)
         {
-            Debug.Log("HitSound Printer");
+            //Debug.Log("HitSound Printer");
             isDashing = false;
             AudioManager.instance.PlaySound(hitSound, transform.position);
         }

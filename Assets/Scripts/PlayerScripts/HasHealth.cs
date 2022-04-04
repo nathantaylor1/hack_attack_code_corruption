@@ -33,13 +33,25 @@ public class HasHealth : MonoBehaviour
         if(gameObject.layer != LayerMask.NameToLayer("Player"))
         {
             SetHealthVisibility(false);
+            EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
+            EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
         }
         updateHealthDisplay();
     }
 
+    public void RestoreFullHealth(int _)
+    {
+        Heal(maxHealth);
+    }
+
+    public void RestoreFullHealth()
+    {
+        Heal(maxHealth);
+    }
+
     public void Damage(float damage_amount)
     {
-        Debug.Log("player takes damage");
+        //Debug.Log("player takes damage");
         if (isInvincible) return;
 
         health -= damage_amount;
@@ -67,7 +79,7 @@ public class HasHealth : MonoBehaviour
         Color dmg = new Color(.6f, .2f, .2f, .8f);
         for (int i = 0; i < 60; i++)
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
             if (i % 10 == 0 && sr != null) {
                 sr.color = dmg;
             } else if (i % 5 == 0 && sr != null) {
@@ -132,7 +144,7 @@ public class HasHealth : MonoBehaviour
         foreach (Transform child in bar)
         {
             SpriteRenderer temp_sr = child.GetComponent<SpriteRenderer>();
-            if(temp_sr != null)
+            if (temp_sr != null)
             {
                 temp_sr.enabled = _switch;
             }

@@ -375,33 +375,13 @@ PrefabInstance:
       propertyPath: window
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5453966612458093388, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
+      propertyPath: window
+      value: 
+      objectReference: {fileID: 4669256370316150063}
     - target: {fileID: 5885138499442398628, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_text
       value: Files
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827611341744448399, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827611341744448399, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5144857167146922052}
-    - target: {fileID: 6827611341744448399, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: swap
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827611341744448399, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CodeEditorSwapper, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6827611341744448399, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 8229080916582264500}
-    - target: {fileID: 6827611341744448399, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.UI.Button, UnityEngine.UI
       objectReference: {fileID: 0}
     - target: {fileID: 7174322176827018067, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Pivot.x
@@ -550,17 +530,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7174322176827018067, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
   m_PrefabInstance: {fileID: 3238964619708976443}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8229080916582264500 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6827611341744448399, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
-  m_PrefabInstance: {fileID: 3238964619708976443}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8883430196525128543
 PrefabInstance:
   m_ObjectHideFlags: 0

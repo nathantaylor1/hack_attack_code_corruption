@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 3039606749986047602}
   - component: {fileID: 6284934558205878911}
   - component: {fileID: 3554598599595334197}
+  - component: {fileID: 1620856265698475845}
   m_Layer: 10
   m_Name: Printer
   m_TagString: Untagged
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32425b34a2ba6484892d2302d7822e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 8
+  health: 3
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   health_display_time: 3
@@ -260,7 +261,7 @@ BoxCollider2D:
   m_Offset: {x: 0.015178978, y: 0.67}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5192308, y: 0.04}
+    pivot: {x: 0.5192308, y: 0.5}
     oldSize: {x: 1.625, y: 1.5625}
     newSize: {x: 1.625, y: 1.5625}
     adaptiveTilingThreshold: 0.5
@@ -286,7 +287,7 @@ BoxCollider2D:
   m_Offset: {x: 0.015178978, y: -0.69}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5192308, y: 0.04}
+    pivot: {x: 0.5192308, y: 0.5}
     oldSize: {x: 1.625, y: 1.5625}
     newSize: {x: 1.625, y: 1.5625}
     adaptiveTilingThreshold: 0.5
@@ -335,6 +336,20 @@ MonoBehaviour:
   col: {fileID: 0}
   go: {fileID: 0}
   anim: {fileID: 0}
+  disableOnStart: 0
+--- !u!114 &1620856265698475845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2517249646753999764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90bff7abed8caf74fbbe4e7202fbb6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveOnStart: 1
 --- !u!1001 &4229673164400815918
 PrefabInstance:
   m_ObjectHideFlags: 0

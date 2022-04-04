@@ -34,6 +34,11 @@ public class ModuleCheckpointReset : CheckpointReset
     {
         if (copyModule != null)
         {
+            if (TryGetComponent(out CodeModule module))
+            {
+                Destroy(module.editor.window);
+                Destroy(module.editor.button);
+            }
             copyModule.editor.window.SetActive(true);
             copyModule.editor.button.SetActive(activateButton);
         }
