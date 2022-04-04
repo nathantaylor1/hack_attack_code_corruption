@@ -12,7 +12,8 @@ public class Spikes : MonoBehaviour
     private void OnCollisionStay2D(Collision2D col)
     {
         //Debug.Log("Collision with " + other.gameObject.name);
-        if (!_canDamage || !col.gameObject.CompareTag("Player")) return;
+        // Debug.Log("owww" + col.transform.tag);
+        if (!_canDamage || !col.transform.CompareTag("Player")) return;
         if (instantKill)
         {
             //Debug.Log("Spikes instantly killing " + col.gameObject.name);

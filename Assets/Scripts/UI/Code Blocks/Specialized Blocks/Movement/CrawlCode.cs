@@ -62,9 +62,9 @@ public class CrawlCode : CodeWithParameters
 
         hasTurned = false;
         if (facingRight)
-            tf.Rotate(tf.forward, -90f);
+            tf.Rotate(tf.forward, -90f, Space.World);
         else
-            tf.Rotate(tf.forward, 90f);
+            tf.Rotate(tf.forward, 90f, Space.World);
         
         ClampRotations();
     }
@@ -81,9 +81,9 @@ public class CrawlCode : CodeWithParameters
         if (!hit) return;
         
         if (facingRight)
-            tf.Rotate(tf.forward, 90f);
+            tf.Rotate(tf.forward, 90f, Space.World);
         else
-            tf.Rotate(tf.forward, -90f);
+            tf.Rotate(tf.forward, -90f, Space.World);
         
         ClampRotations();
     }
@@ -98,13 +98,22 @@ public class CrawlCode : CodeWithParameters
     private bool facingRight = true;
     private void Move()
     {
-        //Vector2 dir = (Vector2)(object)GetParameter(0);
-        bool dir = (bool)(object)GetParameter(0);
+        Vector2 par = (Vector2)(object)GetParameter(0);
+        bool dir;
+        if (tf.right.y == 0) {
+            dir = Math.Sign(tf.right.x) != Math.Sign(par.x);
+        } else {
+            dir = Math.Sign(tf.right.y) != Math.Sign(par.y);
+        }
+        // care about x vice cersa
+        Debug.Log(tf.up);
+        Debug.Log("player dir " + par);
+        Debug.Log(tf.right);
 
-        if ((facingRight && !dir) || (!facingRight && dir))
+        if (dir)
         {
             facingRight = !facingRight;
-            tf.Rotate(tf.up, 180f);
+            tf.Rotate(tf.up, 180, Space.World);
         }
 
         float speed = module.moveSpeed * (float)(object)GetParameter(1);

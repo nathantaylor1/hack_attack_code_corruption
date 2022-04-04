@@ -24,7 +24,9 @@ public class Checkpoint : MonoBehaviour
         col = GetComponent<Collider2D>();
         EventManager.OnCheckpointSave.AddListener(UpdateCheckpoint);
 
-        sr.sprite = inactiveSprite;
+        if (sr != null) {
+            sr.sprite = inactiveSprite;
+        }
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
@@ -40,7 +42,9 @@ public class Checkpoint : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         isActive = true;
-        sr.sprite = activeSprite;
+        if (sr != null) {
+            sr.sprite = activeSprite;
+        }
         canSave = false;
         EventManager.OnCheckpointSave?.Invoke(GetInstanceID());
         yield return new WaitForSeconds(refreshTime);
@@ -60,7 +64,9 @@ public class Checkpoint : MonoBehaviour
         if (checkpointID != GetInstanceID())
         {
             isActive = false;
-            sr.sprite = inactiveSprite;
+            if (sr != null) {
+                sr.sprite = inactiveSprite;
+            }
         }
     }
 }

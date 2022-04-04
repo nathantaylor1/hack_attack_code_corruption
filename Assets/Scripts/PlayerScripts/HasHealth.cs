@@ -53,7 +53,7 @@ public class HasHealth : MonoBehaviour
     public void Damage(float damage_amount)
     {
         //Debug.Log("player takes damage");
-        if (isInvincible) return;
+        if (isInvincible || health < 0) return;
 
         health -= damage_amount;
         if (health < 0) health = 0;
@@ -113,7 +113,7 @@ public class HasHealth : MonoBehaviour
             //GameManager.instance.ResetLevel();
             health = maxHealth;
             EventManager.OnPlayerDeath?.Invoke();
-        } 
+        }
         else
         {
             if (codeBlockToDrop != null)

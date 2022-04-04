@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class AlwaysExecuteCode : CodeSpace
 {
-    private void Update()
+    public int count = 10;
+    private void FixedUpdate()
     {
-        StartExecution();
+        if (count < 0) {
+            count = 10;
+            StartExecution();
+        }
+        count -= 1;
     }
 }

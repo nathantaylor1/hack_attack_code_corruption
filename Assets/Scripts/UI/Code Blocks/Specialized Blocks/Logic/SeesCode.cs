@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SeesCode : CodeWithParameters
 {
-    public float boxSize = 10f;
+    public float boxSize = 5f;
     private bool val;
     
     public override void ExecuteCode()
@@ -22,6 +22,7 @@ public class SeesCode : CodeWithParameters
     public override dynamic ReturnValue()
     {
         ExecuteCode();
+        Debug.Log(val);
         return val;
     }
 }

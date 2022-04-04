@@ -24,8 +24,8 @@ public class CodeEditorSwapper : MonoBehaviour
 
         for (int i = 0; i < buttons.transform.childCount; i++)
         {
-            var tempButton = buttons.transform.GetChild(i).GetComponent<Button>();
-            if (tempButton.gameObject.TryGetComponent(out EditorButton bn))
+            // var tempButton = buttons.transform.GetChild(i).GetComponent<Button>();
+            if (buttons.transform.GetChild(i).TryGetComponent(out EditorButton bn))
             {
                 bn.SetSwapper(this);
             }
@@ -39,7 +39,9 @@ public class CodeEditorSwapper : MonoBehaviour
 
     public void SetActiveWindow(Transform window, EditorButton button)
     {
-        currentButton.DeselectButton();
+        if (currentButton != null) {
+            currentButton.DeselectButton();
+        }
         currentButton = button;
         currentWindow = window;
         currentWindow.SetAsLastSibling();

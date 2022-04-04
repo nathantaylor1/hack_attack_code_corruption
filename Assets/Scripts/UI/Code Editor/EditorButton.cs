@@ -12,6 +12,7 @@ public class EditorButton : MonoBehaviour, IPointerEnterHandler
     [SerializeField]
     public Sprite selectedSprite;
 
+    [SerializeField]
     protected Button bn;
     //protected Image img;
     protected CodeEditorSwapper swapper;
@@ -21,7 +22,9 @@ public class EditorButton : MonoBehaviour, IPointerEnterHandler
 
     protected void Awake()
     {
-        bn = GetComponent<Button>();
+        if (bn == null) {
+            bn = GetComponent<Button>();
+        }
         //img = GetComponent<Image>();
         bn.onClick.AddListener(SelectButton);
     }

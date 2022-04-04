@@ -171,13 +171,13 @@ public class Stapler : EnemyMovement
         StartCoroutine(CO_Jumping());
     }
 
-    private void OnDrawGizmos()
-    {
-        if (!drawAttackAreaGizmo) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(col2d.bounds.center + (Vector3)offset, attackArea);
-        //Gizmos.DrawLine(transform.position, transform.position+(transform.right*2f));
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     if (!drawAttackAreaGizmo) return;
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawWireCube(col2d.bounds.center + (Vector3)offset, attackArea);
+    //     //Gizmos.DrawLine(transform.position, transform.position+(transform.right*2f));
+    // }
 
     private IEnumerator CO_Jumping()
     {

@@ -1454,7 +1454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 781491323719332498, guid: 709ad3f6f2c77e2429dacf3d0baa7058, type: 3}
       propertyPath: boxSize
-      value: 40
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1661101040444555396, guid: 709ad3f6f2c77e2429dacf3d0baa7058, type: 3}
       propertyPath: m_Pivot.x
