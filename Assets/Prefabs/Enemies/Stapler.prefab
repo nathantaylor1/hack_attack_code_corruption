@@ -186,7 +186,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  health: 3
+  health: 1.5
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   health_display_time: 3
@@ -239,6 +239,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   moveSpeed: 1
+  projectileSpeed: 1
   jumpSpeed: 2
   dashDuration: 1
   dashSpeed: 1
@@ -261,6 +262,7 @@ MonoBehaviour:
   shootFrom: {fileID: 0}
   father: {fileID: 0}
   rb: {fileID: 0}
+  damagePart: {fileID: 0}
   col: {fileID: 0}
   go: {fileID: 0}
   anim: {fileID: 0}

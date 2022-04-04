@@ -223,6 +223,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9141975136933099486}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: dashSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: healSound
       value: 
       objectReference: {fileID: 8300000, guid: 1f89d1ae5b3cce947898dd68aea4f99c, type: 3}

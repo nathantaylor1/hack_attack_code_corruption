@@ -33,6 +33,7 @@ public class Explode : MonoBehaviour
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radius, hitLM);
         for (int i = 0; i < cols.Length; ++i)
         {
+            if (cols[i].CompareTag("BombEnemy")) continue;
             HasHealth hh = cols[i].GetComponent<HasHealth>();
             if (hh) hh.Damage(dmg);
         }
