@@ -22,7 +22,7 @@ public class DashCode : CodeWithParameters
         yield return new WaitForSeconds(module.dashDuration);
         module.rb.velocity = Vector3.zero;
         yield return new WaitForSeconds(reloadTime);
-        print("ready to dash");
+        //print("ready to dash");
         isDashing = false;
     }
 }

@@ -37,8 +37,13 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    protected IEnumerator SaveRefresh()
+    protected IEnumerator SaveAndRefresh()
     {
+        yield return new WaitForEndOfFrame();
+        isActive = true;
+        sr.sprite = activeSprite;
+        canSave = false;
+        EventManager.OnCheckpointSave?.Invoke(GetInstanceID());
         yield return new WaitForSeconds(refreshTime);
         canSave = true;
     }
@@ -47,11 +52,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (canSave)
         {
-            isActive = true;
-            sr.sprite = activeSprite;
-            canSave = false;
-            StartCoroutine(SaveRefresh());
-            EventManager.OnCheckpointSave?.Invoke(GetInstanceID());
+            StartCoroutine(SaveAndRefresh());
         }
     }
 

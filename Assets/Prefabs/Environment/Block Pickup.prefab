@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6883401385304811882}
   - component: {fileID: 6883401385304811883}
   - component: {fileID: 674677470179246043}
+  - component: {fileID: -4536276390173655247}
   m_Layer: 14
   m_Name: Block Pickup
   m_TagString: Untagged
@@ -142,6 +143,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-4536276390173655247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883401385304811879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc9c140a3b194349bd5d12118be6e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveOnStart: 1
 --- !u!1 &6883401385535482556
 GameObject:
   m_ObjectHideFlags: 0

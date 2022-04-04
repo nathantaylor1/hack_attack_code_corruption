@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerCheckpointReset : CheckpointReset
 {
-    protected HasHealth health;
-    protected HasHealth healthCopy;
+    /*protected HasHealth health;
+    protected HasHealth healthCopy;*/
     protected Vector3 positionCopy;
     protected Rigidbody2D rb;
     protected Rigidbody2D rbCopy;
@@ -16,7 +16,7 @@ public class PlayerCheckpointReset : CheckpointReset
 
     protected override void Awake()
     {
-        health = GetComponent<HasHealth>();
+        //health = GetComponent<HasHealth>();
         rb = GetComponent<Rigidbody2D>();
         module = GetComponent<CodeModule>();
         base.Awake();
@@ -24,7 +24,7 @@ public class PlayerCheckpointReset : CheckpointReset
 
     protected override void SaveToCheckpoint(int _)
     {
-        healthCopy = Copy.Component<HasHealth>(health, GameManager.instance.gameObject);
+        //healthCopy = Copy.Component<HasHealth>(health, GameManager.instance.gameObject);
         positionCopy = transform.position;
         rbCopy = Copy.Component<Rigidbody2D>(rb, GameManager.instance.gameObject);
         if (windowCopy != null)
@@ -42,7 +42,7 @@ public class PlayerCheckpointReset : CheckpointReset
     protected override void ResetToCheckpoint()
     {
         //Debug.Log("ResetToCheckpoint called");
-        health = Copy.Component<HasHealth>(healthCopy, gameObject);
+        //health = Copy.Component<HasHealth>(healthCopy, gameObject);
         transform.position = positionCopy;
         rb = Copy.Component<Rigidbody2D>(rbCopy, gameObject);
         Destroy(module.editor.window);

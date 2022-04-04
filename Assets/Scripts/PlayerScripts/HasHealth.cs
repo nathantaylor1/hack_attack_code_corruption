@@ -30,22 +30,18 @@ public class HasHealth : MonoBehaviour
         module = GetComponent<CodeModule>();
         sr = GetComponent<SpriteRenderer>();
         maxHealth = health;
-        if(gameObject.layer != LayerMask.NameToLayer("Player"))
+        if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            SetHealthVisibility(false);
             EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
-            EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
+            //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
+            SetHealthVisibility(false);
         }
         updateHealthDisplay();
     }
 
     public void RestoreFullHealth(int _)
     {
-        Heal(maxHealth);
-    }
-
-    public void RestoreFullHealth()
-    {
+        //Debug.Log("Health restored");
         Heal(maxHealth);
     }
 
@@ -55,6 +51,7 @@ public class HasHealth : MonoBehaviour
         if (isInvincible) return;
 
         health -= damage_amount;
+        if (health < 0) health = 0;
 
         if (gameObject.layer != LayerMask.NameToLayer("Player"))
         {
@@ -102,6 +99,7 @@ public class HasHealth : MonoBehaviour
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player")) {
             //GameManager.instance.ResetLevel();
+            health = maxHealth;
             EventManager.OnPlayerDeath?.Invoke();
         } 
         else
@@ -140,6 +138,7 @@ public class HasHealth : MonoBehaviour
 
     void SetHealthVisibility(bool _switch)
     {
+        if (gameObject.tag == "Player") return;
         Transform bar = transform.Find("HealthBar");
         foreach (Transform child in bar)
         {

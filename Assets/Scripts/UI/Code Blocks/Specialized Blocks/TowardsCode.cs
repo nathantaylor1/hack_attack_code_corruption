@@ -48,7 +48,7 @@ public class TowardsCode : CodeWithParameters
     {
         ExecuteCode();
         //print("val: " + val);
-        Debug.Log("Cursor direction: " + (Vector2)(object)val);
+        //Debug.Log("Cursor direction: " + (Vector2)(object)val);
         return val;
     }
 }

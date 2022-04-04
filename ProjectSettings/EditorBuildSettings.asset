@@ -5,16 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Build Scenes/Analytics.unity
     guid: 77232a2bfaef72e4b9361d878bfe439e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Build Scenes/Tutorial01.unity
     guid: 7e072e1953bbc434f833c8c3b51de2d4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Build Scenes/CustomLevel01.unity
     guid: 88ad2b191a1e1474abe2c62b12672919
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Build Scenes/EndScreen.unity
     guid: 85785bf9a281dbd42bfe1136d00b7a44
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/LAB_Checkpoints.unity
+    guid: 70cf57fc34f350c42b84873d86b09f46
   m_configObjects: {}

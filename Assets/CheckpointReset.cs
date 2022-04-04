@@ -6,40 +6,71 @@ public class CheckpointReset : MonoBehaviour
 {
     [HideInInspector]
     public bool saveOnStart = true;
+    [HideInInspector]
+    //public bool isCurrentCopy = false;
+    //protected Vector3 position;
     protected GameObject copy = null;
 
     protected virtual void Awake()
     {
+        EventManager.OnCheckpointSave.AddListener(SaveToCheckpoint);
+        EventManager.OnPlayerDeath.AddListener(ResetToCheckpoint);
+        //position = transform.position;
         if (saveOnStart)
         {
             //Debug.Log("saveOnStart is true");
             saveOnStart = false;
+            //isCurrentCopy = true;
             SaveToCheckpoint(0);
         }
-        EventManager.OnCheckpointSave.AddListener(SaveToCheckpoint);
-        EventManager.OnPlayerDeath.AddListener(ResetToCheckpoint);
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     protected virtual void SaveToCheckpoint(int _)
     {
-        if (copy != null)
+        if (gameObject.activeInHierarchy)
         {
-            Destroy(copy);
+            /*if (copy != null)
+            {
+                Debug.Log("Destroying " + copy.name);
+                Destroy(copy);
+            }*/
+            copy = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+            /*if (copy.TryGetComponent(out CheckpointReset cr))
+            {
+                cr.isCurrentCopy = false;
+            }*/
+            //Debug.Log("Saving " + gameObject.name + " to " + copy.name);
+            //copy.SetActive(false);
         }
-        //Debug.Log("Before executing Instantiate");
-        copy = Instantiate(gameObject, transform.position, Quaternion.identity);
-        //Debug.Log("After executing Instantiate");
-        //Debug.Log("Original saveOnStart: " + saveOnStart);
-        //Debug.Log("Copy saveOnStart: " + copy.GetComponent<CheckpointReset>().saveOnStart);
-        copy.SetActive(false);
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void ResetToCheckpoint()
     {
-        if (copy != null)
+        if (gameObject.activeInHierarchy)
         {
-            copy.SetActive(true);
+            //Debug.Log("Restoring " + gameObject.name);
+            /*if (copy != null)
+            {
+                Debug.Log(" from " + copy.name);
+                copy.SetActive(true);
+                if (copy.TryGetComponent(out CheckpointReset cr))
+                {
+                    cr.isCurrentCopy = true;
+                }
+            }*/
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else
+        {
+            gameObject.SetActive(true);
+        }
     }
 }
