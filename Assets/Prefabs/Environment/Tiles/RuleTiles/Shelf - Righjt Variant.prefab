@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: -7294917772218093063, guid: 8a1f398c0032ab140beed0749d0f0bb1, type: 3}
     - target: {fileID: 8950134078740102267, guid: 461df6ec66989b449ad299cecc2eec2a, type: 3}
       propertyPath: m_Name
-      value: Shelf - Righjt
+      value: Shelf - Righjt Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 461df6ec66989b449ad299cecc2eec2a, type: 3}

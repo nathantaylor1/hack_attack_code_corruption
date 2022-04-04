@@ -374,6 +374,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1143076699216372999}
     m_Modifications:
+    - target: {fileID: -7181463176170589727, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
+      propertyPath: window
+      value: 
+      objectReference: {fileID: 3552580914086326860}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
       value: 'Always Execute
@@ -1885,11 +1889,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8648557998518463193, guid: b30999c97408bda4897f22bbb8237eb8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 341.4
+      value: 334.8
       objectReference: {fileID: 0}
     - target: {fileID: 8648557998518463193, guid: b30999c97408bda4897f22bbb8237eb8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -121.4
+      value: -86.8
       objectReference: {fileID: 0}
     - target: {fileID: 8648557998518463193, guid: b30999c97408bda4897f22bbb8237eb8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
