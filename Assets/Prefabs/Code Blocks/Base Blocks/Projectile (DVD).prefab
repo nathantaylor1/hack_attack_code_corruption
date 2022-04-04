@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5324778398606628112, guid: b1afffc9efea2044591511c06ac8eba5, type: 3}
+  m_Sprite: {fileID: 5404547623338113233, guid: 98afee910d326ed4593dec2a70547886, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -112,7 +112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2944009467672941420, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21.875
+      value: -14.0625
       objectReference: {fileID: 0}
     - target: {fileID: 4603283076457879058, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_Pivot.x
@@ -200,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4603283076457879059, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_Name
-      value: Projectile (Coffee Pot)
+      value: Projectile (DVD)
       objectReference: {fileID: 0}
     - target: {fileID: 5159926782019652167, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_AnchorMax.y
@@ -236,6 +236,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5532185073656830361, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532185073656830361, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5532185073656830361, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
@@ -303,5 +307,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnType: projectile
-  prefab: {fileID: 5156490979606078918, guid: 89fb4e959c39abd4d8bc846984b71eb9, type: 3}
+  prefab: {fileID: 5156490979606078918, guid: e402c80c43e9b5f49905787ac8b420c0, type: 3}
   entityImage: {fileID: 5701202505245332927}

@@ -19,6 +19,8 @@ public class Explode : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.CompareTag("BombEnemy")) return;
+        
         int layer = col.gameObject.layer;
         if (!(layer == 6 || layer == 7 || layer == 10)) return;
         rb.velocity = Vector3.zero;
