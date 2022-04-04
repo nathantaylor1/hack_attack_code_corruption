@@ -95,16 +95,6 @@ Tilemap:
   m_GameObject: {fileID: 8443665226178113811}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: -1, y: -1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 3
-      m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741826
   - first: {x: -1, y: 2, z: 0}
     second:
       serializedVersion: 2
@@ -143,8 +133,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 73b099e227e0c564ca8aa4a4e361e749, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 2aeff73b54906a740bb90a962a854a30, type: 2}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 75ba5555ba7075a4695b886f13660dc0, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: -7591292139674439279, guid: 030749b13b3e8d643a72d5e879b6f3bb, type: 3}
@@ -152,10 +142,10 @@ Tilemap:
     m_Data: {fileID: -2540257402327053017, guid: 030749b13b3e8d643a72d5e879b6f3bb, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1255873654920547483, guid: f153313b59f1c6c4da6fc054e5efc2ba, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -1337156740330614419, guid: 8a1f398c0032ab140beed0749d0f0bb1, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 4
+  - m_RefCount: 3
     m_Data:
       e00: 1
       e01: 0
@@ -174,9 +164,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 4
+  - m_RefCount: 3
     m_Data: {r: 1, g: 1, b: 1, a: 1}
-  m_TileObjectToInstantiateArray: []
+  - m_RefCount: 0
+    m_Data: {r: 4.4509535e-13, g: 4.4509535e-13, b: 4.4509535e-13, a: 4.4509535e-13}
+  m_TileObjectToInstantiateArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -5, y: -2, z: 0}
@@ -310,6 +304,10 @@ PrefabInstance:
     - target: {fileID: 6883401385304811879, guid: fd3f160ee570a5f42bd2e2921b27b56d, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883401385535482556, guid: fd3f160ee570a5f42bd2e2921b27b56d, type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd3f160ee570a5f42bd2e2921b27b56d, type: 3}
@@ -1024,7 +1022,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8387642471864220666, guid: 865839b0d635d034bae3593f3fbdefda, type: 3}
   m_PrefabInstance: {fileID: 8715358982599735405}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1656165632246371040
+--- !u!114 &8403140755765230981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

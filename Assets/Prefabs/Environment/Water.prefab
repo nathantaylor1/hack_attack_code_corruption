@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 954473349853719509}
   - component: {fileID: 954473349853719508}
   m_Layer: 7
-  m_Name: Spikes
+  m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 474aad41649d1c645a12352699b58d98, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.7330103, a: 1}
+  m_Color: {r: 0.007843138, g: 0.29411766, b: 0.5254902, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
