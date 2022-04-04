@@ -73,7 +73,7 @@ public class HasHealth : MonoBehaviour
         Color dmg = new Color(.6f, .2f, .2f, .8f);
         for (int i = 0; i < 60; i++)
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
             if (i % 10 == 0 && sr != null) {
                 sr.color = dmg;
             } else if (i % 5 == 0 && sr != null) {
