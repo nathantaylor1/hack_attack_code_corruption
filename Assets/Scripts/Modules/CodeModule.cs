@@ -5,27 +5,9 @@ using UnityEngine.Events;
 
 public class CodeModule : MonoBehaviour
 {
-    /*[System.Serializable]
-    public class Stat<T>
-    {
-        public bool statApplies = true;
-        public T stat;
-
-        public Stat() { }
-
-        public Stat(T _stat)
-        {
-            stat = _stat;
-        }
-
-        public Stat(bool _statApplies, T _stat)
-        {
-            statApplies = _statApplies;
-            stat = _stat;
-        }
-    }*/
     public UnityEvent OnCheckCollision = new UnityEvent();
 
+    public static float hackingDistance = 4f;
 
     [Header("Base Stats")]
 
@@ -101,6 +83,8 @@ public class CodeModule : MonoBehaviour
 
     [HideInInspector]
     public bool disableOnStart = false;
+    [HideInInspector]
+    public bool hackable = false;
 
     protected virtual void Awake()
     {
@@ -125,6 +109,44 @@ public class CodeModule : MonoBehaviour
         else
         {
             disableOnStart = true;
+        }
+
+        if (TryGetComponent(out HasHealth helth))
+        {
+            helth.OnDeath.AddListener(EnableHackable);
+        }
+
+        if (editor.window.TryGetComponent(out EditorWindow ew))
+        {
+            ew.ToggleCanExecute(true);
+        }
+    }
+
+    public virtual void EnableHackable()
+    {
+        hackable = true;
+        if (editor.window.TryGetComponent(out EditorWindow ew))
+        {
+            ew.ToggleCanExecute(false);
+        }
+        StartCoroutine(HackableListener());
+    }
+
+    public virtual IEnumerator HackableListener()
+    {
+        while (hackable)
+        {
+            if (Vector2.Distance(GameManager.instance.player.transform.position, transform.position) <= hackingDistance)
+            {
+                anim.SetTrigger("Hackable");
+                ToggleEditing(true);
+            }
+            else
+            {
+                anim.SetTrigger("Death");
+                ToggleEditing(false);
+            }
+            yield return new WaitForFixedUpdate();
         }
     }
 

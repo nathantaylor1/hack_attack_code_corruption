@@ -195,12 +195,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 809860931768346949, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 809860931768346949, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 809860931768346949, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7467797750716825256, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825256, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7467797750716825256, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: m_TagString
@@ -390,6 +402,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2855063627495985755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141975136933099486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cd094dfe1d8f5841931269a11c9a771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveOnStart: 1
 --- !u!114 &1244292285335372265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,22 +452,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32425b34a2ba6484892d2302d7822e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   health: 5
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   health_display_time: 3
   sm: {fileID: 0}
   codeBlockToDrop: {fileID: 0}
---- !u!114 &-2855063627495985755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9141975136933099486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cd094dfe1d8f5841931269a11c9a771, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveOnStart: 1

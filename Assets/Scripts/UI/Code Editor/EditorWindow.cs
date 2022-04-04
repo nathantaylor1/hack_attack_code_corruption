@@ -33,6 +33,18 @@ public class EditorWindow : MonoBehaviour
         }
     }
 
+    public void ToggleCanExecute(bool canExecute)
+    {
+        foreach (Transform child in codeSpaces)
+        {
+            CodeSpace cs = child.GetComponentInChildren<CodeSpace>();
+            if (cs != null)
+            {
+                cs.ToggleCanExecute(canExecute);
+            }
+        }
+    }
+
     public void ToggleEnabled(bool enabled)
     {
         foreach (Transform child in codeSpaces)

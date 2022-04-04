@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class ModuleCheckpointReset : CheckpointReset
 {
-    //bool activateButton = false;
     CodeModule module;
-    //CodeModule copyModule = null;
 
     protected override void Awake()
     {
@@ -23,8 +21,6 @@ public class ModuleCheckpointReset : CheckpointReset
     {
         if (!gameObject.activeInHierarchy)
         {
-            //copyModule = copy.GetComponent<CodeModule>();
-            //activateButton = copyModule.editor.button.activeInHierarchy;
             Destroy(module.editor.window);
             Destroy(module.editor.button);
         }
@@ -33,16 +29,6 @@ public class ModuleCheckpointReset : CheckpointReset
 
     protected override void ResetToCheckpoint()
     {
-        /*if (copyModule != null)
-        {
-            *//*if (TryGetComponent(out CodeModule module))
-            {
-                Destroy(module.editor.window);
-                Destroy(module.editor.button);
-            }*//*
-            copyModule.editor.window.SetActive(true);
-            copyModule.editor.button.SetActive(activateButton);
-        }*/
         if (gameObject.activeInHierarchy)
         {
             Destroy(module.editor.window);

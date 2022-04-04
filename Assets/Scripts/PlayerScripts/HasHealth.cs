@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class HasHealth : MonoBehaviour
 {
+    public UnityEvent OnDeath = new UnityEvent();
+
     public float health = 5;
     //public TextMeshProUGUI health_display;
     public Slider healthBarSlider;
@@ -17,6 +20,7 @@ public class HasHealth : MonoBehaviour
     IEnumerator inCombat;
     private SpriteRenderer sr;
     private float maxHealth;
+    protected Animator anim;
 
     public bool IsFullHealth()
     {
@@ -29,6 +33,7 @@ public class HasHealth : MonoBehaviour
     {
         module = GetComponent<CodeModule>();
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         maxHealth = health;
         if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
@@ -95,6 +100,13 @@ public class HasHealth : MonoBehaviour
         updateHealthDisplay();
     }
 
+    protected void Revive()
+    {
+        health = maxHealth;
+        updateHealthDisplay();
+        anim.SetTrigger("Idle");
+    }
+
     protected virtual void Death()
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player")) {
@@ -107,12 +119,14 @@ public class HasHealth : MonoBehaviour
             if (codeBlockToDrop != null)
                 codeBlockToDrop.position = transform.position;
             //gameObject.SetActive(false);
-            if (TryGetComponent(out CodeModule cm))
+            /*if (TryGetComponent(out CodeModule cm))
             {
                 Destroy(cm.editor.window);
                 Destroy(cm.editor.button);
             }
-            Destroy(gameObject);
+            Destroy(gameObject);*/
+            anim.SetTrigger("Death");
+            OnDeath?.Invoke();
         }
     }
 
@@ -130,8 +144,11 @@ public class HasHealth : MonoBehaviour
             healthBarFill.color = fillColor;
         } else {
             // x scale should be percent
-            sm.transform.localScale = new Vector3(percent, sm.transform.localScale.y, 1);
-            sm.transform.localPosition = new Vector3(-removed / 2f, 0, 0);
+            if (sm != null)
+            {
+                sm.transform.localScale = new Vector3(percent, sm.transform.localScale.y, 1);
+                sm.transform.localPosition = new Vector3(-removed / 2f, 0, 0);
+            }
         }
     }
 

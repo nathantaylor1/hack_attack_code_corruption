@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour
     protected Collider2D col;
 
     // The amount of time that it takes before a checkpoint can be saved after a previous
-    // save
+    // save (prevents double saves from the player's two colliders)
     protected static float refreshTime = 0.1f;
     protected bool canSave = true;
 
@@ -23,7 +23,6 @@ public class Checkpoint : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
         EventManager.OnCheckpointSave.AddListener(UpdateCheckpoint);
-        EventManager.OnPlayerDeath.AddListener(ResetToCheckpoint);
 
         sr.sprite = inactiveSprite;
     }
@@ -62,14 +61,6 @@ public class Checkpoint : MonoBehaviour
         {
             isActive = false;
             sr.sprite = inactiveSprite;
-        }
-    }
-
-    protected void ResetToCheckpoint()
-    {
-        if (isActive)
-        {
-            
         }
     }
 }

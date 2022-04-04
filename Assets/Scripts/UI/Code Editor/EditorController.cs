@@ -93,7 +93,7 @@ public class EditorController : MonoBehaviour
     {
         /*Debug.Log("window: " + _window);
         Debug.Log("desktop: " + desktop);*/
-        _window.transform.parent = desktop.transform;
+        //_window.transform.parent = desktop.transform;
         //_button.transform.parent = taskbar.transform;
         if (_button.TryGetComponent(out EditorButton eb))
         {

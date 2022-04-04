@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
+      propertyPath: m_text
+      value: Always Execute
+      objectReference: {fileID: 0}
+    - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5306143664062352412, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -93,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5306143664062352413, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_Name
-      value: Editor Tab
+      value: Always Execute Tab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
