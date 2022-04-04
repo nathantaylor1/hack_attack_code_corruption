@@ -106,7 +106,13 @@ public class HasHealth : MonoBehaviour
         {
             if (codeBlockToDrop != null)
                 codeBlockToDrop.position = transform.position;
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            if (TryGetComponent(out CodeModule cm))
+            {
+                Destroy(cm.editor.window);
+                Destroy(cm.editor.button);
+            }
+            Destroy(gameObject);
         }
     }
 

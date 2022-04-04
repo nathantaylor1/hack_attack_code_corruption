@@ -14,6 +14,7 @@ public class DashCode : CodeWithParameters
 
     IEnumerator Dash()
     {
+        module.anim.SetTrigger("Dash");
         isDashing = true;
         Vector2 direction = (Vector2)(object)GetParameter(0);
         float moveSpeed = (float)(object)GetParameter(1);
@@ -21,6 +22,7 @@ public class DashCode : CodeWithParameters
         module.rb.velocity = direction * moveSpeed * module.dashSpeed;
         yield return new WaitForSeconds(module.dashDuration);
         module.rb.velocity = Vector3.zero;
+        module.anim.SetTrigger("Idle");
         yield return new WaitForSeconds(reloadTime);
         //print("ready to dash");
         isDashing = false;
