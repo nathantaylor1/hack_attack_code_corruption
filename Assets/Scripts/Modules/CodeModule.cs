@@ -34,6 +34,9 @@ public class CodeModule : MonoBehaviour
     public float dashDuration = 1f;
     public float dashSpeed = 1f;
     public float accelerationSpeed = 1f;
+    public float meleeDamage = 1f;
+    [Tooltip("Time between attacks")]
+    public float attackDelay = 1.5f;
     [Tooltip("Time between dashes")]
     public float dashDelay = 3f;
     [Tooltip("The amount of time between attacks")]

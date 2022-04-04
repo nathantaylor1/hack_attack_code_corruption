@@ -11,6 +11,11 @@ public class IfCode : CodeWithBodies
             GetBody(0).SetModule(module);
             GetBody(0).ExecuteCode();
         }
+        else
+        {
+            GetBody(0).SetModule(module);
+            GetBody(0).StopExecution();
+        }
         base.ExecuteCode();
     }
 }

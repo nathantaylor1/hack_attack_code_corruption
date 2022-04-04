@@ -31,6 +31,7 @@ public class CrawlCode : CodeWithParameters
     public override void StopExecution()
     {
         executing = false;
+        rb = module.rb;
         rb.velocity = Vector2.zero;
         base.StopExecution();
     }
