@@ -9,12 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1716491547369786157, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Type
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1716491547369786157, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6931339683150358059, guid: 6e094ff6941456043b6547e5cfb00f9f, type: 3}
+      objectReference: {fileID: 1515622694917723629, guid: a0fe48803d6d47242b025a7c467fe8d1, type: 3}
     - target: {fileID: 5885138499442398628, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_text
       value: Computer
