@@ -181,6 +181,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   moveSpeed: 1.5
+  projectileSpeed: 0.5
   jumpSpeed: 2
   dashDuration: 1
   dashSpeed: 1

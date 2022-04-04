@@ -139,7 +139,8 @@ MonoBehaviour:
   OnCheckCollision:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 20
+  moveSpeed: 10
+  projectileSpeed: 1
   jumpSpeed: 5
   dashDuration: 1
   dashSpeed: 1
@@ -165,6 +166,8 @@ MonoBehaviour:
   col: {fileID: 0}
   go: {fileID: 0}
   anim: {fileID: 0}
+  disableOnStart: 0
+  hackable: 0
 --- !u!114 &5156490979606078913
 MonoBehaviour:
   m_ObjectHideFlags: 0
