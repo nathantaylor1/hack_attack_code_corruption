@@ -15,9 +15,7 @@ public class CrawlCode : CodeWithParameters
     private bool hasTurned;
     private readonly LayerMask glm = 1 << 7;
     private bool executing = false;
-    private bool didCheck = false;
-    private bool facingLeft = true;
-
+    public bool canFlip = true;
     public override void ExecuteCode()
     {
         executing = true;
@@ -26,29 +24,53 @@ public class CrawlCode : CodeWithParameters
         col = module.col;
         tf = module.transform;
         anim = module.anim;
+        bds = col.bounds;
         if (executing && tf && col && rb) {
-            Move();
+            if (CustomGrounded()) {
+                rb.gravityScale = 0;
+                Move();
+                CheckWall();
+                CheckGround();
+            } else {
+                rb.gravityScale = 1;
+            }
         }
-        didCheck = false;
 
         base.ExecuteCode();
+    }
+
+    IEnumerator FlipBuffer() {
+        yield return new WaitForSeconds(.5f);
+        canFlip = true;
     }
 
     public override void StopExecution()
     {
         executing = false;
         rb = module.rb;
+        // rb.gravityScale = 0;
         rb.velocity = Vector2.zero;
         base.StopExecution();
     }
-
-    private void Update()
-    {
-        if (!executing || didCheck) return;
-        bds = col.bounds;
-        CheckWall();
-        CheckGround();
-        didCheck = true;
+    bool CustomGrounded() {
+        Vector2 size3 = new Vector3(.3f, .3f, 0);
+        int layer = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Movables") | (1 << 29));
+        var offset3 = (Vector2)tf.up * -1 * bds.extents.x;
+        // how much wider should the check be than size
+        var add = 1.1f;
+        if (Mathf.Abs(tf.up.x) > Mathf.Abs(tf.up.y) ) {
+            // means on a wall
+            size3.y += add;
+        } else {
+            // means on floor or ceiling
+            size3.x += add;
+        }
+        if (Physics2D.BoxCast(tf.position + (Vector3)offset3, size3, 0f, tf.up * -1, 0.05f, layer))
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     void CheckGround()
@@ -57,30 +79,24 @@ public class CrawlCode : CodeWithParameters
         Vector2 size = new Vector2(bds.extents.x / 2 - 0.05f, bds.extents.y / 2 - 0.05f);
         Vector2 direction = -tf.up;
         var offset = new Vector2();
-        offset = -tf.right * (bds.extents.x / 2f);
-        offset += (Vector2)(-tf.up * (bds.extents.x / 2f + .25f));
+        offset = -tf.right * (bds.extents.x);
+        offset += (Vector2)(-tf.up * (bds.extents.x / 2f + .35f));
 
-        RaycastHit2D hit = //Physics2D.Raycast(origin, direction, bds.extents.y + 0.05f, glm);
-                           Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, glm);;
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, glm);
         if (!hasTurned && hit) return;
         if (hasTurned && !hit) return;
-        // if (hit) hasTurned = false;
         if (hasTurned && hit)  {
             hasTurned = false;
             return;
         }
 
-        if (facingLeft)
-            tf.Rotate(tf.forward, -90f, Space.World);
-        else
-            tf.Rotate(tf.forward, 90f, Space.World);
+        tf.Rotate(tf.forward, -90f, Space.World);
         
         hasTurned = true;
         ClampRotations();
         rb.velocity = Vector2.zero;
-        Debug.Log(tf.right);
-        Debug.Log("called");
-        // Debug.Break();
+        canFlip = false;
+        StartCoroutine(FlipBuffer());
     }
 
     void CheckWall()
@@ -90,44 +106,36 @@ public class CrawlCode : CodeWithParameters
         Vector2 direction = tf.right;
         
         var offset = new Vector2();
-        offset = tf.right * (bds.extents.x / 2f + .25f);
+        offset = tf.right * (bds.extents.x / 2f + .05f);
         offset += (Vector2)(tf.up * bds.extents.x / 2f);
-        RaycastHit2D hit = //Physics2D.Raycast(origin, direction, bds.extents.x + 0.05f, glm);
-            Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.05f, glm);
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.05f, glm);
         
         if (!hit) return;
-        
-        Debug.Log(tf.right);
-        if (facingLeft)
-            tf.Rotate(tf.forward, 90f, Space.World);
-        else
-            tf.Rotate(tf.forward, -90f, Space.World);
+        tf.Rotate(tf.forward, 90f, Space.World);
         
         ClampRotations();
         rb.velocity = Vector2.zero;
-        // Debug.Log(tf.right);
-        // Debug.Log("called");
-        // Debug.Break();
+        canFlip = false;
+        StartCoroutine(FlipBuffer());
     }
 
     private void Move()
     {
         Vector2 par = (Vector2)(object)GetParameter(0);
         bool dir;
-        if (tf.right.y == 0) {
-            dir = Math.Sign(tf.right.x) != Math.Sign(par.x);
+        if (Mathf.RoundToInt(tf.right.y) == 0) {
+            dir = Math.Sign(tf.right.x) != Math.Sign(par.x) && par.x != 0;
         } else {
-            dir = Math.Sign(tf.right.y) != Math.Sign(par.y);
+            dir = Math.Sign(tf.right.y) != Math.Sign(par.y) && par.y != 0;
         }
-        // care about x vice cersa
-        // Debug.Log(tf.up);
-        // Debug.Log("player dir " + par);
-        // Debug.Log(tf.right);
 
-        if (dir && !hasTurned)
+        ClampRotations();
+        if (dir && canFlip)
         {
-            facingLeft = !facingLeft;
             tf.Rotate(tf.up, 180, Space.World);
+            canFlip = false;
+            hasTurned = true;
+            StartCoroutine(FlipBuffer());
         }
 
         float speed = module.moveSpeed * (float)(object)GetParameter(1);
