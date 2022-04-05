@@ -48,7 +48,7 @@ public class CrawlCode : CodeWithParameters
     {
         executing = false;
         rb = module.rb;
-        // rb.gravityScale = 0;
+        rb.gravityScale = 1;
         rb.velocity = Vector2.zero;
         base.StopExecution();
     }
