@@ -22,7 +22,6 @@ public class SeesCode : CodeWithParameters
     public override dynamic ReturnValue()
     {
         ExecuteCode();
-        Debug.Log(val);
         return val;
     }
 }

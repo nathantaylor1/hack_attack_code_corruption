@@ -100,7 +100,7 @@ public class HasHealth : MonoBehaviour
         updateHealthDisplay();
     }
 
-    protected void Revive()
+    public void Revive()
     {
         health = maxHealth;
         updateHealthDisplay();

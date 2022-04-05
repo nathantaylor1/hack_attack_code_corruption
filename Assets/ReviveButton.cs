@@ -29,6 +29,7 @@ public class ReviveButton : MonoBehaviour
         {
             ew.ToggleCanExecute(true);
             ew.GetModule().hackable = false;
+            ew.GetModule().GetComponent<HasHealth>().Revive();
             EditorController.instance.SafeClose();
         }
     }
