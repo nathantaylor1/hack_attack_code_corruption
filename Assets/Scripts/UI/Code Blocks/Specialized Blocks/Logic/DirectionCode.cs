@@ -24,7 +24,7 @@ public class DirectionCode : Code
         arrowImage.sprite = arrowIcon;
         Quaternion quat = new Quaternion();
         quat.SetFromToRotation(Vector2.up, val);
-        arrowImage.transform.rotation *= quat;
+        arrowImage.transform.rotation = new Quaternion(0, 0, 0, 1) * quat;
         /*if(val.x == 1)
         {
             text.text = "-->";
