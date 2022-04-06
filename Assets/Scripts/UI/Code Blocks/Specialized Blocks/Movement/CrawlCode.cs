@@ -15,7 +15,7 @@ public class CrawlCode : CodeWithParameters
     private bool hasTurned;
     private readonly LayerMask glm = 1 << 7;
     private bool executing = false;
-
+    public bool canFlip = true;
     public override void ExecuteCode()
     {
         executing = true;
@@ -24,88 +24,126 @@ public class CrawlCode : CodeWithParameters
         col = module.col;
         tf = module.transform;
         anim = module.anim;
+        bds = col.bounds;
+        if (executing && tf && col && rb) {
+            if (CustomGrounded()) {
+                rb.gravityScale = 0;
+                Move();
+                CheckWall();
+                CheckGround();
+            } else {
+                rb.gravityScale = 1;
+            }
+        }
 
         base.ExecuteCode();
+    }
+
+    IEnumerator FlipBuffer() {
+        yield return new WaitForSeconds(.5f);
+        canFlip = true;
     }
 
     public override void StopExecution()
     {
         executing = false;
         rb = module.rb;
+        rb.gravityScale = 1;
         rb.velocity = Vector2.zero;
         base.StopExecution();
     }
-
-    private void Update()
-    {
-        if (!executing) return;
-        bds = col.bounds;
-        CheckWall();
-        CheckGround();
-        ClampRotations();
+    bool CustomGrounded() {
+        Vector2 size3 = new Vector3(.3f, .3f, 0);
+        int layer = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Movables") | (1 << 29));
+        var offset3 = (Vector2)tf.up * -1 * bds.extents.x;
+        // how much wider should the check be than size
+        var add = 1.1f;
+        if (Mathf.Abs(tf.up.x) > Mathf.Abs(tf.up.y) ) {
+            // means on a wall
+            size3.y += add;
+        } else {
+            // means on floor or ceiling
+            size3.x += add;
+        }
+        if (Physics2D.BoxCast(tf.position + (Vector3)offset3, size3, 0f, tf.up * -1, 0.05f, layer))
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     void CheckGround()
     {
         Vector2 origin = bds.center;
-        Vector2 size = new Vector2(2f * bds.extents.x - 0.05f, 2 * bds.extents.y - 0.05f);
+        Vector2 size = new Vector2(bds.extents.x / 2 - 0.05f, bds.extents.y / 2 - 0.05f);
         Vector2 direction = -tf.up;
-        
-        RaycastHit2D hit = Physics2D.BoxCast(origin, size, 0f, direction, 0.1f, glm);;
+        var offset = new Vector2();
+        offset = -tf.right * (bds.extents.x);
+        offset += (Vector2)(-tf.up * (bds.extents.x / 2f + .35f));
 
-        if (hit)
-        {
-            hasTurned = true;
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, glm);
+        if (!hasTurned && hit) return;
+        if (hasTurned && !hit) return;
+        if (hasTurned && hit)  {
+            hasTurned = false;
             return;
         }
-        if (!hasTurned) return;
 
-        hasTurned = false;
-        if (facingRight)
-            tf.Rotate(tf.forward, -90f);
-        else
-            tf.Rotate(tf.forward, 90f);
+        tf.Rotate(tf.forward, -90f, Space.World);
+        
+        hasTurned = true;
+        ClampRotations();
         rb.velocity = Vector2.zero;
+        canFlip = false;
+        StartCoroutine(FlipBuffer());
     }
 
     void CheckWall()
     {
         Vector2 origin = bds.center;
-        Vector2 size = new Vector2(2f * bds.extents.x - 0.05f, 2 * bds.extents.y - 0.05f);
+        Vector2 size = new Vector2(bds.extents.x -.05f, bds.extents.y -.05f);
         Vector2 direction = tf.right;
         
-        RaycastHit2D hit = Physics2D.BoxCast(origin, size, 0f, direction, 0.05f, glm);
+        var offset = new Vector2();
+        offset = tf.right * (bds.extents.x / 2f + .05f);
+        offset += (Vector2)(tf.up * bds.extents.x / 2f);
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.05f, glm);
         
         if (!hit) return;
+        tf.Rotate(tf.forward, 90f, Space.World);
         
-        if (facingRight)
-            tf.Rotate(tf.forward, 90f);
-        else
-            tf.Rotate(tf.forward, -90f);
+        ClampRotations();
         rb.velocity = Vector2.zero;
-    }
-    
-    private void FixedUpdate()
-    {
-        if (!executing) return;
-        if (!tf || !col || !rb) return;
-        Move();
+        canFlip = false;
+        StartCoroutine(FlipBuffer());
     }
 
-    private bool facingRight = true;
     private void Move()
     {
-        //Vector2 dir = (Vector2)(object)GetParameter(0);
-        bool dir = (bool)(object)GetParameter(0);
+        Vector2 par = (Vector2)(object)GetParameter(0);
+        bool dir;
+        if (Mathf.RoundToInt(tf.right.y) == 0) {
+            dir = Math.Sign(tf.right.x) != Math.Sign(par.x) && par.x != 0;
+        } else {
+            dir = Math.Sign(tf.right.y) != Math.Sign(par.y) && par.y != 0;
+        }
 
-        if ((facingRight && !dir) || (!facingRight && dir))
+        ClampRotations();
+        if (dir && canFlip)
         {
-            facingRight = !facingRight;
-            tf.Rotate(tf.up, 180f);
+            tf.Rotate(tf.up, 180, Space.World);
+            canFlip = false;
+            hasTurned = true;
+            StartCoroutine(FlipBuffer());
         }
 
         float speed = module.moveSpeed * (float)(object)GetParameter(1);
-        rb.velocity = tf.right * speed * module.moveSpeed;
+        if (speed < 0.05f && speed > -0.05f)
+            anim.SetTrigger("Idle");
+        else
+            anim.SetTrigger("Run");
+        rb.velocity = tf.right * speed;
     }
 
     private void ClampRotations()

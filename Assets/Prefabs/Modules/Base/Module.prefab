@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7467797750716825260}
   - component: {fileID: 7467797750716825257}
   - component: {fileID: 809860931768346949}
+  - component: {fileID: 6472480467550516775}
   m_Layer: 0
   m_Name: Module
   m_TagString: Untagged
@@ -96,17 +97,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4903239b88ed9b94783f104cc6bced2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCheckCollision:
+    m_PersistentCalls:
+      m_Calls: []
   moveSpeed: 1
   jumpSpeed: 2
+  dashDuration: 1
+  dashSpeed: 1
+  accelerationSpeed: 1
+  dashDelay: 3
   reloadTime: 1
   moveSound: {fileID: 0}
   jumpSound: {fileID: 0}
   shootSound: {fileID: 0}
+  damageSound: {fileID: 0}
+  healSound: {fileID: 0}
   animationName: 
+  spawnedFromCode: 0
   editableOnStart: 0
   editor:
     window: {fileID: 0}
     button: {fileID: 0}
+  shootFrom: {fileID: 0}
+  father: {fileID: 0}
   rb: {fileID: 0}
   col: {fileID: 0}
   go: {fileID: 0}
@@ -132,3 +145,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6472480467550516775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7467797750716825256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90bff7abed8caf74fbbe4e7202fbb6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

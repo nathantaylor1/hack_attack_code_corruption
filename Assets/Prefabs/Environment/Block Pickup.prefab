@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6883401385304811882}
   - component: {fileID: 6883401385304811883}
   - component: {fileID: 674677470179246043}
+  - component: {fileID: -4536276390173655247}
   m_Layer: 14
   m_Name: Block Pickup
   m_TagString: Untagged
@@ -52,7 +53,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.75, y: 0.75}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,7 +132,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9f8c5b3f40a09ae4ab07c03644769078, type: 3}
+  m_Sprite: {fileID: 28551572683104855, guid: d385b126ad0a22f49873f4d8bafb8ae7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -142,6 +143,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-4536276390173655247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883401385304811879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc9c140a3b194349bd5d12118be6e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveOnStart: 1
 --- !u!1 &6883401385535482556
 GameObject:
   m_ObjectHideFlags: 0

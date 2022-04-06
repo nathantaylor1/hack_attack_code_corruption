@@ -369,9 +369,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2781481232348971520}
     m_Modifications:
+    - target: {fileID: -7181463176170589727, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
+      propertyPath: window
+      value: 
+      objectReference: {fileID: 4248187807217432848}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing "D"
+      value: While Holding "D"
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x
@@ -744,6 +748,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+--- !u!224 &8403768020421334797 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8845706416816339907, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+  m_PrefabInstance: {fileID: 1036511139602328782}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1333276431776375753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -960,9 +969,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2781481232348971520}
     m_Modifications:
+    - target: {fileID: -7181463176170589727, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
+      propertyPath: window
+      value: 
+      objectReference: {fileID: 174732229926953424}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing Left Click
+      value: While Holding LMB
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1557,9 +1570,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2781481232348971520}
     m_Modifications:
+    - target: {fileID: -7181463176170589727, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
+      propertyPath: window
+      value: 
+      objectReference: {fileID: 1155120300188712004}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing "A"
+      value: While Holding "A"
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1932,6 +1949,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+--- !u!224 &4248187807217432848 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8845706416816339907, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+  m_PrefabInstance: {fileID: 4627126817200538323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7740373844502906851 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3124810204869166384, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
@@ -2453,9 +2475,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2781481232348971520}
     m_Modifications:
+    - target: {fileID: -7181463176170589727, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
+      propertyPath: window
+      value: 
+      objectReference: {fileID: 8403768020421334797}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing Right Click
+      value: While Holding RMB
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2578,6 +2604,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Window
       objectReference: {fileID: 0}
+    - target: {fileID: 8437868469225879141, guid: 1af0fae346d70264dafee591e2310690, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9199163107590222440, guid: 1af0fae346d70264dafee591e2310690, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -2664,14 +2694,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1af0fae346d70264dafee591e2310690, type: 3}
---- !u!224 &2781481232830404073 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8478639886628504254, guid: 1af0fae346d70264dafee591e2310690, type: 3}
-  m_PrefabInstance: {fileID: 5995382368728700759}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2781481232348971520 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8478639888275952983, guid: 1af0fae346d70264dafee591e2310690, type: 3}
+  m_PrefabInstance: {fileID: 5995382368728700759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2781481232830404073 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8478639886628504254, guid: 1af0fae346d70264dafee591e2310690, type: 3}
   m_PrefabInstance: {fileID: 5995382368728700759}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6372261290605356219
@@ -3129,6 +3159,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3124810204869166384, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
   m_PrefabInstance: {fileID: 7693710382273922951}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1155120300188712004 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8845706416816339907, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+  m_PrefabInstance: {fileID: 7693710382273922951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8026021834413998700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3407,6 +3442,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3124810204869166384, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
   m_PrefabInstance: {fileID: 8026021834413998700}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1558363441851120047 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8845706416816339907, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+  m_PrefabInstance: {fileID: 8026021834413998700}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8696034264700983827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3680,6 +3720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+--- !u!224 &174732229926953424 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8845706416816339907, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+  m_PrefabInstance: {fileID: 8696034264700983827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8731660100403579837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3687,9 +3732,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2781481232348971520}
     m_Modifications:
+    - target: {fileID: -7181463176170589727, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
+      propertyPath: window
+      value: 
+      objectReference: {fileID: 1558363441851120047}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
-      value: Pressing "W" or "Space"
+      value: While Holding "Space"
       objectReference: {fileID: 0}
     - target: {fileID: 2980356301677125235, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_SizeDelta.x

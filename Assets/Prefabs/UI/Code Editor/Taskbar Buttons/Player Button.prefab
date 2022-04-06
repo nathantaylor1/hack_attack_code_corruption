@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1716491547369786157, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716491547369786157, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1515622694917723629, guid: a0fe48803d6d47242b025a7c467fe8d1, type: 3}
     - target: {fileID: 5885138499442398628, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_text
       value: Computer

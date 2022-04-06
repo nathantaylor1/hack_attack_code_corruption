@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class HasHealth : MonoBehaviour
 {
+    public UnityEvent OnDeath = new UnityEvent();
+
     public float health = 5;
     //public TextMeshProUGUI health_display;
     public Slider healthBarSlider;
@@ -17,6 +20,7 @@ public class HasHealth : MonoBehaviour
     IEnumerator inCombat;
     private SpriteRenderer sr;
     private float maxHealth;
+    protected Animator anim;
 
     public bool IsFullHealth()
     {
@@ -27,22 +31,32 @@ public class HasHealth : MonoBehaviour
 
     private void Awake()
     {
-        module = GetComponent<CodeModule>();
+        TryGetComponent<CodeModule>(out module);
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         maxHealth = health;
-        if(gameObject.layer != LayerMask.NameToLayer("Player"))
+        if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
+            //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
             SetHealthVisibility(false);
         }
         updateHealthDisplay();
     }
 
+    public void RestoreFullHealth(int _)
+    {
+        //Debug.Log("Health restored");
+        Heal(maxHealth);
+    }
+
     public void Damage(float damage_amount)
     {
-        Debug.Log("player takes damage");
-        if (isInvincible) return;
+        //Debug.Log("player takes damage");
+        if (isInvincible || health < 0) return;
 
         health -= damage_amount;
+        if (health < 0) health = 0;
 
         if (gameObject.layer != LayerMask.NameToLayer("Player"))
         {
@@ -51,7 +65,7 @@ public class HasHealth : MonoBehaviour
             StartCoroutine(inCombat);
         }
 
-        if (module.damageSound != null && AudioManager.instance != null)
+        if (module != null && module.damageSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.damageSound, module.transform.position);
         
         if(health <= 0) {
@@ -86,16 +100,33 @@ public class HasHealth : MonoBehaviour
         updateHealthDisplay();
     }
 
-    void Death()
+    public void Revive()
+    {
+        health = maxHealth;
+        updateHealthDisplay();
+        anim.SetTrigger("Idle");
+    }
+
+    protected virtual void Death()
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player")) {
-            GameManager.instance.ResetLevel();
-        } 
+            //GameManager.instance.ResetLevel();
+            health = maxHealth;
+            EventManager.OnPlayerDeath?.Invoke();
+        }
         else
         {
             if (codeBlockToDrop != null)
                 codeBlockToDrop.position = transform.position;
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            /*if (TryGetComponent(out CodeModule cm))
+            {
+                Destroy(cm.editor.window);
+                Destroy(cm.editor.button);
+            }
+            Destroy(gameObject);*/
+            anim.SetTrigger("Death");
+            OnDeath?.Invoke();
         }
     }
 
@@ -113,8 +144,11 @@ public class HasHealth : MonoBehaviour
             healthBarFill.color = fillColor;
         } else {
             // x scale should be percent
-            sm.transform.localScale = new Vector3(percent, sm.transform.localScale.y, 1);
-            sm.transform.localPosition = new Vector3(-removed / 2f, 0, 0);
+            if (sm != null)
+            {
+                sm.transform.localScale = new Vector3(percent, sm.transform.localScale.y, 1);
+                sm.transform.localPosition = new Vector3(-removed / 2f, 0, 0);
+            }
         }
     }
 
@@ -127,11 +161,12 @@ public class HasHealth : MonoBehaviour
 
     void SetHealthVisibility(bool _switch)
     {
+        if (gameObject.tag == "Player") return;
         Transform bar = transform.Find("HealthBar");
         foreach (Transform child in bar)
         {
             SpriteRenderer temp_sr = child.GetComponent<SpriteRenderer>();
-            if(temp_sr != null)
+            if (temp_sr != null)
             {
                 temp_sr.enabled = _switch;
             }

@@ -5,31 +5,14 @@ using UnityEngine.Events;
 
 public class CodeModule : MonoBehaviour
 {
-    /*[System.Serializable]
-    public class Stat<T>
-    {
-        public bool statApplies = true;
-        public T stat;
-
-        public Stat() { }
-
-        public Stat(T _stat)
-        {
-            stat = _stat;
-        }
-
-        public Stat(bool _statApplies, T _stat)
-        {
-            statApplies = _statApplies;
-            stat = _stat;
-        }
-    }*/
     public UnityEvent OnCheckCollision = new UnityEvent();
 
+    public static float hackingDistance = 4f;
 
     [Header("Base Stats")]
 
     public float moveSpeed = 1f;
+    public float projectileSpeed = 1f;
     public float jumpSpeed = 2f;
     public float dashDuration = 1f;
     public float dashSpeed = 1f;
@@ -75,11 +58,11 @@ public class CodeModule : MonoBehaviour
     [Tooltip("If checked, the module will never have an editor")]
     protected bool spawnedFromCode = false;
 
-    [SerializeField]
+    //[SerializeField]
     [Tooltip("Does the player start with access to this module's editor?")]
-    protected bool editableOnStart = false;
-    [SerializeField]
-    protected Editor editor;
+    public bool editableOnStart = false;
+    //[SerializeField]
+    public Editor editor = null;
     /*[SerializeField]
     protected GameObject editorWindow;
     [SerializeField]
@@ -92,6 +75,7 @@ public class CodeModule : MonoBehaviour
     // For use by Code
     [HideInInspector]
     public Rigidbody2D rb;
+    public Collider2D damagePart;
     [HideInInspector]
     public Collider2D col;
     [HideInInspector]
@@ -99,19 +83,82 @@ public class CodeModule : MonoBehaviour
     [HideInInspector]
     public Animator anim;
 
+    [HideInInspector]
+    public bool disableOnStart = false;
+    // [HideInInspector]
+    public bool hackable = false;
+
     protected virtual void Awake()
     {
+        //Debug.Log("In Awake");
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        if (damagePart == null) {
+            damagePart = col;
+        }
         go = gameObject;
         anim = GetComponent<Animator>();
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
         Debug.Log("button: " + editor.button);*/
-        if (!spawnedFromCode) {
+        if (!spawnedFromCode && editor != null && editor.window != null && editor.button != null) {
             editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
             ToggleEditing(editableOnStart);
+        }
+        if (disableOnStart && editor != null && editor.window != null)
+        {
+            editor.window.SetActive(false);
+            editor.button.SetActive(false);
+        }
+        else
+        {
+            disableOnStart = true;
+        }
+
+        if (hackable)
+        {
+            EnableHackable();
+        } else if (TryGetComponent(out HasHealth helth))
+        {
+            helth.OnDeath.AddListener(EnableHackable);
+        } 
+
+        if (editor != null && editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
+        {
+            ew.ToggleCanExecute(true);
+        }
+    }
+
+    public virtual void EnableHackable()
+    {
+        hackable = true;
+        if (editor.window.TryGetComponent(out EditorWindow ew))
+        {
+            ew.ToggleCanExecute(false);
+        }
+        StartCoroutine(HackableListener());
+    }
+
+    public virtual IEnumerator HackableListener()
+    {
+        while (hackable)
+        {
+            if (Vector2.Distance(GameManager.instance.player.transform.position, transform.position) <= hackingDistance)
+            {
+                if (anim != null) {
+                    anim.SetTrigger("Hackable");
+                }
+                ToggleEditing(true);
+            }
+            else
+            {
+                if (anim != null) {
+                    anim.SetTrigger("Death");
+                }
+                ToggleEditing(false);
+            }
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -119,6 +166,7 @@ public class CodeModule : MonoBehaviour
     {
         // TO DO: implement event-oriented canvas/raycast target enabling/disabling
         /*editor.window.SetActive(true);*/
+        editableOnStart = enabled;
         if (editor.window.TryGetComponent(out EditorWindow ew))
         {
             ew.ToggleEnabled(enabled);

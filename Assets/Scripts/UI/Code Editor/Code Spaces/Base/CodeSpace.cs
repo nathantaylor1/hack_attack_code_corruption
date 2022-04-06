@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CodeSpace : MonoBehaviour
 {
+    protected bool canExecute = true;
     [SerializeField]
     protected Code start;
     protected CodeModule module;
@@ -18,12 +19,21 @@ public class CodeSpace : MonoBehaviour
         module = _module;
     }
 
+    public virtual void ToggleCanExecute(bool _canExecute)
+    {
+        canExecute = _canExecute;
+    }
+
     protected virtual void StartExecution()
     {
-        if (start != null)
+        if (start != null && canExecute)
         {
             start.SetModule(module);
             start.ExecuteCode();
+        }
+        else if (!canExecute)
+        {
+            start.StopExecution();
         }
     }
 

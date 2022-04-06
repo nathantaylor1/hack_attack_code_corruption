@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6487129812560683501}
   - component: {fileID: 8733974587596835077}
-  - component: {fileID: 4962925266451941597}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Untagged
@@ -45,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015178978, y: -0.030384183}
+  m_Offset: {x: -0.02, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5192308, y: 0.5}
@@ -56,23 +55,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0873946, y: 1.3}
+  m_Size: {x: 1.12, y: 1.2}
   m_EdgeRadius: 0
---- !u!114 &4962925266451941597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307090062393864920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 003848fdf4e1a8c4593f35c5595a8461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage_amount: 1
-  velocityNeeded: 5
-  rb: {fileID: 2517249646753999765}
 --- !u!1 &2517249646753999764
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,12 +68,12 @@ GameObject:
   - component: {fileID: 2517249646753999761}
   - component: {fileID: 2517249646753999760}
   - component: {fileID: 2517249646753999765}
-  - component: {fileID: 2517249646753999767}
   - component: {fileID: 2517249646753999763}
   - component: {fileID: 5260935248493281007}
   - component: {fileID: 3039606749986047602}
   - component: {fileID: 6284934558205878911}
   - component: {fileID: 3554598599595334197}
+  - component: {fileID: 1620856265698475845}
   m_Layer: 10
   m_Name: Printer
   m_TagString: Untagged
@@ -110,6 +94,7 @@ Transform:
   m_Children:
   - {fileID: 6487129812560683501}
   - {fileID: 972312567336534900}
+  - {fileID: 3578244166259064985}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -153,12 +138,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4821024507896089857, guid: 473b1d9e501265946a45b6e027dcdbab, type: 3}
+  m_Sprite: {fileID: 5669505611678216638, guid: 4ff54fe0199c2f44ea67d9879ef25a50, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.625, y: 1.5625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -185,28 +170,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2517249646753999767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517249646753999764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 709db1a2e0fd1e049a28cb69b9235091, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthMask: {fileID: 448108470378767086}
-  viewDistance: 5
-  animationName: Printer
-  elapsed: 0
-  switchPositionRate: 0.12
-  power: 25000
-  walls:
-    serializedVersion: 2
-    m_Bits: 119
-  hitSound: {fileID: 8300000, guid: 0afc20b3c0a1119409ca3572cf776dc6, type: 3}
 --- !u!114 &2517249646753999763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,9 +182,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32425b34a2ba6484892d2302d7822e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 8
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  health: 3
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
+  health_display_time: 3
   sm: {fileID: 448108470378767086}
   codeBlockToDrop: {fileID: 0}
 --- !u!95 &5260935248493281007
@@ -256,18 +223,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015178978, y: 0.67}
+  m_Offset: {x: -0.02, y: 0.67}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5192308, y: 0.5}
+    pivot: {x: 0.5192308, y: 0.52}
     oldSize: {x: 1.625, y: 1.5625}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.625, y: 1.5625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.07, y: 0.06}
+  m_Size: {x: 1.12, y: 0.06}
   m_EdgeRadius: 0
 --- !u!61 &6284934558205878911
 BoxCollider2D:
@@ -285,9 +252,9 @@ BoxCollider2D:
   m_Offset: {x: 0.015178978, y: -0.69}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5192308, y: 0.5}
+    pivot: {x: 0.5192308, y: 0.52}
     oldSize: {x: 1.625, y: 1.5625}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.625, y: 1.5625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -310,8 +277,15 @@ MonoBehaviour:
   OnCheckCollision:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 1
-  jumpSpeed: 2
+  moveSpeed: 2
+  projectileSpeed: 1
+  jumpSpeed: 3
+  dashDuration: 0.25
+  dashSpeed: 15
+  accelerationSpeed: 2
+  meleeDamage: 1
+  attackDelay: 1
+  dashDelay: 1
   reloadTime: 1
   moveSound: {fileID: 0}
   jumpSound: {fileID: 0}
@@ -319,17 +293,63 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: d431444ab0c7cda4482eebbf75bff566, type: 3}
   healSound: {fileID: 0}
   animationName: 
-  spawnedFromCode: 1
+  spawnedFromCode: 0
   editableOnStart: 0
   editor:
-    window: {fileID: 0}
-    button: {fileID: 0}
-  shootFrom: {fileID: 0}
-  father: {fileID: 0}
+    window: {fileID: 3377673622172281261, guid: 39de064d6328d1a47802f9ded4692756, type: 3}
+    button: {fileID: 5316933662987065708, guid: 702351d14dbd7664e94d280412ec6e84, type: 3}
+  shootFrom: {fileID: 3633947796402147484}
+  father: {fileID: 2517249646753999764}
   rb: {fileID: 0}
-  col: {fileID: 0}
+  damagePart: {fileID: 8733974587596835077}
+  col: {fileID: 8733974587596835077}
   go: {fileID: 0}
   anim: {fileID: 0}
+  disableOnStart: 0
+  hackable: 0
+--- !u!114 &1620856265698475845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2517249646753999764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90bff7abed8caf74fbbe4e7202fbb6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveOnStart: 1
+--- !u!1 &3633947796402147484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3578244166259064985}
+  m_Layer: 0
+  m_Name: Shoot From
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3578244166259064985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3633947796402147484}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.96, y: 0.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2517249646753999761}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4229673164400815918
 PrefabInstance:
   m_ObjectHideFlags: 0

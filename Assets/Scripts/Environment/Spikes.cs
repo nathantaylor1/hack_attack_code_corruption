@@ -12,15 +12,16 @@ public class Spikes : MonoBehaviour
     private void OnCollisionStay2D(Collision2D col)
     {
         //Debug.Log("Collision with " + other.gameObject.name);
-        if (!_canDamage || !col.gameObject.CompareTag("Player")) return;
+        // Debug.Log("owww" + col.transform.tag);
+        if (!_canDamage || !col.transform.CompareTag("Player")) return;
         if (instantKill)
         {
-            Debug.Log("Spikes instantly killing " + col.gameObject.name);
+            //Debug.Log("Spikes instantly killing " + col.gameObject.name);
             col.gameObject.GetComponent<HasHealth>().Damage(1000f);
             return;
         }
         _canDamage = false;
-        Debug.Log("Damaging " + col.gameObject.name);
+        //Debug.Log("Damaging " + col.gameObject.name);
         col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * knockUpForce, ForceMode2D.Impulse);
         col.gameObject.GetComponent<HasHealth>().Damage(damageAmount);
         StartCoroutine(CO_DamageInterval());
@@ -28,7 +29,7 @@ public class Spikes : MonoBehaviour
 
     private IEnumerator CO_DamageInterval()
     {
-        Debug.Log("CO_DamageInterval");
+        //Debug.Log("CO_DamageInterval");
         yield return new WaitForSeconds(damageIntervalTime);
         _canDamage = true;
         yield return null;

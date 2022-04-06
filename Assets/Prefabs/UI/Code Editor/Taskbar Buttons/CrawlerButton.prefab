@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5885138499442398628, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_text
-      value: Crawler
+      value: Coffee Machine
       objectReference: {fileID: 0}
     - target: {fileID: 7174322176827018067, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Pivot.x
@@ -137,23 +137,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8168636148714103764, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Name
-      value: Player Button 1
+      value: CrawlerButton
       objectReference: {fileID: 0}
     - target: {fileID: 8169247459531306767, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4180894356041130536, guid: 17386a92c26c0504fbf2c1c48ebe3df2, type: 3}
+      objectReference: {fileID: 3069471235007696629, guid: f9088f761380d64459634b3923e1fc70, type: 3}
     - target: {fileID: 8169247459531306767, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8169247459531306767, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8169247459531306767, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}

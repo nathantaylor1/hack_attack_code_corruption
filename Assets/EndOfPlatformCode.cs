@@ -20,7 +20,7 @@ public class EndOfPlatformCode : Code
 
         // true if raycast does not hit anything
         val = !Physics2D.Raycast(offGroundPoint, Vector2.down, .15f, (1 << LayerMask.NameToLayer("Ground")));
-        Debug.DrawRay(offGroundPoint, Vector3.down * .15f);
+        // Debug.DrawRay(offGroundPoint, Vector3.down * .15f);
         base.ExecuteCode();
     }
 

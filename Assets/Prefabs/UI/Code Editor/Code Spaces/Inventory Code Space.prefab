@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6946492841462156972}
   - component: {fileID: 7867160344959248930}
   - component: {fileID: 8032102463004603796}
+  - component: {fileID: 3144980331104606711}
   m_Layer: 5
   m_Name: FitBlocks
   m_TagString: Untagged
@@ -64,7 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7257e56edb963024e8ef8d25eb43c85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &6946492841462156972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +129,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3144980331104606711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5315721003505792536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f5a0e0abafca74ba250fba8a29c716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3873419688899116287
 PrefabInstance:
   m_ObjectHideFlags: 0

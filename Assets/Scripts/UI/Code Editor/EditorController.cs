@@ -83,4 +83,26 @@ public class EditorController : MonoBehaviour
         }
         return new CodeModule.Editor(window, button);
     }
+
+    public GameObject CreateLoneWindow(GameObject _window)
+    {
+        return Instantiate(_window, desktop.transform);
+    }
+
+    public CodeModule.Editor AddWindowCopyless(GameObject _window, GameObject _button, CodeModule module)
+    {
+        // Debug.Log("window: " + _window.name);
+        // Debug.Log("desktop: " + desktop.name);
+        //_window.transform.parent = desktop.transform;
+        //_button.transform.parent = taskbar.transform;
+        if (_button.TryGetComponent(out EditorButton eb))
+        {
+            eb.Init(swapper, _window.transform);
+        }
+        if (_window.TryGetComponent(out EditorWindow ew))
+        {
+            ew.SetCodeSpaceModules(module);
+        }
+        return new CodeModule.Editor(_window, _button);
+    }
 }
