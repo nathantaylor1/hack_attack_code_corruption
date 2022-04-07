@@ -4,36 +4,14 @@ using UnityEngine;
 
 public class DamageBlock : CodeWithParameters
 {
-    public ContactFilter2D cf = new ContactFilter2D().NoFilter();
-    // Check a maximum of 20 collisions
-    private Collider2D[] cols = new Collider2D[20];
     protected Collider2D col = null;
-    protected bool listening = false;
-    protected CodeModule previousModule = null;
-
-    protected void Listen() {
-        if (previousModule == null) {
-            previousModule = module;
-        }
-        if  (previousModule != module) {
-            previousModule.collided.RemoveListener(checkCollision);
-            previousModule = module;
-            listening = false;
-        }
-        if (!listening) {
-            listening = true;
-            module.collided.AddListener(checkCollision);
-        }
-    }
 
     public override void ExecuteCode()
     {
         // need to update this in the case of the code block is dragged to a different module 
-        Listen();
-
+        col = module.lastCollidedWith;
         if (col != null) {
             DoDamage();
-            col = null;
         }
         base.ExecuteCode();
     }
@@ -59,19 +37,5 @@ public class DamageBlock : CodeWithParameters
             //     // Debug.Log("damaging printer");
             // }
         }
-    }
-
-    public override void StopExecution()
-    {
-        col = null;
-        listening = false;
-        if (module != null) {
-            module.collided.RemoveListener(checkCollision);
-        }
-        base.StopExecution();
-    }
-
-    void checkCollision(Collision2D other) {
-        col = other.collider;
     }
 }
