@@ -8,18 +8,24 @@ public class DashCode : CodeWithParameters
     public override void ExecuteCode()
     {
         if (!isDashing) {
-            StartCoroutine(Dash());
+            var p0 = GetParameter(0);
+            var p1 = GetParameter(1);
+            var p2 = GetParameter(2);
+            if (!(p0 is null) && !(p1 is null) && !(p2 is null)) {
+                Vector2 direction = (Vector2)(object)p0;
+                float moveSpeed = (float)(object)p1;
+                float paramTime = ((float)(object)p2);
+                float reloadTime = module.dashDelay / paramTime;
+                StartCoroutine(Dash(direction, moveSpeed, reloadTime));
+            }
         }
         base.ExecuteCode();
     }
 
-    IEnumerator Dash()
+    IEnumerator Dash(Vector2 direction, float moveSpeed, float reloadTime)
     {
         module.anim.SetTrigger("Dash");
         isDashing = true;
-        Vector2 direction = (Vector2)(object)GetParameter(0);
-        float moveSpeed = (float)(object)GetParameter(1);
-        float reloadTime = module.dashDelay / ((float)(object)GetParameter(2));
         module.rb.velocity = direction * moveSpeed * module.dashSpeed;
         yield return new WaitForSeconds(module.dashDuration);
         module.rb.velocity = Vector3.zero;

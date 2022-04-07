@@ -18,36 +18,39 @@ public class GeneralMoveCode : CodeWithParameters
         rb = module.rb;
         anim = module.anim;
         col = module.col;
+        var p0 = GetParameter(0);
+        var p1 = GetParameter(1);
 
-        Vector2 dir = (Vector2)(object)GetParameter(0);
-        float speed = module.moveSpeed * (float)(object)GetParameter(1);
-        //Debug.Log("dir: " + dir);
+        if (!(p0 is null) && !(p1 is null)) {
+            Vector2 dir = (Vector2)(object)p0;
+            float speed = module.moveSpeed * (float)(object)p1;
+            //Debug.Log("dir: " + dir);
 
-        float xVel = Mathf.Abs(dir.normalized.x * speed) > Mathf.Abs(rb.velocity.x) || 
-            (dir.x < 0 && rb.velocity.x > 0) || (dir.x > 0 && rb.velocity.x < 0) ? 
-            dir.normalized.x * speed : rb.velocity.x;
-        float yVel = Mathf.Abs(dir.normalized.y * speed) > Mathf.Abs(rb.velocity.y) ||
-            (dir.y < 0 && rb.velocity.y > 0) || (dir.y > 0 && rb.velocity.y < 0) ?
-            dir.normalized.y * speed : rb.velocity.y;
-        rb.velocity = new Vector2(xVel, yVel);
+            float xVel = Mathf.Abs(dir.normalized.x * speed) > Mathf.Abs(rb.velocity.x) || 
+                (dir.x < 0 && rb.velocity.x > 0) || (dir.x > 0 && rb.velocity.x < 0) ? 
+                dir.normalized.x * speed : rb.velocity.x;
+            float yVel = Mathf.Abs(dir.normalized.y * speed) > Mathf.Abs(rb.velocity.y) ||
+                (dir.y < 0 && rb.velocity.y > 0) || (dir.y > 0 && rb.velocity.y < 0) ?
+                dir.normalized.y * speed : rb.velocity.y;
+            rb.velocity = new Vector2(xVel, yVel);
 
-        //module.transform.rotation = Quaternion.Euler(0, (dir.x < 0 ? 1 : 0) * 180, 0);
-        module.transform.localScale = new Vector3(dir.x < 0 ? -1 : 1, 1, 1);
+            //module.transform.rotation = Quaternion.Euler(0, (dir.x < 0 ? 1 : 0) * 180, 0);
+            module.transform.localScale = new Vector3(dir.x < 0 ? -1 : 1, 1, 1);
 
-        /*if (animationCoroutine != null)
-            StopCoroutine(animationCoroutine);
-        animationCoroutine = StartCoroutine(AnimateRun());*/
+            /*if (animationCoroutine != null)
+                StopCoroutine(animationCoroutine);
+            animationCoroutine = StartCoroutine(AnimateRun());*/
 
-        if (animationCoroutine == null && anim != null)
-            StartCoroutine(AnimateRun());
+            if (animationCoroutine == null && anim != null)
+                StartCoroutine(AnimateRun());
 
-        /*if (!isRunning && Grounded.Check(col))
-        {
-            anim.SetTrigger("Run");
-        }*/
+            /*if (!isRunning && Grounded.Check(col))
+            {
+                anim.SetTrigger("Run");
+            }*/
 
-        isRunning = true;
-
+            isRunning = true;
+        }
         base.ExecuteCode();
     }
 

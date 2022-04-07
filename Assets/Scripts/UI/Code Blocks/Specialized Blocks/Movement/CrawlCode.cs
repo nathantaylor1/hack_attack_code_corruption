@@ -25,10 +25,12 @@ public class CrawlCode : CodeWithParameters
         tf = module.transform;
         anim = module.anim;
         bds = col.bounds;
-        if (executing && tf && col && rb) {
+        var p0 = GetParameter(0);
+        var p1 = GetParameter(1);
+        if (executing && tf && col && rb && !(p0 is null) && !(p1 is null)) {
             if (CustomGrounded()) {
                 rb.gravityScale = 0;
-                Move();
+                Move((Vector2)(object) p0, (float)(object) p1);
                 CheckWall();
                 CheckGround();
             } else {
@@ -122,9 +124,9 @@ public class CrawlCode : CodeWithParameters
         StartCoroutine(FlipBuffer());
     }
 
-    private void Move()
+    private void Move(Vector2 p0, float p1)
     {
-        Vector2 par = (Vector2)(object)GetParameter(0);
+        Vector2 par = p0;
         bool dir;
         if (Mathf.RoundToInt(tf.right.y) == 0) {
             dir = Math.Sign(tf.right.x) != Math.Sign(par.x) && par.x != 0;
@@ -141,7 +143,7 @@ public class CrawlCode : CodeWithParameters
             StartCoroutine(FlipBuffer());
         }
 
-        float speed = module.moveSpeed * (float)(object)GetParameter(1);
+        float speed = module.moveSpeed * p1;
         if (speed < 0.05f && speed > -0.05f)
             anim.SetTrigger("Idle");
         else

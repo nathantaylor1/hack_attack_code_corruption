@@ -98,13 +98,6 @@ public class InputField : MonoBehaviour
         return inputBlock.ReturnValue();
     }
 
-    public virtual dynamic GetInput(CodeModule module)
-    {
-        inputBlock.SetModule(module);
-        return inputBlock.ReturnValue();
-    }
-    
-
     public virtual Code GetCode()
     {
         return inputBlock;
