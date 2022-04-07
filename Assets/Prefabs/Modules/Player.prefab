@@ -320,6 +320,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: d431444ab0c7cda4482eebbf75bff566, type: 3}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: gravityScale
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: animationName
       value: Player
       objectReference: {fileID: 0}

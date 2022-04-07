@@ -11,7 +11,7 @@ public class GeneralMoveCode : CodeWithParameters
     protected Animator anim;
     protected Collider2D col;
     bool isRunning = false;
-    Coroutine animationCoroutine;
+    bool animationRunning = false;
 
     public override void ExecuteCode()
     {
@@ -35,14 +35,20 @@ public class GeneralMoveCode : CodeWithParameters
             rb.velocity = new Vector2(xVel, yVel);
 
             //module.transform.rotation = Quaternion.Euler(0, (dir.x < 0 ? 1 : 0) * 180, 0);
-            module.transform.localScale = new Vector3(dir.x < 0 ? -1 : 1, 1, 1);
+            if (Mathf.RoundToInt(Mathf.Sign(module.transform.right.x)) 
+                 != Mathf.RoundToInt(Mathf.Sign(dir.x))) {
+                module.transform.right *= -1;
+            }
+            // module.transform.localScale = new Vector3(dir.x < 0 ? -1 : 1, 1, 1);
 
             /*if (animationCoroutine != null)
                 StopCoroutine(animationCoroutine);
             animationCoroutine = StartCoroutine(AnimateRun());*/
 
-            if (animationCoroutine == null && anim != null)
+            if (!animationRunning && anim != null) {
+                animationRunning = true;
                 StartCoroutine(AnimateRun());
+            }
 
             /*if (!isRunning && Grounded.Check(col))
             {
@@ -64,12 +70,12 @@ public class GeneralMoveCode : CodeWithParameters
                 anim.SetTrigger("Run");
             yield return null;
         }
+        animationRunning = false;
     }
 
     public override void StopExecution()
     {
         isRunning = false;
-        Debug.Log(module);
         if (module != null) {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }

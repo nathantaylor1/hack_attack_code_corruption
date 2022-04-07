@@ -13,6 +13,7 @@ public class CodeModule : MonoBehaviour
 
     public float moveSpeed = 1f;
     public float projectileSpeed = 1f;
+    public float gravityScale = 1f;
     public float jumpSpeed = 2f;
     public float dashDuration = 1f;
     public float dashSpeed = 1f;
@@ -100,6 +101,7 @@ public class CodeModule : MonoBehaviour
         }
         go = gameObject;
         anim = GetComponent<Animator>();
+        rb.gravityScale = gravityScale;
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);

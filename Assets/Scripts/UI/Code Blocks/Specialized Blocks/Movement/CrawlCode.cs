@@ -17,6 +17,8 @@ public class CrawlCode : CodeWithParameters
     private bool executing = false;
     public bool canFlip = true;
     public bool falling = false;
+    bool isRunning = false;
+    bool animationRunning = false;
     public override void ExecuteCode()
     {
         executing = true;
@@ -39,13 +41,18 @@ public class CrawlCode : CodeWithParameters
                 // try flipping
                 // Debug.Log(module.lastCollidedWith.isTrigger);
                 falling = false;
-                tf.Rotate(tf.forward, 180f, Space.World);
+                if (!CustomGrounded()) {
+                    tf.Rotate(tf.forward, 180f, Space.World);
+                }
                 ClampRotations();
             }
             else {
                 // falling
-                rb.gravityScale = 1;
+                rb.gravityScale = module.gravityScale;
                 falling = true;
+                isRunning = false;
+                if (anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run"))
+                    anim.SetTrigger("Idle");
             }
         }
 
@@ -60,12 +67,20 @@ public class CrawlCode : CodeWithParameters
     public override void StopExecution()
     {
         executing = false;
-        rb = module.rb;
-        // hackable basically means dead
-        rb.gravityScale = 1;
-        if (module.hackable) {
+        isRunning = false;
+        if (module != null ) {
+            rb = module.rb;
+            // Debug.Log(module.transform.up);
+            if (module.transform.up != Vector3.up) {
+                module.transform.up = Vector3.up;
+            }
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = module.gravityScale;
+            anim = module.anim;
+            if (anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run"))
+                anim.SetTrigger("Idle");
         }
-        rb.velocity = Vector2.zero;
+
         base.StopExecution();
     }
     bool CustomGrounded() {
@@ -153,12 +168,13 @@ public class CrawlCode : CodeWithParameters
             hasTurned = true;
             StartCoroutine(FlipBuffer());
         }
+        isRunning = true;
+        if (!animationRunning && anim != null) {
+            animationRunning = true;
+            StartCoroutine(AnimateRun());
+        }
 
         float speed = module.moveSpeed * p1;
-        if (speed < 0.05f && speed > -0.05f)
-            anim.SetTrigger("Idle");
-        else
-            anim.SetTrigger("Run");
         rb.velocity = tf.right * speed;
     }
 
@@ -171,5 +187,18 @@ public class CrawlCode : CodeWithParameters
         lea.z = Mathf.Round(lea.z / 90) * 90;
 
         tf.localEulerAngles = lea;
+    }
+
+    protected IEnumerator AnimateRun()
+    {
+        while (isRunning)
+        {
+            Debug.Log("running");
+            if (Grounded.Check(col) && !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run") &&
+                !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Jump"))
+                anim.SetTrigger("Run");
+            yield return null;
+        }
+        animationRunning = false;
     }
 }
