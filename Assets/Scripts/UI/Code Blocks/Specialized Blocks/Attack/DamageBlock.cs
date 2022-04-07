@@ -54,10 +54,10 @@ public class DamageBlock : CodeWithParameters
                 // Debug.Log("damaging player");
             }
             // Used to get the health of the printer
-            if (col.transform.parent != null && col.transform.parent.TryGetComponent<HasHealth>(out HasHealth h1)) {
-                h1.Damage(dmg);
-                // Debug.Log("damaging printer");
-            }
+            // if (col.transform.parent != null && col.transform.parent.TryGetComponent<HasHealth>(out HasHealth h1)) {
+            //     h1.Damage(dmg);
+            //     // Debug.Log("damaging printer");
+            // }
         }
     }
 
