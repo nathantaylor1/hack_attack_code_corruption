@@ -86,7 +86,8 @@ public class CrawlCode : CodeWithParameters
     bool CustomGrounded() {
         Vector2 size3 = new Vector3(.3f, .3f, 0);
         int layer = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Movables") | (1 << 29));
-        var offset3 = (Vector2)tf.up * -1 * bds.extents.x;
+        var offset3 = (Vector2)tf.up * -1 * bds.extents.y;
+        Debug.Log(bds.extents);
         // how much wider should the check be than size
         var add = 1.1f;
         if (Mathf.Abs(tf.up.x) > Mathf.Abs(tf.up.y) ) {
@@ -100,6 +101,7 @@ public class CrawlCode : CodeWithParameters
         {
             return true;
         } else {
+            Debug.Log("fell");
             return false;
         }
     }
@@ -193,7 +195,6 @@ public class CrawlCode : CodeWithParameters
     {
         while (isRunning)
         {
-            Debug.Log("running");
             if (Grounded.Check(col) && !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run") &&
                 !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Jump"))
                 anim.SetTrigger("Run");
