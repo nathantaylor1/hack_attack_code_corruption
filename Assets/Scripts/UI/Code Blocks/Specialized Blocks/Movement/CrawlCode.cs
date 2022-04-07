@@ -13,9 +13,10 @@ public class CrawlCode : CodeWithParameters
     private Animator anim;
 
     private bool hasTurned;
-    private readonly LayerMask glm = 1 << 7;
+    private readonly LayerMask groundAndMoveables = 1 << 7 | 1 << 16;
     private bool executing = false;
     public bool canFlip = true;
+    public bool falling = false;
     public override void ExecuteCode()
     {
         executing = true;
@@ -28,13 +29,23 @@ public class CrawlCode : CodeWithParameters
         var p0 = GetParameter(0);
         var p1 = GetParameter(1);
         if (executing && tf && col && rb && !(p0 is null) && !(p1 is null)) {
-            if (CustomGrounded()) {
+            if (!falling && CustomGrounded()) {
                 rb.gravityScale = 0;
                 Move((Vector2)(object) p0, (float)(object) p1);
                 CheckWall();
                 CheckGround();
-            } else {
+            } else if (module.lastCollidedWith != null 
+            && !module.lastCollidedWith.isTrigger && rb.velocity.magnitude < .1f && falling) {
+                // try flipping
+                // Debug.Log(module.lastCollidedWith.isTrigger);
+                falling = false;
+                tf.Rotate(tf.forward, 180f, Space.World);
+                ClampRotations();
+            }
+            else {
+                // falling
                 rb.gravityScale = 1;
+                falling = true;
             }
         }
 
@@ -51,7 +62,7 @@ public class CrawlCode : CodeWithParameters
         executing = false;
         rb = module.rb;
         // hackable basically means dead
-        rb.gravityScale = 4;
+        rb.gravityScale = 1;
         if (module.hackable) {
         }
         rb.velocity = Vector2.zero;
@@ -87,7 +98,7 @@ public class CrawlCode : CodeWithParameters
         offset = -tf.right * (bds.extents.x);
         offset += (Vector2)(-tf.up * (bds.extents.x / 2f + .35f));
 
-        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, glm);
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, groundAndMoveables);
         if (!hasTurned && hit) return;
         if (hasTurned && !hit) return;
         if (hasTurned && hit)  {
@@ -113,7 +124,7 @@ public class CrawlCode : CodeWithParameters
         var offset = new Vector2();
         offset = tf.right * (bds.extents.x / 2f + .05f);
         offset += (Vector2)(tf.up * bds.extents.x / 2f);
-        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.05f, glm);
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.05f, groundAndMoveables);
         
         if (!hit) return;
         tf.Rotate(tf.forward, 90f, Space.World);
