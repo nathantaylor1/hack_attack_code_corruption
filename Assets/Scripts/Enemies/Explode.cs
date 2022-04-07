@@ -25,7 +25,7 @@ public class Explode : MonoBehaviour
         if (!(layer == 6 || layer == 7 || layer == 10)) return;
         rb.velocity = Vector3.zero;
         Explosion();
-        StartCoroutine(CO_Animate());
+        // StartCoroutine(CO_Animate());
     }
 
     private void Explosion()
@@ -45,10 +45,10 @@ public class Explode : MonoBehaviour
     //     Gizmos.DrawWireSphere(transform.position, radius);
     // }
 
-    private IEnumerator CO_Animate()
-    {
-        yield return new WaitForSeconds(0.1f);
-        Destroy(gameObject);
-        yield return null;
-    }
+    // private IEnumerator CO_Animate()
+    // {
+    //     yield return new WaitForSeconds(0.1f);
+    //     Destroy(gameObject);
+    //     yield return null;
+    // }
 }

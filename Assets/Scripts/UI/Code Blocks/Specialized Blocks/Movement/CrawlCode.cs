@@ -48,7 +48,10 @@ public class CrawlCode : CodeWithParameters
     {
         executing = false;
         rb = module.rb;
-        rb.gravityScale = 1;
+        // hackable basically means dead
+        rb.gravityScale = 4;
+        if (module.hackable) {
+        }
         rb.velocity = Vector2.zero;
         base.StopExecution();
     }

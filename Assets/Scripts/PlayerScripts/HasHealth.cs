@@ -35,11 +35,11 @@ public class HasHealth : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         maxHealth = health;
+        SetHealthVisibility(false);
         if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
             //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
-            SetHealthVisibility(false);
         }
         updateHealthDisplay();
     }

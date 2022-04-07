@@ -25,6 +25,7 @@ public class DamageBlock : CodeWithParameters
             listening = true;
             module.collided.AddListener(checkCollision);
         }
+        Debug.Log("running");
 
         if (col != null) {
             float dmg = (float)(object)GetParameter(0);
@@ -67,7 +68,9 @@ public class DamageBlock : CodeWithParameters
     {
         col = null;
         listening = false;
-        module.collided.RemoveListener(checkCollision);
+        if (module != null) {
+            module.collided.RemoveListener(checkCollision);
+        }
         base.StopExecution();
     }
 

@@ -7,8 +7,9 @@ public class DashCode : CodeWithParameters
     bool isDashing = false;
     public override void ExecuteCode()
     {
-        if (isDashing) return;
-        StartCoroutine(Dash());
+        if (!isDashing) {
+            StartCoroutine(Dash());
+        }
         base.ExecuteCode();
     }
 

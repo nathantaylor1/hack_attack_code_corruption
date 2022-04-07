@@ -125,7 +125,7 @@ public class CodeModule : MonoBehaviour
             helth.OnDeath.AddListener(EnableHackable);
         } 
 
-        if (editor != null && editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
+        if (!hackable && editor != null && editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
         {
             ew.ToggleCanExecute(true);
         }
@@ -176,6 +176,10 @@ public class CodeModule : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        collided?.Invoke(other);
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
         collided?.Invoke(other);
     }
 

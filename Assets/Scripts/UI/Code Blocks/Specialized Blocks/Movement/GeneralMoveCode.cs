@@ -66,8 +66,10 @@ public class GeneralMoveCode : CodeWithParameters
     public override void StopExecution()
     {
         isRunning = false;
-
-        rb.velocity = new Vector2(0, rb.velocity.y);
+        Debug.Log(module);
+        if (module != null) {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
 
         if (anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run"))
             anim.SetTrigger("Idle");
