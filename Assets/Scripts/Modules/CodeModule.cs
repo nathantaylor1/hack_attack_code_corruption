@@ -87,6 +87,7 @@ public class CodeModule : MonoBehaviour
     public bool disableOnStart = false;
     // [HideInInspector]
     public bool hackable = false;
+    public UnityEvent<Collision2D> collided = new UnityEvent<Collision2D>();
 
     protected virtual void Awake()
     {
@@ -172,6 +173,10 @@ public class CodeModule : MonoBehaviour
             ew.ToggleEnabled(enabled);
         }
         editor.button.SetActive(enabled);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        collided?.Invoke(other);
     }
 
     public virtual Collider2D FindClosestCollider(Collider2D[] colliders, Transform trans)
