@@ -6,7 +6,7 @@ public class IfElseCode : CodeWithBodies
 {
     public override void ExecuteCode()
     {
-        if ((bool)(object)GetParameter(0, module))
+        if ((bool)(object)GetParameter(0))
         {
             GetBody(0).SetModule(module);
             GetBody(0).ExecuteCode();

@@ -13,9 +13,12 @@ public class CrawlCode : CodeWithParameters
     private Animator anim;
 
     private bool hasTurned;
-    private readonly LayerMask glm = 1 << 7;
+    private readonly LayerMask groundAndMoveables = 1 << 7 | 1 << 16;
     private bool executing = false;
     public bool canFlip = true;
+    public bool falling = false;
+    bool isRunning = false;
+    bool animationRunning = false;
     public override void ExecuteCode()
     {
         executing = true;
@@ -25,14 +28,31 @@ public class CrawlCode : CodeWithParameters
         tf = module.transform;
         anim = module.anim;
         bds = col.bounds;
-        if (executing && tf && col && rb) {
-            if (CustomGrounded()) {
+        var p0 = GetParameter(0);
+        var p1 = GetParameter(1);
+        if (executing && tf && col && rb && !(p0 is null) && !(p1 is null)) {
+            if (!falling && CustomGrounded()) {
                 rb.gravityScale = 0;
-                Move();
+                Move((Vector2)(object) p0, (float)(object) p1);
                 CheckWall();
                 CheckGround();
-            } else {
-                rb.gravityScale = 1;
+            } else if (module.lastCollidedWith != null 
+            && !module.lastCollidedWith.isTrigger && rb.velocity.magnitude < .1f && falling) {
+                // try flipping
+                // Debug.Log(module.lastCollidedWith.isTrigger);
+                falling = false;
+                if (!CustomGrounded()) {
+                    tf.Rotate(tf.forward, 180f, Space.World);
+                }
+                ClampRotations();
+            }
+            else {
+                // falling
+                rb.gravityScale = module.gravityScale;
+                falling = true;
+                isRunning = false;
+                if (anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run"))
+                    anim.SetTrigger("Idle");
             }
         }
 
@@ -47,15 +67,27 @@ public class CrawlCode : CodeWithParameters
     public override void StopExecution()
     {
         executing = false;
-        rb = module.rb;
-        rb.gravityScale = 1;
-        rb.velocity = Vector2.zero;
+        isRunning = false;
+        if (module != null ) {
+            rb = module.rb;
+            // Debug.Log(module.transform.up);
+            if (module.transform.up != Vector3.up) {
+                module.transform.up = Vector3.up;
+            }
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = module.gravityScale;
+            anim = module.anim;
+            if (anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run"))
+                anim.SetTrigger("Idle");
+        }
+
         base.StopExecution();
     }
     bool CustomGrounded() {
         Vector2 size3 = new Vector3(.3f, .3f, 0);
         int layer = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Movables") | (1 << 29));
-        var offset3 = (Vector2)tf.up * -1 * bds.extents.x;
+        var offset3 = (Vector2)tf.up * -1 * bds.extents.y;
+        Debug.Log(bds.extents);
         // how much wider should the check be than size
         var add = 1.1f;
         if (Mathf.Abs(tf.up.x) > Mathf.Abs(tf.up.y) ) {
@@ -69,6 +101,7 @@ public class CrawlCode : CodeWithParameters
         {
             return true;
         } else {
+            Debug.Log("fell");
             return false;
         }
     }
@@ -82,7 +115,7 @@ public class CrawlCode : CodeWithParameters
         offset = -tf.right * (bds.extents.x);
         offset += (Vector2)(-tf.up * (bds.extents.x / 2f + .35f));
 
-        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, glm);
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, groundAndMoveables);
         if (!hasTurned && hit) return;
         if (hasTurned && !hit) return;
         if (hasTurned && hit)  {
@@ -108,7 +141,7 @@ public class CrawlCode : CodeWithParameters
         var offset = new Vector2();
         offset = tf.right * (bds.extents.x / 2f + .05f);
         offset += (Vector2)(tf.up * bds.extents.x / 2f);
-        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.05f, glm);
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.05f, groundAndMoveables);
         
         if (!hit) return;
         tf.Rotate(tf.forward, 90f, Space.World);
@@ -119,9 +152,9 @@ public class CrawlCode : CodeWithParameters
         StartCoroutine(FlipBuffer());
     }
 
-    private void Move()
+    private void Move(Vector2 p0, float p1)
     {
-        Vector2 par = (Vector2)(object)GetParameter(0);
+        Vector2 par = p0;
         bool dir;
         if (Mathf.RoundToInt(tf.right.y) == 0) {
             dir = Math.Sign(tf.right.x) != Math.Sign(par.x) && par.x != 0;
@@ -137,12 +170,13 @@ public class CrawlCode : CodeWithParameters
             hasTurned = true;
             StartCoroutine(FlipBuffer());
         }
+        isRunning = true;
+        if (!animationRunning && anim != null) {
+            animationRunning = true;
+            StartCoroutine(AnimateRun());
+        }
 
-        float speed = module.moveSpeed * (float)(object)GetParameter(1);
-        if (speed < 0.05f && speed > -0.05f)
-            anim.SetTrigger("Idle");
-        else
-            anim.SetTrigger("Run");
+        float speed = module.moveSpeed * p1;
         rb.velocity = tf.right * speed;
     }
 
@@ -155,5 +189,17 @@ public class CrawlCode : CodeWithParameters
         lea.z = Mathf.Round(lea.z / 90) * 90;
 
         tf.localEulerAngles = lea;
+    }
+
+    protected IEnumerator AnimateRun()
+    {
+        while (isRunning)
+        {
+            if (Grounded.Check(col) && !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run") &&
+                !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Jump"))
+                anim.SetTrigger("Run");
+            yield return null;
+        }
+        animationRunning = false;
     }
 }
