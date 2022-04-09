@@ -10,14 +10,7 @@ public class HasHealth : MonoBehaviour
     public UnityEvent OnDeath = new UnityEvent();
     public UnityEvent OnRevive = new UnityEvent();
 
-    [Tooltip("This is the maximum health the GameObject can have.")]
     public float health = 5;
-
-    [Tooltip("This is the maximum health the GameObject can have.")]
-    [Range(0,1)] public float percentHealthAtStart = 1.0f;
-    
-    private float curHealth;
-    
     //public TextMeshProUGUI health_display;
     public bool deadOnStart = false;
     public Slider healthBarSlider;
@@ -28,11 +21,13 @@ public class HasHealth : MonoBehaviour
     private CodeModule module;
     IEnumerator inCombat;
     private SpriteRenderer sr;
+    [HideInInspector]
+    public float maxHealth;
     protected Animator anim;
 
     public bool IsFullHealth()
     {
-        return (curHealth >= health);
+        return (health >= maxHealth);
     }
 
     public Transform codeBlockToDrop;
@@ -42,33 +37,34 @@ public class HasHealth : MonoBehaviour
         TryGetComponent<CodeModule>(out module);
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        curHealth = health * percentHealthAtStart;
+        if (health > 0) maxHealth = health;
+        //Debug.Log(gameObject.name + " has " + health + " starting health and " + maxHealth + " max health");
         SetHealthVisibility(false);
         if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
             //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
         }
-        if(deadOnStart)
-        {
-            Damage(health);
-        }
         updateHealthDisplay();
+        if (deadOnStart)
+        {
+            Damage(maxHealth);
+        }
     }
 
     public void RestoreFullHealth(int _)
     {
         //Debug.Log("Health restored");
-        Heal(health);
+        Heal(maxHealth);
     }
 
     public void Damage(float damage_amount)
     {
         //Debug.Log("player takes damage");
-        if (isInvincible || curHealth < 0) return;
+        if (isInvincible || health < 0) return;
 
-        curHealth -= damage_amount;
-        if (curHealth < 0) curHealth = 0;
+        health -= damage_amount;
+        if (health < 0) health = 0;
 
         if (gameObject.layer != LayerMask.NameToLayer("Player"))
         {
@@ -80,7 +76,7 @@ public class HasHealth : MonoBehaviour
         if (module != null && module.damageSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.damageSound, module.transform.position);
         
-        if(curHealth <= 0) {
+        if(health <= 0) {
             Death();
         } else {
             isInvincible = true;
@@ -107,14 +103,14 @@ public class HasHealth : MonoBehaviour
     {
         if (module.healSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.healSound, module.transform.position);
-        curHealth += heal_amount;
-        if (curHealth > health) curHealth = health;
+        health += heal_amount;
+        if (health > maxHealth) health = maxHealth;
         updateHealthDisplay();
     }
 
     public void Revive()
     {
-        curHealth = health;
+        health = maxHealth;
         updateHealthDisplay();
         anim.SetTrigger("Idle");
         OnRevive?.Invoke();
@@ -124,7 +120,7 @@ public class HasHealth : MonoBehaviour
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player")) {
             //GameManager.instance.ResetLevel();
-            curHealth = health;
+            health = maxHealth;
             EventManager.OnPlayerDeath?.Invoke();
         }
         else
@@ -145,9 +141,12 @@ public class HasHealth : MonoBehaviour
 
     void updateHealthDisplay()
     {
-        float hp = (curHealth <= 0) ? 0 : curHealth;
-        float percent = hp / health;
+        float hp = (health <= 0) ? 0 : health;
+        //Debug.Log("maxHealth: " + maxHealth);
+        float percent = hp / maxHealth;
+        //Debug.Log("percent: " + percent);
         float removed = 1f - percent;
+        //Debug.Log("removed: " + removed);
         if (gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             //health_display.text = "Health: " + hp;
