@@ -12,6 +12,7 @@ public class HasHealth : MonoBehaviour
 
     public float health = 5;
     //public TextMeshProUGUI health_display;
+    public bool deadOnStart = false;
     public Slider healthBarSlider;
     public Image healthBarFill;
     public float health_display_time = 3.0f;
@@ -20,7 +21,8 @@ public class HasHealth : MonoBehaviour
     private CodeModule module;
     IEnumerator inCombat;
     private SpriteRenderer sr;
-    private float maxHealth;
+    [HideInInspector]
+    public float maxHealth;
     protected Animator anim;
 
     public bool IsFullHealth()
@@ -35,7 +37,8 @@ public class HasHealth : MonoBehaviour
         TryGetComponent<CodeModule>(out module);
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        maxHealth = health;
+        if (health > 0) maxHealth = health;
+        //Debug.Log(gameObject.name + " has " + health + " starting health and " + maxHealth + " max health");
         SetHealthVisibility(false);
         if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
@@ -43,6 +46,10 @@ public class HasHealth : MonoBehaviour
             //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
         }
         updateHealthDisplay();
+        if (deadOnStart)
+        {
+            Damage(maxHealth);
+        }
     }
 
     public void RestoreFullHealth(int _)
@@ -135,8 +142,11 @@ public class HasHealth : MonoBehaviour
     void updateHealthDisplay()
     {
         float hp = (health <= 0) ? 0 : health;
+        //Debug.Log("maxHealth: " + maxHealth);
         float percent = hp / maxHealth;
+        //Debug.Log("percent: " + percent);
         float removed = 1f - percent;
+        //Debug.Log("removed: " + removed);
         if (gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             //health_display.text = "Health: " + hp;

@@ -176,6 +176,11 @@ public class CodeModule : MonoBehaviour
             ew.ToggleEnabled(enabled);
         }
         editor.button.SetActive(enabled);
+        editor.button.transform.SetAsLastSibling();
+        if (editor.button.TryGetComponent(out EditorButton eb))
+        {
+            eb.SelectButton();
+        }
     }
 
     public virtual void DisableGravity()

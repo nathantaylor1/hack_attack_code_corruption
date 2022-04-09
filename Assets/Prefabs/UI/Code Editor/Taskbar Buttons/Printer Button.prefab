@@ -147,5 +147,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Printer Button
       objectReference: {fileID: 0}
+    - target: {fileID: 8168636148714103764, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47a3251e7a7b48942909aeefeea5a0eb, type: 3}
