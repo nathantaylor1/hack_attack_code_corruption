@@ -29,8 +29,8 @@ public class TowardsCode : CodeWithParameters
             return;
         }
 
-        if(closest_collider.GetComponent<Renderer>().isVisible && trans.GetComponent<Renderer>().isVisible)
-        {
+        /*if(closest_collider.GetComponent<Renderer>().isVisible && trans.GetComponent<Renderer>().isVisible)
+        {*/
             if(is_towards)
             {
                 val = closest_collider.transform.position - trans.position;
@@ -40,11 +40,11 @@ public class TowardsCode : CodeWithParameters
                 val = trans.position - closest_collider.transform.position;
             }
             val = val.normalized;
-        }
+        /*}
         else
         {
             val = Vector2.zero;
-        }
+        }*/
 
         base.ExecuteCode();
     }
