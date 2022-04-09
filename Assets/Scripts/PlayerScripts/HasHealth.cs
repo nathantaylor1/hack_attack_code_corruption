@@ -9,8 +9,14 @@ public class HasHealth : MonoBehaviour
 {
     public UnityEvent OnDeath = new UnityEvent();
 
+    [Tooltip("This is the maximum health the GameObject can have.")]
     public float health = 5;
-    //public TextMeshProUGUI health_display;
+    
+    private float curHealth;
+    
+    [Tooltip("This is the percent of health the GameObject will start with.")]
+    [SerializeField][Range(0, 1)] private float percentHealthAtStart = 1.0f;
+    
     public Slider healthBarSlider;
     public Image healthBarFill;
     public float health_display_time = 3.0f;
@@ -19,12 +25,11 @@ public class HasHealth : MonoBehaviour
     private CodeModule module;
     IEnumerator inCombat;
     private SpriteRenderer sr;
-    private float maxHealth;
     protected Animator anim;
 
     public bool IsFullHealth()
     {
-        return (health >= maxHealth);
+        return (curHealth >= health);
     }
 
     public Transform codeBlockToDrop;
@@ -34,7 +39,7 @@ public class HasHealth : MonoBehaviour
         TryGetComponent<CodeModule>(out module);
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        maxHealth = health;
+        curHealth = health * percentHealthAtStart;
         if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
@@ -47,16 +52,16 @@ public class HasHealth : MonoBehaviour
     public void RestoreFullHealth(int _)
     {
         //Debug.Log("Health restored");
-        Heal(maxHealth);
+        Heal(health);
     }
 
     public void Damage(float damage_amount)
     {
         //Debug.Log("player takes damage");
-        if (isInvincible || health < 0) return;
+        if (isInvincible || curHealth < 0) return;
 
-        health -= damage_amount;
-        if (health < 0) health = 0;
+        curHealth -= damage_amount;
+        if (curHealth < 0) curHealth = 0;
 
         if (gameObject.layer != LayerMask.NameToLayer("Player"))
         {
@@ -68,7 +73,7 @@ public class HasHealth : MonoBehaviour
         if (module != null && module.damageSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.damageSound, module.transform.position);
         
-        if(health <= 0) {
+        if(curHealth <= 0) {
             Death();
         } else {
             isInvincible = true;
@@ -95,14 +100,14 @@ public class HasHealth : MonoBehaviour
     {
         if (module.healSound != null && AudioManager.instance != null)
             AudioManager.instance.PlaySound(module.healSound, module.transform.position);
-        health += heal_amount;
-        if (health > maxHealth) health = maxHealth;
+        curHealth += heal_amount;
+        if (curHealth > health) curHealth = health;
         updateHealthDisplay();
     }
 
     public void Revive()
     {
-        health = maxHealth;
+        curHealth = health;
         updateHealthDisplay();
         anim.SetTrigger("Idle");
     }
@@ -111,7 +116,7 @@ public class HasHealth : MonoBehaviour
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player")) {
             //GameManager.instance.ResetLevel();
-            health = maxHealth;
+            curHealth = health;
             EventManager.OnPlayerDeath?.Invoke();
         }
         else
@@ -132,8 +137,8 @@ public class HasHealth : MonoBehaviour
 
     void updateHealthDisplay()
     {
-        float hp = (health <= 0) ? 0 : health;
-        float percent = hp / maxHealth;
+        float hp = (curHealth <= 0) ? 0 : curHealth;
+        float percent = hp / health;
         float removed = 1f - percent;
         if (gameObject.layer == LayerMask.NameToLayer("Player"))
         {
