@@ -178,6 +178,16 @@ public class CodeModule : MonoBehaviour
         editor.button.SetActive(enabled);
     }
 
+    public virtual void DisableGravity()
+    {
+        rb.gravityScale = 0;
+    }
+
+    public virtual void EnableGravity()
+    {
+        rb.gravityScale = gravityScale > 0 ? gravityScale : 1;
+    }
+
     private void OnCollisionEnter2D(Collision2D other) {
         lastCollidedWith = other.collider;
     }

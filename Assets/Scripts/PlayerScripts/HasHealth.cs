@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class HasHealth : MonoBehaviour
 {
     public UnityEvent OnDeath = new UnityEvent();
+    public UnityEvent OnRevive = new UnityEvent();
 
     public float health = 5;
     //public TextMeshProUGUI health_display;
@@ -105,6 +106,7 @@ public class HasHealth : MonoBehaviour
         health = maxHealth;
         updateHealthDisplay();
         anim.SetTrigger("Idle");
+        OnRevive?.Invoke();
     }
 
     protected virtual void Death()
