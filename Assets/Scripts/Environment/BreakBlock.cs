@@ -8,7 +8,7 @@ public class BreakBlock : MonoBehaviour
     public int breakVelocity = 12;
     
     private void OnCollisionStay2D(Collision2D other) {
-        if (other.relativeVelocity.magnitude > 2 || other.relativeVelocity.magnitude < 2) {
+        if (other.relativeVelocity.magnitude > 2) {
             CheckBreak(other);
         }
     }

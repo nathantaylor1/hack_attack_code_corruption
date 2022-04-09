@@ -8,32 +8,39 @@ public class SpawnCode : CodeWithBodies
 	
     public override void ExecuteCode()
     {
-        if (canShoot && (float)(object)GetParameter(3) != 0)
+        
+        if (canShoot)
         {
-            // start reload here in case the stuff below errors
-            StartCoroutine(ReloadCoroutine());
-            //AudioManager.instance.PlaySound(module.shootSound, module.transform.position);
-            var g = Instantiate((GameObject)(object)GetParameter(0), module.shootFrom.transform.position, Quaternion.identity);
-            g.SetActive(true);
-            var ss = g.AddComponent<SpawnedSpace>();
-            var b = g.GetComponent<CodeModule>();
-            b.father = module.gameObject;
-            ss.SetModule(b);
-            ss.SetParentLayer(module.gameObject.layer);
-            ss.SetCode(GetBody(0));
-            
-            if (g.TryGetComponent(out Rigidbody2D grb))
-            {
-                grb.velocity = ((Vector2)(object)GetParameter(1)).normalized * (float)(object)GetParameter(2) * (b.moveSpeed + module.projectileSpeed);
+            var p0 = GetParameter(0);
+            var p1 = GetParameter(1);
+            var p2 = GetParameter(2);
+            var p3 = GetParameter(3);
+            if (!(p0 is null) && !(p1 is null) && !(p2 is null) && !(p3 is null) && (float)(object)p3 != 0) {
+                // start reload here in case the stuff below errors
+                StartCoroutine(ReloadCoroutine((float)(object) p3));
+                //AudioManager.instance.PlaySound(module.shootSound, module.transform.position);
+                var g = Instantiate((GameObject)(object)p0, module.shootFrom.transform.position, Quaternion.identity);
+                g.SetActive(true);
+                var ss = g.AddComponent<SpawnedSpace>();
+                var b = g.GetComponent<CodeModule>();
+                b.father = module.gameObject;
+                ss.SetModule(b);
+                ss.SetParentLayer(module.gameObject.layer);
+                ss.SetCode(GetBody(0));
+                
+                if (g.TryGetComponent(out Rigidbody2D grb))
+                {
+                    grb.velocity = ((Vector2)(object)p1).normalized * (float)(object)p2 * (b.moveSpeed + module.projectileSpeed);
+                }
             }
         }
         base.ExecuteCode();
     }
 
-    protected IEnumerator ReloadCoroutine()
+    protected IEnumerator ReloadCoroutine(float p3)
     {
         canShoot = false;
-        yield return new WaitForSeconds(1f / (float)(object)GetParameter(3));
+        yield return new WaitForSeconds(1f / p3);
         canShoot = true;
     }
 }

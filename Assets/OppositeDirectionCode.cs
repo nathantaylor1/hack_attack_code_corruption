@@ -8,8 +8,11 @@ public class OppositeDirectionCode : CodeWithParameters
 
     public override void ExecuteCode()
     {
-        Vector2 temp = (Vector2)(object)GetParameter(0);
-        val = -temp;
+        var p0 = GetParameter(0);
+        if (!(p0 is null)) {
+            Vector2 temp = (Vector2)(object)p0;
+            val = -temp;
+        }
         base.ExecuteCode();
     }
 

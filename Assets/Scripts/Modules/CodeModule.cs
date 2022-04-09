@@ -13,6 +13,7 @@ public class CodeModule : MonoBehaviour
 
     public float moveSpeed = 1f;
     public float projectileSpeed = 1f;
+    public float gravityScale = 1f;
     public float jumpSpeed = 2f;
     public float dashDuration = 1f;
     public float dashSpeed = 1f;
@@ -87,6 +88,8 @@ public class CodeModule : MonoBehaviour
     public bool disableOnStart = false;
     // [HideInInspector]
     public bool hackable = false;
+    [HideInInspector]
+    public Collider2D lastCollidedWith = null;
 
     protected virtual void Awake()
     {
@@ -98,6 +101,7 @@ public class CodeModule : MonoBehaviour
         }
         go = gameObject;
         anim = GetComponent<Animator>();
+        rb.gravityScale = gravityScale;
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
@@ -124,7 +128,7 @@ public class CodeModule : MonoBehaviour
             helth.OnDeath.AddListener(EnableHackable);
         } 
 
-        if (editor != null && editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
+        if (!hackable && editor != null && editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
         {
             ew.ToggleCanExecute(true);
         }
@@ -177,6 +181,36 @@ public class CodeModule : MonoBehaviour
         {
             eb.SelectButton();
         }
+    }
+
+    public virtual void DisableGravity()
+    {
+        rb.gravityScale = 0;
+    }
+
+    public virtual void EnableGravity()
+    {
+        rb.gravityScale = gravityScale > 0 ? gravityScale : 1;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        lastCollidedWith = other.collider;
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        lastCollidedWith = null;
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        lastCollidedWith = other.collider;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        lastCollidedWith = other;
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        lastCollidedWith = null;
     }
 
     public virtual Collider2D FindClosestCollider(Collider2D[] colliders, Transform trans)

@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class HasHealth : MonoBehaviour
 {
     public UnityEvent OnDeath = new UnityEvent();
+    public UnityEvent OnRevive = new UnityEvent();
 
     public float health = 5;
     //public TextMeshProUGUI health_display;
@@ -36,11 +37,11 @@ public class HasHealth : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         maxHealth = health;
+        SetHealthVisibility(false);
         if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
             //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
-            SetHealthVisibility(false);
         }
         if(deadOnStart)
         {
@@ -110,6 +111,7 @@ public class HasHealth : MonoBehaviour
         health = maxHealth;
         updateHealthDisplay();
         anim.SetTrigger("Idle");
+        OnRevive?.Invoke();
     }
 
     protected virtual void Death()

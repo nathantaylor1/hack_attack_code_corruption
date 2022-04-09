@@ -19,12 +19,17 @@ public class JumpCode : CodeWithParameters
     {
         if (!alreadyJumping && CanJump())
         {
+            var p0 = GetParameter(0);
+            if (p0 is null) {
+                base.ExecuteCode();
+                return;
+            }
             alreadyJumping = true;
             rb = module.rb;
             anim = module.anim;
 
             Vector2 currentVelocity = rb.velocity;
-            float jumpForce = (float) (object) GetParameter(0);
+            float jumpForce = (float) (object) p0;
             currentVelocity.y = module.jumpSpeed * jumpForce;
             rb.velocity = currentVelocity;
             

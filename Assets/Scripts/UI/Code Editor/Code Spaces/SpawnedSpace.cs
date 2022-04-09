@@ -29,6 +29,7 @@ public class SpawnedSpace : CodeSpace
                 collisionCheckThisFrame = false;
                 StartExecution();
                 if (!collisionCheckThisFrame && CheckCollision()) {
+                    // StartCoroutine(waitOnePass());
                     Destroy(gameObject);
                     destroyed = true;
                 }
