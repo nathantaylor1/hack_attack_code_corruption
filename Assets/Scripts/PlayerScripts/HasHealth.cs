@@ -12,6 +12,12 @@ public class HasHealth : MonoBehaviour
 
     [Tooltip("This is the maximum health the GameObject can have.")]
     public float health = 5;
+
+    [Tooltip("This is the maximum health the GameObject can have.")]
+    [Range(0,1)] public float percentHealthAtStart = 1.0f;
+    
+    private float curHealth;
+    
     //public TextMeshProUGUI health_display;
     public bool deadOnStart = false;
     public Slider healthBarSlider;
