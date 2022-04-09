@@ -12,12 +12,8 @@ public class HasHealth : MonoBehaviour
 
     [Tooltip("This is the maximum health the GameObject can have.")]
     public float health = 5;
-    
-    private float curHealth;
-    
-    [Tooltip("This is the percent of health the GameObject will start with.")]
-    [SerializeField][Range(0, 1)] private float percentHealthAtStart = 1.0f;
-    
+    //public TextMeshProUGUI health_display;
+    public bool deadOnStart = false;
     public Slider healthBarSlider;
     public Image healthBarFill;
     public float health_display_time = 3.0f;
@@ -46,6 +42,10 @@ public class HasHealth : MonoBehaviour
         {
             EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
             //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
+        }
+        if(deadOnStart)
+        {
+            Damage(health);
         }
         updateHealthDisplay();
     }
