@@ -172,6 +172,11 @@ public class CodeModule : MonoBehaviour
             ew.ToggleEnabled(enabled);
         }
         editor.button.SetActive(enabled);
+        editor.button.transform.SetAsLastSibling();
+        if (editor.button.TryGetComponent(out EditorButton eb))
+        {
+            eb.SelectButton();
+        }
     }
 
     public virtual Collider2D FindClosestCollider(Collider2D[] colliders, Transform trans)

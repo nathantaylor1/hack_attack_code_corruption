@@ -1621,6 +1621,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Printer Window
       objectReference: {fileID: 0}
+    - target: {fileID: 7055239298895247239, guid: 79faae4b5b15f274ab10a51441404ef5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7735377055342179210, guid: 79faae4b5b15f274ab10a51441404ef5, type: 3}
       propertyPath: m_Pivot.x
       value: 1

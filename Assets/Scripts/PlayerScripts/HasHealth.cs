@@ -11,6 +11,7 @@ public class HasHealth : MonoBehaviour
 
     public float health = 5;
     //public TextMeshProUGUI health_display;
+    public bool deadOnStart = false;
     public Slider healthBarSlider;
     public Image healthBarFill;
     public float health_display_time = 3.0f;
@@ -40,6 +41,10 @@ public class HasHealth : MonoBehaviour
             EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
             //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
             SetHealthVisibility(false);
+        }
+        if(deadOnStart)
+        {
+            Damage(maxHealth);
         }
         updateHealthDisplay();
     }
