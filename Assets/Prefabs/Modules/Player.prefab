@@ -516,9 +516,14 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnRevive:
+    m_PersistentCalls:
+      m_Calls: []
   health: 5
+  deadOnStart: 0
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   health_display_time: 3
   sm: {fileID: 0}
+  maxHealth: 0
   codeBlockToDrop: {fileID: 0}
