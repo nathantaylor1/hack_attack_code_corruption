@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class HasHealth : MonoBehaviour
 {
     public UnityEvent OnDeath = new UnityEvent();
+    public UnityEvent OnRevive = new UnityEvent();
 
     [Tooltip("This is the maximum health the GameObject can have.")]
     public float health = 5;
@@ -40,11 +41,11 @@ public class HasHealth : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         curHealth = health * percentHealthAtStart;
+        SetHealthVisibility(false);
         if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
             //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
-            SetHealthVisibility(false);
         }
         updateHealthDisplay();
     }
@@ -110,6 +111,7 @@ public class HasHealth : MonoBehaviour
         curHealth = health;
         updateHealthDisplay();
         anim.SetTrigger("Idle");
+        OnRevive?.Invoke();
     }
 
     protected virtual void Death()

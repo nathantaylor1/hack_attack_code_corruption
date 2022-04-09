@@ -21,10 +21,11 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         {
             br.UpdateSize();
         }
-        /*if (transform.TryGetComponent(out LayoutElement le))
+
+        if (TryGetComponent(out Code code))
         {
-            le.ignoreLayout = false;
-        }*/
+            code.StopExecution();
+        }
         // transform.SetParent(canvas.transform);
         // transform.SetAsLastSibling();
     }

@@ -56,6 +56,7 @@ public class Code : MonoBehaviour
     {
         if (GetNext() != null) {
             // Debug.Log("executing " + gameObject.name);
+            GetNext().SetModule(module);
             GetNext().StopExecution();
         }
         else {

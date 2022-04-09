@@ -9,16 +9,16 @@ public class EntityDirectionCode : Code
 
     public override void ExecuteCode()
     {
-        Vector3 temp = module.transform.localScale;
+        float x = module.transform.right.x;
 
         // If spawned object
         if(module.father != null)
         {
-            temp = module.father.transform.localScale;
+            x = module.father.transform.right.x;
         }
 
         //print(temp);
-        val.x = temp.x;
+        val.x = x;
         base.ExecuteCode();
     }
 

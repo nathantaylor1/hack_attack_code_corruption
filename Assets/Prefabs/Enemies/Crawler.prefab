@@ -140,7 +140,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1493756679603760999
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
       m_Calls: []
   moveSpeed: 1.5
   projectileSpeed: 0.5
+  gravityScale: 1
   jumpSpeed: 2
   dashDuration: 1
   dashSpeed: 1
@@ -212,6 +213,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   disableOnStart: 0
   hackable: 0
+  lastCollidedWith: {fileID: 0}
 --- !u!95 &7549024037020160957
 Animator:
   serializedVersion: 3
