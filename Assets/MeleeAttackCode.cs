@@ -30,19 +30,16 @@ public class MeleeAttackCode : CodeWithParameters
         Vector2 direction = (Vector2)(object)GetParameter(0);
 
         // Sets center to be exactly next to collider based on direction
-        Vector2 meleeCenter = new Vector3(bounds.center.x + bounds.extents.x, bounds.center.y + bounds.extents.y);
-        Vector2 size = new Vector2(2 * bounds.extents.x, 2 * bounds.extents.y);
+        Vector2 meleeCenter = new Vector3(bounds.center.x + (bounds.extents.x * direction.x), 
+            bounds.center.y + (bounds.extents.y * direction.y));
 
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(meleeCenter, size, 0f, direction, attackRange, layer);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(meleeCenter, bounds.extents*2f, 0f, direction, attackRange, layer);
 
         foreach (RaycastHit2D hit in hits)
         {
             if (ReferenceEquals(module.transform.gameObject, hit.transform.gameObject)) continue;
             HasHealth hh = hit.transform.GetComponent<HasHealth>();
-            if (hh)
-            {
-                hh.Damage(module.meleeDamage * damageMultiplier);
-            }
+            if (hh) hh.Damage(module.meleeDamage * damageMultiplier);
         }
 
         /*Collider2D[] cols = Physics2D.OverlapBoxAll(meleeCenter, col.bounds.extents * 2, 0, layer);
