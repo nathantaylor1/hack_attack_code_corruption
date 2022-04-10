@@ -10,12 +10,14 @@ public class AnimationController : MonoBehaviour
     protected Rigidbody2D rb;
     protected Collider2D col;
     protected Animator anim;
+    protected CodeModule codeModule;
 
     protected void Awake()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        codeModule = GetComponent<CodeModule>();
     }
 
     protected void Update()
@@ -24,6 +26,8 @@ public class AnimationController : MonoBehaviour
         {
             
         }*/
-        anim.SetBool("IsFalling", rb.velocity.y < 0 && !Grounded.Check(col));
+        bool isFalling = rb.velocity.y < 0 && !Grounded.Check(col);
+        bool isGroundedJump = anim.GetCurrentAnimatorStateInfo(0).IsName(codeModule.animationName + " Jump") && Grounded.Check(col);
+        anim.SetBool("IsFalling", isFalling || isGroundedJump);
     }
 }
