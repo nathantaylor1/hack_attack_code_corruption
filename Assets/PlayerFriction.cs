@@ -9,6 +9,7 @@ public class PlayerFriction : MonoBehaviour
     public PhysicsMaterial2D frictionless;
     public PhysicsMaterial2D friction;
     public LayerMask layermask;
+    public float delay = .15f;
     public int id = 0;
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -21,11 +22,11 @@ public class PlayerFriction : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) {
         if (layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer))) {
-            StartCoroutine(delay(other.attachedRigidbody.gameObject.GetInstanceID()));
+            StartCoroutine(_delay(other.attachedRigidbody.gameObject.GetInstanceID()));
         }
     }
-    IEnumerator delay(int _id) {
-        yield return new WaitForSeconds(.2f);
+    IEnumerator _delay(int _id) {
+        yield return new WaitForSeconds(delay);
         if(id == _id) {
             col.sharedMaterial = friction;
             id = 0;

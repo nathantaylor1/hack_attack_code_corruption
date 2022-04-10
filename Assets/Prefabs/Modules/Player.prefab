@@ -329,6 +329,7 @@ MonoBehaviour:
   layermask:
     serializedVersion: 2
     m_Bits: 66688
+  delay: 0.15
   id: 0
 --- !u!1001 &1836381847827138934
 PrefabInstance:
