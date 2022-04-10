@@ -127,11 +127,15 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnRevive:
+    m_PersistentCalls:
+      m_Calls: []
   health: 3
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   health_display_time: 3
   sm: {fileID: 448108470378767086}
+  maxHealth: 0
   codeBlockToDrop: {fileID: 0}
 --- !u!95 &5260935248493281007
 Animator:
@@ -161,7 +165,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2517249646753999764}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 1f57cb2a115cfa44286566f2092465db, type: 2}
+  m_Material: {fileID: 6200000, guid: 31c2a1a53388a7a4dab600573ef80444, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -221,6 +225,7 @@ MonoBehaviour:
       m_Calls: []
   moveSpeed: 2
   projectileSpeed: 1
+  gravityScale: 1
   jumpSpeed: 3
   dashDuration: 0.25
   dashSpeed: 15
@@ -249,9 +254,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   disableOnStart: 0
   hackable: 0
-  collided:
-    m_PersistentCalls:
-      m_Calls: []
+  lastCollidedWith: {fileID: 0}
 --- !u!114 &1620856265698475845
 MonoBehaviour:
   m_ObjectHideFlags: 0
