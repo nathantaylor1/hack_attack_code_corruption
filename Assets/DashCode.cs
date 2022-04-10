@@ -12,7 +12,7 @@ public class DashCode : CodeWithParameters
             var p1 = GetParameter(1);
             var p2 = GetParameter(2);
             if (!(p0 is null) && !(p1 is null) && !(p2 is null)) {
-                Vector2 direction = (Vector2)(object)p0;
+                Vector2 direction = ((Vector2)(object)p0).normalized;
                 float moveSpeed = (float)(object)p1;
                 float paramTime = ((float)(object)p2);
                 float reloadTime = module.dashDelay / paramTime;

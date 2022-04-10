@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExplodeCode : DamageBlock
 {
     private readonly LayerMask hitLM = (1 << 6) | (1 << 10) | (1 << 29);
+    [SerializeField]
     protected float radius = 4f;
     public override void DoDamage()
     {

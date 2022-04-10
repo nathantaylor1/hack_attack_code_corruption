@@ -90,6 +90,8 @@ public class CodeModule : MonoBehaviour
     public bool hackable = false;
     [HideInInspector]
     public Collider2D lastCollidedWith = null;
+    [HideInInspector]
+    public Coroutine hackableCoroutine = null;
 
     protected virtual void Awake()
     {
@@ -110,7 +112,7 @@ public class CodeModule : MonoBehaviour
             editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
             ToggleEditing(editableOnStart);
         }
-        if (disableOnStart && editor != null && editor.window != null)
+        if (disableOnStart && editor != null && editor.window != null && editor.button != null)
         {
             editor.window.SetActive(false);
             editor.button.SetActive(false);
@@ -120,13 +122,24 @@ public class CodeModule : MonoBehaviour
             disableOnStart = true;
         }
 
-        if (hackable)
+        if (TryGetComponent(out HasHealth helth))
+        {
+            helth.OnDeath.AddListener(EnableHackable);
+
+            //Debug.Log(gameObject.name + " is hackable? " + hackable);
+            if (hackable)
+            {
+                helth.Damage(helth.maxHealth * 2);
+            }
+        }
+
+        /*if (hackable)
         {
             EnableHackable();
         } else if (TryGetComponent(out HasHealth helth))
         {
             helth.OnDeath.AddListener(EnableHackable);
-        } 
+        } */
 
         if (!hackable && editor != null && editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
         {
@@ -134,14 +147,23 @@ public class CodeModule : MonoBehaviour
         }
     }
 
+    protected virtual void OnEnable()
+    {
+        if (hackable)
+        {
+            hackableCoroutine = StartCoroutine(HackableListener());
+        }
+    }
+
     public virtual void EnableHackable()
     {
+        //Debug.Log(gameObject.name + " got into EnableHackable() function");
         hackable = true;
         if (editor.window.TryGetComponent(out EditorWindow ew))
         {
             ew.ToggleCanExecute(false);
         }
-        StartCoroutine(HackableListener());
+        hackableCoroutine = StartCoroutine(HackableListener());
     }
 
     public virtual IEnumerator HackableListener()

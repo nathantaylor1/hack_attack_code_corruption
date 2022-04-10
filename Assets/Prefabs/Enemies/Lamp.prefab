@@ -67,7 +67,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7604567360849001387}
   - component: {fileID: 4736775917162193788}
-  - component: {fileID: 8654811208154410825}
   - component: {fileID: 2890702764768031454}
   m_Layer: 18
   m_Name: ForceField
@@ -75,7 +74,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7604567360849001387
 Transform:
   m_ObjectHideFlags: 0
@@ -141,18 +140,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8654811208154410825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2224228508602095260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f7516863bde454199dda505b181c78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!68 &2890702764768031454
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -293,7 +280,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 6b7da8863b4d1ad419b69d9e8ab7b028, type: 2}
@@ -348,6 +335,7 @@ MonoBehaviour:
   healthBarFill: {fileID: 0}
   health_display_time: 3
   sm: {fileID: 448108470378767086}
+  maxHealth: 0
   codeBlockToDrop: {fileID: 0}
 --- !u!95 &5260935248493281007
 Animator:
@@ -409,13 +397,13 @@ MonoBehaviour:
   OnCheckCollision:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 1
+  moveSpeed: 4
   projectileSpeed: 1
   gravityScale: 0
   jumpSpeed: 3
   dashDuration: 0.2
   dashSpeed: 10
-  accelerationSpeed: 1.5
+  accelerationSpeed: 1
   meleeDamage: 1
   attackDelay: 5
   dashDelay: 5
@@ -465,7 +453,6 @@ GameObject:
   - component: {fileID: 8950305354117134422}
   - component: {fileID: 4502864255356626851}
   - component: {fileID: 4745269379605252707}
-  - component: {fileID: 7056113055006574991}
   m_Layer: 0
   m_Name: Cord
   m_TagString: Untagged
@@ -557,18 +544,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7056113055006574991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3313951755716657563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f7516863bde454199dda505b181c78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3633947796402147484
 GameObject:
   m_ObjectHideFlags: 0

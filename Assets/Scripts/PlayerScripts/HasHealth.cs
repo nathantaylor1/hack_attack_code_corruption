@@ -12,7 +12,7 @@ public class HasHealth : MonoBehaviour
 
     public float health = 5;
     //public TextMeshProUGUI health_display;
-    public bool deadOnStart = false;
+    //public bool deadOnStart = false;
     public Slider healthBarSlider;
     public Image healthBarFill;
     public float health_display_time = 3.0f;
@@ -46,10 +46,10 @@ public class HasHealth : MonoBehaviour
             //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
         }
         updateHealthDisplay();
-        if (deadOnStart)
+        /*if (deadOnStart)
         {
             Damage(maxHealth);
-        }
+        }*/
     }
 
     public void RestoreFullHealth(int _)
@@ -134,6 +134,7 @@ public class HasHealth : MonoBehaviour
                 Destroy(cm.editor.button);
             }
             Destroy(gameObject);*/
+            //Debug.Log(gameObject.name + " got into death function");
             anim.SetTrigger("Death");
             OnDeath?.Invoke();
         }
