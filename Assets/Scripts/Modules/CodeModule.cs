@@ -157,7 +157,7 @@ public class CodeModule : MonoBehaviour
 
     public virtual void EnableHackable()
     {
-        Debug.Log(gameObject.name + " got into EnableHackable() function");
+        //Debug.Log(gameObject.name + " got into EnableHackable() function");
         hackable = true;
         if (editor.window.TryGetComponent(out EditorWindow ew))
         {

@@ -134,7 +134,7 @@ public class HasHealth : MonoBehaviour
                 Destroy(cm.editor.button);
             }
             Destroy(gameObject);*/
-            Debug.Log(gameObject.name + " got into death function");
+            //Debug.Log(gameObject.name + " got into death function");
             anim.SetTrigger("Death");
             OnDeath?.Invoke();
         }
