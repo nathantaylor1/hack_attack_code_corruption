@@ -24,7 +24,10 @@ public class CodeWithBodies : CodeWithParameters
 
     protected virtual Code GetBody(int index)
     {
-        return bodies[index].GetCode();
+        if (index < bodies.Count) {
+            return bodies[index].GetCode();
+        }
+        return null;
     }
 
     public virtual void OnBodyCompletion()
