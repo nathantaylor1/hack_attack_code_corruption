@@ -184,7 +184,7 @@ MonoBehaviour:
       m_Calls: []
   moveSpeed: 1.5
   projectileSpeed: 0.5
-  gravityScale: 1
+  gravityScale: 0
   jumpSpeed: 2
   dashDuration: 1
   dashSpeed: 1
@@ -261,7 +261,11 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnRevive:
+    m_PersistentCalls:
+      m_Calls: []
   health: 2
+  percentHealthAtStart: 1
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   health_display_time: 3
