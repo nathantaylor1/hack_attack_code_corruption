@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExplodeCode : DamageBlock
 {
-    private readonly LayerMask hitLM = (1 << 6) | (1 << 10);
+    private readonly LayerMask hitLM = (1 << 6) | (1 << 10) | (1 << 29);
     protected float radius = 4f;
     public override void DoDamage()
     {
