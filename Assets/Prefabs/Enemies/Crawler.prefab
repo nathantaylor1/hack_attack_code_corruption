@@ -265,11 +265,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   health: 2
-  percentHealthAtStart: 1
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   health_display_time: 3
   sm: {fileID: 6918881977873119177}
+  maxHealth: 0
   codeBlockToDrop: {fileID: 0}
 --- !u!1001 &6669302812257778185
 PrefabInstance:

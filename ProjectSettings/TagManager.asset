@@ -48,6 +48,9 @@ TagManager:
   - name: Tiles
     uniqueID: 1741283021
     locked: 0
+  - name: Doors
+    uniqueID: 3721335249
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
