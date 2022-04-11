@@ -43,6 +43,12 @@ TagManager:
   - 
   - NONE
   m_SortingLayers:
+  - name: Morer Background
+    uniqueID: 2714246723
+    locked: 0
+  - name: More Background
+    uniqueID: 2569126233
+    locked: 0
   - name: Background
     uniqueID: 1639120511
     locked: 0
