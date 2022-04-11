@@ -270,6 +270,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9141975136933099486}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: dashDelay
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: dashSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -283,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 546b63c73ccb9f64ba56f3137fcab927, type: 3}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: jumpSpeed
-      value: 12
+      value: 12.8
       objectReference: {fileID: 0}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: moveSound
@@ -291,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: shootFrom
@@ -306,12 +310,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4671c1f00990d7347bd31113c6d8039b, type: 3}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: attackDelay
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: damageSound
       value: 
       objectReference: {fileID: 8300000, guid: d431444ab0c7cda4482eebbf75bff566, type: 3}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: meleeDamage
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: dashDuration
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: gravityScale
-      value: 2.5
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: animationName
