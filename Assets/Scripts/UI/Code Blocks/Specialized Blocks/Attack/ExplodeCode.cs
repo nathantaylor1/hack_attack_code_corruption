@@ -38,6 +38,6 @@ public class ExplodeCode : DamageBlock
             }
         }
         if (ps != null)
-            Instantiate(ps, transform.position, Quaternion.identity);
+            Instantiate(ps, module.transform.position, Quaternion.identity);
     }
 }
