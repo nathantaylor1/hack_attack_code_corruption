@@ -23,7 +23,7 @@ public class SpawnedSpace : CodeSpace
         base.SetModule(_module);
     }
 
-    protected void Update()
+    protected void FixedUpdate()
     {
         if (!EditorController.instance.is_in_editor && !destroyed) {
                 collisionCheckThisFrame = false;
