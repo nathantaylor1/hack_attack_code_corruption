@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3183616787505346748, guid: 1566a77515eb8de4ea99aaae380f72fd, type: 3}
       propertyPath: m_Name
-      value: Melee Attack Block
+      value: Melee Attack Block Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3183616787505346749, guid: 1566a77515eb8de4ea99aaae380f72fd, type: 3}
       propertyPath: m_Pivot.x
@@ -535,6 +535,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6955676617504776005}
     m_Modifications:
+    - target: {fileID: 1976044100529366504, guid: e4ce072324f96ad40b02dbf728a913dd, type: 3}
+      propertyPath: canBeRemoved
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3027122466516523194, guid: e4ce072324f96ad40b02dbf728a913dd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -36,7 +36,12 @@ public class GameManager : MonoBehaviour
     {
         // Unity Analytics Send Level Complete
         AnalyticsCollection.LevelComplete(SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        //Debug.Log($"SceneManager.GetActiveScene().buildIndex : {SceneManager.GetActiveScene().buildIndex}");
+        //Debug.Log($"Scene Count: {SceneManager.sceneCountInBuildSettings}");
+
+        if (SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCountInBuildSettings) SceneManager.LoadScene("MainMenu");
+        else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     // Call this on Player Death to Reset the Level
