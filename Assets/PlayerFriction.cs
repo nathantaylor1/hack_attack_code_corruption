@@ -13,7 +13,7 @@ public class PlayerFriction : MonoBehaviour
     public int id = 0;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if ( layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer))) {
+        if (other.attachedRigidbody != null && layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer))) {
         //Debug.Log("hit " + other.name);
             col.sharedMaterial = frictionless;
             id = other.attachedRigidbody.gameObject.GetInstanceID();
@@ -21,7 +21,7 @@ public class PlayerFriction : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer))) {
+        if (other.attachedRigidbody != null && layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer))) {
             StartCoroutine(_delay(other.attachedRigidbody.gameObject.GetInstanceID()));
         }
     }

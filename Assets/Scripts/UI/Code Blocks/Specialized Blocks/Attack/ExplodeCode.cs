@@ -7,6 +7,9 @@ public class ExplodeCode : DamageBlock
     private readonly LayerMask hitLM = (1 << 6) | (1 << 10) | (1 << 29);
     [SerializeField]
     protected float radius = 4f;
+    [SerializeField]
+    protected ParticleSystem ps;
+
     public override void DoDamage()
     {
         int moduleId = module.gameObject.GetInstanceID();
@@ -34,5 +37,7 @@ public class ExplodeCode : DamageBlock
                 if (hh) hh.Damage(dmg);
             }
         }
+        if (ps != null)
+            Instantiate(ps, transform.position, Quaternion.identity);
     }
 }
