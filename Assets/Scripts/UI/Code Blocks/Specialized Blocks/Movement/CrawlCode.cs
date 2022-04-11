@@ -71,7 +71,7 @@ public class CrawlCode : CodeWithParameters
         if (module != null ) {
             rb = module.rb;
             // Debug.Log(module.transform.up);
-            if (module.transform.up != Vector3.up) {
+            if (module.gameObject.layer == LayerMask.NameToLayer("Player") && module.transform.up != Vector3.up) {
                 module.transform.up = Vector3.up;
             }
             rb.velocity = Vector2.zero;

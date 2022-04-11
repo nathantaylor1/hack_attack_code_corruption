@@ -12,7 +12,7 @@ public class DashCode : CodeWithParameters
             var p1 = GetParameter(1);
             var p2 = GetParameter(2);
             if (!(p0 is null) && !(p1 is null) && !(p2 is null)) {
-                Vector2 direction = (Vector2)(object)p0;
+                Vector2 direction = ((Vector2)(object)p0).normalized;
                 float moveSpeed = (float)(object)p1;
                 float paramTime = ((float)(object)p2);
                 float reloadTime = module.dashDelay / paramTime;
@@ -27,7 +27,9 @@ public class DashCode : CodeWithParameters
         module.anim.SetTrigger("Dash");
         isDashing = true;
         module.rb.velocity = direction * moveSpeed * module.dashSpeed;
+        module.DisableGravity();
         yield return new WaitForSeconds(module.dashDuration);
+        module.EnableGravity();
         module.rb.velocity = Vector3.zero;
         module.anim.SetTrigger("Idle");
         yield return new WaitForSeconds(reloadTime);
