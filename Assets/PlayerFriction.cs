@@ -14,7 +14,7 @@ public class PlayerFriction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if ( layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer))) {
-        Debug.Log("hit " + other.name);
+        //Debug.Log("hit " + other.name);
             col.sharedMaterial = frictionless;
             id = other.attachedRigidbody.gameObject.GetInstanceID();
         }
