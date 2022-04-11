@@ -77,6 +77,7 @@ public class GeneralMoveCode : CodeWithParameters
     {
         isRunning = false;
         if (module != null) {
+            rb = module.rb;
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
