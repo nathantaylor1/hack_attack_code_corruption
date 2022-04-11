@@ -938,7 +938,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4289743666421982835}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: ResumeGame
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
