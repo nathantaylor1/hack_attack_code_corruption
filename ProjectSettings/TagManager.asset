@@ -8,6 +8,7 @@ TagManager:
   - CollectableCodeBlock
   - MovingBlock
   - BombEnemy
+  - Printer
   layers:
   - Default
   - TransparentFX

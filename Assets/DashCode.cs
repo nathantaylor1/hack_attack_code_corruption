@@ -5,6 +5,7 @@ using UnityEngine;
 public class DashCode : CodeWithParameters
 {
     bool isDashing = false;
+    float gravityScale = 1f;
     public override void ExecuteCode()
     {
         if (!isDashing) {
@@ -27,9 +28,11 @@ public class DashCode : CodeWithParameters
         module.anim.SetTrigger("Dash");
         isDashing = true;
         module.rb.velocity = direction * moveSpeed * module.dashSpeed;
+        gravityScale = module.rb.gravityScale;
         module.DisableGravity();
         yield return new WaitForSeconds(module.dashDuration);
-        module.EnableGravity();
+        //module.EnableGravity();
+        module.rb.gravityScale = gravityScale;
         module.rb.velocity = Vector3.zero;
         module.anim.SetTrigger("Idle");
         yield return new WaitForSeconds(reloadTime);

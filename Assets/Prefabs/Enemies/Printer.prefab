@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1620856265698475845}
   m_Layer: 10
   m_Name: Printer
-  m_TagString: Untagged
+  m_TagString: Printer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

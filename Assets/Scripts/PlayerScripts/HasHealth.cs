@@ -87,7 +87,7 @@ public class HasHealth : MonoBehaviour
     }
     public IEnumerator PlayInvincible() {
         Color dmg = new Color(.6f, .2f, .2f, .8f);
-        for (int i = 0; i < 60; i++)
+        for (int i = 0; i < 30; i++)
         {
             yield return new WaitForFixedUpdate();
             if (i % 10 == 0 && sr != null) {
