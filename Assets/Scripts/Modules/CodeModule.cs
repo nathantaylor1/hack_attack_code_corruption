@@ -172,6 +172,7 @@ public class CodeModule : MonoBehaviour
         {
             if (Vector2.Distance(GameManager.instance.player.transform.position, transform.position) <= hackingDistance)
             {
+                //Debug.DrawLine(GameManager.instance.player.transform.position, transform.position);
                 if (anim != null) {
                     anim.SetTrigger("Hackable");
                 }

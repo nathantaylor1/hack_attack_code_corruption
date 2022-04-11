@@ -20,10 +20,10 @@ public class IfCode : CodeWithBodies
             {
                 wasJustTrue = false;
                 // Quick fix for a bigger issue crawl code shouldn't have stop execution called in an if
-                if (GetBody(0).GetComponent<CrawlCode>() == null) {
+                /*if (GetBody(0).GetComponent<CrawlCode>() == null) {
                     GetBody(0).SetModule(module);
                     GetBody(0).StopExecution();
-                }
+                }*/
             }
         } 
         base.ExecuteCode();
