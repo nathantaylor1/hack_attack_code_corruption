@@ -14,7 +14,7 @@ public class ExplodeCode : DamageBlock
     {
         int moduleId = module.gameObject.GetInstanceID();
         int daddyId = module.father.GetInstanceID();
-        if (!col.isTrigger && col.gameObject.GetInstanceID() != moduleId && col.gameObject.GetInstanceID() != daddyId ) {
+        if (col.gameObject.GetInstanceID() != moduleId && col.gameObject.GetInstanceID() != daddyId ) {
             int layer = col.gameObject.layer;
             if (!(layer == 6 || layer == 7 || layer == 10)) return;
             var p0 = GetParameter(0);

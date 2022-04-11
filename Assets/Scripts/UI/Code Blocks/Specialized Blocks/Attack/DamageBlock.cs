@@ -26,7 +26,7 @@ public class DamageBlock : CodeWithParameters
         int moduleId = module.gameObject.GetInstanceID();
         int daddyId = module.father.GetInstanceID();
             // Debug.Log(cols[i].name);
-        if (!col.isTrigger && col.gameObject.GetInstanceID() != moduleId && col.gameObject.GetInstanceID() != daddyId ) {
+        if (col.gameObject.GetInstanceID() != moduleId && col.gameObject.GetInstanceID() != daddyId ) {
             if (col.TryGetComponent<HasHealth>(out HasHealth h)) {
                 h.Damage(dmg);
                 // Debug.Log("damaging player");
