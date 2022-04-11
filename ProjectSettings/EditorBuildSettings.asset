@@ -5,28 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Build Scenes/Analytics.unity
     guid: 77232a2bfaef72e4b9361d878bfe439e
-  - enabled: 0
-    path: Assets/Scenes/Build Scenes/Old/Tutorial01.unity
-    guid: 7e072e1953bbc434f833c8c3b51de2d4
-  - enabled: 0
-    path: Assets/Scenes/Build Scenes/Old/CustomLevel01.unity
-    guid: 88ad2b191a1e1474abe2c62b12672919
-  - enabled: 0
-    path: Assets/Scenes/Test Scenes/LAB_Checkpoints.unity
-    guid: 70cf57fc34f350c42b84873d86b09f46
-  - enabled: 0
-    path: Assets/Scenes/Build Scenes/Tutorial01 1.unity
-    guid: 88093510e6871c046bff0c015a12c8c0
-  - enabled: 0
-    path: Assets/Scenes/Build Scenes/Custom Level 1.unity
-    guid: 6c7fb09b7996133418b56b81151788dd
-  - enabled: 0
-    path: Assets/Scenes/Build Scenes/EndScreen.unity
-    guid: 85785bf9a281dbd42bfe1136d00b7a44
+  - enabled: 1
+    path: Assets/Scenes/Build Scenes/MainMenu.unity
+    guid: 20ee58c3af017504489579e77f68285b
   - enabled: 1
     path: Assets/Scenes/Movement Level.unity
     guid: 8727a55ca4aeb1d4d866a8fea005d1c8
+  - enabled: 1
+    path: Assets/Scenes/Build Scenes/Combat Level.unity
+    guid: a4f9c724de7fe184693aa2059f9caa44
+  - enabled: 1
+    path: Assets/Scenes/Build Scenes/Hacking01.unity
+    guid: 80243b2668f2b854380f55e25d8b3a7c
   m_configObjects: {}
