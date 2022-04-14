@@ -7,6 +7,7 @@ public class CheckpointReset : MonoBehaviour
     [HideInInspector]
     public bool saveOnStart = true;
     protected GameObject copy = null;
+    private bool deleting = false;
 
     protected virtual void Awake()
     {
@@ -25,6 +26,9 @@ public class CheckpointReset : MonoBehaviour
 
     protected virtual void SaveToCheckpoint(int _)
     {
+        if (deleting) {
+            return;
+        }
         if (gameObject.activeInHierarchy)
         {
             copy = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
@@ -35,8 +39,15 @@ public class CheckpointReset : MonoBehaviour
         }
     }
 
+    public void Deleting() {
+        deleting = true;
+    }
+
     protected virtual void ResetToCheckpoint()
     {
+        if (deleting) {
+            return;
+        }
         if (gameObject.activeInHierarchy)
         {
             Destroy(gameObject);

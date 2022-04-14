@@ -18,6 +18,10 @@ public class CollectableBlock : MonoBehaviour
         GameObject codeBlock = Instantiate(block);
         InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
         codeBlock.transform.localScale = new Vector3(1, 1, 1);
+        if (TryGetComponent(out CheckpointReset cr)) {
+            cr.Deleting();
+        }
+        
         StartCoroutine(moveToward());
 
         if (pickupSound != null && AudioManager.instance != null && Camera.main != null)
