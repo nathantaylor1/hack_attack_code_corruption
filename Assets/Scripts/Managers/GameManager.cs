@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
-    private bool resetting = false;
+
     // All game state changes should happen here
 
     private void Awake()
@@ -23,12 +23,6 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
-    }
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.R) && !resetting) {
-            resetting = true;
-            ResetLevel();
-        }
     }
 
     // Call this on LeaveRoom.cs when players exits Level
