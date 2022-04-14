@@ -70,7 +70,7 @@ public class Stapler : EnemyMovement
     {
         if (!spr.isVisible || dead) return; // do nothing if not visible
         
-        _grounded = Grounded.Check(col2d);
+        _grounded = Grounded.Check(col2d, transform);
 
         float yVel = _rb2d.velocity.y;
         if (yVel < 0)
