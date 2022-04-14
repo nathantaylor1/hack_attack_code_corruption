@@ -195,7 +195,7 @@ public class CrawlCode : CodeWithParameters
     {
         while (isRunning)
         {
-            if (Grounded.Check(col) && !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run") &&
+            if (Grounded.Check(col, tf) && !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run") &&
                 !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Jump"))
                 anim.SetTrigger("Run");
             yield return null;

@@ -64,7 +64,7 @@ public class GeneralMoveCode : CodeWithParameters
     {
         while (isRunning)
         {
-            if (Grounded.Check(col) && 
+            if (Grounded.Check(col, module.transform) && 
                 !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run") &&
                 !anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Jump"))
                 anim.SetTrigger("Run");

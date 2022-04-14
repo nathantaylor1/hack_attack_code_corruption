@@ -17,7 +17,7 @@ public class CoyoteTime : MonoBehaviour
     private void Update()
     {
         time -= Time.deltaTime;
-        if (Grounded.Check(c2d))
+        if (Grounded.Check(c2d, transform))
             time = timeAllowed;
     }
 

@@ -26,8 +26,8 @@ public class AnimationController : MonoBehaviour
         {
             
         }*/
-        bool isFalling = rb.velocity.y < 0 && !Grounded.Check(col);
-        bool isGroundedJump = anim.GetCurrentAnimatorStateInfo(0).IsName(codeModule.animationName + " Jump") && Grounded.Check(col);
+        bool isFalling = rb.velocity.y < 0 && !Grounded.Check(col, codeModule.transform);
+        bool isGroundedJump = anim.GetCurrentAnimatorStateInfo(0).IsName(codeModule.animationName + " Jump") && Grounded.Check(col, codeModule.transform);
         anim.SetBool("IsFalling", isFalling || isGroundedJump);
     }
 }
