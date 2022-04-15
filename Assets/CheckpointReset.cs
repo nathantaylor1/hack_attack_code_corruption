@@ -7,6 +7,8 @@ public class CheckpointReset : MonoBehaviour
     [HideInInspector]
     public bool saveOnStart = true;
     protected GameObject copy = null;
+    protected bool shouldSave = false;
+    protected int currentCheckpoint;
 
     protected virtual void Awake()
     {
@@ -23,28 +25,41 @@ public class CheckpointReset : MonoBehaviour
         }
     }
 
-    protected virtual void SaveToCheckpoint(int _)
+    public virtual void MarkForReset()
     {
-        if (gameObject.activeInHierarchy)
+
+    }
+
+    protected virtual void SaveToCheckpoint(int checkpoint)
+    {
+        if (shouldSave)
         {
-            copy = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+            // State change if player reaches checkpoint without altering this gameobject
+            if (gameObject.activeInHierarchy)
+            {
+                copy = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        currentCheckpoint = checkpoint;
     }
 
     protected virtual void ResetToCheckpoint()
     {
-        if (gameObject.activeInHierarchy)
+        if (shouldSave)
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            gameObject.SetActive(true);
-            SaveToCheckpoint(0);
+            if (gameObject.activeInHierarchy)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                gameObject.SetActive(true);
+                SaveToCheckpoint(0);
+            }
         }
     }
 }

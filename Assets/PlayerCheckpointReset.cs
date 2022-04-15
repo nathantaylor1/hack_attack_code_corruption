@@ -12,20 +12,10 @@ public class PlayerCheckpointReset : CheckpointReset
 
     protected override void Awake()
     {
+        shouldSave = true;
         rb = GetComponent<Rigidbody2D>();
         module = GetComponent<CodeModule>();
-        EventManager.OnCheckpointSave.AddListener(SaveToCheckpoint);
-        EventManager.OnPlayerDeath.AddListener(ResetToCheckpoint);
-        if (saveOnStart)
-        {
-            saveOnStart = false;
-            SaveToCheckpoint(0);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
-        // base.Awake();
+        base.Awake();
     }
 
     protected override void SaveToCheckpoint(int _)

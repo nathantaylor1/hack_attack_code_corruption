@@ -10,7 +10,7 @@ public class Checkpoint : MonoBehaviour
     protected Sprite inactiveSprite;
     protected SpriteRenderer sr;
 
-    protected bool isActive = false;
+    //protected bool isActive = false;
     protected Collider2D col;
 
     // The amount of time that it takes before a checkpoint can be saved after a previous
@@ -41,7 +41,7 @@ public class Checkpoint : MonoBehaviour
     protected IEnumerator SaveAndRefresh()
     {
         yield return new WaitForEndOfFrame();
-        isActive = true;
+        //isActive = true;
         if (sr != null) {
             sr.sprite = activeSprite;
         }
@@ -63,7 +63,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (checkpointID != GetInstanceID())
         {
-            isActive = false;
+            //isActive = false;
             if (sr != null) {
                 sr.sprite = inactiveSprite;
             }
