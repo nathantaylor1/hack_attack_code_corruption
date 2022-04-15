@@ -63,6 +63,7 @@ public class Stapler : EnemyMovement
             item.enabled = false;
         }
         GetComponent<BoxCollider2D>().isTrigger = true;
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
