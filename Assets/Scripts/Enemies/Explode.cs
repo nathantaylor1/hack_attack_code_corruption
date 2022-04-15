@@ -20,6 +20,8 @@ public class Explode : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("BombEnemy")) return;
+        Debug.Log(col.gameObject.name);
+        Debug.Log(col.tag);
         
         int layer = col.gameObject.layer;
         if (!(layer == 6 || layer == 7 || layer == 10)) return;

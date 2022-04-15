@@ -58,11 +58,12 @@ public class Stapler : EnemyMovement
     void Die() {
         dead = true;
         spr.enabled = false;
-        foreach (var item in GetComponentsInChildren<SpriteRenderer>())
-        {
-            item.enabled = false;
-        }
-        GetComponent<BoxCollider2D>().isTrigger = true;
+        Destroy(gameObject);
+        // foreach (var item in GetComponentsInChildren<SpriteRenderer>())
+        // {
+        //     item.enabled = false;
+        // }
+        // GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     // Update is called once per frame
