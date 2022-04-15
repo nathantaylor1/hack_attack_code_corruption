@@ -28,6 +28,14 @@ public class CollectableBlock : MonoBehaviour
             AudioManager.instance.PlaySound(pickupSound, Camera.main.transform.position);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            AddToInventory();
+        }
+    }
+
     private IEnumerator moveToward() {
         var close = false;
         var screenPos = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 1.5f + Vector3.right * 1);
