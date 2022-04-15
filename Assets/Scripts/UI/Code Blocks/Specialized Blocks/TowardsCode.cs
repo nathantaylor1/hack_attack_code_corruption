@@ -11,9 +11,14 @@ public class TowardsCode : CodeWithParameters
     public override void ExecuteCode()
     {
 
-        // Change to code space's object
+        var p0 = GetParameter(0);
+        if (p0 is null) {
+            base.ExecuteCode();
+            return;
+        }
+
         Transform trans = module.transform;
-        int layer = (int)(object)GetParameter(0);
+        int layer = (int)(object)p0;
         //print("layer is " + layer);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(trans.position.x, trans.position.y), detection_radius, (1 << layer));
         Collider2D closest_collider = module.FindClosestCollider(colliders, trans);
@@ -24,8 +29,8 @@ public class TowardsCode : CodeWithParameters
             return;
         }
 
-        if(closest_collider.GetComponent<Renderer>().isVisible && trans.GetComponent<Renderer>().isVisible)
-        {
+        /*if(closest_collider.GetComponent<Renderer>().isVisible && trans.GetComponent<Renderer>().isVisible)
+        {*/
             if(is_towards)
             {
                 val = closest_collider.transform.position - trans.position;
@@ -35,11 +40,11 @@ public class TowardsCode : CodeWithParameters
                 val = trans.position - closest_collider.transform.position;
             }
             val = val.normalized;
-        }
+        /*}
         else
         {
             val = Vector2.zero;
-        }
+        }*/
 
         base.ExecuteCode();
     }

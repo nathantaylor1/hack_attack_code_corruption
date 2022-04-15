@@ -10,6 +10,7 @@ public class MoveCode : CodeWithParameters
     private Rigidbody2D rb2d;
     protected Animator anim;
     protected Collider2D col;
+    protected Transform tf;
     bool isRunning = false;
     Coroutine animationCoroutine;
     
@@ -18,6 +19,7 @@ public class MoveCode : CodeWithParameters
         rb2d = module.rb;
         anim = module.anim;
         col = module.col;
+        tf = module.transform;
         isRunning = true;
 
         float xVel = moveForce * (float)(object)GetParameter(0);
@@ -48,7 +50,7 @@ public class MoveCode : CodeWithParameters
     {
         while (isRunning)
         {
-            if (Grounded.Check(col) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player Run") &&
+            if (Grounded.Check(col, tf) && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player Run") &&
                 !anim.GetCurrentAnimatorStateInfo(0).IsName("Player Jump"))
                 anim.SetTrigger("Run");
             yield return null;

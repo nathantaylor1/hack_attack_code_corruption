@@ -23,12 +23,13 @@ public class SpawnedSpace : CodeSpace
         base.SetModule(_module);
     }
 
-    protected void Update()
+    protected void FixedUpdate()
     {
         if (!EditorController.instance.is_in_editor && !destroyed) {
                 collisionCheckThisFrame = false;
                 StartExecution();
                 if (!collisionCheckThisFrame && CheckCollision()) {
+                    // StartCoroutine(waitOnePass());
                     Destroy(gameObject);
                     destroyed = true;
                 }
@@ -37,7 +38,11 @@ public class SpawnedSpace : CodeSpace
     }
 
     public bool CheckCollision() {
-        return module.col.IsTouchingLayers(~(1<<module.col.gameObject.layer | 1 << parentLayer));
+        bool temp = true;
+        if (module.father != null && module.father.GetComponent<Collider2D>() != null) {
+            temp = !module.col.IsTouching(module.father.GetComponent<Collider2D>());
+        }
+        return module.col.IsTouchingLayers(~(1<<module.col.gameObject.layer)) && temp;
     }
 
     public void CollisionCalled() {

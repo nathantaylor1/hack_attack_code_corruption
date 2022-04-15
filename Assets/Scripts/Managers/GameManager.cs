@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
-    private bool resetting = false;
+
     // All game state changes should happen here
 
     private void Awake()
@@ -24,19 +24,18 @@ public class GameManager : MonoBehaviour
 
         instance = this;
     }
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.R) && !resetting) {
-            resetting = true;
-            ResetLevel();
-        }
-    }
 
     // Call this on LeaveRoom.cs when players exits Level
     public void LevelCompleted()
     {
         // Unity Analytics Send Level Complete
         AnalyticsCollection.LevelComplete(SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        //Debug.Log($"SceneManager.GetActiveScene().buildIndex : {SceneManager.GetActiveScene().buildIndex}");
+        //Debug.Log($"Scene Count: {SceneManager.sceneCountInBuildSettings}");
+
+        if (SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCountInBuildSettings) SceneManager.LoadScene("MainMenu");
+        else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     // Call this on Player Death to Reset the Level

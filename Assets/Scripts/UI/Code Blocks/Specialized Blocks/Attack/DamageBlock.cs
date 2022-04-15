@@ -4,31 +4,38 @@ using UnityEngine;
 
 public class DamageBlock : CodeWithParameters
 {
-    public ContactFilter2D cf = new ContactFilter2D().NoFilter();
-    // Check a maximum of 20 collisions
-    private Collider2D[] cols = new Collider2D[20];
+    protected Collider2D col = null;
+
     public override void ExecuteCode()
     {
-        float dmg = (float)(object)GetParameter(0);
-        int k = module.damagePart.OverlapCollider(cf, cols);
+        // need to update this in the case of the code block is dragged to a different module 
+        col = module.lastCollidedWith;
+        if (col != null) {
+            DoDamage();
+        }
+        base.ExecuteCode();
+    }
+
+    public virtual void DoDamage() {
+        var p0 = GetParameter(0);
+        if (p0 is null) {
+            return;
+        }
+        float dmg = (float)(object)p0;
         // Debug.Log("damaging" + dmg + "with k:" + k);
         int moduleId = module.gameObject.GetInstanceID();
         int daddyId = module.father.GetInstanceID();
-        for (int i = 0; i < k; i++)
-        {
             // Debug.Log(cols[i].name);
-            if (cols[i].gameObject.GetInstanceID() != moduleId && cols[i].gameObject.GetInstanceID() != daddyId ) {
-                if (cols[i].TryGetComponent<HasHealth>(out HasHealth h)) {
-                    h.Damage(dmg);
-                    // Debug.Log("damaging player");
-                }
-                // Used to get the health of the printer
-                if (cols[i].transform.parent != null && cols[i].transform.parent.TryGetComponent<HasHealth>(out HasHealth h1)) {
-                    h1.Damage(dmg);
-                    // Debug.Log("damaging printer");
-                }
+        if (col.gameObject.GetInstanceID() != moduleId && col.gameObject.GetInstanceID() != daddyId ) {
+            if (col.TryGetComponent<HasHealth>(out HasHealth h)) {
+                h.Damage(dmg);
+                // Debug.Log("damaging player");
             }
+            // Used to get the health of the printer
+            // if (col.transform.parent != null && col.transform.parent.TryGetComponent<HasHealth>(out HasHealth h1)) {
+            //     h1.Damage(dmg);
+            //     // Debug.Log("damaging printer");
+            // }
         }
-        base.ExecuteCode();
     }
 }

@@ -32,11 +32,12 @@ public class PlayerCheckpointReset : CheckpointReset
 
     protected override void ResetToCheckpoint()
     {
+        transform.parent = null;
         transform.position = positionCopy;
         rb = Copy.Component<Rigidbody2D>(rbCopy, gameObject);
         GameObject tempWindow = module.editor.window;
         //Destroy(module.editor.window);
-        Debug.Log(windowCopy.name);
+        //Debug.Log(windowCopy.name);
         module.editor = EditorController.instance.AddWindowCopyless(windowCopy, module.editor.button, module);
         module.editor.window.SetActive(true);
         module.editor.button.SetActive(true);

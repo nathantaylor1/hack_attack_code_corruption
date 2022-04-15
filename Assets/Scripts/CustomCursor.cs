@@ -5,19 +5,9 @@ using UnityEngine;
 
 public class CustomCursor : MonoBehaviour
 {
-    protected static CustomCursor instance;
-    /*[SerializeField]
-    protected Texture2D cursor;
-
-    protected void Awake()
-    {
-        instance = this;
-        Cursor.SetCursor(cursor, Vector3.zero, CursorMode.Auto);
-    }*/
-
     void Update()
     {
-        if (EditorController.instance.is_in_editor)
+        if (PauseMenu.opened || EditorController.instance.is_in_editor)
         {
             Cursor.visible = true;
             return;

@@ -10,16 +10,6 @@ public class CollectableBlock : MonoBehaviour
     public float quick = 2f;
     public AudioClip pickupSound;
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        //Debug.Log(other.name);
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
-            AddToInventory();
-        } else if (alreadyPickedUp && other.gameObject.layer == LayerMask.NameToLayer("Collectables")) {
-            // if collides with remove block
-            Destroy(other.gameObject);
-        }
-    }
-
     public virtual void AddToInventory()
     {
         if (alreadyPickedUp) return;
@@ -28,6 +18,10 @@ public class CollectableBlock : MonoBehaviour
         GameObject codeBlock = Instantiate(block);
         InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
         codeBlock.transform.localScale = new Vector3(1, 1, 1);
+        if (TryGetComponent(out CheckpointReset cr)) {
+            cr.Deleting();
+        }
+        
         StartCoroutine(moveToward());
 
         if (pickupSound != null && AudioManager.instance != null && Camera.main != null)

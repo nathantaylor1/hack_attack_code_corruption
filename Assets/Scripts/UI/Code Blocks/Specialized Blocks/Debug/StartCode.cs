@@ -4,10 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class StartCode : Code, IPointerClickHandler
+public class StartCode : Code
 {
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Continue();
-    }
 }

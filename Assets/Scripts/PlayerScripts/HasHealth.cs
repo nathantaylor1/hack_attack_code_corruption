@@ -8,9 +8,11 @@ using UnityEngine.Events;
 public class HasHealth : MonoBehaviour
 {
     public UnityEvent OnDeath = new UnityEvent();
+    public UnityEvent OnRevive = new UnityEvent();
 
     public float health = 5;
     //public TextMeshProUGUI health_display;
+    //public bool deadOnStart = false;
     public Slider healthBarSlider;
     public Image healthBarFill;
     public float health_display_time = 3.0f;
@@ -19,7 +21,8 @@ public class HasHealth : MonoBehaviour
     private CodeModule module;
     IEnumerator inCombat;
     private SpriteRenderer sr;
-    private float maxHealth;
+    [HideInInspector]
+    public float maxHealth;
     protected Animator anim;
 
     public bool IsFullHealth()
@@ -34,14 +37,19 @@ public class HasHealth : MonoBehaviour
         TryGetComponent<CodeModule>(out module);
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        maxHealth = health;
+        if (health > 0) maxHealth = health;
+        //Debug.Log(gameObject.name + " has " + health + " starting health and " + maxHealth + " max health");
+        SetHealthVisibility(false);
         if(gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             EventManager.OnCheckpointSave.AddListener(RestoreFullHealth);
             //EventManager.OnPlayerDeath.AddListener(RestoreFullHealth);
-            SetHealthVisibility(false);
         }
         updateHealthDisplay();
+        /*if (deadOnStart)
+        {
+            Damage(maxHealth);
+        }*/
     }
 
     public void RestoreFullHealth(int _)
@@ -79,7 +87,7 @@ public class HasHealth : MonoBehaviour
     }
     public IEnumerator PlayInvincible() {
         Color dmg = new Color(.6f, .2f, .2f, .8f);
-        for (int i = 0; i < 60; i++)
+        for (int i = 0; i < 30; i++)
         {
             yield return new WaitForFixedUpdate();
             if (i % 10 == 0 && sr != null) {
@@ -105,6 +113,7 @@ public class HasHealth : MonoBehaviour
         health = maxHealth;
         updateHealthDisplay();
         anim.SetTrigger("Idle");
+        OnRevive?.Invoke();
     }
 
     protected virtual void Death()
@@ -125,6 +134,7 @@ public class HasHealth : MonoBehaviour
                 Destroy(cm.editor.button);
             }
             Destroy(gameObject);*/
+            //Debug.Log(gameObject.name + " got into death function");
             anim.SetTrigger("Death");
             OnDeath?.Invoke();
         }
@@ -133,8 +143,11 @@ public class HasHealth : MonoBehaviour
     void updateHealthDisplay()
     {
         float hp = (health <= 0) ? 0 : health;
+        //Debug.Log("maxHealth: " + maxHealth);
         float percent = hp / maxHealth;
+        //Debug.Log("percent: " + percent);
         float removed = 1f - percent;
+        //Debug.Log("removed: " + removed);
         if (gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             //health_display.text = "Health: " + hp;

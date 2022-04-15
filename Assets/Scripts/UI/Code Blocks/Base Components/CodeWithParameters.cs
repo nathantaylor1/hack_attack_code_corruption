@@ -32,12 +32,11 @@ public class CodeWithParameters : Code
 
     protected virtual dynamic GetParameter(int index)
     {
-        parameters[index].GetCode().SetModule(module);
-        return parameters[index].GetInput();
-    }
-
-    protected virtual dynamic GetParameter(int index, CodeModule m)
-    {
-        return parameters[index].GetInput(m);
+        Code c = parameters[index].GetCode();
+        if (c != null) {
+            c.SetModule(module);
+            return parameters[index].GetInput();
+        }
+        return null;
     }
 }

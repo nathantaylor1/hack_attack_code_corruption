@@ -13,6 +13,7 @@ public class CodeModule : MonoBehaviour
 
     public float moveSpeed = 1f;
     public float projectileSpeed = 1f;
+    public float gravityScale = 1f;
     public float jumpSpeed = 2f;
     public float dashDuration = 1f;
     public float dashSpeed = 1f;
@@ -87,6 +88,10 @@ public class CodeModule : MonoBehaviour
     public bool disableOnStart = false;
     // [HideInInspector]
     public bool hackable = false;
+    [HideInInspector]
+    public Collider2D lastCollidedWith = null;
+    [HideInInspector]
+    public Coroutine hackableCoroutine = null;
 
     protected virtual void Awake()
     {
@@ -98,6 +103,7 @@ public class CodeModule : MonoBehaviour
         }
         go = gameObject;
         anim = GetComponent<Animator>();
+        rb.gravityScale = gravityScale;
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
         Debug.Log("window: " + editor.window);
@@ -106,7 +112,7 @@ public class CodeModule : MonoBehaviour
             editor = EditorController.instance.AddWindow(editor.window, editor.button, this);
             ToggleEditing(editableOnStart);
         }
-        if (disableOnStart && editor != null && editor.window != null)
+        if (disableOnStart && editor != null && editor.window != null && editor.button != null)
         {
             editor.window.SetActive(false);
             editor.button.SetActive(false);
@@ -116,28 +122,48 @@ public class CodeModule : MonoBehaviour
             disableOnStart = true;
         }
 
-        if (hackable)
+        if (TryGetComponent(out HasHealth helth))
+        {
+            helth.OnDeath.AddListener(EnableHackable);
+
+            //Debug.Log(gameObject.name + " is hackable? " + hackable);
+            if (hackable)
+            {
+                helth.Damage(helth.maxHealth * 2);
+            }
+        }
+
+        /*if (hackable)
         {
             EnableHackable();
         } else if (TryGetComponent(out HasHealth helth))
         {
             helth.OnDeath.AddListener(EnableHackable);
-        } 
+        } */
 
-        if (editor != null && editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
+        if (!hackable && editor != null && editor.window != null && editor.window.TryGetComponent(out EditorWindow ew))
         {
             ew.ToggleCanExecute(true);
         }
     }
 
+    protected virtual void OnEnable()
+    {
+        if (hackable)
+        {
+            hackableCoroutine = StartCoroutine(HackableListener());
+        }
+    }
+
     public virtual void EnableHackable()
     {
+        //Debug.Log(gameObject.name + " got into EnableHackable() function");
         hackable = true;
         if (editor.window.TryGetComponent(out EditorWindow ew))
         {
             ew.ToggleCanExecute(false);
         }
-        StartCoroutine(HackableListener());
+        hackableCoroutine = StartCoroutine(HackableListener());
     }
 
     public virtual IEnumerator HackableListener()
@@ -146,6 +172,7 @@ public class CodeModule : MonoBehaviour
         {
             if (Vector2.Distance(GameManager.instance.player.transform.position, transform.position) <= hackingDistance)
             {
+                //Debug.DrawLine(GameManager.instance.player.transform.position, transform.position);
                 if (anim != null) {
                     anim.SetTrigger("Hackable");
                 }
@@ -172,6 +199,41 @@ public class CodeModule : MonoBehaviour
             ew.ToggleEnabled(enabled);
         }
         editor.button.SetActive(enabled);
+        editor.button.transform.SetAsLastSibling();
+        if (editor.button.TryGetComponent(out EditorButton eb))
+        {
+            eb.SelectButton();
+        }
+    }
+
+    public virtual void DisableGravity()
+    {
+        rb.gravityScale = 0;
+    }
+
+    public virtual void EnableGravity()
+    {
+        rb.gravityScale = gravityScale > 0 ? gravityScale : 1;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        lastCollidedWith = other.collider;
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        lastCollidedWith = null;
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        lastCollidedWith = other.collider;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        lastCollidedWith = other;
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        lastCollidedWith = null;
     }
 
     public virtual Collider2D FindClosestCollider(Collider2D[] colliders, Transform trans)

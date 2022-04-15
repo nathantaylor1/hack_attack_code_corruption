@@ -10,6 +10,7 @@ public class LeftOfCode : CodeWithParameters
     public override void ExecuteCode()
     {
         Transform trans = module.transform;
+        
         int layer = (int)(object)GetParameter(0);
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(trans.position.x, trans.position.y), detection_radius, (1 << layer));

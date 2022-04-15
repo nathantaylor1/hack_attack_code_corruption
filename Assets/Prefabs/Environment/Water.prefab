@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 954473349853719514}
   - component: {fileID: 954473349853719509}
   - component: {fileID: 954473349853719508}
-  m_Layer: 7
+  - component: {fileID: 6071217678014029408}
+  m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 474aad41649d1c645a12352699b58d98, type: 3}
-  m_Color: {r: 0.007843138, g: 0.29411766, b: 0.5254902, a: 0.78431374}
+  m_Sprite: {fileID: 8382717070696663976, guid: e9930968a910ddf4db4086bddb33ce6a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -94,7 +95,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -122,7 +123,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0a620920f83a04fb9d9030d5a63001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instantKill: 0
+  instantKill: 1
   damageIntervalTime: 0.5
   damageAmount: 1
   knockUpForce: 6
+--- !u!95 &6071217678014029408
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954473349853719511}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a45aed8dea4c3ce47acb811f12de54b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

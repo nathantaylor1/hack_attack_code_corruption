@@ -8,6 +8,7 @@ TagManager:
   - CollectableCodeBlock
   - MovingBlock
   - BombEnemy
+  - Printer
   layers:
   - Default
   - TransparentFX
@@ -27,8 +28,8 @@ TagManager:
   - 
   - Movables
   - BrokenMovables
-  - 
-  - 
+  - ForceField
+  - CollideWithWorldOnly
   - 
   - 
   - 
@@ -42,14 +43,26 @@ TagManager:
   - 
   - NONE
   m_SortingLayers:
+  - name: Morer Background
+    uniqueID: 2714246723
+    locked: 0
+  - name: More Background
+    uniqueID: 2569126233
+    locked: 0
   - name: Background
     uniqueID: 1639120511
     locked: 0
   - name: Tiles
     uniqueID: 1741283021
     locked: 0
+  - name: Doors
+    uniqueID: 3721335249
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Lamp Cord
+    uniqueID: 1423198525
     locked: 0
   - name: Player
     uniqueID: 966773745
