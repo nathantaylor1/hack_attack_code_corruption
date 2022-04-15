@@ -63,6 +63,7 @@ public class Stapler : EnemyMovement
             item.enabled = false;
         }
         GetComponent<BoxCollider2D>().isTrigger = true;
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -117,6 +118,11 @@ public class Stapler : EnemyMovement
     {
         Collider2D col = Physics2D.OverlapBox(col2d.bounds.center + (Vector3)offset, attackArea, 0f, playerLayerMask);
         if (!col) return;
+
+        // Checks to make sure there is no wall between stapler and player
+        Vector3 direction = col.transform.position - col2d.transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(col2d.bounds.center + (Vector3)offset, direction.normalized, direction.magnitude, groundLayer);
+        if (hit.collider) return;
 
         _shooting = true;
         Flip(col);
