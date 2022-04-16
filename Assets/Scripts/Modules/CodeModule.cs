@@ -92,6 +92,7 @@ public class CodeModule : MonoBehaviour
     public Collider2D lastCollidedWith = null;
     [HideInInspector]
     public Coroutine hackableCoroutine = null;
+    protected CheckpointReset cr = null;
 
     protected virtual void Awake()
     {
@@ -103,6 +104,7 @@ public class CodeModule : MonoBehaviour
         }
         go = gameObject;
         anim = GetComponent<Animator>();
+        cr = GetComponent<CheckpointReset>();
         rb.gravityScale = gravityScale;
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
@@ -130,6 +132,7 @@ public class CodeModule : MonoBehaviour
             if (hackable)
             {
                 helth.Damage(helth.maxHealth * 2);
+                cr.MarkForNoReset();
             }
         }
 
@@ -176,14 +179,16 @@ public class CodeModule : MonoBehaviour
                 if (anim != null) {
                     anim.SetTrigger("Hackable");
                 }
-                ToggleEditing(true);
+                if (!editableOnStart)
+                    ToggleEditing(true);
             }
             else
             {
                 if (anim != null) {
                     anim.SetTrigger("Death");
                 }
-                ToggleEditing(false);
+                if (editableOnStart)
+                    ToggleEditing(false);
             }
             yield return new WaitForFixedUpdate();
         }
@@ -203,6 +208,10 @@ public class CodeModule : MonoBehaviour
         if (editor.button.TryGetComponent(out EditorButton eb))
         {
             eb.SelectButton();
+        }
+        if (enabled)
+        {
+            cr.MarkForReset();
         }
     }
 

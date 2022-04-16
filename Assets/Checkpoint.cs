@@ -46,7 +46,7 @@ public class Checkpoint : MonoBehaviour
             sr.sprite = activeSprite;
         }
         canSave = false;
-        EventManager.OnCheckpointSave?.Invoke(GetInstanceID());
+        EventManager.OnCheckpointSave?.Invoke(transform);// GetInstanceID());
         yield return new WaitForSeconds(refreshTime);
         canSave = true;
     }
@@ -59,9 +59,9 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    protected void UpdateCheckpoint(int checkpointID)
+    protected void UpdateCheckpoint(Transform _transform)//int checkpointID)
     {
-        if (checkpointID != GetInstanceID())
+        if (_transform.GetInstanceID() != transform.GetInstanceID())//checkpointID != GetInstanceID())
         {
             //isActive = false;
             if (sr != null) {

@@ -10,11 +10,24 @@ public class InventoryCheckpointReset : CheckpointReset
     {
         im = GetComponent<InventoryManager>();
         base.Awake();
+        if (saveOnStart)
+        {
+            saveOnStart = false;
+            SaveToCheckpoint(transform);
+        }
     }
 
-    protected override void SaveToCheckpoint(int _)
+    protected override void OnBecameVisible() { }
+
+    public override void MarkForNoReset()
     {
-        base.SaveToCheckpoint(_);
+        base.MarkForReset();
+    }
+
+    protected override void SaveToCheckpoint(Transform checkpoint)//int _)
+    {
+        MarkForReset();
+        base.SaveToCheckpoint(checkpoint);
         if (gameObject.activeInHierarchy)
         {
             InventoryManager.instance = im;
@@ -23,10 +36,12 @@ public class InventoryCheckpointReset : CheckpointReset
 
     protected override void ResetToCheckpoint()
     {
+        MarkForReset();
         if (!gameObject.activeInHierarchy)
         {
             InventoryManager.instance = im;
         }
         base.ResetToCheckpoint();
+        Debug.Log(gameObject.name + " is active in hierarchy: " + gameObject.activeInHierarchy);
     }
 }

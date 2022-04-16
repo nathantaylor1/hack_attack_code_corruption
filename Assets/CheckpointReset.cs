@@ -7,48 +7,79 @@ public class CheckpointReset : MonoBehaviour
     [HideInInspector]
     public bool saveOnStart = true;
     protected GameObject copy = null;
+    protected Vector3 posCopy = Vector3.zero;
+    protected Quaternion rotCopy = Quaternion.identity;
+    protected CheckpointReset copyCR = null;
+    protected bool hasSaved = false;
     protected bool shouldSave = false;
-    protected int currentCheckpoint;
-    private bool deleting = false;
+    protected bool shouldReset = false;
+    //protected int currentCheckpoint;
+    protected bool deleting = false;
 
     protected virtual void Awake()
     {
         EventManager.OnCheckpointSave.AddListener(SaveToCheckpoint);
         EventManager.OnPlayerDeath.AddListener(ResetToCheckpoint);
-        if (saveOnStart)
-        {
-            saveOnStart = false;
-            SaveToCheckpoint(0);
-        }
-        else
+        posCopy = transform.position;
+        rotCopy = transform.rotation;
+        if (!saveOnStart)
         {
             gameObject.SetActive(false);
         }
     }
 
-    public virtual void MarkForReset()
+    protected virtual void OnBecameVisible()
     {
-
+        if (saveOnStart && !hasSaved)
+        {
+            shouldSave = true;
+            SaveToCheckpoint(transform);
+            hasSaved = true;
+        }
     }
 
-    protected virtual void SaveToCheckpoint(int checkpoint)
+    public virtual void MarkForReset()
     {
+        shouldSave = true;
+        shouldReset = true;
+        if (copyCR != null)
+        {
+            copyCR.MarkForReset();
+        }
+    }
+
+    public virtual void MarkForNoReset()
+    {
+        shouldSave = false;
+        shouldReset = false;
+        if (copyCR != null)
+        {
+            copyCR.MarkForNoReset();
+        }
+    }
+
+    protected virtual void SaveToCheckpoint(Transform checkpoint)//int checkpoint)
+    {
+        saveOnStart = false;
         if (deleting) {
             return;
         }
         if (shouldSave)
         {
-            // State change if player reaches checkpoint without altering this gameobject
             if (gameObject.activeInHierarchy)
             {
                 copy = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+                copyCR = copy.GetComponent<CheckpointReset>();
             }
             else
             {
                 Destroy(gameObject);
             }
+            MarkForNoReset();
         }
-        currentCheckpoint = checkpoint;
+        posCopy = transform.position;
+        rotCopy = transform.rotation;
+        //currentCheckpoint = checkpoint;
     }
 
     public void Deleting() {
@@ -60,7 +91,7 @@ public class CheckpointReset : MonoBehaviour
         if (deleting) {
             return;
         }
-        if (shouldSave)
+        if (shouldReset)
         {
             if (gameObject.activeInHierarchy)
             {
@@ -69,8 +100,14 @@ public class CheckpointReset : MonoBehaviour
             else
             {
                 gameObject.SetActive(true);
-                SaveToCheckpoint(0);
+                shouldSave = true;
+                SaveToCheckpoint(transform);
             }
+        }
+        else
+        {
+            transform.position = posCopy;
+            transform.rotation = rotCopy;
         }
     }
 }

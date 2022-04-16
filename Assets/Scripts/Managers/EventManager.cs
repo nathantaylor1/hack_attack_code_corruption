@@ -23,7 +23,7 @@ public class EventManager : MonoBehaviour
     // following:
 
     // GAME STATE EVENTS
-    public static UnityEvent<int> OnCheckpointSave = new UnityEvent<int>();
+    public static UnityEvent<Transform> OnCheckpointSave = new UnityEvent<Transform>();
 
     // PLAYER EVENTS
     public static UnityEvent OnPlayerDeath = new UnityEvent();
