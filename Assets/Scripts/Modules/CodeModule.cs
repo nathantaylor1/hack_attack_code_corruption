@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -93,6 +94,9 @@ public class CodeModule : MonoBehaviour
     [HideInInspector]
     public Coroutine hackableCoroutine = null;
 
+    [SerializeField] private Color dashTrailColor = Color.white;
+    [HideInInspector] public TrailRenderer tr;
+
     protected virtual void Awake()
     {
         //Debug.Log("In Awake");
@@ -145,6 +149,35 @@ public class CodeModule : MonoBehaviour
         {
             ew.ToggleCanExecute(true);
         }
+
+        StartCoroutine(CO_AddTrailRenderer());
+    }
+
+    private IEnumerator CO_AddTrailRenderer()
+    {
+        // Add Trail Renderer for Dash
+        tr = gameObject.AddComponent<TrailRenderer>();
+        
+        // make it not show up -- Dash edits this while dashing
+        tr.emitting = false;
+
+        // set remain time
+        tr.time = 0.2f;
+
+        // set color
+        tr.startColor = dashTrailColor;
+        tr.endColor = dashTrailColor;
+        
+        // width curve
+        AnimationCurve crv = new AnimationCurve(
+            new Keyframe(0,0.5f, 0, 0), 
+            new Keyframe(1, 0,0, 0));
+        tr.widthCurve = crv;
+        
+        // material
+        tr.textureMode = LineTextureMode.Tile;
+        tr.material = AssetDatabase.GetBuiltinExtraResource<Material>("Sprites-Default.mat");
+        yield return null;
     }
 
     protected virtual void OnEnable()
