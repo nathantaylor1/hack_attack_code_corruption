@@ -9,7 +9,6 @@ public class PauseMenu : MonoBehaviour
     public static bool opened;
     public KeyCode pauseKey = KeyCode.Escape;
     private Canvas canvas;
-    public int mainMenuSceneIndex = 1;
 
     private void Awake()
     {
@@ -53,6 +52,6 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(mainMenuSceneIndex);
+        SceneManager.LoadScene("MainMenu");
     }
 }
