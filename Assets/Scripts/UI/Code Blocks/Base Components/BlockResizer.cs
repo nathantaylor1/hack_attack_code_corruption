@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class BlockResizer : MonoBehaviour
 {
+    protected static int cv = 0;
+
     public void UpdateSize()
     {
         StartCoroutine(WaitAndRebuild(transform));
@@ -16,8 +18,15 @@ public class BlockResizer : MonoBehaviour
 
     private IEnumerator WaitAndRebuild(Transform _transform)
     {
-        yield return null;
+        while (cv > 20)
+        {
+            yield return null;
+        }
+        cv++;
+        Debug.Log("Rebuilding " + gameObject.name);
         LayoutRebuilder.MarkLayoutForRebuild(_transform as RectTransform);
+        yield return new WaitForEndOfFrame();
+        cv--;
         BlockResizer br = _transform.parent.GetComponentInParent<BlockResizer>();
         if (br != null)
         {

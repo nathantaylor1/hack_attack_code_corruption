@@ -39,7 +39,7 @@ public class CheckpointReset : MonoBehaviour
 
     public virtual void MarkForReset()
     {
-        Debug.Log("Marking " + gameObject.name + " for reset");
+        //Debug.Log("Marking " + gameObject.name + " for reset");
         shouldSave = true;
         shouldReset = true;
         if (copyCR != null)
@@ -96,7 +96,7 @@ public class CheckpointReset : MonoBehaviour
         {
             if (gameObject.activeInHierarchy)
             {
-                Debug.Log("Destroying " + gameObject.name);
+                //Debug.Log("Destroying " + gameObject.name);
                 Destroy(gameObject);
             }
             else
