@@ -132,7 +132,7 @@ public class CodeModule : MonoBehaviour
             if (hackable)
             {
                 helth.Damage(helth.maxHealth * 2);
-                cr.MarkForNoReset();
+                //cr.MarkForNoReset();
             }
         }
 

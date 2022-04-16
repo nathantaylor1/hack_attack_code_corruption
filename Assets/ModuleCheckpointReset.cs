@@ -29,7 +29,7 @@ public class ModuleCheckpointReset : CheckpointReset
 
     protected override void ResetToCheckpoint()
     {
-        if (shouldReset)
+        if (shouldReset/* && hasSaved*/)
         {
             if (gameObject.activeInHierarchy)
             {

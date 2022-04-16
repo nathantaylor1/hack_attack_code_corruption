@@ -42,6 +42,6 @@ public class InventoryCheckpointReset : CheckpointReset
             InventoryManager.instance = im;
         }
         base.ResetToCheckpoint();
-        Debug.Log(gameObject.name + " is active in hierarchy: " + gameObject.activeInHierarchy);
+        //Debug.Log(gameObject.name + " is active in hierarchy: " + gameObject.activeInHierarchy);
     }
 }

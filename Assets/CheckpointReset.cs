@@ -34,12 +34,12 @@ public class CheckpointReset : MonoBehaviour
         {
             shouldSave = true;
             SaveToCheckpoint(transform);
-            hasSaved = true;
         }
     }
 
     public virtual void MarkForReset()
     {
+        Debug.Log("Marking " + gameObject.name + " for reset");
         shouldSave = true;
         shouldReset = true;
         if (copyCR != null)
@@ -60,12 +60,13 @@ public class CheckpointReset : MonoBehaviour
 
     protected virtual void SaveToCheckpoint(Transform checkpoint)//int checkpoint)
     {
-        saveOnStart = false;
         if (deleting) {
             return;
         }
         if (shouldSave)
         {
+            saveOnStart = false;
+            hasSaved = true;
             if (gameObject.activeInHierarchy)
             {
                 copy = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
@@ -91,10 +92,11 @@ public class CheckpointReset : MonoBehaviour
         if (deleting) {
             return;
         }
-        if (shouldReset)
+        if (shouldReset/* && hasSaved*/)
         {
             if (gameObject.activeInHierarchy)
             {
+                Debug.Log("Destroying " + gameObject.name);
                 Destroy(gameObject);
             }
             else

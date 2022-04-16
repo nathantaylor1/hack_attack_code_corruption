@@ -31,8 +31,8 @@ public class DashCode : CodeWithParameters
         //gravityScale = module.rb.gravityScale;
         module.DisableGravity();
         yield return new WaitForSeconds(module.dashDuration);
-        module.EnableGravity();
-        //module.rb.gravityScale = gravityScale;
+        //module.EnableGravity();
+        module.rb.gravityScale = module.gravityScale;
         module.rb.velocity = Vector3.zero;
         module.anim.SetTrigger("Idle");
         yield return new WaitForSeconds(reloadTime);
