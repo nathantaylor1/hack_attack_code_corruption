@@ -155,6 +155,8 @@ public class CodeModule : MonoBehaviour
 
     private IEnumerator CO_AddTrailRenderer()
     {
+        if (gameObject.GetComponent<TrailRenderer>()) yield break;
+        
         // Add Trail Renderer for Dash
         tr = gameObject.AddComponent<TrailRenderer>();
         
