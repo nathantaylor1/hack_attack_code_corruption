@@ -7,36 +7,80 @@ public class CheckpointReset : MonoBehaviour
     [HideInInspector]
     public bool saveOnStart = true;
     protected GameObject copy = null;
-    private bool deleting = false;
+    protected Vector3 posCopy = Vector3.zero;
+    protected Quaternion rotCopy = Quaternion.identity;
+    protected CheckpointReset copyCR = null;
+    protected bool hasSaved = false;
+    protected bool shouldSave = false;
+    protected bool shouldReset = false;
+    //protected int currentCheckpoint;
+    protected bool deleting = false;
 
     protected virtual void Awake()
     {
         EventManager.OnCheckpointSave.AddListener(SaveToCheckpoint);
         EventManager.OnPlayerDeath.AddListener(ResetToCheckpoint);
-        if (saveOnStart)
-        {
-            saveOnStart = false;
-            SaveToCheckpoint(0);
-        }
-        else
+        posCopy = transform.position;
+        rotCopy = transform.rotation;
+        if (!saveOnStart)
         {
             gameObject.SetActive(false);
         }
     }
 
-    protected virtual void SaveToCheckpoint(int _)
+    protected virtual void OnBecameVisible()
+    {
+        if (saveOnStart && !hasSaved)
+        {
+            shouldSave = true;
+            SaveToCheckpoint(transform);
+        }
+    }
+
+    public virtual void MarkForReset()
+    {
+        //Debug.Log("Marking " + gameObject.name + " for reset");
+        shouldSave = true;
+        shouldReset = true;
+        if (copyCR != null)
+        {
+            copyCR.MarkForReset();
+        }
+    }
+
+    public virtual void MarkForNoReset()
+    {
+        shouldSave = false;
+        shouldReset = false;
+        if (copyCR != null)
+        {
+            copyCR.MarkForNoReset();
+        }
+    }
+
+    protected virtual void SaveToCheckpoint(Transform checkpoint)//int checkpoint)
     {
         if (deleting) {
             return;
         }
-        if (gameObject.activeInHierarchy)
+        if (shouldSave)
         {
-            copy = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+            saveOnStart = false;
+            hasSaved = true;
+            if (gameObject.activeInHierarchy)
+            {
+                copy = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+                copyCR = copy.GetComponent<CheckpointReset>();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            MarkForNoReset();
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        posCopy = transform.position;
+        rotCopy = transform.rotation;
+        //currentCheckpoint = checkpoint;
     }
 
     public void Deleting() {
@@ -48,14 +92,24 @@ public class CheckpointReset : MonoBehaviour
         if (deleting) {
             return;
         }
-        if (gameObject.activeInHierarchy)
+        if (shouldReset/* && hasSaved*/)
         {
-            Destroy(gameObject);
+            if (gameObject.activeInHierarchy)
+            {
+                //Debug.Log("Destroying " + gameObject.name);
+                Destroy(gameObject);
+            }
+            else
+            {
+                gameObject.SetActive(true);
+                shouldSave = true;
+                SaveToCheckpoint(transform);
+            }
         }
         else
         {
-            gameObject.SetActive(true);
-            SaveToCheckpoint(0);
+            transform.position = posCopy;
+            transform.rotation = rotCopy;
         }
     }
 }

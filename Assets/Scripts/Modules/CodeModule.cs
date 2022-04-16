@@ -93,6 +93,7 @@ public class CodeModule : MonoBehaviour
     public Collider2D lastCollidedWith = null;
     [HideInInspector]
     public Coroutine hackableCoroutine = null;
+    protected CheckpointReset cr = null;
 
     [SerializeField] private Color dashTrailColor = Color.white;
     [HideInInspector] public TrailRenderer tr;
@@ -107,6 +108,7 @@ public class CodeModule : MonoBehaviour
         }
         go = gameObject;
         anim = GetComponent<Animator>();
+        cr = GetComponent<CheckpointReset>();
         rb.gravityScale = gravityScale;
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
@@ -134,6 +136,7 @@ public class CodeModule : MonoBehaviour
             if (hackable)
             {
                 helth.Damage(helth.maxHealth * 2);
+                //cr.MarkForNoReset();
             }
         }
 
@@ -151,6 +154,16 @@ public class CodeModule : MonoBehaviour
         }
 
         StartCoroutine(CO_AddTrailRenderer());
+        
+        EventManager.OnToggleEditor.AddListener(MarkForReset);
+    }
+
+    protected void MarkForReset(bool shouldReset)
+    {
+        if (shouldReset && editableOnStart)
+        {
+            cr.MarkForReset();
+        }
     }
 
     private IEnumerator CO_AddTrailRenderer()
@@ -211,14 +224,16 @@ public class CodeModule : MonoBehaviour
                 if (anim != null) {
                     anim.SetTrigger("Hackable");
                 }
-                ToggleEditing(true);
+                if (!editableOnStart)
+                    ToggleEditing(true);
             }
             else
             {
                 if (anim != null) {
                     anim.SetTrigger("Death");
                 }
-                ToggleEditing(false);
+                if (editableOnStart)
+                    ToggleEditing(false);
             }
             yield return new WaitForFixedUpdate();
         }
@@ -239,6 +254,10 @@ public class CodeModule : MonoBehaviour
         {
             eb.SelectButton();
         }
+        /*if (enabled)
+        {
+            cr.MarkForReset();
+        }*/
     }
 
     public virtual void DisableGravity()

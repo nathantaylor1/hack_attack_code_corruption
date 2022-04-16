@@ -13,7 +13,8 @@ public class PlayerFriction : MonoBehaviour
     public int id = 0;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.attachedRigidbody != null && layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer))) {
+        if (other.attachedRigidbody != null && layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer))){// && 
+            //(other.attachedRigidbody.gameObject.layer != 10 || (other.attachedRigidbody.gameObject.layer == 10 && other.CompareTag("Printer")))) {
         //Debug.Log("hit " + other.name);
             col.sharedMaterial = frictionless;
             id = other.attachedRigidbody.gameObject.GetInstanceID();

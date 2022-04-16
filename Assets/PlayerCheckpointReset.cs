@@ -4,34 +4,26 @@ using UnityEngine;
 
 public class PlayerCheckpointReset : CheckpointReset
 {
-    protected Vector3 positionCopy;
     protected Rigidbody2D rb;
-    protected Rigidbody2D rbCopy;
+    //protected Rigidbody2D rbCopy;
+    protected float gravCopy = 0f;
     protected GameObject windowCopy;
     protected CodeModule module;
 
     protected override void Awake()
     {
+        shouldSave = true;
         rb = GetComponent<Rigidbody2D>();
         module = GetComponent<CodeModule>();
-        EventManager.OnCheckpointSave.AddListener(SaveToCheckpoint);
-        EventManager.OnPlayerDeath.AddListener(ResetToCheckpoint);
-        if (saveOnStart)
-        {
-            saveOnStart = false;
-            SaveToCheckpoint(0);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
-        // base.Awake();
+        base.Awake();
     }
 
-    protected override void SaveToCheckpoint(int _)
+    protected override void SaveToCheckpoint(Transform checkpoint)//int _)
     {
-        positionCopy = transform.position;
-        rbCopy = Copy.Component<Rigidbody2D>(rb, GameManager.instance.gameObject);
+        posCopy = checkpoint.position;
+        rotCopy = transform.rotation;
+        gravCopy = rb.gravityScale;
+        //rbCopy = Copy.Component<Rigidbody2D>(rb, GameManager.instance.gameObject);
         if (windowCopy != null)
         {
             Destroy(windowCopy);
@@ -43,8 +35,11 @@ public class PlayerCheckpointReset : CheckpointReset
     protected override void ResetToCheckpoint()
     {
         transform.parent = null;
-        transform.position = positionCopy;
-        rb = Copy.Component<Rigidbody2D>(rbCopy, gameObject);
+        transform.position = posCopy;
+        transform.rotation = rotCopy;
+        //rb = Copy.Component<Rigidbody2D>(rbCopy, gameObject);
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = gravCopy;
         GameObject tempWindow = module.editor.window;
         //Destroy(module.editor.window);
         //Debug.Log(windowCopy.name);
@@ -53,6 +48,6 @@ public class PlayerCheckpointReset : CheckpointReset
         module.editor.button.SetActive(true);
         windowCopy = null;
         Destroy(tempWindow);
-        SaveToCheckpoint(0);
+        SaveToCheckpoint(transform);
     }
 }
