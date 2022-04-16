@@ -48,7 +48,8 @@ public class CrawlCode : CodeWithParameters
             }
             else {
                 // falling
-                rb.gravityScale = module.gravityScale;
+                // rb.gravityScale = module.gravityScale;
+                module.EnableGravity();
                 falling = true;
                 isRunning = false;
                 if (anim != null && anim.GetCurrentAnimatorStateInfo(0).IsName(module.animationName + " Run"))
