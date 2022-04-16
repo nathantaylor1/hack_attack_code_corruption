@@ -43,4 +43,11 @@ public class AnalyticsCollection : MonoBehaviour
         Analytics.deviceStatsEnabled = false;
         PerformanceReporting.enabled = false;
     }
+
+    public static void ReEnableAnalytics()
+    {
+        Analytics.enabled = true;
+        Analytics.deviceStatsEnabled = true;
+        PerformanceReporting.enabled = true;
+    }
 }
