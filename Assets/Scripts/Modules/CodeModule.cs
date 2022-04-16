@@ -148,6 +148,16 @@ public class CodeModule : MonoBehaviour
         {
             ew.ToggleCanExecute(true);
         }
+
+        EventManager.OnToggleEditor.AddListener(MarkForReset);
+    }
+
+    protected void MarkForReset(bool shouldReset)
+    {
+        if (shouldReset && editableOnStart)
+        {
+            cr.MarkForReset();
+        }
     }
 
     protected virtual void OnEnable()
@@ -209,10 +219,10 @@ public class CodeModule : MonoBehaviour
         {
             eb.SelectButton();
         }
-        if (enabled)
+        /*if (enabled)
         {
             cr.MarkForReset();
-        }
+        }*/
     }
 
     public virtual void DisableGravity()

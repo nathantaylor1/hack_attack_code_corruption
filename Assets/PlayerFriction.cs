@@ -13,8 +13,8 @@ public class PlayerFriction : MonoBehaviour
     public int id = 0;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.attachedRigidbody != null && layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer)) && 
-            (other.attachedRigidbody.gameObject.layer != 10 || (other.attachedRigidbody.gameObject.layer == 10 && other.CompareTag("Printer")))) {
+        if (other.attachedRigidbody != null && layermask == (layermask | (1 << other.attachedRigidbody.gameObject.layer))){// && 
+            //(other.attachedRigidbody.gameObject.layer != 10 || (other.attachedRigidbody.gameObject.layer == 10 && other.CompareTag("Printer")))) {
         //Debug.Log("hit " + other.name);
             col.sharedMaterial = frictionless;
             id = other.attachedRigidbody.gameObject.GetInstanceID();
@@ -27,7 +27,7 @@ public class PlayerFriction : MonoBehaviour
         }
     }
     IEnumerator _delay(int _id) {
-        yield return new WaitForEndOfFrame();// WaitForSeconds(delay);
+        yield return new WaitForSeconds(delay);
         if(id == _id) {
             col.sharedMaterial = friction;
             id = 0;

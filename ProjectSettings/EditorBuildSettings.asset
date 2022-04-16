@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Build Scenes/Movement Level.unity
     guid: 8727a55ca4aeb1d4d866a8fea005d1c8
-  - enabled: 0
-    path: Assets/Scenes/Test Scenes/LAB_MultipleModuleCheckpoints.unity
-    guid: 62b823b15eb2b3640be8460c33a8dcbf
   - enabled: 1
     path: Assets/Scenes/Build Scenes/Hacking01.unity
     guid: 80243b2668f2b854380f55e25d8b3a7c
