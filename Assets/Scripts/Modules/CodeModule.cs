@@ -178,6 +178,7 @@ public class CodeModule : MonoBehaviour
 
         // set remain time
         tr.time = 0.2f;
+        tr.sortingLayerName = "Doors";
 
         // set color
         tr.startColor = dashTrailColor;
@@ -191,7 +192,7 @@ public class CodeModule : MonoBehaviour
         
         // material
         tr.textureMode = LineTextureMode.Tile;
-        tr.material = AssetDatabase.GetBuiltinExtraResource<Material>("Sprites-Default.mat");
+        tr.material = Resources.Load<Material>("W95FA");
         yield return null;
     }
 
