@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -92,6 +93,10 @@ public class CodeModule : MonoBehaviour
     public Collider2D lastCollidedWith = null;
     [HideInInspector]
     public Coroutine hackableCoroutine = null;
+    protected CheckpointReset cr = null;
+
+    [SerializeField] private Color dashTrailColor = Color.white;
+    [HideInInspector] public TrailRenderer tr;
 
     protected virtual void Awake()
     {
@@ -103,6 +108,7 @@ public class CodeModule : MonoBehaviour
         }
         go = gameObject;
         anim = GetComponent<Animator>();
+        cr = GetComponent<CheckpointReset>();
         rb.gravityScale = gravityScale;
 
         /*Debug.Log("EditorController.instance: " + EditorController.instance);
@@ -130,6 +136,7 @@ public class CodeModule : MonoBehaviour
             if (hackable)
             {
                 helth.Damage(helth.maxHealth * 2);
+                //cr.MarkForNoReset();
             }
         }
 
@@ -145,6 +152,47 @@ public class CodeModule : MonoBehaviour
         {
             ew.ToggleCanExecute(true);
         }
+
+        StartCoroutine(CO_AddTrailRenderer());
+        
+        EventManager.OnToggleEditor.AddListener(MarkForReset);
+    }
+
+    protected void MarkForReset(bool shouldReset)
+    {
+        if (shouldReset && editableOnStart)
+        {
+            cr.MarkForReset();
+        }
+    }
+
+    private IEnumerator CO_AddTrailRenderer()
+    {
+        if (gameObject.GetComponent<TrailRenderer>()) yield break;
+        
+        // Add Trail Renderer for Dash
+        tr = gameObject.AddComponent<TrailRenderer>();
+        
+        // make it not show up -- Dash edits this while dashing
+        tr.emitting = false;
+
+        // set remain time
+        tr.time = 0.2f;
+
+        // set color
+        tr.startColor = dashTrailColor;
+        tr.endColor = dashTrailColor;
+        
+        // width curve
+        AnimationCurve crv = new AnimationCurve(
+            new Keyframe(0,0.5f, 0, 0), 
+            new Keyframe(1, 0,0, 0));
+        tr.widthCurve = crv;
+        
+        // material
+        tr.textureMode = LineTextureMode.Tile;
+        tr.material = AssetDatabase.GetBuiltinExtraResource<Material>("Sprites-Default.mat");
+        yield return null;
     }
 
     protected virtual void OnEnable()
@@ -176,14 +224,16 @@ public class CodeModule : MonoBehaviour
                 if (anim != null) {
                     anim.SetTrigger("Hackable");
                 }
-                ToggleEditing(true);
+                if (!editableOnStart)
+                    ToggleEditing(true);
             }
             else
             {
                 if (anim != null) {
                     anim.SetTrigger("Death");
                 }
-                ToggleEditing(false);
+                if (editableOnStart)
+                    ToggleEditing(false);
             }
             yield return new WaitForFixedUpdate();
         }
@@ -204,6 +254,10 @@ public class CodeModule : MonoBehaviour
         {
             eb.SelectButton();
         }
+        /*if (enabled)
+        {
+            cr.MarkForReset();
+        }*/
     }
 
     public virtual void DisableGravity()

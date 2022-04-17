@@ -8,6 +8,51 @@ TextureImporter:
   - first:
       213: 5355991448581183381
     second: Office Details_1
+  - first:
+      213: -8309315987526581790
+    second: Office Details_2
+  - first:
+      213: -374148269355175864
+    second: Office Details_3
+  - first:
+      213: 7779721616874185791
+    second: Office Details_4
+  - first:
+      213: -1964694051846706901
+    second: Office Details_5
+  - first:
+      213: 1332393817780999916
+    second: Office Details_6
+  - first:
+      213: 9215366945723469418
+    second: Office Details_7
+  - first:
+      213: 2969770679819768160
+    second: Office Details_8
+  - first:
+      213: 1329281275675368582
+    second: Office Details_9
+  - first:
+      213: -127788537562102176
+    second: Office Details_10
+  - first:
+      213: 5928812279771362989
+    second: Office Details_11
+  - first:
+      213: 6213186971979321013
+    second: Office Details_12
+  - first:
+      213: 835639243240715155
+    second: Office Details_13
+  - first:
+      213: -7680767982853197339
+    second: Office Details_14
+  - first:
+      213: 6529892791510885325
+    second: Office Details_15
+  - first:
+      213: -7601919469922258036
+    second: Office Details_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,12 +157,12 @@ TextureImporter:
       name: Office Details_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 35
-        width: 23
+        x: 1
+        y: 207
+        width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -133,12 +178,12 @@ TextureImporter:
       name: Office Details_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
+        x: 53
+        y: 203
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,6 +191,321 @@ TextureImporter:
       bones: []
       spriteID: 59716b068dd445a40800000000000000
       internalID: 5355991448581183381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_2
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 200
+        width: 40
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e1010d42216fac80800000000000000
+      internalID: -8309315987526581790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_3
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 203
+        width: 36
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 840f1cf9122cecaf0800000000000000
+      internalID: -374148269355175864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_4
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 155
+        width: 36
+        height: 36
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f34a631879f17fb60800000000000000
+      internalID: 7779721616874185791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_5
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 152
+        width: 36
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.54285717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b29aa535b210cb4e0800000000000000
+      internalID: -1964694051846706901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_6
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 152
+        width: 36
+        height: 35
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.54285717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce653c13e1d9d7210800000000000000
+      internalID: 1332393817780999916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_7
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 155
+        width: 34
+        height: 32
+      alignment: 9
+      pivot: {x: 0.47058824, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6e49ba796f83ef70800000000000000
+      internalID: 9215366945723469418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_8
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 107
+        width: 34
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0611703e2beb63920800000000000000
+      internalID: 2969770679819768160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_9
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 104
+        width: 32
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.54285717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68c5533074e827210800000000000000
+      internalID: 1329281275675368582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_10
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 107
+        width: 32
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0668e3c80010a3ef0800000000000000
+      internalID: -127788537562102176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_11
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 107
+        width: 36
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6feb33b5f574250800000000000000
+      internalID: 5928812279771362989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_12
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 56
+        width: 32
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4871795}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5be89e3d1aca93650800000000000000
+      internalID: 6213186971979321013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_13
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 59
+        width: 40
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3933dbdd679c89b00800000000000000
+      internalID: 835639243240715155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_14
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 56
+        width: 40
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.54285717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e177dbc63e686590800000000000000
+      internalID: -7680767982853197339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_15
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 56
+        width: 36
+        height: 39
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.4871795}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc3e363a5e6de9a50800000000000000
+      internalID: 6529892791510885325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Office Details_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 8
+        width: 36
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.4871795}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c837820d48e808690800000000000000
+      internalID: -7601919469922258036
       vertices: []
       indices: 
       edges: []

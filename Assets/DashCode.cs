@@ -28,13 +28,15 @@ public class DashCode : CodeWithParameters
         module.anim.SetTrigger("Dash");
         isDashing = true;
         module.rb.velocity = direction * moveSpeed * module.dashSpeed;
-        gravityScale = module.rb.gravityScale;
+        module.tr.emitting = true;
+        //gravityScale = module.rb.gravityScale;
         module.DisableGravity();
         yield return new WaitForSeconds(module.dashDuration);
         //module.EnableGravity();
-        module.rb.gravityScale = gravityScale;
+        module.rb.gravityScale = module.gravityScale;
         module.rb.velocity = Vector3.zero;
         module.anim.SetTrigger("Idle");
+        module.tr.emitting = false;
         yield return new WaitForSeconds(reloadTime);
         //print("ready to dash");
         isDashing = false;

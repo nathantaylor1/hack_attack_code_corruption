@@ -24,6 +24,7 @@ public class HasHealth : MonoBehaviour
     [HideInInspector]
     public float maxHealth;
     protected Animator anim;
+    protected CheckpointReset cr;
 
     public bool IsFullHealth()
     {
@@ -37,6 +38,7 @@ public class HasHealth : MonoBehaviour
         TryGetComponent<CodeModule>(out module);
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        cr = GetComponent<CheckpointReset>();
         if (health > 0) maxHealth = health;
         //Debug.Log(gameObject.name + " has " + health + " starting health and " + maxHealth + " max health");
         SetHealthVisibility(false);
@@ -52,7 +54,7 @@ public class HasHealth : MonoBehaviour
         }*/
     }
 
-    public void RestoreFullHealth(int _)
+    public void RestoreFullHealth(Transform _)
     {
         //Debug.Log("Health restored");
         Heal(maxHealth);
@@ -62,6 +64,8 @@ public class HasHealth : MonoBehaviour
     {
         //Debug.Log("player takes damage");
         if (isInvincible || health < 0) return;
+
+        cr.MarkForReset();
 
         health -= damage_amount;
         if (health < 0) health = 0;

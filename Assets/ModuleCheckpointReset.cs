@@ -17,27 +17,30 @@ public class ModuleCheckpointReset : CheckpointReset
         base.Awake();
     }
 
-    protected override void SaveToCheckpoint(int _)
+    protected override void SaveToCheckpoint(Transform checkpoint)//int _)
     {
-        if (!gameObject.activeInHierarchy)
+        if (shouldSave && !gameObject.activeInHierarchy)
         {
             Destroy(module.editor.window);
             Destroy(module.editor.button);
         }
-        base.SaveToCheckpoint(_);
+        base.SaveToCheckpoint(checkpoint);
     }
 
     protected override void ResetToCheckpoint()
     {
-        if (gameObject.activeInHierarchy)
+        if (shouldReset/* && hasSaved*/)
         {
-            Destroy(module.editor.window);
-            Destroy(module.editor.button);
-        }
-        else
-        {
-            module.editor.window.SetActive(true);
-            module.editor.button.SetActive(module.editableOnStart);
+            if (gameObject.activeInHierarchy)
+            {
+                Destroy(module.editor.window);
+                Destroy(module.editor.button);
+            }
+            else
+            {
+                module.editor.window.SetActive(true);
+                module.editor.button.SetActive(module.editableOnStart);
+            }
         }
         base.ResetToCheckpoint();
     }

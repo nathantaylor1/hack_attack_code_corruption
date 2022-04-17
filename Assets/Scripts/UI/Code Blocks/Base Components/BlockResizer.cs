@@ -5,19 +5,39 @@ using UnityEngine.UI;
 
 public class BlockResizer : MonoBehaviour
 {
+    /*protected static int cv = 0;
+    protected bool priority = false;
+    protected GraphicRaycaster raycaster = null;*/
+
     public void UpdateSize()
     {
         StartCoroutine(WaitAndRebuild(transform));
     }
 
-    private void Awake() {
-        UpdateSize();
+    /*private void Awake()
+    {
+        raycaster = GetComponentInParent<GraphicRaycaster>();
+        EventManager.OnToggleEditor.AddListener(SetPriority);
+        //UpdateSize();
     }
+
+    private void SetPriority(bool inEditor)
+    {
+        priority = raycaster.enabled && inEditor;
+    }*/
 
     private IEnumerator WaitAndRebuild(Transform _transform)
     {
+        /*while (cv > 5 && !priority)
+        {
+            yield return null;
+        }
+        cv++;*/
         yield return null;
+        //Debug.Log("Rebuilding " + gameObject.name);
         LayoutRebuilder.MarkLayoutForRebuild(_transform as RectTransform);
+        /*yield return new WaitForEndOfFrame();
+        cv--;*/
         BlockResizer br = _transform.parent.GetComponentInParent<BlockResizer>();
         if (br != null)
         {

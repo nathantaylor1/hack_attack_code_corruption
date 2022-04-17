@@ -9,6 +9,20 @@ public class CollectableBlock : MonoBehaviour
     public float slow = 1.6f;
     public float quick = 2f;
     public AudioClip pickupSound;
+    protected CheckpointReset cr;
+
+    protected void Awake()
+    {
+        cr = GetComponent<CheckpointReset>();
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (block.TryGetComponent(out Code code))
+        {
+            if (PickupMapper.GetPickupSprite(code.ReturnType) != null)
+            {
+                sr.sprite = PickupMapper.GetPickupSprite(code.ReturnType);
+            }
+        }
+    }
 
     public virtual void AddToInventory()
     {
@@ -18,14 +32,27 @@ public class CollectableBlock : MonoBehaviour
         GameObject codeBlock = Instantiate(block);
         InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
         codeBlock.transform.localScale = new Vector3(1, 1, 1);
-        if (TryGetComponent(out CheckpointReset cr)) {
+        /*if (TryGetComponent(out CheckpointReset cr)) {
+            cr.Deleting();
+        }*/
+        if (cr != null)
+        {
+            cr.MarkForReset();
             cr.Deleting();
         }
-        
+
         StartCoroutine(moveToward());
 
         if (pickupSound != null && AudioManager.instance != null && Camera.main != null)
             AudioManager.instance.PlaySound(pickupSound, Camera.main.transform.position);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            AddToInventory();
+        }
     }
 
     private IEnumerator moveToward() {

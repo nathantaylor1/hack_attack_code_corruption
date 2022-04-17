@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1527733878341834257}
   - component: {fileID: 5304754816591976458}
   - component: {fileID: 5134124837210348572}
+  - component: {fileID: 7225743513770358134}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -91,3 +92,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 8300000, guid: c1115968e6ca5dc4cb3a064df8168975, type: 3}
+--- !u!114 &7225743513770358134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808103812291835635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3b189c1f7906a4dad83a2d13fb1b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickups:
+  - returnType: void
+    sprite: {fileID: 28551572683104855, guid: d385b126ad0a22f49873f4d8bafb8ae7, type: 3}
+  - returnType: float
+    sprite: {fileID: -8631905299839527548, guid: d385b126ad0a22f49873f4d8bafb8ae7, type: 3}
+  - returnType: vector2
+    sprite: {fileID: -350028313135425379, guid: d385b126ad0a22f49873f4d8bafb8ae7, type: 3}
+  - returnType: bool
+    sprite: {fileID: 2641567619594917810, guid: d385b126ad0a22f49873f4d8bafb8ae7, type: 3}
+  - returnType: projectile
+    sprite: {fileID: -4930554734372939082, guid: d385b126ad0a22f49873f4d8bafb8ae7, type: 3}
+  - returnType: entity
+    sprite: {fileID: -1331263762793090788, guid: d385b126ad0a22f49873f4d8bafb8ae7, type: 3}

@@ -6,15 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Build Scenes/Analytics.unity
-    guid: 77232a2bfaef72e4b9361d878bfe439e
-  - enabled: 1
     path: Assets/Scenes/Build Scenes/MainMenu.unity
     guid: 20ee58c3af017504489579e77f68285b
   - enabled: 1
     path: Assets/Scenes/Build Scenes/Movement Level.unity
     guid: 8727a55ca4aeb1d4d866a8fea005d1c8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Build Scenes/Hacking01.unity
     guid: 80243b2668f2b854380f55e25d8b3a7c
   - enabled: 1
@@ -23,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Build Scenes/Hacking01 1.unity
     guid: 31c37a5c19842094d91bfe58669448ab
+  - enabled: 1
+    path: Assets/Scenes/Build Scenes/Trailer/Hacking01 2.unity
+    guid: ed4e4b705067952469824c5b741d1545
   m_configObjects: {}

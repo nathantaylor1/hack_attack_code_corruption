@@ -6,7 +6,13 @@ public class BreakBlock : MonoBehaviour
 {
     public GameObject brokenMovableBox;
     public int breakVelocity = 12;
-    
+    protected CheckpointReset cr;
+
+    protected void Awake()
+    {
+        cr = GetComponent<CheckpointReset>();
+    }
+
     private void OnCollisionStay2D(Collision2D other) {
         if (other.relativeVelocity.magnitude > 2) {
             CheckBreak(other);
@@ -28,6 +34,8 @@ public class BreakBlock : MonoBehaviour
     }
     
     private void Break() {
+        cr.MarkForReset();
+
         gameObject.SetActive(false);
         
         GameObject box = Instantiate(brokenMovableBox, transform.position, transform.rotation);
