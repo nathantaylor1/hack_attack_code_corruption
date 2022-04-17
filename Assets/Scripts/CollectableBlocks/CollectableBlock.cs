@@ -14,6 +14,14 @@ public class CollectableBlock : MonoBehaviour
     protected void Awake()
     {
         cr = GetComponent<CheckpointReset>();
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (block.TryGetComponent(out Code code))
+        {
+            if (PickupMapper.GetPickupSprite(code.ReturnType) != null)
+            {
+                sr.sprite = PickupMapper.GetPickupSprite(code.ReturnType);
+            }
+        }
     }
 
     public virtual void AddToInventory()

@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 8016271499401686878, guid: f153313b59f1c6c4da6fc054e5efc2ba, type: 3}
-  m_Color: {r: 0.8867924, g: 0.69895315, b: 0.48104307, a: 1}
+  m_Sprite: {fileID: -7457365644739255432, guid: 34797f9394c821849a4bdfda1ba0f1f4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -110,8 +110,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.91, y: 0.94}
+  m_EdgeRadius: 0.03
 --- !u!50 &385543404902134152
 Rigidbody2D:
   serializedVersion: 4
@@ -127,7 +127,7 @@ Rigidbody2D:
   m_Mass: 25
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.5
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 2
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c129b980cd7b549876d1799d2c029d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenMovableBox: {fileID: 7766977077427753696, guid: 8e06f39041fad9b4dbed9d50d1e8572e, type: 3}
+  brokenMovableBox: {fileID: 6094361727916542147, guid: 0eaf69450eb3f4b4d87ff54ff338ba7a, type: 3}
   breakVelocity: 40
 --- !u!114 &-5879252390575832538
 MonoBehaviour:
