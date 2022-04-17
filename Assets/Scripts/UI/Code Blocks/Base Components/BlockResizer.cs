@@ -34,7 +34,7 @@ public class BlockResizer : MonoBehaviour
         }
         cv++;*/
         yield return null;
-        Debug.Log("Rebuilding " + gameObject.name);
+        //Debug.Log("Rebuilding " + gameObject.name);
         LayoutRebuilder.MarkLayoutForRebuild(_transform as RectTransform);
         /*yield return new WaitForEndOfFrame();
         cv--;*/

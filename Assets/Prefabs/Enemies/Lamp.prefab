@@ -66,8 +66,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604567360849001387}
-  - component: {fileID: 4736775917162193788}
-  - component: {fileID: 2890702764768031454}
+  - component: {fileID: 7641676560599970309}
+  - component: {fileID: 7045620352093768011}
   m_Layer: 18
   m_Name: ForceField
   m_TagString: Untagged
@@ -84,12 +84,12 @@ Transform:
   m_GameObject: {fileID: 2224228508602095260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.25, z: 0}
-  m_LocalScale: {x: 40, y: 40, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2517249646753999761}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4736775917162193788
+--- !u!212 &7641676560599970309
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,21 +126,21 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 966773745
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.963488, b: 0.7877358, a: 0.3764706}
+  m_Sprite: {fileID: 21300000, guid: fcdcbd406f3b16b4b8caab3f4908b3e0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.37254903}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &2890702764768031454
+--- !u!68 &7045620352093768011
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,20 +156,23 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.07315559, y: -0.04264111}
-  - {x: 0.05648317, y: -0.06469539}
-  - {x: 0.021012198, y: -0.08117226}
-  - {x: -0.024305068, y: -0.08108186}
-  - {x: -0.057716474, y: -0.06234987}
-  - {x: -0.081696995, y: -0.027773503}
-  - {x: -0.08316909, y: 0.018737433}
-  - {x: -0.060684882, y: 0.057986233}
-  - {x: -0.030442156, y: 0.078435205}
-  - {x: 0.010577286, y: 0.083866045}
-  - {x: 0.052066702, y: 0.06728828}
-  - {x: 0.07446565, y: 0.03647687}
-  - {x: 0.082740866, y: -0.014546232}
-  - {x: 0.073106766, y: -0.04275026}
+  - {x: -2.9971585, y: -0.0007722378}
+  - {x: -2.775763, y: 1.0954636}
+  - {x: -2.182035, y: 2.0441926}
+  - {x: -1.2677561, y: 2.7391918}
+  - {x: 0.0115785, y: 3.0021355}
+  - {x: 1.239238, y: 2.7196531}
+  - {x: 2.1378548, y: 2.0820277}
+  - {x: 2.7534869, y: 1.2000095}
+  - {x: 2.9886894, y: 0.0062915087}
+  - {x: 2.7695842, y: -1.172791}
+  - {x: 2.1165833, y: -2.1046686}
+  - {x: 1.2017014, y: -2.7721477}
+  - {x: 0.01632911, y: -2.9976678}
+  - {x: -1.1894841, y: -2.7460194}
+  - {x: -2.090845, y: -2.0917554}
+  - {x: -2.7566237, y: -1.1721232}
+  - {x: -2.9962275, y: -0.0020868778}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -429,6 +432,8 @@ MonoBehaviour:
   disableOnStart: 0
   hackable: 0
   lastCollidedWith: {fileID: 0}
+  dashTrailColor: {r: 1, g: 1, b: 1, a: 1}
+  tr: {fileID: 0}
 --- !u!114 &1620856265698475845
 MonoBehaviour:
   m_ObjectHideFlags: 0
