@@ -19,13 +19,13 @@ public class MeleeAttackCode : CodeWithParameters
 
         Bounds bounds = module.col.bounds;
         // Sets center to be exactly next to collider based on direction
-        Vector3 meleeCenter = new Vector3(bounds.center.x + bounds.extents.x * direction.x * 2, bounds.center.y + bounds.extents.y * direction.y * 2, 0);
+        Vector3 meleeCenter = new Vector3(bounds.center.x + bounds.extents.x * direction.x * 1.5f, bounds.center.y + bounds.extents.y * direction.y * 2, 0);
 
         // Assets/Resources/DontMove/PMA.prefab
         GameObject pma = Resources.Load<GameObject>("DontMove/PMA");
         GameObject go = Instantiate(pma, meleeCenter, module.transform.rotation);
         
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(meleeCenter, bounds.extents*2f, 0f, direction, attackRange, layer);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(meleeCenter, bounds.extents*3f, 0f, direction, attackRange, layer);
         foreach (var hit in hits)
         {
             //Debug.Log($"hit: {hit.collider.name}");

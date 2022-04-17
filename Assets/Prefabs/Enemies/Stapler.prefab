@@ -247,7 +247,7 @@ MonoBehaviour:
   OnRevive:
     m_PersistentCalls:
       m_Calls: []
-  health: 1.5
+  health: 1.3
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}
   health_display_time: 3

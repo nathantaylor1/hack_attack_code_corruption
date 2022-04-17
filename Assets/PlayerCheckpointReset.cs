@@ -6,7 +6,7 @@ public class PlayerCheckpointReset : CheckpointReset
 {
     protected Rigidbody2D rb;
     //protected Rigidbody2D rbCopy;
-    protected float gravCopy = 0f;
+    //protected float gravCopy = 0f;
     protected GameObject windowCopy;
     protected CodeModule module;
 
@@ -22,7 +22,7 @@ public class PlayerCheckpointReset : CheckpointReset
     {
         posCopy = checkpoint.position;
         rotCopy = transform.rotation;
-        gravCopy = rb.gravityScale;
+        //gravCopy = rb.gravityScale;
         //rbCopy = Copy.Component<Rigidbody2D>(rb, GameManager.instance.gameObject);
         if (windowCopy != null)
         {
@@ -39,7 +39,7 @@ public class PlayerCheckpointReset : CheckpointReset
         transform.rotation = rotCopy;
         //rb = Copy.Component<Rigidbody2D>(rbCopy, gameObject);
         rb.velocity = Vector2.zero;
-        rb.gravityScale = gravCopy;
+        rb.gravityScale = module.gravityScale;
         GameObject tempWindow = module.editor.window;
         //Destroy(module.editor.window);
         //Debug.Log(windowCopy.name);
