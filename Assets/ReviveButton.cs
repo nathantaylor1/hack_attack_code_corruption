@@ -14,13 +14,20 @@ public class ReviveButton : MonoBehaviour
 
     protected Button bn;
     protected EditorWindow ew;
+    protected Image img;
+    protected bool isFlashing = false;
 
     protected void Awake()
     {
         bn = GetComponent<Button>();
-        //img = GetComponent<Image>();
+        img = GetComponent<Image>();
         ew = GetComponentInParent<EditorWindow>();
         bn.onClick.AddListener(ReviveModule);
+    }
+
+    protected void Update()
+    {
+        if(!isFlashing) StartCoroutine(Flash());
     }
 
     public void ReviveModule()
@@ -33,4 +40,18 @@ public class ReviveButton : MonoBehaviour
             EditorController.instance.SafeClose();
         }
     }
+
+    protected IEnumerator Flash()
+    {
+        isFlashing = true;
+        Color tempColor = img.color;
+        tempColor.a = .5f;
+        img.color = tempColor;
+        yield return new WaitForSecondsRealtime(.75f);
+        tempColor.a = 1f;
+        img.color = tempColor;
+        yield return new WaitForSecondsRealtime(.75f);
+        isFlashing = false;
+    }
+
 }

@@ -23,8 +23,8 @@ public class Grounded
         int layer = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Movables") | (1 << 29));
         int enemyLayer = (1 << LayerMask.NameToLayer("Enemies"));
 
-        var results = Physics2D.BoxCast(bounds.center + (tf.up * -1f) * 0.1f, extents, 0f, Vector2.down, 0.05f, layer);
-        var enemyResults = Physics2D.BoxCast(bounds.center + (tf.up * -1f) * 0.1f, extents, 0f, Vector2.down, 0.05f, enemyLayer);
+        var results = Physics2D.BoxCast(bounds.center + (tf.up * -1f) * 0.1f, extents, 0f, tf.up * -1f, 0.05f, layer);
+        var enemyResults = Physics2D.BoxCast(bounds.center + (tf.up * -1f) * 0.1f, extents, 0f, tf.up * -1f, 0.05f, enemyLayer);
         if (results || (enemyResults && enemyResults.rigidbody.CompareTag("Printer")))
         {
             return true;
