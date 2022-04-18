@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public enum OptionToEdit
@@ -16,6 +17,7 @@ public class OptionsSlider : MonoBehaviour
     private void Start()
     {
         PauseMenu.PauseMenuOpened += UpdateSlider;
+        UpdateSlider(null, null);
     }
 
     private void UpdateSlider(object sender, EventArgs e)
