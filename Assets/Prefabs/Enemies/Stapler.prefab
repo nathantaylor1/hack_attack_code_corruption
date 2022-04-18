@@ -252,7 +252,9 @@ MonoBehaviour:
   healthBarFill: {fileID: 0}
   health_display_time: 3
   sm: {fileID: 6418439758834272760}
+  isDead: 0
   maxHealth: 0
+  deathEffect: {fileID: 6094361727916542147, guid: 11a24d0eea362c5449378fc102ec84b3, type: 3}
   codeBlockToDrop: {fileID: 0}
 --- !u!95 &1846736023006838617
 Animator:

@@ -135,7 +135,9 @@ MonoBehaviour:
   healthBarFill: {fileID: 0}
   health_display_time: 3
   sm: {fileID: 448108470378767086}
+  isDead: 0
   maxHealth: 0
+  deathEffect: {fileID: 6094361727916542147, guid: 70f97cce7bd8c4d49a1fe8da20dd434d, type: 3}
   codeBlockToDrop: {fileID: 0}
 --- !u!95 &5260935248493281007
 Animator:
@@ -255,6 +257,8 @@ MonoBehaviour:
   disableOnStart: 0
   hackable: 0
   lastCollidedWith: {fileID: 0}
+  dashTrailColor: {r: 1, g: 1, b: 1, a: 1}
+  tr: {fileID: 0}
 --- !u!114 &1620856265698475845
 MonoBehaviour:
   m_ObjectHideFlags: 0

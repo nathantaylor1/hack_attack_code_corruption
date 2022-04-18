@@ -30,7 +30,7 @@ public class EditorController : MonoBehaviour
     {
         if(!EditorController.instance.is_in_editor && Input.GetKeyDown(KeyCode.E))
         {
-            AnalyticsCollection.OpenedEditor(); // Do Not Delete
+            //AnalyticsCollection.OpenedEditor(); // Do Not Delete
             toggleCanvases(true);
             is_in_editor = true;
             //Cursor.visible = true;
@@ -46,7 +46,7 @@ public class EditorController : MonoBehaviour
     public void SafeClose() {
         if(is_in_editor)
         {
-            AnalyticsCollection.ClosedEditor(); // Do Not Delete
+            //AnalyticsCollection.ClosedEditor(); // Do Not Delete
             Time.timeScale = 1f;
             //Cursor.visible = false;
             //AudioController.instance.PlayOpen();

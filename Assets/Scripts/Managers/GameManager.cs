@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public void LevelCompleted()
     {
         // Unity Analytics Send Level Complete
-        AnalyticsCollection.LevelComplete(SceneManager.GetActiveScene().buildIndex);
+        //AnalyticsCollection.LevelComplete(SceneManager.GetActiveScene().buildIndex);
 
         //Debug.Log($"SceneManager.GetActiveScene().buildIndex : {SceneManager.GetActiveScene().buildIndex}");
         //Debug.Log($"Scene Count: {SceneManager.sceneCountInBuildSettings}");

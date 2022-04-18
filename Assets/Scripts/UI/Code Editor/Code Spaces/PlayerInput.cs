@@ -8,7 +8,7 @@ public class PlayerInput : CodeSpace
     [SerializeField]
     private KeyCode keyCode, altKeyCode;
 
-    protected void Update()
+    protected override void Update()
     {
         if (!EditorController.instance.is_in_editor) {
             if (Input.GetKey(keyCode) || altKeyCode != KeyCode.None && Input.GetKey(altKeyCode))
@@ -20,6 +20,7 @@ public class PlayerInput : CodeSpace
                 EndExecution();
             }
         }
+        base.Update();
     }
     // public Code GetCode() {
     //     //get Start block
