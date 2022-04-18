@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75eaf2e9f718fd049a3d81d510e61130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  glowLayer: {fileID: 6989494674123998187, guid: bf8dbd197af0e484ab186e817f16bdce, type: 3}
 --- !u!114 &348804281302401010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2378,6 +2379,22 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 2860041800129817293}
+    - target: {fileID: 4634759812162001002, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634759812162001002, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634759812162001002, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634759812162001002, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6771422824287747504, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
       propertyPath: m_Name
       value: Options Window
@@ -2464,6 +2481,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7137781641267260597, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766897952010561476, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766897952010561476, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766897952010561476, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766897952010561476, guid: 306127c3f1cd5af4e9ea061f57d3c6da, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

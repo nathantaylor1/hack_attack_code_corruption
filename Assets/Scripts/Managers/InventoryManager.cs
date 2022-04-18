@@ -25,6 +25,7 @@ public class InventoryManager : MonoBehaviour
     public void AddNewBlock(Code codeBlock)
     {
         AddBlock(codeBlock);
+        InventoryImage.instance.ToggleGlow(true);
         if (codeBlock.gameObject.TryGetComponent(out Draggable dr))
         {
             dr.ToggleGlow(true);
