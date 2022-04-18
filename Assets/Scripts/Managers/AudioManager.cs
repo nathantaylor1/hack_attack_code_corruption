@@ -22,13 +22,18 @@ public class AudioManager : MonoBehaviour
         if (musicSrc != null) PlayMusic();
     }
 
-    private float effectsVolume = 0.6f;
+    private float fxVol = 0.6f;
     private float musicVolume = 0.07f;
     private List<string> soundsPlaying = new List<string>();
 
-    public void SetVolume(float input)
+    public void SetFXVolume(float input)
     {
-        effectsVolume = input;
+        fxVol = input;
+    }
+
+    public float GetFXVolume()
+    {
+        return fxVol;
     }
 
     public void PlaySound(AudioClip clip, Vector3 pos)
@@ -37,7 +42,7 @@ public class AudioManager : MonoBehaviour
         soundsPlaying.Add(clip.name);
 
         pos.z = 0;
-        AudioSource.PlayClipAtPoint(clip, pos, effectsVolume);
+        AudioSource.PlayClipAtPoint(clip, pos, fxVol);
 
         StartCoroutine(WaitToRemoveClip(clip.name));
     }
@@ -53,6 +58,11 @@ public class AudioManager : MonoBehaviour
     {
         musicVolume = input;
         musicSrc.volume = input;
+    }
+
+    public float GetMusicVolume()
+    {
+        return musicVolume;
     }
     
     public void PlayMusic()
