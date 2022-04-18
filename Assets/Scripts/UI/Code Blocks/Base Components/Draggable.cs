@@ -115,7 +115,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
     public virtual void OnDrag(PointerEventData eventData) {
         // Debug.Log("OnDrag");
-        rect.anchoredPosition += eventData.delta / EditorController.instance.editor_screen.scaleFactor;
+        rect.position = eventData.position ;
         //rect.anchoredPosition = eventData.position / EditorController.instance.editor_screen.scaleFactor;
     }
 
