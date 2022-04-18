@@ -36,8 +36,8 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
             {
                 GameObject newGlowLayer = Instantiate(glowLayer, transform);
                 glowGroup = newGlowLayer.GetComponent<CanvasGroup>();
+                glowCoroutine = StartCoroutine(GlowCoroutine());
             }
-            glowCoroutine = StartCoroutine(GlowCoroutine());
         }
         else 
         {

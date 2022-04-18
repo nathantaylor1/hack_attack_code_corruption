@@ -16,6 +16,7 @@ public class CrosshairController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         visibleColor = sr.color;
         visibleColor.a = 1f;
+        EventManager.OnPlayerDeath.AddListener(Hide);
     }
 
     protected void FixedUpdate()
