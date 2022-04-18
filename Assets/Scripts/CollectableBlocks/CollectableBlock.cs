@@ -30,7 +30,7 @@ public class CollectableBlock : MonoBehaviour
         alreadyPickedUp = true;
         //Transform codeBlock = Instantiate(gameObject.transform.GetChild(0).GetChild(0));
         GameObject codeBlock = Instantiate(block);
-        InventoryManager.instance.AddBlock(codeBlock.GetComponent<Code>());
+        InventoryManager.instance.AddNewBlock(codeBlock.GetComponent<Code>());
         codeBlock.transform.localScale = new Vector3(1, 1, 1);
         /*if (TryGetComponent(out CheckpointReset cr)) {
             cr.Deleting();

@@ -18,6 +18,7 @@ public class HasHealth : MonoBehaviour
     public float health_display_time = 3.0f;
     public SpriteMask sm;
     bool isInvincible = false;
+    public bool isDead = false;
     private CodeModule module;
     IEnumerator inCombat;
     private SpriteRenderer sr;
@@ -25,6 +26,8 @@ public class HasHealth : MonoBehaviour
     public float maxHealth;
     protected Animator anim;
     protected CheckpointReset cr;
+    protected FollowSubject fs;
+    public GameObject deathEffect;
 
     public bool IsFullHealth()
     {
@@ -39,6 +42,7 @@ public class HasHealth : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         cr = GetComponent<CheckpointReset>();
+        fs = Camera.main.GetComponent<FollowSubject>();
         if (health > 0) maxHealth = health;
         //Debug.Log(gameObject.name + " has " + health + " starting health and " + maxHealth + " max health");
         SetHealthVisibility(false);
@@ -117,15 +121,29 @@ public class HasHealth : MonoBehaviour
         health = maxHealth;
         updateHealthDisplay();
         anim.SetTrigger("Idle");
+        isDead = false;
         OnRevive?.Invoke();
     }
 
     protected virtual void Death()
     {
+        if (deathEffect != null && !isDead)
+        {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+
         if (gameObject.layer == LayerMask.NameToLayer("Player")) {
             //GameManager.instance.ResetLevel();
             health = maxHealth;
-            EventManager.OnPlayerDeath?.Invoke();
+            if (!isDead)
+            {
+                if (fs != null)
+                {
+                    gameObject.GetComponent<TrailRenderer>().emitting = false;
+                    fs.HandlePlayerDeath();
+                }
+            }
+            //EventManager.OnPlayerDeath?.Invoke();
         }
         else
         {
@@ -142,6 +160,7 @@ public class HasHealth : MonoBehaviour
             anim.SetTrigger("Death");
             OnDeath?.Invoke();
         }
+        isDead = true;
     }
 
     void updateHealthDisplay()

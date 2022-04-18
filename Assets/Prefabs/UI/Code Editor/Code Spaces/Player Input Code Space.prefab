@@ -289,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59a0355e76055d47907c0ff9a937635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canExecute: 1
   start: {fileID: 5387040950469368007}
   keyCode: 0
   altKeyCode: 0

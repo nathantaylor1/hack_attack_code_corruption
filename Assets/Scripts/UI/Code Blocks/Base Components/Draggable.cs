@@ -7,16 +7,65 @@ using UnityEngine.UI;
 public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler {
     protected RectTransform rect;
     protected CanvasGroup canvasGroup;
+    //protected Image image;
     public Vector3 locationBeforeDrag;
     protected Transform originalParent;
     public bool droppedInto = false;
+    [SerializeField]
+    protected GameObject glowLayer = null;
+    [SerializeField]
+    protected CanvasGroup glowGroup = null;
+    protected Coroutine glowCoroutine = null;
 
     protected virtual void Awake() {
         rect = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        //image = GetComponent<Image>();
+    }
+    private void OnEnable() {
+        if (glowGroup != null) {
+            glowCoroutine = StartCoroutine(GlowCoroutine());
+        }
+    }
+
+    public virtual void ToggleGlow(bool isGlowing)
+    {
+        if (isGlowing)
+        {
+            if (glowGroup == null)
+            {
+                GameObject newGlowLayer = Instantiate(glowLayer, transform);
+                glowGroup = newGlowLayer.GetComponent<CanvasGroup>();
+            }
+            glowCoroutine = StartCoroutine(GlowCoroutine());
+        }
+        else 
+        {
+            if (glowCoroutine != null) {
+                StopCoroutine(glowCoroutine);
+            }
+            if (glowGroup != null)
+            {
+                Destroy(glowGroup.gameObject);
+                //glowGroup.alpha = 0f;
+            }
+        }
+    }
+
+    protected IEnumerator GlowCoroutine()
+    {
+        while (true)
+        {
+            /*Color color = image.color;
+            color.a = value * 0.7f;
+            image.color = color;*/
+            glowGroup.alpha = Mathf.Sin(Time.unscaledTime * Mathf.PI) * 0.08f + 0.3f;
+            yield return null;
+        }
     }
 
     public virtual void UnClip() {
+        //Debug.Log("Unclipped");
         if (transform.parent.TryGetComponent(out BlockResizer br))
         {
             br.UpdateSize();
@@ -24,7 +73,9 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
         if (TryGetComponent(out Code code))
         {
+            //Debug.Log("Has code");
             code.StopExecution();
+            //code.StopSecondaryExecution();
         }
         // transform.SetParent(canvas.transform);
         // transform.SetAsLastSibling();
@@ -32,6 +83,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
     public virtual void OnBeginDrag(PointerEventData eventData) {
         //Debug.Log("OnBeginDrag");
+        ToggleGlow(false);
         UnClip();
         canvasGroup.alpha = .6f;
         locationBeforeDrag = rect.anchoredPosition3D;
@@ -63,6 +115,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public virtual void OnDrag(PointerEventData eventData) {
         // Debug.Log("OnDrag");
         rect.anchoredPosition += eventData.delta / EditorController.instance.editor_screen.scaleFactor;
+        //rect.anchoredPosition = eventData.position / EditorController.instance.editor_screen.scaleFactor;
     }
 
     public virtual void OnEndDrag(PointerEventData eventData) {

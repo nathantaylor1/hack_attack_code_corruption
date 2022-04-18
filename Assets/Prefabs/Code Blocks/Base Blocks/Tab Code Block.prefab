@@ -283,6 +283,10 @@ PrefabInstance:
       propertyPath: m_Padding.m_Bottom
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5532185073656830361, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5715096438207977182, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -318,6 +322,10 @@ PrefabInstance:
     - target: {fileID: 6836330125110631020, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836330125110631020, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7468882437471801187, guid: 136f95479b077864083f6401e3ecb5cd, type: 3}
       propertyPath: m_IsActive

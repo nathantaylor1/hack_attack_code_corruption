@@ -442,6 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationBeforeDrag: {x: 0, y: 0, z: 0}
   droppedInto: 0
+  glowLayer: {fileID: 6989494674123998187, guid: 974152ef227db7146aebfe3c0fc40a8c, type: 3}
 --- !u!114 &2916398177796077262
 MonoBehaviour:
   m_ObjectHideFlags: 0
