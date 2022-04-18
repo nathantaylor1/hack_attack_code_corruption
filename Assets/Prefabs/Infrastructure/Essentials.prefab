@@ -426,7 +426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e186a1bf03051b4e8a9baf5f5ff4848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!1001 &17548732905541747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -549,22 +548,6 @@ PrefabInstance:
     - target: {fileID: 3738610268258773524, guid: 8c2df76bf801b9e4382d173462e6053b, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5292037611154462971, guid: 8c2df76bf801b9e4382d173462e6053b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6100405790905451956, guid: 8c2df76bf801b9e4382d173462e6053b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7877711632401152538, guid: 8c2df76bf801b9e4382d173462e6053b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8109477044678698837, guid: 8c2df76bf801b9e4382d173462e6053b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8680467054119569154, guid: 8c2df76bf801b9e4382d173462e6053b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -910,10 +893,6 @@ PrefabInstance:
     - target: {fileID: 1826874288133581740, guid: d8726968dd4043242aa07d14939e3d85, type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 1826874288133581740, guid: d8726968dd4043242aa07d14939e3d85, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8726968dd4043242aa07d14939e3d85, type: 3}

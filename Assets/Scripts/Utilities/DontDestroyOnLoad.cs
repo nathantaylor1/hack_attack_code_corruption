@@ -21,8 +21,7 @@ public class DontDestroyOnLoad : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
-        transform.SetParent(null);
+
         DontDestroyOnLoad(gameObject);
     }
 }

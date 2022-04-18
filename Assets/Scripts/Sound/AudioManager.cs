@@ -2,15 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public AudioClip mainMenuMusic;
-    public AudioClip gameMusic;
+    public AudioClip music;
     private AudioSource musicSrc;
-    private Transform mainCamT;
 
     private void Awake()
     {
@@ -20,8 +17,12 @@ public class AudioManager : MonoBehaviour
             return;
         }
         instance = this;
+
+        if (Camera.main != null) musicSrc = Camera.main.gameObject.AddComponent<AudioSource>();
+        if (musicSrc != null) PlayMusic();
         
-        SceneManager.sceneLoaded += PlayMusic;
+        SetMusicVolume(AudioManagerStorage.musicVol);
+        SetFXVolume(AudioManagerStorage.fxVol);
     }
     
     private List<string> soundsPlaying = new List<string>();
@@ -41,7 +42,7 @@ public class AudioManager : MonoBehaviour
         if (soundsPlaying.Contains(clip.name)) return;
         soundsPlaying.Add(clip.name);
 
-        pos.z = -10;
+        pos.z = 0;
         AudioSource.PlayClipAtPoint(clip, pos, AudioManagerStorage.fxVol);
 
         StartCoroutine(WaitToRemoveClip(clip.name));
@@ -65,26 +66,11 @@ public class AudioManager : MonoBehaviour
         return AudioManagerStorage.musicVol;
     }
     
-    public void PlayMusic(Scene scene, LoadSceneMode mode)
+    public void PlayMusic()
     {
-        if (Camera.main)
-        {
-            mainCamT = Camera.main.transform;
-            musicSrc = Camera.main.gameObject.AddComponent<AudioSource>();
-        }
-        musicSrc.clip = (SceneManager.GetActiveScene().name == "MainMenu") ? mainMenuMusic : gameMusic;
+        musicSrc.clip = music;
         musicSrc.loop = true;
-        
-        SetMusicVolume(AudioManagerStorage.musicVol);
-        SetFXVolume(AudioManagerStorage.fxVol);
-        
+        musicSrc.volume = AudioManagerStorage.musicVol;
         musicSrc.Play();
-    }
-
-    public void PlayGlobalSound(AudioClip clip)
-    {
-        Vector3 pos = mainCamT.position;
-        pos.z = 0;
-        AudioSource.PlayClipAtPoint(clip, pos, AudioManagerStorage.fxVol);
     }
 }
