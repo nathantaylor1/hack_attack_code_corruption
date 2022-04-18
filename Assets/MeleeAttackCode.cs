@@ -12,7 +12,10 @@ public class MeleeAttackCode : CodeWithParameters
 
     public override void ExecuteCode()
     {
-        if (!canAttack) return;
+        if (!canAttack) {
+            base.ExecuteCode();
+            return;
+        }
 
         Vector2 direction = (Vector2) (object) GetParameter(0);
         float dmg = module.meleeDamage * (float) (object) GetParameter(1);
