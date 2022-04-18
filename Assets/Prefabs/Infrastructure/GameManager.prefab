@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4915251050433743890}
   - component: {fileID: 1527733878341834257}
   - component: {fileID: 5304754816591976458}
-  - component: {fileID: 5134124837210348572}
   - component: {fileID: 7225743513770358134}
   m_Layer: 0
   m_Name: GameManager
@@ -79,19 +78,6 @@ MonoBehaviour:
     entityIcon: {fileID: -8179040606652740800, guid: 97c03b3bc102aba46935fa034e1b1fe7, type: 3}
   - entityType: 2
     entityIcon: {fileID: -8250607377477875373, guid: 98afee910d326ed4593dec2a70547886, type: 3}
---- !u!114 &5134124837210348572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3808103812291835635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4013cdcbc44ce54791c015eb24d06f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: c1115968e6ca5dc4cb3a064df8168975, type: 3}
 --- !u!114 &7225743513770358134
 MonoBehaviour:
   m_ObjectHideFlags: 0
