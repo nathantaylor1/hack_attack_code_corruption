@@ -31,13 +31,48 @@ public class Code : MonoBehaviour
         module = _module;
     }
 
+    public virtual void SetModuleRecursive(CodeModule _module)
+    {
+        module = _module;
+        if (GetNext() != null)
+        {
+            GetNext().SetModuleRecursive(module);
+        }
+    }
+
+    public virtual CodeModule GetModule()
+    {
+        return module;
+    }
+
     public virtual void ExecuteCode()
     {
         Continue();
     }
 
+    public virtual void ExecuteSecondaryCode()
+    {
+        if (GetNext() != null)
+        {
+            GetNext().SetModule(module);
+            GetNext().ExecuteSecondaryCode();
+        }
+    }
+
     public virtual void StopExecution() {
         ContinueStop();
+        StopSecondaryExecution();
+    }
+
+    public virtual void StopSecondaryExecution()
+    {
+        //Debug.Log("Stopping secondary execution on " + gameObject.name);
+        if (GetNext() != null)
+        {
+            //Debug.Log("Next is not null");
+            GetNext().SetModule(module);
+            GetNext().StopSecondaryExecution();
+        }
     }
 
     public virtual void Continue()

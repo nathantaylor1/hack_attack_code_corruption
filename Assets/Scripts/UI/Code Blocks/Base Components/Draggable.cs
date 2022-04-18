@@ -57,6 +57,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     }
 
     public virtual void UnClip() {
+        //Debug.Log("Unclipped");
         if (transform.parent.TryGetComponent(out BlockResizer br))
         {
             br.UpdateSize();
@@ -64,7 +65,9 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
         if (TryGetComponent(out Code code))
         {
+            //Debug.Log("Has code");
             code.StopExecution();
+            //code.StopSecondaryExecution();
         }
         // transform.SetParent(canvas.transform);
         // transform.SetAsLastSibling();
@@ -104,6 +107,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public virtual void OnDrag(PointerEventData eventData) {
         // Debug.Log("OnDrag");
         rect.anchoredPosition += eventData.delta / EditorController.instance.editor_screen.scaleFactor;
+        //rect.anchoredPosition = eventData.position / EditorController.instance.editor_screen.scaleFactor;
     }
 
     public virtual void OnEndDrag(PointerEventData eventData) {

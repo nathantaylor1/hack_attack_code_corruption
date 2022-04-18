@@ -15,9 +15,20 @@ public class CodeSpace : MonoBehaviour
     {
     }
 
+    protected virtual void Update()
+    {
+        if (start != null && module != null)
+        {
+            start.SetModule(module);
+            start.ExecuteSecondaryCode();
+        }
+    }
+
     public virtual void SetModule(CodeModule _module)
     {
         module = _module;
+        /*if (start != null)
+            start.SetModule(module);*/
     }
 
     public virtual void ToggleCanExecute(bool _canExecute)
