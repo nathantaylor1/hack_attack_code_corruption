@@ -18,6 +18,7 @@ public class CrawlCode : CodeWithParameters
     public bool canFlip = true;
     public bool falling = false;
     bool isRunning = false;
+    bool buffering = false;
     bool animationRunning = false;
     public override void ExecuteCode()
     {
@@ -61,8 +62,12 @@ public class CrawlCode : CodeWithParameters
     }
 
     IEnumerator FlipBuffer() {
-        yield return new WaitForSeconds(.5f);
-        canFlip = true;
+        if (!buffering) {
+            buffering = true;
+            yield return new WaitForSeconds(.5f);
+            buffering = false;
+            canFlip = true;
+        }
     }
 
     public override void StopExecution()
@@ -90,13 +95,16 @@ public class CrawlCode : CodeWithParameters
         var offset3 = (Vector2)tf.up * -1 * bds.extents.y;
         // Debug.Log(bds.extents);
         // how much wider should the check be than size
-        var add = 1.1f;
+        var add = 3f * bds.extents.x * 2;
+        var addx = .2f;
         if (Mathf.Abs(tf.up.x) > Mathf.Abs(tf.up.y) ) {
             // means on a wall
             size3.y += add;
+            size3.x += addx;
         } else {
             // means on floor or ceiling
             size3.x += add;
+            size3.y += addx;
         }
         if (Physics2D.BoxCast(tf.position + (Vector3)offset3, size3, 0f, tf.up * -1, 0.05f, layer))
         {
@@ -109,12 +117,16 @@ public class CrawlCode : CodeWithParameters
 
     void CheckGround()
     {
-        Vector2 origin = bds.center;
-        Vector2 size = new Vector2(bds.extents.x / 2 - 0.05f, bds.extents.y / 2 - 0.05f);
+        var actualx = bds.extents.x;
+        var actualy = bds.extents.y;
+        var x = transform.up.x == 0 ? actualx : actualy;
+        var y = transform.up.x == 0 ? actualy : actualx;
+        Vector2 origin = tf.position;
+        Vector2 size = new Vector2( .6f / 2f, (y * 2f / 3f));
         Vector2 direction = -tf.up;
         var offset = new Vector2();
-        offset = -tf.right * (bds.extents.x);
-        offset += (Vector2)(-tf.up * (bds.extents.x / 2f + .35f));
+        offset = -tf.right * (x);
+        offset += (Vector2)(-tf.up * (x / 2f + .35f));
 
         RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, groundAndMoveables);
         if (!hasTurned && hit) return;
@@ -177,7 +189,7 @@ public class CrawlCode : CodeWithParameters
             StartCoroutine(AnimateRun());
         }
 
-        float speed = module.moveSpeed * p1;
+        float speed = p1 * 4;
         rb.velocity = tf.right * speed;
     }
 
