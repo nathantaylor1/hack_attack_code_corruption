@@ -20,20 +20,21 @@ public class AudioManager : MonoBehaviour
 
         if (Camera.main != null) musicSrc = Camera.main.gameObject.AddComponent<AudioSource>();
         if (musicSrc != null) PlayMusic();
+        
+        SetMusicVolume(AudioManagerStorage.musicVol);
+        SetFXVolume(AudioManagerStorage.fxVol);
     }
-
-    private float fxVol = 0.6f;
-    private float musicVolume = 0.07f;
+    
     private List<string> soundsPlaying = new List<string>();
 
     public void SetFXVolume(float input)
     {
-        fxVol = input;
+        AudioManagerStorage.fxVol = input;
     }
 
     public float GetFXVolume()
     {
-        return fxVol;
+        return AudioManagerStorage.fxVol;
     }
 
     public void PlaySound(AudioClip clip, Vector3 pos)
@@ -42,7 +43,7 @@ public class AudioManager : MonoBehaviour
         soundsPlaying.Add(clip.name);
 
         pos.z = 0;
-        AudioSource.PlayClipAtPoint(clip, pos, fxVol);
+        AudioSource.PlayClipAtPoint(clip, pos, AudioManagerStorage.fxVol);
 
         StartCoroutine(WaitToRemoveClip(clip.name));
     }
@@ -56,20 +57,20 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicVolume(float input)
     {
-        musicVolume = input;
+        AudioManagerStorage.musicVol = input;
         musicSrc.volume = input;
     }
 
     public float GetMusicVolume()
     {
-        return musicVolume;
+        return AudioManagerStorage.musicVol;
     }
     
     public void PlayMusic()
     {
         musicSrc.clip = music;
         musicSrc.loop = true;
-        musicSrc.volume = musicVolume;
+        musicSrc.volume = AudioManagerStorage.musicVol;
         musicSrc.Play();
     }
 }
