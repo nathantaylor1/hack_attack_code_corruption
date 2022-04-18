@@ -22,7 +22,7 @@ public class OptionsSlider : MonoBehaviour
 
     private void UpdateSlider(object sender, EventArgs e)
     {
-        Debug.Log("Update Slider!");
+        //Debug.Log("Update Slider!");
         switch (option)
         {
             case OptionToEdit.MusicVolume:
