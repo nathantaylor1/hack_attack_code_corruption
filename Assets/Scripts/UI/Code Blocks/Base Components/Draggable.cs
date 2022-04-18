@@ -90,6 +90,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         // must remove parent in order to show thing being dragged on top
         originalParent = transform.parent;
         transform.SetParent(EditorController.instance.editor_screen.transform);
+        rect.position = eventData.position;
 
         canvasGroup.blocksRaycasts = false;
         string returnType = GetComponent<Code>().ReturnType;
