@@ -189,8 +189,7 @@ public class CrawlCode : CodeWithParameters
             StartCoroutine(AnimateRun());
         }
 
-        float speed = p1 * 4;
-        rb.velocity = tf.right * speed;
+        rb.velocity = tf.right * p1 * module.crawlSpeed;
     }
 
     private void ClampRotations()

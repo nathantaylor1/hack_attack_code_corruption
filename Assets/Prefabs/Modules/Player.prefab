@@ -302,6 +302,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8110474562646894817}
     - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
+      propertyPath: crawlSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467797750716825257, guid: 29148aca35f94ab44a77e1737f3c0223, type: 3}
       propertyPath: reloadTime
       value: 0.5
       objectReference: {fileID: 0}
@@ -468,6 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveOnStart: 1
+  gravCopy: 0
 --- !u!114 &1244292285335372265
 MonoBehaviour:
   m_ObjectHideFlags: 0

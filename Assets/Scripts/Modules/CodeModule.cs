@@ -16,6 +16,8 @@ public class CodeModule : MonoBehaviour
     public float projectileSpeed = 1f;
     public float gravityScale = 1f;
     public float jumpSpeed = 2f;
+    public float crawlSpeed = 1.5f;
+
     public float dashDuration = 1f;
     public float dashSpeed = 1f;
     public float accelerationSpeed = 1f;
