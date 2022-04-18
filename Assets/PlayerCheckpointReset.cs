@@ -9,12 +9,14 @@ public class PlayerCheckpointReset : CheckpointReset
     protected float gravCopy = 0f;
     protected GameObject windowCopy;
     protected CodeModule module;
+    protected HasHealth health;
 
     protected override void Awake()
     {
         shouldSave = true;
         rb = GetComponent<Rigidbody2D>();
         module = GetComponent<CodeModule>();
+        health = GetComponent<HasHealth>();
         base.Awake();
     }
 
@@ -40,6 +42,7 @@ public class PlayerCheckpointReset : CheckpointReset
         //rb = Copy.Component<Rigidbody2D>(rbCopy, gameObject);
         rb.velocity = Vector2.zero;
         rb.gravityScale = gravCopy;
+        health.isDead = false;
         GameObject tempWindow = module.editor.window;
         //Destroy(module.editor.window);
         //Debug.Log(windowCopy.name);

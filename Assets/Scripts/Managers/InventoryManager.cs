@@ -25,5 +25,9 @@ public class InventoryManager : MonoBehaviour
 
     public void AddBlock(Code codeBlock) {
         codeBlock.transform.SetParent(transform);
+        if (codeBlock.gameObject.TryGetComponent(out Draggable dr))
+        {
+            dr.ToggleGlow(true);
+        }
     }
 }

@@ -516,5 +516,7 @@ MonoBehaviour:
   healthBarFill: {fileID: 0}
   health_display_time: 3
   sm: {fileID: 0}
+  isDead: 0
   maxHealth: 0
+  deathEffect: {fileID: 6094361727916542147, guid: 98939030c4d6da847aea8326eacca9e5, type: 3}
   codeBlockToDrop: {fileID: 0}
