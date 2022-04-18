@@ -6,6 +6,7 @@ public class PlayerCheckpointReset : CheckpointReset
 {
     protected Rigidbody2D rb;
     //protected Rigidbody2D rbCopy;
+    [SerializeField]
     protected float gravCopy = 0f;
     protected GameObject windowCopy;
     protected CodeModule module;
@@ -23,8 +24,6 @@ public class PlayerCheckpointReset : CheckpointReset
     protected override void SaveToCheckpoint(Transform checkpoint)//int _)
     {
         posCopy = checkpoint.position;
-        rotCopy = transform.rotation;
-        gravCopy = rb.gravityScale;
         //rbCopy = Copy.Component<Rigidbody2D>(rb, GameManager.instance.gameObject);
         if (windowCopy != null)
         {
@@ -38,14 +37,14 @@ public class PlayerCheckpointReset : CheckpointReset
     {
         transform.parent = null;
         transform.position = posCopy;
-        transform.rotation = rotCopy;
+        transform.rotation = Quaternion.identity;
         //rb = Copy.Component<Rigidbody2D>(rbCopy, gameObject);
         rb.velocity = Vector2.zero;
-        rb.gravityScale = gravCopy;
+        rb.gravityScale = module.gravityScale;
         health.isDead = false;
         GameObject tempWindow = module.editor.window;
         //Destroy(module.editor.window);
-        //Debug.Log(windowCopy.name);
+        Debug.Log(windowCopy.name);
         module.editor = EditorController.instance.AddWindowCopyless(windowCopy, module.editor.button, module);
         module.editor.window.SetActive(true);
         module.editor.button.SetActive(true);

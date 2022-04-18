@@ -139,6 +139,7 @@ public class HasHealth : MonoBehaviour
             {
                 if (fs != null)
                 {
+                    gameObject.GetComponent<TrailRenderer>().emitting = false;
                     fs.HandlePlayerDeath();
                 }
             }
