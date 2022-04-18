@@ -13,6 +13,7 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     public bool droppedInto = false;
     [SerializeField]
     protected GameObject glowLayer = null;
+    [SerializeField]
     protected CanvasGroup glowGroup = null;
     protected Coroutine glowCoroutine = null;
 
@@ -20,6 +21,11 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         rect = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         //image = GetComponent<Image>();
+    }
+    private void OnEnable() {
+        if (glowGroup != null) {
+            glowCoroutine = StartCoroutine(GlowCoroutine());
+        }
     }
 
     public virtual void ToggleGlow(bool isGlowing)
@@ -33,9 +39,11 @@ public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
             }
             glowCoroutine = StartCoroutine(GlowCoroutine());
         }
-        else if (glowCoroutine != null)
+        else 
         {
-            StopCoroutine(glowCoroutine);
+            if (glowCoroutine != null) {
+                StopCoroutine(glowCoroutine);
+            }
             if (glowGroup != null)
             {
                 Destroy(glowGroup.gameObject);
