@@ -23,6 +23,7 @@ public class testcrawler : MonoBehaviour
     public GameObject module;
     public bool canFlip = true;
     public bool falling = false;
+    public bool buffering = false;
     public Collider2D lastCollidedWith = null;
 
     private void FixedUpdate()
@@ -53,7 +54,7 @@ public class testcrawler : MonoBehaviour
     {
         if (!falling && CustomGrounded()) {
                 rb.gravityScale = 0;
-                Move(Vector2.left, 1);
+                Move(testDir, 1);
                 CheckWall();
                 CheckGround();
         } else if (lastCollidedWith != null 
@@ -73,8 +74,12 @@ public class testcrawler : MonoBehaviour
         }
     }
     IEnumerator FlipBuffer() {
-        yield return new WaitForSeconds(.5f);
-        canFlip = true;
+        if (!buffering) {
+            buffering = true;
+            yield return new WaitForSeconds(.5f);
+            buffering = false;
+            canFlip = true;
+        }
     }
 
     // public override void StopExecution()
@@ -86,14 +91,18 @@ public class testcrawler : MonoBehaviour
     // }
     void CheckGround()
     {
+        var actualx = bds.extents.x;
+        var actualy = bds.extents.y;
+        var x = transform.up.x == 0 ? actualx : actualy;
+        var y = transform.up.x == 0 ? actualy : actualx;
         Vector2 origin = tf.position;
-        Vector2 size = new Vector2(bds.extents.x / 2 - 0.05f, bds.extents.y / 2 - 0.05f);
+        Vector2 size = new Vector2( .6f / 2f, (y * 2f / 3f));
         Vector2 direction = -tf.up;
         var offset = new Vector2();
-        offset = -tf.right * (bds.extents.x);
-        offset += (Vector2)(-tf.up * (bds.extents.x / 2f + .35f));
+        offset = -tf.right * (x);
+        offset += (Vector2)(-tf.up * (x / 2f + .35f));
 
-        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, glm);;
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, glm);
         // if (hit == null)
         if (!hasTurned && hit) return;
         if (hasTurned && !hit) return;
@@ -122,8 +131,10 @@ public class testcrawler : MonoBehaviour
         anim = module.GetComponent<Animator>();
         // Debug.Log("ahhh");
         Vector2 origin = bds.center;
-        var x = .71f / 2f;
-        var y = .93f / 2f;
+        var actualx = .71f / 2f;
+        var actualy = .93f / 2f;
+        var x = transform.up.x == 0 ? actualx : actualy;
+        var y = transform.up.x == 0 ? actualy : actualx;
         Vector2 size = new Vector2(x -.05f, y -.05f);
         Vector2 direction = tf.right;
         
@@ -132,7 +143,7 @@ public class testcrawler : MonoBehaviour
         offset += (Vector2)(tf.up * x / 2f);
         // RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.05f, glm);
         
-        Vector2 size2 = new Vector2(x / 2 - 0.05f, y / 2 - 0.05f);
+        Vector2 size2 = new Vector2( .6f / 2f, (y * 2f / 3f));
         Vector2 direction2 = -tf.up;
         var offset2 = new Vector2();
         offset2 = -tf.right * (x);
@@ -152,7 +163,7 @@ public class testcrawler : MonoBehaviour
         //int layer = ~( (1 << col.gameObject.layer) | (1 << LayerMask.NameToLayer("Cursor")) );
         int layer = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Movables") | (1 << 29));
         var offset3 = (Vector2)transform.up * -1 * .5f;
-        var add = 1.2f;
+        var add = 1.65f * x * 2;
         if (Mathf.Abs(transform.up.x) > Mathf.Abs(transform.up.y) ) {
             // means on a wall
             size3.y += add;
@@ -176,7 +187,7 @@ public class testcrawler : MonoBehaviour
         Vector2 size3 = new Vector3(.3f, .3f, 0);
         int layer = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Movables") | (1 << 29));
         var offset3 = (Vector2)tf.up * -1 * .5f;
-        var add = 1.1f;
+        var add = 1.45f * bds.extents.x * 2;
         if (Mathf.Abs(tf.up.x) > Mathf.Abs(tf.up.y) ) {
             // means on a wall
             size3.y += add;

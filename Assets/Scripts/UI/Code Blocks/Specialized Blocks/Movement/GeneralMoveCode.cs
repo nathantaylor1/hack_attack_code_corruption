@@ -21,7 +21,7 @@ public class GeneralMoveCode : CodeWithParameters
         var p0 = GetParameter(0);
         var p1 = GetParameter(1);
 
-        if (!(p0 is null) && !(p1 is null)) {
+        if (!(p0 is null) && !(p1 is null) && module.transform.up.y > Vector3.up.y - .1f && module.transform.up.y < Vector3.up.y + .1f) {
             Vector2 dir = (Vector2)(object)p0;
             float speed = module.moveSpeed * (float)(object)p1;
             //Debug.Log("dir: " + dir);
@@ -59,6 +59,8 @@ public class GeneralMoveCode : CodeWithParameters
         }
         base.ExecuteCode();
     }
+
+
 
     protected IEnumerator AnimateRun()
     {
