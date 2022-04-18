@@ -5,7 +5,7 @@ using UnityEngine;
 public class DashCode : CodeWithParameters
 {
     bool isDashing = false;
-    float gravityScale = 1f;
+    //float gravityScale = 1f;
     public override void ExecuteCode()
     {
         if (!isDashing) {

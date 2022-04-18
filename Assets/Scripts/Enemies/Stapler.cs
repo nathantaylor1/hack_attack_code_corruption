@@ -175,7 +175,7 @@ public class Stapler : EnemyMovement
     {
         yield return new WaitForSeconds(telegraphTime);
         Shoot(col);
-        Debug.Log("Shoot Anim");
+        //Debug.Log("Shoot Anim");
         yield return new WaitForSeconds(0.1f);
         _staplerAnimations.SetOpen(false);
         yield return null;

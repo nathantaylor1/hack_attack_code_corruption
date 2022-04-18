@@ -16,7 +16,7 @@ public class testcrawler : MonoBehaviour
     private bool hasTurned;
     private readonly LayerMask glm = 1 << 7;
     private bool executing = false;
-    private bool didCheck = false;
+    //private bool didCheck = false;
 
     public float speed = 1;
     public Vector2 testDir = Vector2.left;
@@ -48,7 +48,7 @@ public class testcrawler : MonoBehaviour
             //     CheckGround();
             // }
         }
-        didCheck = false;
+        //didCheck = false;
     }
     public void ExecuteCode()
     {
