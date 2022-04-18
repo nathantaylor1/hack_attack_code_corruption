@@ -22,6 +22,38 @@ public class CodeWithBodies : CodeWithParameters
         }
     }
 
+    public override void ExecuteSecondaryCode()
+    {
+        if (module != null)
+        {
+            foreach (InputField c in bodies)
+            {
+                if (c.GetCode() != null && module!)
+                {
+                    c.GetCode().SetModule(module);
+                    c.GetCode().ExecuteSecondaryCode();
+                }
+            }
+        }
+        base.ExecuteSecondaryCode();
+    }
+
+    public override void StopSecondaryExecution()
+    {
+        if (module != null)
+        {
+            foreach (InputField c in bodies)
+            {
+                if (c.GetCode() != null)
+                {
+                    c.GetCode().SetModule(module);
+                    c.GetCode().StopSecondaryExecution();
+                }
+            }
+        }
+        base.StopSecondaryExecution();
+    }
+
     protected virtual Code GetBody(int index)
     {
         if (index < bodies.Count) {

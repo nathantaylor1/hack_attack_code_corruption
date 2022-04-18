@@ -24,6 +24,7 @@ public class InputField : MonoBehaviour
     protected HashSet<string> inputTypeSet;
     protected dynamic inputVal;
     protected Code inputBlock = null;
+    protected Code parentBlock = null;
     //protected Code parentBlock = null;
     public UnityEvent droppedInto = new UnityEvent();
 
@@ -45,6 +46,8 @@ public class InputField : MonoBehaviour
                 break;
             }
         }
+
+        parentBlock = GetComponentInParent<Code>();
         // Debug.Log("inputting");
     }
 
@@ -84,12 +87,22 @@ public class InputField : MonoBehaviour
     {
         droppedInto.Invoke();
         inputBlock = _inputBlock;
+        /*if (parentBlock != null)
+        {
+            //inputBlock.SetModuleRecursive(parentBlock.GetModule());
+            *//*if (inputBlock is TowardsCode)
+            {
+                (inputBlock as TowardsCode).CheckIsActive();
+            }*//*
+        }*/
         //inputBlock.SetBodyParent(parentBlock.GetBodyParent());
         Deselect();
     }
 
     public virtual void RemoveInputBlock()
     {
+        //inputBlock.StopExecution();
+        inputBlock.StopSecondaryExecution();
         inputBlock = null;
     }
 

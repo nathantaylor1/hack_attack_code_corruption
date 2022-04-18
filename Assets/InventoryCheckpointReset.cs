@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryCheckpointReset : CheckpointReset
 {
     protected InventoryManager im;
+    //protected RectTransform rt;
 
     protected override void Awake()
     {
         im = GetComponent<InventoryManager>();
+        //rt = GetComponent<RectTransform>();
         base.Awake();
         if (saveOnStart)
         {
@@ -28,6 +31,7 @@ public class InventoryCheckpointReset : CheckpointReset
     {
         MarkForReset();
         base.SaveToCheckpoint(checkpoint);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
         if (gameObject.activeInHierarchy)
         {
             InventoryManager.instance = im;

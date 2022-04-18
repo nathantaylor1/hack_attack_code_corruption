@@ -30,6 +30,38 @@ public class CodeWithParameters : Code
         }*/
     }
 
+    public override void ExecuteSecondaryCode()
+    {
+        if (module != null)
+        {
+            foreach (InputField c in parameters)
+            {
+                if (c.GetCode() != null)
+                {
+                    c.GetCode().SetModule(module);
+                    c.GetCode().ExecuteSecondaryCode();
+                }
+            }
+        }
+        base.ExecuteSecondaryCode();
+    }
+
+    public override void StopSecondaryExecution()
+    {
+        if (module != null)
+        {
+            foreach (InputField c in parameters)
+            {
+                if (c.GetCode() != null)
+                {
+                    c.GetCode().SetModule(module);
+                    c.GetCode().StopSecondaryExecution();
+                }
+            }
+        }
+        base.StopSecondaryExecution();
+    }
+
     protected virtual dynamic GetParameter(int index)
     {
         Code c = parameters[index].GetCode();

@@ -214,6 +214,8 @@ MonoBehaviour:
   disableOnStart: 0
   hackable: 0
   lastCollidedWith: {fileID: 0}
+  dashTrailColor: {r: 1, g: 1, b: 1, a: 1}
+  tr: {fileID: 0}
 --- !u!95 &7549024037020160957
 Animator:
   serializedVersion: 3
@@ -269,7 +271,9 @@ MonoBehaviour:
   healthBarFill: {fileID: 0}
   health_display_time: 3
   sm: {fileID: 6918881977873119177}
+  isDead: 0
   maxHealth: 0
+  deathEffect: {fileID: 6094361727916542147, guid: 4e5f50520e879834696f201a05b0cfc6, type: 3}
   codeBlockToDrop: {fileID: 0}
 --- !u!1001 &6669302812257778185
 PrefabInstance:

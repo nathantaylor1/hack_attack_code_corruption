@@ -15,7 +15,7 @@ public class CodeResettingManager : MonoBehaviour
         index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.activeSceneChanged += ChangedActiveScene;
         canvas = GetComponent<Canvas>();
-        transform.parent = null;
+        transform.SetParent(null);
         // Debug.Log("ahhhh");
         DontDestroyOnLoad(gameObject);
     }
