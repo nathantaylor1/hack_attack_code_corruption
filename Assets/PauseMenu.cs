@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static event EventHandler PauseMenuOpened;
+    public static event EventHandler PauseMenuClosed;
     public static bool opened;
     public KeyCode pauseKey = KeyCode.Escape;
     private Canvas canvas;
@@ -26,6 +28,7 @@ public class PauseMenu : MonoBehaviour
                 opened = true;
                 canvas.enabled = true;
                 Time.timeScale = 0;
+                PauseMenuOpened?.Invoke(this, EventArgs.Empty);
             }
             else
             {
@@ -33,6 +36,7 @@ public class PauseMenu : MonoBehaviour
                 opened = false;
                 canvas.enabled = false;
                 Time.timeScale = 1;
+                PauseMenuClosed?.Invoke(this, EventArgs.Empty);
             }
         }
     }
