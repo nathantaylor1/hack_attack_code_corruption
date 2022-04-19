@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
-
-        Time.timeScale = 1f;
     }
 
     // Call this on LeaveRoom.cs when players exits Level
