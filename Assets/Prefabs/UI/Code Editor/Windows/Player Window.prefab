@@ -1347,7 +1347,7 @@ PrefabInstance:
     - target: {fileID: -7181463176170589727, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: window
       value: 
-      objectReference: {fileID: 174732229926953424}
+      objectReference: {fileID: 5316769814159582428}
     - target: {fileID: 1563355326405472044, guid: e992311e01cb61f43ac935d8f28a8338, type: 3}
       propertyPath: m_text
       value: While Holding "Shift"
@@ -1860,6 +1860,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+--- !u!224 &5316769814159582428 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8845706416816339907, guid: 2737bfa319e66194bb6291c57ae9aeb5, type: 3}
+  m_PrefabInstance: {fileID: 3677953150636744479}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4627126817200538323
 PrefabInstance:
   m_ObjectHideFlags: 0
