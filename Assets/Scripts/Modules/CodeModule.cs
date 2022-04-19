@@ -306,6 +306,10 @@ public class CodeModule : MonoBehaviour
             {
                 continue;
             }
+            if(col.gameObject.TryGetComponent(out CodeModule cm))
+            {
+                if (cm.hackable) continue;
+            }
 
             Vector2 temp_distance = trans.position - col.transform.position;
             if (temp_distance.magnitude < min_distance.magnitude)
