@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2468441842079518244}
   - component: {fileID: 2468441842079518267}
+  - component: {fileID: 4020170110998227694}
   m_Layer: 0
   m_Name: PMA
   m_TagString: Untagged
@@ -82,3 +83,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4020170110998227694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2468441842079518266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac094d8f395cf7d48837c0d28ea1b887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0.35
