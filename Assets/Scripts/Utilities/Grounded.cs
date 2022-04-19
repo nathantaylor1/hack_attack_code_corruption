@@ -25,7 +25,7 @@ public class Grounded
 
         var results = Physics2D.BoxCast(bounds.center + (tf.up * -1f) * 0.1f, extents, 0f, tf.up * -1f, 0.05f, layer);
         var enemyResults = Physics2D.BoxCast(bounds.center + (tf.up * -1f) * 0.1f, extents, 0f, tf.up * -1f, 0.05f, enemyLayer);
-        if (results || (enemyResults && enemyResults.rigidbody.CompareTag("Printer")))
+        if (results || (enemyResults && (enemyResults.rigidbody.CompareTag("Printer") || enemyResults.rigidbody.CompareTag("BombEnemy"))))
         {
             return true;
         }
