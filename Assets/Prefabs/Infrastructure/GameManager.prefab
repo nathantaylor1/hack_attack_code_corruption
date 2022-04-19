@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5304754816591976458}
   - component: {fileID: 5134124837210348572}
   - component: {fileID: 7225743513770358134}
+  - component: {fileID: 5780859648687944479}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -117,3 +118,16 @@ MonoBehaviour:
     sprite: {fileID: -4930554734372939082, guid: d385b126ad0a22f49873f4d8bafb8ae7, type: 3}
   - returnType: entity
     sprite: {fileID: -1331263762793090788, guid: d385b126ad0a22f49873f4d8bafb8ae7, type: 3}
+--- !u!114 &5780859648687944479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808103812291835635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acee7dacf580144da8c20ce187402c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: ef488e6d6e7e6b641be0f4a116aaef9f, type: 3}
