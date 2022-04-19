@@ -26,16 +26,22 @@ public class CheckpointReset : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        // In place of OnBecameVisible() (frontloads saving)
+        else if (!hasSaved)
+        {
+            shouldSave = true;
+            SaveToCheckpoint(transform);
+        }
     }
 
-    protected virtual void OnBecameVisible()
+    /*protected virtual void OnBecameVisible()
     {
         if (saveOnStart && !hasSaved)
         {
             shouldSave = true;
             SaveToCheckpoint(transform);
         }
-    }
+    }*/
 
     public virtual void MarkForReset()
     {
@@ -46,6 +52,12 @@ public class CheckpointReset : MonoBehaviour
         {
             copyCR.MarkForReset();
         }
+        /*else if (gameObject.activeInHierarchy && !hasSaved)
+        {
+            SaveToCheckpoint(transform);
+            *//*shouldSave = true;
+            shouldReset = true;*//*
+        }*/
     }
 
     public virtual void MarkForNoReset()
