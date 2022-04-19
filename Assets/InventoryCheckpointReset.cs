@@ -13,14 +13,14 @@ public class InventoryCheckpointReset : CheckpointReset
         im = GetComponent<InventoryManager>();
         //rt = GetComponent<RectTransform>();
         base.Awake();
-        if (saveOnStart)
+        /*if (saveOnStart)
         {
             saveOnStart = false;
             SaveToCheckpoint(transform);
-        }
+        }*/
     }
 
-    protected override void OnBecameVisible() { }
+    //protected override void OnBecameVisible() { }
 
     public override void MarkForNoReset()
     {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 385543404902134153}
   - component: {fileID: 385543404902134152}
   - component: {fileID: 4482726749005120039}
-  - component: {fileID: -5879252390575832538}
+  - component: {fileID: 3690495998994377139}
   m_Layer: 16
   m_Name: MoveableBlock
   m_TagString: Untagged
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenMovableBox: {fileID: 6094361727916542147, guid: 0eaf69450eb3f4b4d87ff54ff338ba7a, type: 3}
   breakVelocity: 40
---- !u!114 &-5879252390575832538
+--- !u!114 &3690495998994377139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

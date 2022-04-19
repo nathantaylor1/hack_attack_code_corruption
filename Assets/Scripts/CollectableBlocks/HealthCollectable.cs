@@ -12,6 +12,10 @@ public class HealthCollectable : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (_hasCollected) return;
+        if (TryGetComponent(out CheckpointReset cr))
+        {
+            cr.MarkForReset();
+        }
         if (col.CompareTag("Player"))
         {
             _hasCollected = true;
