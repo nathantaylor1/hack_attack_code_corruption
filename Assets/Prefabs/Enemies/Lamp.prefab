@@ -406,12 +406,13 @@ MonoBehaviour:
   projectileSpeed: 1
   gravityScale: 0
   jumpSpeed: 3
+  crawlSpeed: 1.5
   dashDuration: 0.2
   dashSpeed: 10
   accelerationSpeed: 1
   meleeDamage: 1
   attackDelay: 5
-  dashDelay: 5
+  dashDelay: 2
   reloadTime: 5
   moveSound: {fileID: 0}
   jumpSound: {fileID: 0}
