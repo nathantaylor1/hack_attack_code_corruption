@@ -127,8 +127,10 @@ public class CrawlCode : CodeWithParameters
         var offset = new Vector2();
         offset = -tf.right * (x);
         offset += (Vector2)(-tf.up * (x / 2f + .35f));
+        LayerMask p = groundAndMoveables;
+        p |= LayerMask.NameToLayer("OneWay");
 
-        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, groundAndMoveables);
+        RaycastHit2D hit = Physics2D.BoxCast(origin + offset, size, 0f, direction, 0.1f, p);
         if (!hasTurned && hit) return;
         if (hasTurned && !hit) return;
         if (hasTurned && hit)  {
