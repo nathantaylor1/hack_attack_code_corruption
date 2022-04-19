@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExplodeCode : DamageBlock
 {
     private readonly LayerMask hitLM = (1 << 6) | (1 << 10) | (1 << 29);
+    private readonly LayerMask groundAndShield = (1 << 10) | (1 << 18);
     [SerializeField]
     protected float radius = 4f;
     [SerializeField]
@@ -16,7 +17,7 @@ public class ExplodeCode : DamageBlock
         int daddyId = module.father.GetInstanceID();
         if (col.gameObject.GetInstanceID() != moduleId && col.gameObject.GetInstanceID() != daddyId ) {
             int layer = col.gameObject.layer;
-            if (!(layer == 6 || layer == 7 || layer == 10 || layer == 16)) return;
+            if (!(layer == 6 || layer == 7 || layer == 10 || layer == 16 || layer == 18)) return;
             var p0 = GetParameter(0);
             if (!(p0 is null)) {
                 module.rb.velocity = Vector3.zero;
@@ -31,7 +32,9 @@ public class ExplodeCode : DamageBlock
         Collider2D[] cols = Physics2D.OverlapCircleAll(module.transform.position, radius);
         for (int i = 0; i < cols.Length; ++i)
         {
-            if (cols[i].gameObject.GetInstanceID() != self 
+            var dist = cols[i].gameObject.transform.position - module.transform.position;
+            var hit = Physics2D.Raycast(module.transform.position, dist.normalized, dist.magnitude, groundAndShield.value);
+            if (!hit && cols[i].gameObject.GetInstanceID() != self 
                 && cols[i].gameObject.GetInstanceID() != daddy) {
                 HasHealth hh = cols[i].GetComponent<HasHealth>();
                 if (hh) hh.Damage(dmg);
