@@ -186,6 +186,7 @@ MonoBehaviour:
   projectileSpeed: 0.5
   gravityScale: 0
   jumpSpeed: 2
+  crawlSpeed: 1.5
   dashDuration: 1
   dashSpeed: 1
   accelerationSpeed: 1
@@ -262,10 +263,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6587460094074411805}
+        m_TargetAssemblyTypeName: CodeModule, Assembly-CSharp
+        m_MethodName: FreezePosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnRevive:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6587460094074411805}
+        m_TargetAssemblyTypeName: CodeModule, Assembly-CSharp
+        m_MethodName: UnfreezePosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   health: 2
   healthBarSlider: {fileID: 0}
   healthBarFill: {fileID: 0}

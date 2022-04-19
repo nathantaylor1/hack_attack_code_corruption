@@ -273,6 +273,16 @@ public class CodeModule : MonoBehaviour
         rb.gravityScale = gravityScale > 0 ? gravityScale : 1;
     }
 
+    public virtual void FreezePosition()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
+    }
+
+    public virtual void UnfreezePosition()
+    {
+        rb.constraints = RigidbodyConstraints2D.None;
+    }
+
     private void OnCollisionEnter2D(Collision2D other) {
         lastCollidedWith = other.collider;
     }
